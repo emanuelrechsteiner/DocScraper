@@ -1,0 +1,333 @@
+---
+url: https://docs.anthropic.com/en/resources/prompt-library/sql-sorcerer
+scraped_at: 2025-05-24T19:51:06.620732
+title: SQL sorcerer - Anthropic
+---
+
+[Anthropic home page![light logo](https://mintlify.s3.us-west-1.amazonaws.com/anthropic/logo/light.svg)![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/anthropic/logo/dark.svg)](https://docs.anthropic.com/)
+English
+Search...
+⌘K
+  * [Research](https://www.anthropic.com/research)
+  * [News](https://www.anthropic.com/news)
+  * [Go to claude.ai](https://claude.ai/)
+  * [Go to claude.ai](https://claude.ai/)
+
+
+Search...
+Navigation
+Prompt Library
+SQL sorcerer
+[Welcome](https://docs.anthropic.com/en/home)[Developer Guide](https://docs.anthropic.com/en/docs/welcome)[API Guide](https://docs.anthropic.com/en/api/overview)[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)[Resources](https://docs.anthropic.com/en/resources/overview)[Release Notes](https://docs.anthropic.com/en/release-notes/overview)
+* [Documentation](https://docs.anthropic.com/en/home)
+* [Developer Console](https://console.anthropic.com/)
+* [Developer Discord](https://www.anthropic.com/discord)
+* [Support](https://support.anthropic.com/)
+##### Resources
+  * [Overview](https://docs.anthropic.com/en/resources/overview)
+  * [Quickstarts](https://github.com/anthropics/anthropic-quickstarts)
+  * [Claude 3 model card](https://assets.anthropic.com/m/61e7d27f8c8f5919/original/Claude-3-Model-Card.pdf)
+  * [Claude 3.7 system card](https://anthropic.com/claude-3-7-sonnet-system-card)
+  * [Claude 4 System Card](https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf)
+  * [System status](https://status.anthropic.com/)
+  * [Anthropic Courses](https://github.com/anthropics/courses)
+  * Prompt Library
+    * [Prompt Library](https://docs.anthropic.com/en/resources/prompt-library/library)
+    * [Cosmic Keystrokes](https://docs.anthropic.com/en/resources/prompt-library/cosmic-keystrokes)
+    * [Corporate clairvoyant](https://docs.anthropic.com/en/resources/prompt-library/corporate-clairvoyant)
+    * [Website wizard](https://docs.anthropic.com/en/resources/prompt-library/website-wizard)
+    * [Excel formula expert](https://docs.anthropic.com/en/resources/prompt-library/excel-formula-expert)
+    * [Google apps scripter](https://docs.anthropic.com/en/resources/prompt-library/google-apps-scripter)
+    * [Python bug buster](https://docs.anthropic.com/en/resources/prompt-library/python-bug-buster)
+    * [Time travel consultant](https://docs.anthropic.com/en/resources/prompt-library/time-travel-consultant)
+    * [Storytelling sidekick](https://docs.anthropic.com/en/resources/prompt-library/storytelling-sidekick)
+    * [Cite your sources](https://docs.anthropic.com/en/resources/prompt-library/cite-your-sources)
+    * [SQL sorcerer](https://docs.anthropic.com/en/resources/prompt-library/sql-sorcerer)
+    * [Dream interpreter](https://docs.anthropic.com/en/resources/prompt-library/dream-interpreter)
+    * [Pun-dit](https://docs.anthropic.com/en/resources/prompt-library/pun-dit)
+    * [Culinary creator](https://docs.anthropic.com/en/resources/prompt-library/culinary-creator)
+    * [Portmanteau poet](https://docs.anthropic.com/en/resources/prompt-library/portmanteau-poet)
+    * [Hal the humorous helper](https://docs.anthropic.com/en/resources/prompt-library/hal-the-humorous-helper)
+    * [LaTeX legend](https://docs.anthropic.com/en/resources/prompt-library/latex-legend)
+    * [Mood colorizer](https://docs.anthropic.com/en/resources/prompt-library/mood-colorizer)
+    * [Git gud](https://docs.anthropic.com/en/resources/prompt-library/git-gud)
+    * [Simile savant](https://docs.anthropic.com/en/resources/prompt-library/simile-savant)
+    * [Ethical dilemma navigator](https://docs.anthropic.com/en/resources/prompt-library/ethical-dilemma-navigator)
+    * [Meeting scribe](https://docs.anthropic.com/en/resources/prompt-library/meeting-scribe)
+    * [Idiom illuminator](https://docs.anthropic.com/en/resources/prompt-library/idiom-illuminator)
+    * [Code consultant](https://docs.anthropic.com/en/resources/prompt-library/code-consultant)
+    * [Function fabricator](https://docs.anthropic.com/en/resources/prompt-library/function-fabricator)
+    * [Neologism creator](https://docs.anthropic.com/en/resources/prompt-library/neologism-creator)
+    * [CSV converter](https://docs.anthropic.com/en/resources/prompt-library/csv-converter)
+    * [Emoji encoder](https://docs.anthropic.com/en/resources/prompt-library/emoji-encoder)
+    * [Prose polisher](https://docs.anthropic.com/en/resources/prompt-library/prose-polisher)
+    * [Perspectives ponderer](https://docs.anthropic.com/en/resources/prompt-library/perspectives-ponderer)
+    * [Trivia generator](https://docs.anthropic.com/en/resources/prompt-library/trivia-generator)
+    * [Mindfulness mentor](https://docs.anthropic.com/en/resources/prompt-library/mindfulness-mentor)
+    * [Second-grade simplifier](https://docs.anthropic.com/en/resources/prompt-library/second-grade-simplifier)
+    * [VR fitness innovator](https://docs.anthropic.com/en/resources/prompt-library/vr-fitness-innovator)
+    * [PII purifier](https://docs.anthropic.com/en/resources/prompt-library/pii-purifier)
+    * [Memo maestro](https://docs.anthropic.com/en/resources/prompt-library/memo-maestro)
+    * [Career coach](https://docs.anthropic.com/en/resources/prompt-library/career-coach)
+    * [Grading guru](https://docs.anthropic.com/en/resources/prompt-library/grading-guru)
+    * [Tongue twister](https://docs.anthropic.com/en/resources/prompt-library/tongue-twister)
+    * [Interview question crafter](https://docs.anthropic.com/en/resources/prompt-library/interview-question-crafter)
+    * [Grammar genie](https://docs.anthropic.com/en/resources/prompt-library/grammar-genie)
+    * [Riddle me this](https://docs.anthropic.com/en/resources/prompt-library/riddle-me-this)
+    * [Code clarifier](https://docs.anthropic.com/en/resources/prompt-library/code-clarifier)
+    * [Alien anthropologist](https://docs.anthropic.com/en/resources/prompt-library/alien-anthropologist)
+    * [Data organizer](https://docs.anthropic.com/en/resources/prompt-library/data-organizer)
+    * [Brand builder](https://docs.anthropic.com/en/resources/prompt-library/brand-builder)
+    * [Efficiency estimator](https://docs.anthropic.com/en/resources/prompt-library/efficiency-estimator)
+    * [Review classifier](https://docs.anthropic.com/en/resources/prompt-library/review-classifier)
+    * [Direction decoder](https://docs.anthropic.com/en/resources/prompt-library/direction-decoder)
+    * [Motivational muse](https://docs.anthropic.com/en/resources/prompt-library/motivational-muse)
+    * [Email extractor](https://docs.anthropic.com/en/resources/prompt-library/email-extractor)
+    * [Master moderator](https://docs.anthropic.com/en/resources/prompt-library/master-moderator)
+    * [Lesson planner](https://docs.anthropic.com/en/resources/prompt-library/lesson-planner)
+    * [Socratic sage](https://docs.anthropic.com/en/resources/prompt-library/socratic-sage)
+    * [Alliteration alchemist](https://docs.anthropic.com/en/resources/prompt-library/alliteration-alchemist)
+    * [Futuristic fashion advisor](https://docs.anthropic.com/en/resources/prompt-library/futuristic-fashion-advisor)
+    * [Polyglot superpowers](https://docs.anthropic.com/en/resources/prompt-library/polyglot-superpowers)
+    * [Product naming pro](https://docs.anthropic.com/en/resources/prompt-library/product-naming-pro)
+    * [Philosophical musings](https://docs.anthropic.com/en/resources/prompt-library/philosophical-musings)
+    * [Spreadsheet sorcerer](https://docs.anthropic.com/en/resources/prompt-library/spreadsheet-sorcerer)
+    * [Sci-fi scenario simulator](https://docs.anthropic.com/en/resources/prompt-library/sci-fi-scenario-simulator)
+    * [Adaptive editor](https://docs.anthropic.com/en/resources/prompt-library/adaptive-editor)
+    * [Babel's broadcasts](https://docs.anthropic.com/en/resources/prompt-library/babels-broadcasts)
+    * [Tweet tone detector](https://docs.anthropic.com/en/resources/prompt-library/tweet-tone-detector)
+    * [Airport code analyst](https://docs.anthropic.com/en/resources/prompt-library/airport-code-analyst)
+
+
+Prompt Library
+# SQL sorcerer
+Transform everyday language into SQL queries.
+> Copy this prompt into our developer [Console](https://console.anthropic.com/dashboard) to try it for yourself!
+| Content  
+---|---  
+System| Transform the following natural language requests into valid SQL queries. Assume a database with the following tables and columns exists: Customers: - customer_id (INT, PRIMARY KEY) - first_name (VARCHAR) - last_name (VARCHAR) - email (VARCHAR) - phone (VARCHAR) - address (VARCHAR) - city (VARCHAR) - state (VARCHAR) - zip_code (VARCHAR) Products: - product_id (INT, PRIMARY KEY) - product_name (VARCHAR) - description (TEXT) - category (VARCHAR) - price (DECIMAL) - stock_quantity (INT) Orders: - order_id (INT, PRIMARY KEY) - customer_id (INT, FOREIGN KEY REFERENCES Customers) - order_date (DATE) - total_amount (DECIMAL) - status (VARCHAR) Order_Items: - order_item_id (INT, PRIMARY KEY) - order_id (INT, FOREIGN KEY REFERENCES Orders) - product_id (INT, FOREIGN KEY REFERENCES Products) - quantity (INT) - price (DECIMAL) Reviews: - review_id (INT, PRIMARY KEY) - product_id (INT, FOREIGN KEY REFERENCES Products) - customer_id (INT, FOREIGN KEY REFERENCES Customers) - rating (INT) - comment (TEXT) - review_date (DATE) Employees: - employee_id (INT, PRIMARY KEY) - first_name (VARCHAR) - last_name (VARCHAR) - email (VARCHAR) - phone (VARCHAR) - hire_date (DATE) - job_title (VARCHAR) - department (VARCHAR) - salary (DECIMAL) Provide the SQL query that would retrieve the data based on the natural language request.  
+User| Get the list of customers who have placed orders but have not provided any reviews, along with the total amount they have spent on orders.  
+## 
+[​](https://docs.anthropic.com/en/resources/prompt-library/sql-sorcerer#example-output)
+Example output
+Copy
+```
+SELECT c.first_name, c.last_name, SUM(o.total_amount) AS total_spent
+FROM Customers c
+INNER JOIN Orders o ON c.customer_id = o.customer_id
+LEFT JOIN Reviews r ON c.customer_id = r.customer_id
+WHERE r.review_id IS NULL
+GROUP BY c.customer_id, c.first_name, c.last_name;
+
+```
+
+## 
+[​](https://docs.anthropic.com/en/resources/prompt-library/sql-sorcerer#api-request)
+API Request
+  * Python
+  * TypeScript
+  * AWS Bedrock Python
+  * AWS Bedrock TypeScript
+  * Vertex AI Python
+  * Vertex AI TypeScript
+
+
+Copy
+```
+import anthropic
+client = anthropic.Anthropic(
+ # defaults to os.environ.get("ANTHROPIC_API_KEY")
+ api_key="my_api_key",
+)
+message = client.messages.create(
+ model="claude-opus-4-20250514",
+ max_tokens=1000,
+ temperature=0,
+ system="Transform the following natural language requests into valid SQL queries. Assume a database with the following tables and columns exists: \n \nCustomers: \n- customer_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- address (VARCHAR) \n- city (VARCHAR) \n- state (VARCHAR) \n- zip_code (VARCHAR) \n \nProducts: \n- product_id (INT, PRIMARY KEY) \n- product_name (VARCHAR) \n- description (TEXT) \n- category (VARCHAR) \n- price (DECIMAL) \n- stock_quantity (INT) \n \nOrders: \n- order_id (INT, PRIMARY KEY) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- order_date (DATE) \n- total_amount (DECIMAL) \n- status (VARCHAR) \n \nOrder_Items: \n- order_item_id (INT, PRIMARY KEY) \n- order_id (INT, FOREIGN KEY REFERENCES Orders) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- quantity (INT) \n- price (DECIMAL) \n \nReviews: \n- review_id (INT, PRIMARY KEY) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- rating (INT) \n- comment (TEXT) \n- review_date (DATE) \n \nEmployees: \n- employee_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- hire_date (DATE) \n- job_title (VARCHAR) \n- department (VARCHAR) \n- salary (DECIMAL) \n \nProvide the SQL query that would retrieve the data based on the natural language request.",
+ messages=[
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "text",
+     "text": "Get the list of customers who have placed orders but have not provided any reviews, along with the total amount they have spent on orders."
+    }
+   ]
+  }
+ ]
+)
+print(message.content)
+
+```
+
+Copy
+```
+import anthropic
+client = anthropic.Anthropic(
+ # defaults to os.environ.get("ANTHROPIC_API_KEY")
+ api_key="my_api_key",
+)
+message = client.messages.create(
+ model="claude-opus-4-20250514",
+ max_tokens=1000,
+ temperature=0,
+ system="Transform the following natural language requests into valid SQL queries. Assume a database with the following tables and columns exists: \n \nCustomers: \n- customer_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- address (VARCHAR) \n- city (VARCHAR) \n- state (VARCHAR) \n- zip_code (VARCHAR) \n \nProducts: \n- product_id (INT, PRIMARY KEY) \n- product_name (VARCHAR) \n- description (TEXT) \n- category (VARCHAR) \n- price (DECIMAL) \n- stock_quantity (INT) \n \nOrders: \n- order_id (INT, PRIMARY KEY) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- order_date (DATE) \n- total_amount (DECIMAL) \n- status (VARCHAR) \n \nOrder_Items: \n- order_item_id (INT, PRIMARY KEY) \n- order_id (INT, FOREIGN KEY REFERENCES Orders) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- quantity (INT) \n- price (DECIMAL) \n \nReviews: \n- review_id (INT, PRIMARY KEY) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- rating (INT) \n- comment (TEXT) \n- review_date (DATE) \n \nEmployees: \n- employee_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- hire_date (DATE) \n- job_title (VARCHAR) \n- department (VARCHAR) \n- salary (DECIMAL) \n \nProvide the SQL query that would retrieve the data based on the natural language request.",
+ messages=[
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "text",
+     "text": "Get the list of customers who have placed orders but have not provided any reviews, along with the total amount they have spent on orders."
+    }
+   ]
+  }
+ ]
+)
+print(message.content)
+
+```
+
+Copy
+```
+import Anthropic from "@anthropic-ai/sdk";
+const anthropic = new Anthropic({
+ apiKey: "my_api_key", // defaults to process.env["ANTHROPIC_API_KEY"]
+});
+const msg = await anthropic.messages.create({
+ model: "claude-opus-4-20250514",
+ max_tokens: 1000,
+ temperature: 0,
+ system: "Transform the following natural language requests into valid SQL queries. Assume a database with the following tables and columns exists: \n \nCustomers: \n- customer_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- address (VARCHAR) \n- city (VARCHAR) \n- state (VARCHAR) \n- zip_code (VARCHAR) \n \nProducts: \n- product_id (INT, PRIMARY KEY) \n- product_name (VARCHAR) \n- description (TEXT) \n- category (VARCHAR) \n- price (DECIMAL) \n- stock_quantity (INT) \n \nOrders: \n- order_id (INT, PRIMARY KEY) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- order_date (DATE) \n- total_amount (DECIMAL) \n- status (VARCHAR) \n \nOrder_Items: \n- order_item_id (INT, PRIMARY KEY) \n- order_id (INT, FOREIGN KEY REFERENCES Orders) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- quantity (INT) \n- price (DECIMAL) \n \nReviews: \n- review_id (INT, PRIMARY KEY) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- rating (INT) \n- comment (TEXT) \n- review_date (DATE) \n \nEmployees: \n- employee_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- hire_date (DATE) \n- job_title (VARCHAR) \n- department (VARCHAR) \n- salary (DECIMAL) \n \nProvide the SQL query that would retrieve the data based on the natural language request.",
+ messages: [
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "text",
+     "text": "Get the list of customers who have placed orders but have not provided any reviews, along with the total amount they have spent on orders."
+    }
+   ]
+  }
+ ]
+});
+console.log(msg);
+
+```
+
+Copy
+```
+from anthropic import AnthropicBedrock
+# See https://docs.anthropic.com/claude/reference/claude-on-amazon-bedrock
+# for authentication options
+client = AnthropicBedrock()
+message = client.messages.create(
+  model="anthropic.claude-opus-4-20250514-v1:0",
+  max_tokens=1000,
+  temperature=0,
+  system="Transform the following natural language requests into valid SQL queries. Assume a database with the following tables and columns exists: \n \nCustomers: \n- customer_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- address (VARCHAR) \n- city (VARCHAR) \n- state (VARCHAR) \n- zip_code (VARCHAR) \n \nProducts: \n- product_id (INT, PRIMARY KEY) \n- product_name (VARCHAR) \n- description (TEXT) \n- category (VARCHAR) \n- price (DECIMAL) \n- stock_quantity (INT) \n \nOrders: \n- order_id (INT, PRIMARY KEY) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- order_date (DATE) \n- total_amount (DECIMAL) \n- status (VARCHAR) \n \nOrder_Items: \n- order_item_id (INT, PRIMARY KEY) \n- order_id (INT, FOREIGN KEY REFERENCES Orders) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- quantity (INT) \n- price (DECIMAL) \n \nReviews: \n- review_id (INT, PRIMARY KEY) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- rating (INT) \n- comment (TEXT) \n- review_date (DATE) \n \nEmployees: \n- employee_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- hire_date (DATE) \n- job_title (VARCHAR) \n- department (VARCHAR) \n- salary (DECIMAL) \n \nProvide the SQL query that would retrieve the data based on the natural language request.",
+  messages=[
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Get the list of customers who have placed orders but have not provided any reviews, along with the total amount they have spent on orders."
+        }
+      ]
+    }
+  ]
+)
+print(message.content)
+
+```
+
+Copy
+```
+import AnthropicBedrock from "@anthropic-ai/bedrock-sdk";
+// See https://docs.anthropic.com/claude/reference/claude-on-amazon-bedrock
+// for authentication options
+const client = new AnthropicBedrock();
+const msg = await client.messages.create({
+ model: "anthropic.claude-opus-4-20250514-v1:0",
+ max_tokens: 1000,
+ temperature: 0,
+ system: "Transform the following natural language requests into valid SQL queries. Assume a database with the following tables and columns exists: \n \nCustomers: \n- customer_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- address (VARCHAR) \n- city (VARCHAR) \n- state (VARCHAR) \n- zip_code (VARCHAR) \n \nProducts: \n- product_id (INT, PRIMARY KEY) \n- product_name (VARCHAR) \n- description (TEXT) \n- category (VARCHAR) \n- price (DECIMAL) \n- stock_quantity (INT) \n \nOrders: \n- order_id (INT, PRIMARY KEY) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- order_date (DATE) \n- total_amount (DECIMAL) \n- status (VARCHAR) \n \nOrder_Items: \n- order_item_id (INT, PRIMARY KEY) \n- order_id (INT, FOREIGN KEY REFERENCES Orders) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- quantity (INT) \n- price (DECIMAL) \n \nReviews: \n- review_id (INT, PRIMARY KEY) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- rating (INT) \n- comment (TEXT) \n- review_date (DATE) \n \nEmployees: \n- employee_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- hire_date (DATE) \n- job_title (VARCHAR) \n- department (VARCHAR) \n- salary (DECIMAL) \n \nProvide the SQL query that would retrieve the data based on the natural language request.",
+ messages: [
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "text",
+     "text": "Get the list of customers who have placed orders but have not provided any reviews, along with the total amount they have spent on orders."
+    }
+   ]
+  }
+ ]
+});
+console.log(msg);
+
+```
+
+Copy
+```
+from anthropic import AnthropicVertex
+client = AnthropicVertex()
+message = client.messages.create(
+  model="claude-3-7-sonnet-v1@20250219",
+  max_tokens=1000,
+  temperature=0,
+  system="Transform the following natural language requests into valid SQL queries. Assume a database with the following tables and columns exists: \n \nCustomers: \n- customer_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- address (VARCHAR) \n- city (VARCHAR) \n- state (VARCHAR) \n- zip_code (VARCHAR) \n \nProducts: \n- product_id (INT, PRIMARY KEY) \n- product_name (VARCHAR) \n- description (TEXT) \n- category (VARCHAR) \n- price (DECIMAL) \n- stock_quantity (INT) \n \nOrders: \n- order_id (INT, PRIMARY KEY) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- order_date (DATE) \n- total_amount (DECIMAL) \n- status (VARCHAR) \n \nOrder_Items: \n- order_item_id (INT, PRIMARY KEY) \n- order_id (INT, FOREIGN KEY REFERENCES Orders) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- quantity (INT) \n- price (DECIMAL) \n \nReviews: \n- review_id (INT, PRIMARY KEY) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- rating (INT) \n- comment (TEXT) \n- review_date (DATE) \n \nEmployees: \n- employee_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- hire_date (DATE) \n- job_title (VARCHAR) \n- department (VARCHAR) \n- salary (DECIMAL) \n \nProvide the SQL query that would retrieve the data based on the natural language request.",
+  messages=[
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Get the list of customers who have placed orders but have not provided any reviews, along with the total amount they have spent on orders."
+        }
+      ]
+    }
+  ]
+)
+print(message.content)
+
+```
+
+Copy
+```
+import { AnthropicVertex } from '@anthropic-ai/vertex-sdk';
+// Reads from the `CLOUD_ML_REGION` & `ANTHROPIC_VERTEX_PROJECT_ID` environment variables.
+// Additionally goes through the standard `google-auth-library` flow.
+const client = new AnthropicVertex();
+const msg = await client.messages.create({
+model: "claude-3-7-sonnet-v1@20250219",
+max_tokens: 1000,
+temperature: 0,
+system: "Transform the following natural language requests into valid SQL queries. Assume a database with the following tables and columns exists: \n \nCustomers: \n- customer_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- address (VARCHAR) \n- city (VARCHAR) \n- state (VARCHAR) \n- zip_code (VARCHAR) \n \nProducts: \n- product_id (INT, PRIMARY KEY) \n- product_name (VARCHAR) \n- description (TEXT) \n- category (VARCHAR) \n- price (DECIMAL) \n- stock_quantity (INT) \n \nOrders: \n- order_id (INT, PRIMARY KEY) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- order_date (DATE) \n- total_amount (DECIMAL) \n- status (VARCHAR) \n \nOrder_Items: \n- order_item_id (INT, PRIMARY KEY) \n- order_id (INT, FOREIGN KEY REFERENCES Orders) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- quantity (INT) \n- price (DECIMAL) \n \nReviews: \n- review_id (INT, PRIMARY KEY) \n- product_id (INT, FOREIGN KEY REFERENCES Products) \n- customer_id (INT, FOREIGN KEY REFERENCES Customers) \n- rating (INT) \n- comment (TEXT) \n- review_date (DATE) \n \nEmployees: \n- employee_id (INT, PRIMARY KEY) \n- first_name (VARCHAR) \n- last_name (VARCHAR) \n- email (VARCHAR) \n- phone (VARCHAR) \n- hire_date (DATE) \n- job_title (VARCHAR) \n- department (VARCHAR) \n- salary (DECIMAL) \n \nProvide the SQL query that would retrieve the data based on the natural language request.",
+messages: [
+{
+"role": "user",
+"content": [
+{
+"type": "text",
+"text": "Get the list of customers who have placed orders but have not provided any reviews, along with the total amount they have spent on orders."
+}
+]
+}
+]
+});
+console.log(msg);
+
+```
+
+Was this page helpful?
+YesNo
+[Cite your sources](https://docs.anthropic.com/en/resources/prompt-library/cite-your-sources)[Dream interpreter](https://docs.anthropic.com/en/resources/prompt-library/dream-interpreter)
+[x](https://x.com/AnthropicAI)[linkedin](https://www.linkedin.com/company/anthropicresearch)
+On this page
+  * [Example output](https://docs.anthropic.com/en/resources/prompt-library/sql-sorcerer#example-output)
+  * [API Request](https://docs.anthropic.com/en/resources/prompt-library/sql-sorcerer#api-request)
+
+
+
