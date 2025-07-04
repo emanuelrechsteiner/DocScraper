@@ -173,6 +173,13 @@ class DocumentCleaner:
             try:
                 _, frontmatter, rest = content.split('---', 2)
                 metadata = yaml.safe_load(frontmatter)
+                
+                # Convert any datetime objects to strings
+                if metadata:
+                    for key, value in metadata.items():
+                        if hasattr(value, 'isoformat'):  # Check if it's a datetime object
+                            metadata[key] = value.isoformat()
+                
                 return metadata, rest
             except:
                 return {}, content
