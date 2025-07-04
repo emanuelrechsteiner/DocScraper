@@ -89,6 +89,24 @@ class DocPostProcessorGUI:
         self.chunk_overlap_spinbox.grid(row=1, column=1, sticky=tk.W, pady=5, padx=(10, 0))
         ttk.Label(options_frame, text="tokens").grid(row=1, column=2, sticky=tk.W, padx=(5, 0))
         
+        # Process Subfolders
+        self.process_subfolders_var = tk.BooleanVar(value=True)
+        self.process_subfolders_check = ttk.Checkbutton(
+            options_frame,
+            text="Process all subfolders recursively",
+            variable=self.process_subfolders_var
+        )
+        self.process_subfolders_check.grid(row=2, column=0, columnspan=3, sticky=tk.W, pady=5)
+        
+        # Flatten Output
+        self.flatten_output_var = tk.BooleanVar(value=True)
+        self.flatten_output_check = ttk.Checkbutton(
+            options_frame,
+            text="Flatten output (consolidate all files in single folder)",
+            variable=self.flatten_output_var
+        )
+        self.flatten_output_check.grid(row=3, column=0, columnspan=3, sticky=tk.W, pady=5)
+        
         # Use LLM Classification
         self.use_llm_var = tk.BooleanVar(value=False)
         self.use_llm_check = ttk.Checkbutton(
@@ -97,7 +115,7 @@ class DocPostProcessorGUI:
             variable=self.use_llm_var,
             command=self.toggle_api_key
         )
-        self.use_llm_check.grid(row=2, column=0, columnspan=3, sticky=tk.W, pady=5)
+        self.use_llm_check.grid(row=4, column=0, columnspan=3, sticky=tk.W, pady=5)
         
         # API Key (hidden by default)
         self.api_key_label = ttk.Label(options_frame, text="API Key:")
@@ -178,8 +196,8 @@ class DocPostProcessorGUI:
     def toggle_api_key(self):
         """Show/hide API key field based on checkbox."""
         if self.use_llm_var.get():
-            self.api_key_label.grid(row=3, column=0, sticky=tk.W, pady=5)
-            self.api_key_entry.grid(row=3, column=1, columnspan=2, sticky=(tk.W, tk.E), pady=5, padx=(10, 0))
+            self.api_key_label.grid(row=5, column=0, sticky=tk.W, pady=5)
+            self.api_key_entry.grid(row=5, column=1, columnspan=2, sticky=(tk.W, tk.E), pady=5, padx=(10, 0))
         else:
             self.api_key_label.grid_remove()
             self.api_key_entry.grid_remove()
@@ -254,9 +272,13 @@ class DocPostProcessorGUI:
         self.stop_btn.config(state=tk.NORMAL)
         self.progress.start(10)
         
+        # Get processing options
+        process_subfolders = self.process_subfolders_var.get()
+        flatten_output = self.flatten_output_var.get()
+        
         self.processor_thread = threading.Thread(
             target=self.run_processor,
-            args=(input_dir, output_dir, api_key)
+            args=(input_dir, output_dir, api_key, process_subfolders, flatten_output)
         )
         self.processor_thread.daemon = True
         self.processor_thread.start()
@@ -268,12 +290,14 @@ class DocPostProcessorGUI:
             self.log("Stopping processor...", "WARNING")
             self.update_status("Stopping...")
     
-    def run_processor(self, input_dir, output_dir, api_key):
+    def run_processor(self, input_dir, output_dir, api_key, process_subfolders, flatten_output):
         """Run the processor in a separate thread."""
         try:
             self.log(f"Starting document post-processing", "INFO")
             self.log(f"Input directory: {input_dir}", "INFO")
             self.log(f"Output directory: {output_dir}", "INFO")
+            self.log(f"Process subfolders: {'Yes' if process_subfolders else 'No'}", "INFO")
+            self.log(f"Flatten output: {'Yes' if flatten_output else 'No'}", "INFO")
             self.log(f"Using LLM: {'Yes' if api_key else 'No'}", "INFO")
             self.update_status("Processing documents...")
             
@@ -282,10 +306,15 @@ class DocPostProcessorGUI:
             asyncio.set_event_loop(loop)
             
             # Create processor with custom logger
-            processor = GUIProcessor(input_dir, output_dir, api_key, self)
+            processor = GUIProcessor(input_dir, output_dir, api_key, self, 
+                                   process_subfolders=process_subfolders, 
+                                   flatten_output=flatten_output)
             
             # Run processor
-            summary = loop.run_until_complete(processor.process_all_documents())
+            summary = loop.run_until_complete(processor.process_all_documents(
+                recursive=process_subfolders, 
+                flatten_output=flatten_output
+            ))
             
             # Update statistics
             self.update_stats(summary)
@@ -318,9 +347,11 @@ class DocPostProcessorGUI:
 class GUIProcessor(DocumentPostProcessor):
     """Custom processor that logs to GUI."""
     
-    def __init__(self, input_dir, output_dir, api_key, gui):
+    def __init__(self, input_dir, output_dir, api_key, gui, process_subfolders=True, flatten_output=True):
         super().__init__(input_dir, output_dir, api_key)
         self.gui = gui
+        self.process_subfolders = process_subfolders
+        self.flatten_output = flatten_output
     
     async def process_document(self, file_path):
         """Override to add GUI logging."""

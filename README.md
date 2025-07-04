@@ -19,6 +19,8 @@ A comprehensive toolkit for scraping documentation websites and post-processing 
 - **Vector DB Optimization**: Prepares content for efficient vector database ingestion
 - **Dependency Analysis**: Identifies relationships between documents
 - **Complexity Scoring**: Ranks documents by complexity for progressive learning
+- **Multi-Folder Processing**: Process entire directory trees with multiple subfolders
+- **Output Consolidation**: Flatten all processed files into a single output directory
 
 ## Installation
 
@@ -101,10 +103,14 @@ For a graphical interface:
 python DocPostProcessorGUI.py
 ```
 
-#### Example Script
-Run the comprehensive example:
+#### Example Scripts
+Run the comprehensive examples:
 ```bash
+# Basic processing example
 python process_docs_example.py
+
+# Multi-folder processing example
+python process_multi_folder_example.py
 ```
 
 ## Post-Processing Pipeline
@@ -126,6 +132,52 @@ python process_docs_example.py
 - Analyzes dependencies between documents
 - Calculates complexity scores
 - Orders documents for optimal learning progression
+
+## Multi-Folder Processing
+
+The post-processor can handle complex directory structures with multiple subfolders:
+
+### Input Structure Example
+```
+Documentation/
+├── Anthropic/
+│   ├── guides/
+│   │   ├── getting-started.md
+│   │   └── advanced-usage.md
+│   ├── api/
+│   │   └── endpoints.md
+│   └── concepts.md
+├── React/
+│   ├── hooks/
+│   │   ├── useState.md
+│   │   └── useEffect.md
+│   └── components.md
+└── Shadcn/
+    └── ui-components.md
+```
+
+### Processing Options
+1. **Recursive Processing**: Process all files in all subdirectories
+2. **Flatten Output**: Consolidate all processed files into a single output directory
+3. **Preserve Structure**: Maintain folder hierarchy in output (optional)
+
+### Output with Flattening
+```
+processed_docs/
+├── cleaned/
+│   ├── 0000_Anthropic_guides_getting-started.md
+│   ├── 0001_Anthropic_guides_advanced-usage.md
+│   ├── 0002_Anthropic_api_endpoints.md
+│   ├── 0003_Anthropic_concepts.md
+│   ├── 0004_React_hooks_useState.md
+│   └── ...
+├── chunks/
+│   └── [corresponding chunk directories]
+├── processing_summary.json
+└── vector_db_index.json
+```
+
+The flattened output preserves source folder information in filenames while consolidating everything for easier vector database ingestion.
 
 ## Output Structure
 
@@ -192,6 +244,8 @@ The post-processor creates a `vector_db_index.json` file optimized for vector da
 - `chunk_size`: Target size for document chunks (default: 1000 tokens)
 - `chunk_overlap`: Overlap between chunks (default: 200 tokens)
 - `use_llm`: Enable AI-powered classification (requires API key)
+- `process_subfolders`: Process all subdirectories recursively (default: True)
+- `flatten_output`: Consolidate all output files in single directory (default: True)
 
 ## Tips & Best Practices
 

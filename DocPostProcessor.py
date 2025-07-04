@@ -545,23 +545,42 @@ class DocumentPostProcessor:
         
         self.processed_docs: List[ProcessedDocument] = []
     
-    async def process_all_documents(self) -> Dict[str, Any]:
-        """Process all documents in the input directory."""
+    async def process_all_documents(self, recursive: bool = True, flatten_output: bool = True) -> Dict[str, Any]:
+        """Process all documents in the input directory.
+        
+        Args:
+            recursive: If True, process files in all subdirectories
+            flatten_output: If True, output all files to a single directory
+        """
         logger.info(f"Starting post-processing of documents in {self.input_dir}")
+        logger.info(f"Recursive: {recursive}, Flatten output: {flatten_output}")
         
         # Find all markdown files
-        md_files = list(self.input_dir.glob("**/*.md"))
+        if recursive:
+            md_files = list(self.input_dir.rglob("*.md"))  # Recursive glob
+        else:
+            md_files = list(self.input_dir.glob("*.md"))  # Non-recursive
+            
+        # Exclude summary files
+        md_files = [f for f in md_files if not f.name.startswith('_')]
+        
         logger.info(f"Found {len(md_files)} markdown files to process")
+        
+        # Track source folders for organization
+        source_folders = defaultdict(list)
         
         # Process each file
         for md_file in md_files:
-            if md_file.name == '_scrape_summary.json':
-                continue
-                
             try:
                 processed_doc = await self.process_document(md_file)
                 if processed_doc:
                     self.processed_docs.append(processed_doc)
+                    
+                    # Track source folder
+                    relative_path = md_file.relative_to(self.input_dir)
+                    source_folder = relative_path.parent if relative_path.parent != Path('.') else Path('root')
+                    source_folders[str(source_folder)].append(processed_doc)
+                    
             except Exception as e:
                 logger.error(f"Error processing {md_file}: {e}")
         
@@ -571,7 +590,7 @@ class DocumentPostProcessor:
         
         # Save processed documents
         logger.info("Saving processed documents...")
-        summary = self.save_processed_documents()
+        summary = self.save_processed_documents(flatten_output=flatten_output, source_folders=dict(source_folders))
         
         return summary
     
@@ -608,8 +627,13 @@ class DocumentPostProcessor:
         
         return doc
     
-    def save_processed_documents(self) -> Dict[str, Any]:
-        """Save processed documents to output directory."""
+    def save_processed_documents(self, flatten_output: bool = True, source_folders: Dict[str, List] = None) -> Dict[str, Any]:
+        """Save processed documents to output directory.
+        
+        Args:
+            flatten_output: If True, save all files in a single directory structure
+            source_folders: Mapping of source folders to documents (for organization)
+        """
         # Create output structure
         (self.output_dir / 'cleaned').mkdir(exist_ok=True)
         (self.output_dir / 'chunks').mkdir(exist_ok=True)
@@ -620,25 +644,43 @@ class DocumentPostProcessor:
             'total_documents': len(self.processed_docs),
             'total_chunks': 0,
             'categories': defaultdict(int),
+            'source_folders': list(source_folders.keys()) if source_folders else [],
             'documents': []
         }
         
         # Save each document
         for i, doc in enumerate(self.processed_docs):
+            # Determine output filename
+            if flatten_output:
+                # Create a unique filename that preserves some path info
+                relative_path = Path(doc.file_path).relative_to(self.input_dir) if self.input_dir in Path(doc.file_path).parents else Path(doc.file_path).name
+                path_parts = list(relative_path.parts[:-1])  # Exclude filename
+                
+                if path_parts:
+                    # Include folder structure in filename
+                    folder_prefix = "_".join(path_parts).replace("/", "_").replace("\\", "_")
+                    filename_stem = f"{i:04d}_{folder_prefix}_{Path(doc.file_path).stem}"
+                else:
+                    filename_stem = f"{i:04d}_{Path(doc.file_path).stem}"
+            else:
+                # Preserve original folder structure
+                filename_stem = f"{i:04d}_{Path(doc.file_path).stem}"
+            
             # Save cleaned full document
-            cleaned_path = self.output_dir / 'cleaned' / f"{i:04d}_{Path(doc.file_path).stem}.md"
+            cleaned_path = self.output_dir / 'cleaned' / f"{filename_stem}.md"
             full_content = '\n\n'.join([chunk.content for chunk in doc.chunks])
             
             with open(cleaned_path, 'w', encoding='utf-8') as f:
                 f.write(f"# {doc.title}\n\n")
                 f.write(f"**Category**: {doc.category}\n")
                 f.write(f"**Complexity**: {doc.complexity_score:.2f}\n")
-                f.write(f"**Original URL**: {doc.original_url}\n\n")
+                f.write(f"**Original URL**: {doc.original_url}\n")
+                f.write(f"**Source File**: {doc.file_path}\n\n")
                 f.write(full_content)
             
             # Save chunks
-            chunk_dir = self.output_dir / 'chunks' / f"{i:04d}_{Path(doc.file_path).stem}"
-            chunk_dir.mkdir(exist_ok=True)
+            chunk_dir = self.output_dir / 'chunks' / filename_stem
+            chunk_dir.mkdir(exist_ok=True, parents=True)
             
             for j, chunk in enumerate(doc.chunks):
                 chunk_path = chunk_dir / f"chunk_{j:03d}.json"
@@ -656,7 +698,8 @@ class DocumentPostProcessor:
                 'category': doc.category,
                 'chunks': len(doc.chunks),
                 'complexity': doc.complexity_score,
-                'dependencies': doc.dependencies
+                'dependencies': doc.dependencies,
+                'source_folder': str(Path(doc.file_path).parent.relative_to(self.input_dir)) if self.input_dir in Path(doc.file_path).parents else 'root'
             })
         
         # Save summary
@@ -677,7 +720,8 @@ class DocumentPostProcessor:
                         **chunk.metadata,
                         'category': doc.category,
                         'complexity': doc.complexity_score,
-                        'parent_title': doc.title
+                        'parent_title': doc.title,
+                        'source_file': doc.file_path
                     }
                 })
         
