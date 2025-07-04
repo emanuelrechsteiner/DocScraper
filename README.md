@@ -22,6 +22,13 @@ A comprehensive toolkit for scraping documentation websites and post-processing 
 - **Multi-Folder Processing**: Process entire directory trees with multiple subfolders
 - **Output Consolidation**: Flatten all processed files into a single output directory
 
+### GUI Features
+- **User-Friendly Interface**: Built with Tkinter
+- **Real-Time Logging**: See what's happening as it processes
+- **Configuration Options**: Easy adjustment of all parameters
+- **Progress Visualization**: Progress bars and statistics
+- **Thread-Safe Operation**: Stable multi-threaded processing
+
 ## Installation
 
 1. Create and activate a virtual environment:

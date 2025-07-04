@@ -11,6 +11,7 @@ import asyncio
 from pathlib import Path
 from datetime import datetime
 import json
+import queue
 
 from DocPostProcessor import DocumentPostProcessor
 
@@ -25,7 +26,13 @@ class DocPostProcessorGUI:
         self.processing = False
         self.processor_thread = None
         
+        # Thread-safe message queue
+        self.message_queue = queue.Queue()
+        
         self.setup_ui()
+        
+        # Start checking for messages
+        self.check_messages()
         
     def setup_ui(self):
         """Setup the user interface."""
@@ -202,26 +209,39 @@ class DocPostProcessorGUI:
             self.api_key_label.grid_remove()
             self.api_key_entry.grid_remove()
     
-    def log(self, message, level="INFO"):
-        """Add message to log."""
+    def check_messages(self):
+        """Check for messages from processor thread."""
+        try:
+            while True:
+                msg_type, data = self.message_queue.get_nowait()
+                
+                if msg_type == "log":
+                    self._log_to_widget(data["message"], data["level"])
+                elif msg_type == "status":
+                    self.status_var.set(data)
+                elif msg_type == "stats":
+                    self._update_stats_widget(data)
+                elif msg_type == "complete":
+                    self._processing_complete(data)
+                elif msg_type == "error":
+                    self._processing_error(data)
+                    
+        except queue.Empty:
+            pass
+        finally:
+            # Schedule next check
+            self.root.after(100, self.check_messages)
+    
+    def _log_to_widget(self, message, level="INFO"):
+        """Add message to log widget (called on main thread)."""
         timestamp = datetime.now().strftime("%H:%M:%S")
         formatted_message = f"[{timestamp}] {level}: {message}\n"
         
         self.log_text.insert(tk.END, formatted_message)
         self.log_text.see(tk.END)
-        self.root.update_idletasks()
     
-    def clear_log(self):
-        """Clear the log text."""
-        self.log_text.delete(1.0, tk.END)
-    
-    def update_status(self, message):
-        """Update status bar."""
-        self.status_var.set(message)
-        self.root.update_idletasks()
-    
-    def update_stats(self, stats):
-        """Update statistics display."""
+    def _update_stats_widget(self, stats):
+        """Update statistics display (called on main thread)."""
         self.stats_text.config(state=tk.NORMAL)
         self.stats_text.delete(1.0, tk.END)
         
@@ -235,6 +255,46 @@ class DocPostProcessorGUI:
             self.stats_text.insert(tk.END, cat_text)
         
         self.stats_text.config(state=tk.DISABLED)
+    
+    def _processing_complete(self, summary):
+        """Handle processing completion (called on main thread)."""
+        self.processing = False
+        self.progress.stop()
+        self.process_btn.config(state=tk.NORMAL)
+        self.stop_btn.config(state=tk.DISABLED)
+        
+        messagebox.showinfo(
+            "Success", 
+            f"Processing completed!\n\n"
+            f"Documents processed: {summary['total_documents']}\n"
+            f"Total chunks created: {summary['total_chunks']}\n"
+            f"Output saved to: {self.output_var.get()}"
+        )
+    
+    def _processing_error(self, error_msg):
+        """Handle processing error (called on main thread)."""
+        self.processing = False
+        self.progress.stop()
+        self.process_btn.config(state=tk.NORMAL)
+        self.stop_btn.config(state=tk.DISABLED)
+        
+        messagebox.showerror("Error", f"Processing failed:\n{error_msg}")
+    
+    def log(self, message, level="INFO"):
+        """Thread-safe logging."""
+        self.message_queue.put(("log", {"message": message, "level": level}))
+    
+    def clear_log(self):
+        """Clear the log text."""
+        self.log_text.delete(1.0, tk.END)
+    
+    def update_status(self, message):
+        """Thread-safe status update."""
+        self.message_queue.put(("status", message))
+    
+    def update_stats(self, stats):
+        """Thread-safe statistics update."""
+        self.message_queue.put(("stats", stats))
     
     def start_processing(self):
         """Start the processing."""
@@ -310,6 +370,10 @@ class DocPostProcessorGUI:
                                    process_subfolders=process_subfolders, 
                                    flatten_output=flatten_output)
             
+            # Set chunk parameters
+            processor.structurer.chunk_size = self.chunk_size_var.get()
+            processor.structurer.chunk_overlap = self.chunk_overlap_var.get()
+            
             # Run processor
             summary = loop.run_until_complete(processor.process_all_documents(
                 recursive=process_subfolders, 
@@ -322,25 +386,15 @@ class DocPostProcessorGUI:
             self.log("Processing completed successfully!", "SUCCESS")
             self.update_status("Processing completed")
             
-            # Show completion message
-            messagebox.showinfo(
-                "Success", 
-                f"Processing completed!\n\n"
-                f"Documents processed: {summary['total_documents']}\n"
-                f"Total chunks created: {summary['total_chunks']}\n"
-                f"Output saved to: {output_dir}"
-            )
+            # Send completion message
+            self.message_queue.put(("complete", summary))
             
         except Exception as e:
             self.log(f"Error during processing: {str(e)}", "ERROR")
             self.update_status("Error occurred")
-            messagebox.showerror("Error", f"Processing failed:\n{str(e)}")
+            self.message_queue.put(("error", str(e)))
             
         finally:
-            self.processing = False
-            self.progress.stop()
-            self.process_btn.config(state=tk.NORMAL)
-            self.stop_btn.config(state=tk.DISABLED)
             loop.close()
 
 
