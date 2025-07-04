@@ -17,7 +17,7 @@ import yaml
 import hashlib
 
 from bs4 import BeautifulSoup
-import openai
+from openai import AsyncOpenAI
 from tenacity import retry, stop_after_attempt, wait_exponential
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -355,8 +355,9 @@ class DocumentSorter:
     
     def __init__(self, api_key: Optional[str] = None):
         self.api_key = api_key
+        self.client = None
         if api_key:
-            openai.api_key = api_key
+            self.client = AsyncOpenAI(api_key=api_key)
         
         self.categories = {
             'getting_started': ['introduction', 'quickstart', 'setup', 'installation'],
@@ -371,7 +372,7 @@ class DocumentSorter:
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
     async def classify_document(self, doc: ProcessedDocument) -> str:
         """Classify document using LLM."""
-        if not self.api_key:
+        if not self.client:
             return self._rule_based_classification(doc)
         
         prompt = f"""
@@ -392,7 +393,7 @@ class DocumentSorter:
         """
         
         try:
-            response = await openai.ChatCompletion.acreate(
+            response = await self.client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are a documentation classifier."},
@@ -643,7 +644,7 @@ class DocumentPostProcessor:
             'processed_at': datetime.now().isoformat(),
             'total_documents': len(self.processed_docs),
             'total_chunks': 0,
-            'categories': defaultdict(int),
+            'categories': dict(),  # Use regular dict instead of defaultdict
             'source_folders': list(source_folders.keys()) if source_folders else [],
             'documents': []
         }
@@ -689,6 +690,8 @@ class DocumentPostProcessor:
             
             # Update summary
             summary['total_chunks'] += len(doc.chunks)
+            # Use setdefault to ensure category exists in dict
+            summary['categories'].setdefault(doc.category, 0)
             summary['categories'][doc.category] += 1
             summary['documents'].append({
                 'index': i,
