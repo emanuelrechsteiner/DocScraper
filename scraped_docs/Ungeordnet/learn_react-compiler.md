@@ -1,0 +1,386 @@
+---
+url: https://react.dev/learn/react-compiler
+scraped_at: 2025-05-25T08:31:43.567184
+title: React Compiler – React
+---
+
+Join us for React Conf on Oct 7-8.
+[Learn more.](https://conf.react.dev/)
+[![logo by @sawaratsuki1004](https://react.dev/_next/image?url=%2Fimages%2Fuwu.png&w=128&q=75)](https://react.dev/)
+[React](https://react.dev/)
+[v19.1](https://react.dev/versions)
+Search`⌘``Ctrl``K`
+[Learn](https://react.dev/learn)
+[Reference](https://react.dev/reference/react)
+[Community](https://react.dev/community)
+[Blog](https://react.dev/blog)
+[](https://react.dev/community/translations)
+[](https://github.com/facebook/react/releases)
+### GET STARTED
+  * [Quick Start ](https://react.dev/learn "Quick Start")
+    * [Tutorial: Tic-Tac-Toe ](https://react.dev/learn/tutorial-tic-tac-toe "Tutorial: Tic-Tac-Toe")
+    * [Thinking in React ](https://react.dev/learn/thinking-in-react "Thinking in React")
+  * [Installation ](https://react.dev/learn/installation "Installation")
+    * [Creating a React App ](https://react.dev/learn/creating-a-react-app "Creating a React App")
+    * [Build a React App from Scratch ](https://react.dev/learn/build-a-react-app-from-scratch "Build a React App from Scratch")
+    * [Add React to an Existing Project ](https://react.dev/learn/add-react-to-an-existing-project "Add React to an Existing Project")
+  * [Setup ](https://react.dev/learn/setup "Setup")
+    * [Editor Setup ](https://react.dev/learn/editor-setup "Editor Setup")
+    * [Using TypeScript ](https://react.dev/learn/typescript "Using TypeScript")
+    * [React Developer Tools ](https://react.dev/learn/react-developer-tools "React Developer Tools")
+    * [React Compiler ](https://react.dev/learn/react-compiler "React Compiler")
+### LEARN REACT
+  * [Describing the UI ](https://react.dev/learn/describing-the-ui "Describing the UI")
+    * [Your First Component ](https://react.dev/learn/your-first-component "Your First Component")
+    * [Importing and Exporting Components ](https://react.dev/learn/importing-and-exporting-components "Importing and Exporting Components")
+    * [Writing Markup with JSX ](https://react.dev/learn/writing-markup-with-jsx "Writing Markup with JSX")
+    * [JavaScript in JSX with Curly Braces ](https://react.dev/learn/javascript-in-jsx-with-curly-braces "JavaScript in JSX with Curly Braces")
+    * [Passing Props to a Component ](https://react.dev/learn/passing-props-to-a-component "Passing Props to a Component")
+    * [Conditional Rendering ](https://react.dev/learn/conditional-rendering "Conditional Rendering")
+    * [Rendering Lists ](https://react.dev/learn/rendering-lists "Rendering Lists")
+    * [Keeping Components Pure ](https://react.dev/learn/keeping-components-pure "Keeping Components Pure")
+    * [Your UI as a Tree ](https://react.dev/learn/understanding-your-ui-as-a-tree "Your UI as a Tree")
+  * [Adding Interactivity ](https://react.dev/learn/adding-interactivity "Adding Interactivity")
+    * [Responding to Events ](https://react.dev/learn/responding-to-events "Responding to Events")
+    * [State: A Component's Memory ](https://react.dev/learn/state-a-components-memory "State: A Component's Memory")
+    * [Render and Commit ](https://react.dev/learn/render-and-commit "Render and Commit")
+    * [State as a Snapshot ](https://react.dev/learn/state-as-a-snapshot "State as a Snapshot")
+    * [Queueing a Series of State Updates ](https://react.dev/learn/queueing-a-series-of-state-updates "Queueing a Series of State Updates")
+    * [Updating Objects in State ](https://react.dev/learn/updating-objects-in-state "Updating Objects in State")
+    * [Updating Arrays in State ](https://react.dev/learn/updating-arrays-in-state "Updating Arrays in State")
+  * [Managing State ](https://react.dev/learn/managing-state "Managing State")
+    * [Reacting to Input with State ](https://react.dev/learn/reacting-to-input-with-state "Reacting to Input with State")
+    * [Choosing the State Structure ](https://react.dev/learn/choosing-the-state-structure "Choosing the State Structure")
+    * [Sharing State Between Components ](https://react.dev/learn/sharing-state-between-components "Sharing State Between Components")
+    * [Preserving and Resetting State ](https://react.dev/learn/preserving-and-resetting-state "Preserving and Resetting State")
+    * [Extracting State Logic into a Reducer ](https://react.dev/learn/extracting-state-logic-into-a-reducer "Extracting State Logic into a Reducer")
+    * [Passing Data Deeply with Context ](https://react.dev/learn/passing-data-deeply-with-context "Passing Data Deeply with Context")
+    * [Scaling Up with Reducer and Context ](https://react.dev/learn/scaling-up-with-reducer-and-context "Scaling Up with Reducer and Context")
+  * [Escape Hatches ](https://react.dev/learn/escape-hatches "Escape Hatches")
+    * [Referencing Values with Refs ](https://react.dev/learn/referencing-values-with-refs "Referencing Values with Refs")
+    * [Manipulating the DOM with Refs ](https://react.dev/learn/manipulating-the-dom-with-refs "Manipulating the DOM with Refs")
+    * [Synchronizing with Effects ](https://react.dev/learn/synchronizing-with-effects "Synchronizing with Effects")
+    * [You Might Not Need an Effect ](https://react.dev/learn/you-might-not-need-an-effect "You Might Not Need an Effect")
+    * [Lifecycle of Reactive Effects ](https://react.dev/learn/lifecycle-of-reactive-effects "Lifecycle of Reactive Effects")
+    * [Separating Events from Effects ](https://react.dev/learn/separating-events-from-effects "Separating Events from Effects")
+    * [Removing Effect Dependencies ](https://react.dev/learn/removing-effect-dependencies "Removing Effect Dependencies")
+    * [Reusing Logic with Custom Hooks ](https://react.dev/learn/reusing-logic-with-custom-hooks "Reusing Logic with Custom Hooks")
+
+
+Is this page useful?
+[Learn React](https://react.dev/learn)
+[Setup](https://react.dev/learn/setup)
+# React Compiler[](https://react.dev/learn/react-compiler#undefined "Link for this heading")
+This page will give you an introduction to React Compiler and how to try it out successfully.
+### You will learn
+  * Getting started with the compiler
+  * Installing the compiler and ESLint plugin
+  * Troubleshooting
+
+
+### Note
+React Compiler is a new compiler currently in RC, that we’ve open sourced to get feedback from the community. We now recommend everyone to try the compiler and provide feedback.
+The latest RC release can be found with the `@rc` tag, and daily experimental releases with `@experimental`.
+React Compiler is a new compiler that we’ve open sourced to get feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](https://react.dev/reference/rules), so you don’t need to rewrite any code to use it.
+eslint-plugin-react-hooks also includes an [ESLint rule](https://react.dev/learn/react-compiler#installing-eslint-plugin-react-compiler) that surfaces the analysis from the compiler right in your editor. **We strongly recommend everyone use the linter today.** The linter does not require that you have the compiler installed, so you can use it even if you are not ready to try out the compiler.
+The compiler is currently released as `rc`, and is available to try out on React 17+ apps and libraries. To install the RC:
+Terminal
+Copy
+npm install -D babel-plugin-react-compiler@rc eslint-plugin-react-hooks@^6.0.0-rc.1
+Or, if you’re using Yarn:
+Terminal
+Copy
+yarn add -D babel-plugin-react-compiler@rc eslint-plugin-react-hooks@^6.0.0-rc.1
+If you are not using React 19 yet, please see [the section below](https://react.dev/learn/react-compiler#using-react-compiler-with-react-17-or-18) for further instructions.
+### What does the compiler do? [](https://react.dev/learn/react-compiler#what-does-the-compiler-do "Link for What does the compiler do? ")
+In order to optimize applications, React Compiler automatically memoizes your code. You may be familiar today with memoization through APIs such as `useMemo`, `useCallback`, and `React.memo`. With these APIs you can tell React that certain parts of your application don’t need to recompute if their inputs haven’t changed, reducing work on updates. While powerful, it’s easy to forget to apply memoization or apply them incorrectly. This can lead to inefficient updates as React has to check parts of your UI that don’t have any _meaningful_ changes.
+The compiler uses its knowledge of JavaScript and React’s rules to automatically memoize values or groups of values within your components and hooks. If it detects breakages of the rules, it will automatically skip over just those components or hooks, and continue safely compiling other code.
+### Note
+React Compiler can statically detect when Rules of React are broken, and safely opt-out of optimizing just the affected components or hooks. It is not necessary for the compiler to optimize 100% of your codebase.
+If your codebase is already very well-memoized, you might not expect to see major performance improvements with the compiler. However, in practice memoizing the correct dependencies that cause performance issues is tricky to get right by hand.
+##### Deep Dive
+#### What kind of memoization does React Compiler add? [](https://react.dev/learn/react-compiler#what-kind-of-memoization-does-react-compiler-add "Link for What kind of memoization does React Compiler add? ")
+Show Details
+The initial release of React Compiler is primarily focused on **improving update performance** (re-rendering existing components), so it focuses on these two use cases:
+  1. **Skipping cascading re-rendering of components**
+     * Re-rendering `<Parent />` causes many components in its component tree to re-render, even though only `<Parent />` has changed
+  2. **Skipping expensive calculations from outside of React**
+     * For example, calling `expensivelyProcessAReallyLargeArrayOfObjects()` inside of your component or hook that needs that data
+
+
+#### Optimizing Re-renders [](https://react.dev/learn/react-compiler#optimizing-re-renders "Link for Optimizing Re-renders ")
+React lets you express your UI as a function of their current state (more concretely: their props, state, and context). In its current implementation, when a component’s state changes, React will re-render that component _and all of its children_ — unless you have applied some form of manual memoization with `useMemo()`, `useCallback()`, or `React.memo()`. For example, in the following example, `<MessageButton>` will re-render whenever `<FriendList>`’s state changes:
+```
+
+function FriendList({ friends }) {
+ const onlineCount = useFriendOnlineCount();
+ if (friends.length === 0) {
+  return <NoFriends />;
+ }
+ return (
+  <div>
+   <span>{onlineCount} online</span>
+   {friends.map((friend) => (
+    <FriendListCard key={friend.id} friend={friend} />
+   ))}
+   <MessageButton />
+  </div>
+ );
+}
+
+```
+
+[_See this example in the React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
+React Compiler automatically applies the equivalent of manual memoization, ensuring that only the relevant parts of an app re-render as state changes, which is sometimes referred to as “fine-grained reactivity”. In the above example, React Compiler determines that the return value of `<FriendListCard />` can be reused even as `friends` changes, and can avoid recreating this JSX _and_ avoid re-rendering `<MessageButton>` as the count changes.
+#### Expensive calculations also get memoized [](https://react.dev/learn/react-compiler#expensive-calculations-also-get-memoized "Link for Expensive calculations also get memoized ")
+The compiler can also automatically memoize for expensive calculations used during rendering:
+```
+
+// **Not** memoized by React Compiler, since this is not a component or hook
+function expensivelyProcessAReallyLargeArrayOfObjects() { /* ... */ }
+// Memoized by React Compiler since this is a component
+function TableContainer({ items }) {
+ // This function call would be memoized:
+ const data = expensivelyProcessAReallyLargeArrayOfObjects(items);
+ // ...
+}
+
+```
+
+[_See this example in the React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAejQAgFTYHIQAuumAtgqRAJYBeCAJpgEYCemASggIZyGYDCEUgAcqAGwQwANJjBUAdokyEAFlTCZ1meUUxdMcIcIjyE8vhBiYVECAGsAOvIBmURYSonMCAB7CzcgBuCGIsAAowEIhgYACCnFxioQAyXDAA5gixMDBcLADyzvlMAFYIvGAAFACUmMCYaNiYAHStOFgAvk5OGJgAshTUdIysHNy8AkbikrIKSqpaWvqGIiZmhE6u7p7ymAAqXEwSguZcCpKV9VSEFBodtcBOmAYmYHz0XIT6ALzefgFUYKhCJRBAxeLcJIsVIZLI5PKFYplCqVa63aoAbm6u0wMAQhFguwAPPRAQA+YAfL4dIloUmBMlODogDpAA)
+However, if `expensivelyProcessAReallyLargeArrayOfObjects` is truly an expensive function, you may want to consider implementing its own memoization outside of React, because:
+  * React Compiler only memoizes React components and hooks, not every function
+  * React Compiler’s memoization is not shared across multiple components or hooks
+
+
+So if `expensivelyProcessAReallyLargeArrayOfObjects` was used in many different components, even if the same exact items were passed down, that expensive calculation would be run repeatedly. We recommend [profiling](https://react.dev/reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive) first to see if it really is that expensive before making code more complicated.
+### Should I try out the compiler? [](https://react.dev/learn/react-compiler#should-i-try-out-the-compiler "Link for Should I try out the compiler? ")
+The compiler is now in RC and has been tested extensively in production. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you’ve followed the [Rules of React](https://react.dev/reference/rules).
+**You don’t have to rush into using the compiler now. It’s okay to wait until it reaches a stable release before adopting it.** However, we do appreciate trying it out in small experiments in your apps so that you can [provide feedback](https://react.dev/learn/react-compiler#reporting-issues) to us to help make the compiler better.
+## Getting Started [](https://react.dev/learn/react-compiler#getting-started "Link for Getting Started ")
+In addition to these docs, we recommend checking the [React Compiler Working Group](https://github.com/reactwg/react-compiler) for additional information and discussion about the compiler.
+### Installing eslint-plugin-react-hooks [](https://react.dev/learn/react-compiler#installing-eslint-plugin-react-compiler "Link for Installing eslint-plugin-react-hooks ")
+React Compiler also powers an ESLint plugin. You can try it out by installing eslint-plugin-react-hooks@^6.0.0-rc.1.
+Terminal
+Copy
+npm install -D eslint-plugin-react-hooks@^6.0.0-rc.1
+See our [editor setup](https://react.dev/learn/editor-setup#linting) guide for more details.
+The ESLint plugin will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase.
+### Note
+**You don’t have to fix all ESLint violations straight away.** You can address them at your own pace to increase the amount of components and hooks being optimized, but it is not required to fix everything before you can use the compiler.
+### Rolling out the compiler to your codebase [](https://react.dev/learn/react-compiler#using-the-compiler-effectively "Link for Rolling out the compiler to your codebase ")
+#### Existing projects [](https://react.dev/learn/react-compiler#existing-projects "Link for Existing projects ")
+The compiler is designed to compile functional components and hooks that follow the [Rules of React](https://react.dev/reference/rules). It can also handle code that breaks those rules by bailing out (skipping over) those components or hooks. However, due to the flexible nature of JavaScript, the compiler cannot catch every possible violation and may compile with false negatives: that is, the compiler may accidentally compile a component/hook that breaks the Rules of React which can lead to undefined behavior.
+For this reason, to adopt the compiler successfully on existing projects, we recommend running it on a small directory in your product code first. You can do this by configuring the compiler to only run on a specific set of directories:
+```
+
+const ReactCompilerConfig = {
+ sources: (filename) => {
+  return filename.indexOf('src/path/to/dir') !== -1;
+ },
+};
+
+```
+
+When you have more confidence with rolling out the compiler, you can expand coverage to other directories as well and slowly roll it out to your whole app.
+#### New projects [](https://react.dev/learn/react-compiler#new-projects "Link for New projects ")
+If you’re starting a new project, you can enable the compiler on your entire codebase, which is the default behavior.
+### Using React Compiler with React 17 or 18 [](https://react.dev/learn/react-compiler#using-react-compiler-with-react-17-or-18 "Link for Using React Compiler with React 17 or 18 ")
+React Compiler works best with React 19 RC. If you are unable to upgrade, you can install the extra `react-compiler-runtime` package which will allow the compiled code to run on versions prior to 19. However, note that the minimum supported version is 17.
+Terminal
+Copy
+npm install react-compiler-runtime@rc
+You should also add the correct `target` to your compiler config, where `target` is the major version of React you are targeting:
+```
+
+// babel.config.js
+const ReactCompilerConfig = {
+ target: '18' // '17' | '18' | '19'
+};
+module.exports = function () {
+ return {
+  plugins: [
+   ['babel-plugin-react-compiler', ReactCompilerConfig],
+  ],
+ };
+};
+
+```
+
+### Using the compiler on libraries [](https://react.dev/learn/react-compiler#using-the-compiler-on-libraries "Link for Using the compiler on libraries ")
+React Compiler can also be used to compile libraries. Because React Compiler needs to run on the original source code prior to any code transformations, it is not possible for an application’s build pipeline to compile the libraries they use. Hence, our recommendation is for library maintainers to independently compile and test their libraries with the compiler, and ship compiled code to npm.
+Because your code is pre-compiled, users of your library will not need to have the compiler enabled in order to benefit from the automatic memoization applied to your library. If your library targets apps not yet on React 19, specify a minimum [`target` and add `react-compiler-runtime` as a direct dependency](https://react.dev/learn/react-compiler#using-react-compiler-with-react-17-or-18). The runtime package will use the correct implementation of APIs depending on the application’s version, and polyfill the missing APIs if necessary.
+Library code can often require more complex patterns and usage of escape hatches. For this reason, we recommend ensuring that you have sufficient testing in order to identify any issues that might arise from using the compiler on your library. If you identify any issues, you can always opt-out the specific components or hooks with the [`'use no memo'` directive](https://react.dev/learn/react-compiler#something-is-not-working-after-compilation).
+Similarly to apps, it is not necessary to fully compile 100% of your components or hooks to see benefits in your library. A good starting point might be to identify the most performance sensitive parts of your library and ensuring that they don’t break the [Rules of React](https://react.dev/reference/rules), which you can use `eslint-plugin-react-compiler` to identify.
+## Usage [](https://react.dev/learn/react-compiler#installation "Link for Usage ")
+### Babel [](https://react.dev/learn/react-compiler#usage-with-babel "Link for Babel ")
+Terminal
+Copy
+npm install babel-plugin-react-compiler@rc
+The compiler includes a Babel plugin which you can use in your build pipeline to run the compiler.
+After installing, add it to your Babel config. Please note that it’s critical that the compiler run **first** in the pipeline:
+```
+
+// babel.config.js
+const ReactCompilerConfig = { /* ... */ };
+module.exports = function () {
+ return {
+  plugins: [
+   ['babel-plugin-react-compiler', ReactCompilerConfig], // must run first!
+   // ...
+  ],
+ };
+};
+
+```
+
+`babel-plugin-react-compiler` should run first before other Babel plugins as the compiler requires the input source information for sound analysis.
+### Vite [](https://react.dev/learn/react-compiler#usage-with-vite "Link for Vite ")
+If you use Vite, you can add the plugin to vite-plugin-react:
+```
+
+// vite.config.js
+const ReactCompilerConfig = { /* ... */ };
+export default defineConfig(() => {
+ return {
+  plugins: [
+   react({
+    babel: {
+     plugins: [
+      ["babel-plugin-react-compiler", ReactCompilerConfig],
+     ],
+    },
+   }),
+  ],
+  // ...
+ };
+});
+
+```
+
+### Next.js [](https://react.dev/learn/react-compiler#usage-with-nextjs "Link for Next.js ")
+Please refer to the [Next.js docs](https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler) for more information.
+### Remix [](https://react.dev/learn/react-compiler#usage-with-remix "Link for Remix ")
+Install `vite-plugin-babel`, and add the compiler’s Babel plugin to it:
+Terminal
+Copy
+npm install vite-plugin-babel
+```
+
+// vite.config.js
+import babel from "vite-plugin-babel";
+const ReactCompilerConfig = { /* ... */ };
+export default defineConfig({
+ plugins: [
+  remix({ /* ... */}),
+  babel({
+   filter: /\.[jt]sx?$/,
+   babelConfig: {
+    presets: ["@babel/preset-typescript"], // if you use TypeScript
+    plugins: [
+     ["babel-plugin-react-compiler", ReactCompilerConfig],
+    ],
+   },
+  }),
+ ],
+});
+
+```
+
+### Webpack [](https://react.dev/learn/react-compiler#usage-with-webpack "Link for Webpack ")
+A community webpack loader is [now available here](https://github.com/SukkaW/react-compiler-webpack).
+### Expo [](https://react.dev/learn/react-compiler#usage-with-expo "Link for Expo ")
+Please refer to [Expo’s docs](https://docs.expo.dev/guides/react-compiler/) to enable and use the React Compiler in Expo apps.
+### Metro (React Native) [](https://react.dev/learn/react-compiler#usage-with-react-native-metro "Link for Metro \(React Native\) ")
+React Native uses Babel via Metro, so refer to the [Usage with Babel](https://react.dev/learn/react-compiler#usage-with-babel) section for installation instructions.
+### Rspack [](https://react.dev/learn/react-compiler#usage-with-rspack "Link for Rspack ")
+Please refer to [Rspack’s docs](https://rspack.dev/guide/tech/react#react-compiler) to enable and use the React Compiler in Rspack apps.
+### Rsbuild [](https://react.dev/learn/react-compiler#usage-with-rsbuild "Link for Rsbuild ")
+Please refer to [Rsbuild’s docs](https://rsbuild.dev/guide/framework/react#react-compiler) to enable and use the React Compiler in Rsbuild apps.
+## Troubleshooting [](https://react.dev/learn/react-compiler#troubleshooting "Link for Troubleshooting ")
+To report issues, please first create a minimal repro on the [React Compiler Playground](https://playground.react.dev/) and include it in your bug report. You can open issues in the [facebook/react](https://github.com/facebook/react/issues) repo.
+You can also provide feedback in the React Compiler Working Group by applying to be a member. Please see [the README for more details on joining](https://github.com/reactwg/react-compiler).
+### What does the compiler assume? [](https://react.dev/learn/react-compiler#what-does-the-compiler-assume "Link for What does the compiler assume? ")
+React Compiler assumes that your code:
+  1. Is valid, semantic JavaScript.
+  2. Tests that nullable/optional values and properties are defined before accessing them (for example, by enabling [`strictNullChecks`](https://www.typescriptlang.org/tsconfig/#strictNullChecks) if using TypeScript), i.e., `if (object.nullableProperty) { object.nullableProperty.foo }` or with optional-chaining `object.nullableProperty?.foo`.
+  3. Follows the [Rules of React](https://react.dev/reference/rules).
+
+
+React Compiler can verify many of the Rules of React statically, and will safely skip compilation when it detects an error. To see the errors we recommend also installing [eslint-plugin-react-compiler](https://www.npmjs.com/package/eslint-plugin-react-compiler).
+### How do I know my components have been optimized? [](https://react.dev/learn/react-compiler#how-do-i-know-my-components-have-been-optimized "Link for How do I know my components have been optimized? ")
+[React DevTools](https://react.dev/learn/react-developer-tools) (v5.0+) and [React Native DevTools](https://reactnative.dev/docs/react-native-devtools) have built-in support for React Compiler and will display a “Memo ✨” badge next to components that have been optimized by the compiler.
+### Something is not working after compilation [](https://react.dev/learn/react-compiler#something-is-not-working-after-compilation "Link for Something is not working after compilation ")
+If you have eslint-plugin-react-compiler installed, the compiler will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase. **You don’t have to fix all ESLint violations straight away.** You can address them at your own pace to increase the amount of components and hooks being optimized.
+Due to the flexible and dynamic nature of JavaScript however, it’s not possible to comprehensively detect all cases. Bugs and undefined behavior such as infinite loops may occur in those cases.
+If your app doesn’t work properly after compilation and you aren’t seeing any ESLint errors, the compiler may be incorrectly compiling your code. To confirm this, try to make the issue go away by aggressively opting out any component or hook you think might be related via the [`"use no memo"` directive](https://react.dev/learn/react-compiler#opt-out-of-the-compiler-for-a-component).
+```
+
+function SuspiciousComponent() {
+ "use no memo"; // opts out this component from being compiled by React Compiler
+ // ...
+}
+
+```
+
+### Note
+#### `"use no memo"` [](https://react.dev/learn/react-compiler#use-no-memo "Link for this heading")
+`"use no memo"` is a _temporary_ escape hatch that lets you opt-out components and hooks from being compiled by the React Compiler. This directive is not meant to be long lived the same way as eg [`"use client"`](https://react.dev/reference/rsc/use-client) is.
+It is not recommended to reach for this directive unless it’s strictly necessary. Once you opt-out a component or hook, it is opted-out forever until the directive is removed. This means that even if you fix the code, the compiler will still skip over compiling it unless you remove the directive.
+When you make the error go away, confirm that removing the opt out directive makes the issue come back. Then share a bug report with us (you can try to reduce it to a small repro, or if it’s open source code you can also just paste the entire source) using the [React Compiler Playground](https://playground.react.dev) so we can identify and help fix the issue.
+### Other issues [](https://react.dev/learn/react-compiler#other-issues "Link for Other issues ")
+Please see <https://github.com/reactwg/react-compiler/discussions/7>.
+[PreviousReact Developer Tools](https://react.dev/learn/react-developer-tools)
+[](https://opensource.fb.com/)
+Copyright © Meta Platforms, Inc
+no uwu plz
+uwu?
+Logo by[@sawaratsuki1004](https://twitter.com/sawaratsuki1004)
+[Learn React](https://react.dev/learn)
+[Quick Start](https://react.dev/learn)
+[Installation](https://react.dev/learn/installation)
+[Describing the UI](https://react.dev/learn/describing-the-ui)
+[Adding Interactivity](https://react.dev/learn/adding-interactivity)
+[Managing State](https://react.dev/learn/managing-state)
+[Escape Hatches](https://react.dev/learn/escape-hatches)
+[API Reference](https://react.dev/reference/react)
+[React APIs](https://react.dev/reference/react)
+[React DOM APIs](https://react.dev/reference/react-dom)
+[Community](https://react.dev/community)
+[Code of Conduct](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md)
+[Meet the Team](https://react.dev/community/team)
+[Docs Contributors](https://react.dev/community/docs-contributors)
+[Acknowledgements](https://react.dev/community/acknowledgements)
+More
+[Blog](https://react.dev/blog)
+[React Native](https://reactnative.dev/)
+[Privacy](https://opensource.facebook.com/legal/privacy)
+[Terms](https://opensource.fb.com/legal/terms/)
+[](https://www.facebook.com/react)[](https://twitter.com/reactjs)[](https://bsky.app/profile/react.dev)[](https://github.com/facebook/react)
+## On this page
+  * [Overview](https://react.dev/learn/react-compiler)
+  * [What does the compiler do? ](https://react.dev/learn/react-compiler#what-does-the-compiler-do)
+  * [Should I try out the compiler? ](https://react.dev/learn/react-compiler#should-i-try-out-the-compiler)
+  * [Getting Started ](https://react.dev/learn/react-compiler#getting-started)
+  * [Installing eslint-plugin-react-hooks ](https://react.dev/learn/react-compiler#installing-eslint-plugin-react-compiler)
+  * [Rolling out the compiler to your codebase ](https://react.dev/learn/react-compiler#using-the-compiler-effectively)
+  * [Using React Compiler with React 17 or 18 ](https://react.dev/learn/react-compiler#using-react-compiler-with-react-17-or-18)
+  * [Using the compiler on libraries ](https://react.dev/learn/react-compiler#using-the-compiler-on-libraries)
+  * [Usage ](https://react.dev/learn/react-compiler#installation)
+  * [Babel ](https://react.dev/learn/react-compiler#usage-with-babel)
+  * [Vite ](https://react.dev/learn/react-compiler#usage-with-vite)
+  * [Next.js ](https://react.dev/learn/react-compiler#usage-with-nextjs)
+  * [Remix ](https://react.dev/learn/react-compiler#usage-with-remix)
+  * [Webpack ](https://react.dev/learn/react-compiler#usage-with-webpack)
+  * [Expo ](https://react.dev/learn/react-compiler#usage-with-expo)
+  * [Metro (React Native) ](https://react.dev/learn/react-compiler#usage-with-react-native-metro)
+  * [Rspack ](https://react.dev/learn/react-compiler#usage-with-rspack)
+  * [Rsbuild ](https://react.dev/learn/react-compiler#usage-with-rsbuild)
+  * [Troubleshooting ](https://react.dev/learn/react-compiler#troubleshooting)
+  * [What does the compiler assume? ](https://react.dev/learn/react-compiler#what-does-the-compiler-assume)
+  * [How do I know my components have been optimized? ](https://react.dev/learn/react-compiler#how-do-i-know-my-components-have-been-optimized)
+  * [Something is not working after compilation ](https://react.dev/learn/react-compiler#something-is-not-working-after-compilation)
+  * [Other issues ](https://react.dev/learn/react-compiler#other-issues)
+
+
+

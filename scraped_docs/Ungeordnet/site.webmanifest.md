@@ -1,0 +1,30 @@
+---
+url: https://react.dev/site.webmanifest
+scraped_at: 2025-05-25T08:36:17.350137
+title: Untitled
+---
+
+```
+{
+  "name": "React",
+  "short_name": "React",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#23272f",
+  "background_color": "#23272f",
+  "display": "standalone"
+}
+
+```
+
+

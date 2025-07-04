@@ -31,6 +31,20 @@ playwright install chromium
 
 ## Usage
 
+
+Standard Scenario:
+```bash
+cd /Volumes/NvME-Satechi/Apps/DocScraper
+python3 -m venv venv && \
+source venv/bin/activate && \
+pip install -r requirements.txt && \
+playwright install chromium
+
+python SimpleDocScraper.py <documentation_url>
+
+
+
+
 ### Command Line
 
 Basic usage:

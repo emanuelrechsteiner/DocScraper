@@ -1,0 +1,270 @@
+---
+url: https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.chain.html
+scraped_at: 2025-05-25T17:59:55.166934
+title: chain — 🦜🔗 LangChain  documentation
+---
+
+[Skip to main content](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.chain.html#main-content)
+Back to top `⌘`+`K`
+[ ![🦜🔗 LangChain documentation - Home](https://python.langchain.com/api_reference/_static/wordmark-api.svg) ![🦜🔗 LangChain documentation - Home](https://python.langchain.com/api_reference/_static/wordmark-api-dark.svg) ](https://python.langchain.com/api_reference/index.html)
+  * [ Reference ](https://python.langchain.com/api_reference/reference.html)
+
+
+`⌘`+`K`
+[Docs](https://python.langchain.com/)
+Light Dark System Settings
+  * [ GitHub](https://github.com/langchain-ai/langchain)
+  * [ X / Twitter](https://twitter.com/langchainai)
+
+
+`⌘`+`K`
+  * [ Reference ](https://python.langchain.com/api_reference/reference.html)
+
+
+[Docs](https://python.langchain.com/)
+Light Dark System Settings
+  * [ GitHub](https://github.com/langchain-ai/langchain)
+  * [ X / Twitter](https://twitter.com/langchainai)
+
+
+Section Navigation
+Base packages
+  * [Core](https://python.langchain.com/api_reference/core/index.html)
+    * [`agents`](https://python.langchain.com/api_reference/core/agents.html)
+    * [`beta`](https://python.langchain.com/api_reference/core/beta.html)
+    * [`caches`](https://python.langchain.com/api_reference/core/caches.html)
+    * [`callbacks`](https://python.langchain.com/api_reference/core/callbacks.html)
+    * [`chat_history`](https://python.langchain.com/api_reference/core/chat_history.html)
+    * [`chat_loaders`](https://python.langchain.com/api_reference/core/chat_loaders.html)
+    * [`chat_sessions`](https://python.langchain.com/api_reference/core/chat_sessions.html)
+    * [`document_loaders`](https://python.langchain.com/api_reference/core/document_loaders.html)
+    * [`documents`](https://python.langchain.com/api_reference/core/documents.html)
+    * [`embeddings`](https://python.langchain.com/api_reference/core/embeddings.html)
+    * [`example_selectors`](https://python.langchain.com/api_reference/core/example_selectors.html)
+    * [`exceptions`](https://python.langchain.com/api_reference/core/exceptions.html)
+    * [`globals`](https://python.langchain.com/api_reference/core/globals.html)
+    * [`indexing`](https://python.langchain.com/api_reference/core/indexing.html)
+    * [`language_models`](https://python.langchain.com/api_reference/core/language_models.html)
+    * [`load`](https://python.langchain.com/api_reference/core/load.html)
+    * [`messages`](https://python.langchain.com/api_reference/core/messages.html)
+    * [`output_parsers`](https://python.langchain.com/api_reference/core/output_parsers.html)
+    * [`outputs`](https://python.langchain.com/api_reference/core/outputs.html)
+    * [`prompt_values`](https://python.langchain.com/api_reference/core/prompt_values.html)
+    * [`prompts`](https://python.langchain.com/api_reference/core/prompts.html)
+    * [`rate_limiters`](https://python.langchain.com/api_reference/core/rate_limiters.html)
+    * [`retrievers`](https://python.langchain.com/api_reference/core/retrievers.html)
+    * [`runnables`](https://python.langchain.com/api_reference/core/runnables.html)
+      * [Runnable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.Runnable.html)
+      * [RunnableBinding](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.RunnableBinding.html)
+      * [RunnableBindingBase](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.RunnableBindingBase.html)
+      * [RunnableEach](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.RunnableEach.html)
+      * [RunnableEachBase](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.RunnableEachBase.html)
+      * [RunnableGenerator](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.RunnableGenerator.html)
+      * [RunnableLambda](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.RunnableLambda.html)
+      * [RunnableMap](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.RunnableMap.html)
+      * [RunnableParallel](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.RunnableParallel.html)
+      * [RunnableSequence](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.RunnableSequence.html)
+      * [RunnableSerializable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.RunnableSerializable.html)
+      * [RunnableBranch](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.branch.RunnableBranch.html)
+      * [ContextThreadPoolExecutor](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.ContextThreadPoolExecutor.html)
+      * [EmptyDict](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.EmptyDict.html)
+      * [RunnableConfig](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.RunnableConfig.html)
+      * [DynamicRunnable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.configurable.DynamicRunnable.html)
+      * [RunnableConfigurableAlternatives](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.configurable.RunnableConfigurableAlternatives.html)
+      * [RunnableConfigurableFields](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.configurable.RunnableConfigurableFields.html)
+      * [StrEnum](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.configurable.StrEnum.html)
+      * [RunnableWithFallbacks](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.fallbacks.RunnableWithFallbacks.html)
+      * [Branch](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.Branch.html)
+      * [CurveStyle](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.CurveStyle.html)
+      * [Edge](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.Edge.html)
+      * [Graph](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.Graph.html)
+      * [LabelsDict](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.LabelsDict.html)
+      * [MermaidDrawMethod](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.MermaidDrawMethod.html)
+      * [Node](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.Node.html)
+      * [NodeStyles](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.NodeStyles.html)
+      * [Stringifiable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.Stringifiable.html)
+      * [AsciiCanvas](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph_ascii.AsciiCanvas.html)
+      * [VertexViewer](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph_ascii.VertexViewer.html)
+      * [PngDrawer](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph_png.PngDrawer.html)
+      * [RunnableWithMessageHistory](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.history.RunnableWithMessageHistory.html)
+      * [RunnableAssign](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.passthrough.RunnableAssign.html)
+      * [RunnablePassthrough](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.passthrough.RunnablePassthrough.html)
+      * [RunnablePick](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.passthrough.RunnablePick.html)
+      * [ExponentialJitterParams](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.retry.ExponentialJitterParams.html)
+      * [RunnableRetry](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.retry.RunnableRetry.html)
+      * [RouterInput](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.router.RouterInput.html)
+      * [RouterRunnable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.router.RouterRunnable.html)
+      * [BaseStreamEvent](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.schema.BaseStreamEvent.html)
+      * [CustomStreamEvent](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.schema.CustomStreamEvent.html)
+      * [EventData](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.schema.EventData.html)
+      * [StandardStreamEvent](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.schema.StandardStreamEvent.html)
+      * [AddableDict](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.AddableDict.html)
+      * [ConfigurableField](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.ConfigurableField.html)
+      * [ConfigurableFieldMultiOption](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.ConfigurableFieldMultiOption.html)
+      * [ConfigurableFieldSingleOption](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.ConfigurableFieldSingleOption.html)
+      * [ConfigurableFieldSpec](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.ConfigurableFieldSpec.html)
+      * [FunctionNonLocals](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.FunctionNonLocals.html)
+      * [GetLambdaSource](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.GetLambdaSource.html)
+      * [IsFunctionArgDict](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.IsFunctionArgDict.html)
+      * [IsLocalDict](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.IsLocalDict.html)
+      * [NonLocals](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.NonLocals.html)
+      * [SupportsAdd](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.SupportsAdd.html)
+      * [chain](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.chain.html)
+      * [coerce_to_runnable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.coerce_to_runnable.html)
+      * [acall_func_with_variable_args](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.acall_func_with_variable_args.html)
+      * [call_func_with_variable_args](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.call_func_with_variable_args.html)
+      * [ensure_config](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.ensure_config.html)
+      * [get_async_callback_manager_for_config](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.get_async_callback_manager_for_config.html)
+      * [get_callback_manager_for_config](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.get_callback_manager_for_config.html)
+      * [get_config_list](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.get_config_list.html)
+      * [get_executor_for_config](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.get_executor_for_config.html)
+      * [merge_configs](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.merge_configs.html)
+      * [patch_config](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.patch_config.html)
+      * [run_in_executor](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.run_in_executor.html)
+      * [set_config_context](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.config.set_config_context.html)
+      * [make_options_spec](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.configurable.make_options_spec.html)
+      * [prefix_config_spec](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.configurable.prefix_config_spec.html)
+      * [is_uuid](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.is_uuid.html)
+      * [node_data_json](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.node_data_json.html)
+      * [node_data_str](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph.node_data_str.html)
+      * [draw_ascii](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph_ascii.draw_ascii.html)
+      * [draw_mermaid](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph_mermaid.draw_mermaid.html)
+      * [draw_mermaid_png](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.graph_mermaid.draw_mermaid_png.html)
+      * [aidentity](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.passthrough.aidentity.html)
+      * [identity](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.passthrough.identity.html)
+      * [aadd](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.aadd.html)
+      * [accepts_config](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.accepts_config.html)
+      * [accepts_context](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.accepts_context.html)
+      * [accepts_run_manager](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.accepts_run_manager.html)
+      * [add](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.add.html)
+      * [coro_with_context](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.coro_with_context.html)
+      * [gated_coro](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.gated_coro.html)
+      * [gather_with_concurrency](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.gather_with_concurrency.html)
+      * [get_function_first_arg_dict_keys](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.get_function_first_arg_dict_keys.html)
+      * [get_lambda_source](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.get_lambda_source.html)
+      * [get_unique_config_specs](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.get_unique_config_specs.html)
+      * [indent_lines_after_first](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.indent_lines_after_first.html)
+      * [is_async_callable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.is_async_callable.html)
+      * [is_async_generator](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.utils.is_async_generator.html)
+    * [`stores`](https://python.langchain.com/api_reference/core/stores.html)
+    * [`structured_query`](https://python.langchain.com/api_reference/core/structured_query.html)
+    * [`sys_info`](https://python.langchain.com/api_reference/core/sys_info.html)
+    * [`tools`](https://python.langchain.com/api_reference/core/tools.html)
+    * [`tracers`](https://python.langchain.com/api_reference/core/tracers.html)
+    * [`utils`](https://python.langchain.com/api_reference/core/utils.html)
+    * [`vectorstores`](https://python.langchain.com/api_reference/core/vectorstores.html)
+  * [Langchain](https://python.langchain.com/api_reference/langchain/index.html)
+  * [Text Splitters](https://python.langchain.com/api_reference/text_splitters/index.html)
+  * [Community](https://python.langchain.com/api_reference/community/index.html)
+  * [Experimental](https://python.langchain.com/api_reference/experimental/index.html)
+
+
+Integrations
+  * [AI21](https://python.langchain.com/api_reference/ai21/index.html)
+  * [Anthropic](https://python.langchain.com/api_reference/anthropic/index.html)
+  * [AstraDB](https://python.langchain.com/api_reference/astradb/index.html)
+  * [AWS](https://python.langchain.com/api_reference/aws/index.html)
+  * [Azure Ai](https://python.langchain.com/api_reference/azure_ai/index.html)
+  * [Azure Dynamic Sessions](https://python.langchain.com/api_reference/azure_dynamic_sessions/index.html)
+  * [Cerebras](https://python.langchain.com/api_reference/cerebras/index.html)
+  * [Chroma](https://python.langchain.com/api_reference/chroma/index.html)
+  * [Cohere](https://python.langchain.com/api_reference/cohere/index.html)
+  * [Deepseek](https://python.langchain.com/api_reference/deepseek/index.html)
+  * [Elasticsearch](https://python.langchain.com/api_reference/elasticsearch/index.html)
+  * [Exa](https://python.langchain.com/api_reference/exa/index.html)
+  * [Fireworks](https://python.langchain.com/api_reference/fireworks/index.html)
+  * [Google Community](https://python.langchain.com/api_reference/google_community/index.html)
+  * [Google GenAI](https://python.langchain.com/api_reference/google_genai/index.html)
+  * [Google VertexAI](https://python.langchain.com/api_reference/google_vertexai/index.html)
+  * [Groq](https://python.langchain.com/api_reference/groq/index.html)
+  * [Huggingface](https://python.langchain.com/api_reference/huggingface/index.html)
+  * [IBM](https://python.langchain.com/api_reference/ibm/index.html)
+  * [Milvus](https://python.langchain.com/api_reference/milvus/index.html)
+  * [MistralAI](https://python.langchain.com/api_reference/mistralai/index.html)
+  * [MongoDB](https://python.langchain.com/api_reference/mongodb/index.html)
+  * [Neo4J](https://python.langchain.com/api_reference/neo4j/index.html)
+  * [Nomic](https://python.langchain.com/api_reference/nomic/index.html)
+  * [Nvidia Ai Endpoints](https://python.langchain.com/api_reference/nvidia_ai_endpoints/index.html)
+  * [Ollama](https://python.langchain.com/api_reference/ollama/index.html)
+  * [OpenAI](https://python.langchain.com/api_reference/openai/index.html)
+  * [Perplexity](https://python.langchain.com/api_reference/perplexity/index.html)
+  * [Pinecone](https://python.langchain.com/api_reference/pinecone/index.html)
+  * [Postgres](https://python.langchain.com/api_reference/postgres/index.html)
+  * [Prompty](https://python.langchain.com/api_reference/prompty/index.html)
+  * [Qdrant](https://python.langchain.com/api_reference/qdrant/index.html)
+  * [Redis](https://python.langchain.com/api_reference/redis/index.html)
+  * [Sema4](https://python.langchain.com/api_reference/sema4/index.html)
+  * [Snowflake](https://python.langchain.com/api_reference/snowflake/index.html)
+  * [Sqlserver](https://python.langchain.com/api_reference/sqlserver/index.html)
+  * [Standard Tests](https://python.langchain.com/api_reference/standard_tests/index.html)
+  * [Tavily](https://python.langchain.com/api_reference/tavily/index.html)
+  * [Together](https://python.langchain.com/api_reference/together/index.html)
+  * [Unstructured](https://python.langchain.com/api_reference/unstructured/index.html)
+  * [Upstage](https://python.langchain.com/api_reference/upstage/index.html)
+  * [Weaviate](https://python.langchain.com/api_reference/weaviate/index.html)
+  * [XAI](https://python.langchain.com/api_reference/xai/index.html)
+
+
+  * [ ](https://python.langchain.com/api_reference/index.html)
+  * [LangChain Python API Reference](https://python.langchain.com/api_reference/reference.html)
+  * [langchain-core: 0.3.61](https://python.langchain.com/api_reference/core/index.html)
+  * [`runnables`](https://python.langchain.com/api_reference/core/runnables.html)
+  * chain
+
+
+# chain[#](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.chain.html#chain "Link to this heading") 
+
+langchain_core.runnables.base.chain( 
+    _func :Callable[[Input],Coroutine[Any,Any,Output]]_, ) → [Runnable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.Runnable.html#langchain_core.runnables.base.Runnable "langchain_core.runnables.base.Runnable")[Input,Output][[source]](https://python.langchain.com/api_reference/_modules/langchain_core/runnables/base.html#chain)[#](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.chain.html#langchain_core.runnables.base.chain "Link to this definition") 
+
+langchain_core.runnables.base.chain( 
+    _func :Callable[[Input],Iterator[Output]]_, ) → [Runnable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.Runnable.html#langchain_core.runnables.base.Runnable "langchain_core.runnables.base.Runnable")[Input,Output] 
+
+langchain_core.runnables.base.chain( 
+    _func :Callable[[Input],AsyncIterator[Output]]_, ) → [Runnable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.Runnable.html#langchain_core.runnables.base.Runnable "langchain_core.runnables.base.Runnable")[Input,Output] 
+
+langchain_core.runnables.base.chain( 
+    _func :Callable[[Input],Output]_, ) → [Runnable](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.Runnable.html#langchain_core.runnables.base.Runnable "langchain_core.runnables.base.Runnable")[Input,Output]     
+Decorate a function to make it a Runnable.
+Sets the name of the Runnable to the name of the function. Any runnables called by the function will be traced as dependencies. 
+
+Parameters:
+    
+**func** – A callable. 
+
+Returns:
+    
+A Runnable.
+Example:
+```
+fromlangchain_core.runnablesimport chain
+fromlangchain_core.promptsimport PromptTemplate
+fromlangchain_openaiimport OpenAI
+@chain
+defmy_func(fields):
+  prompt = PromptTemplate("Hello, {name}!")
+  llm = OpenAI()
+  formatted = prompt.invoke(**fields)
+  for chunk in llm.stream(formatted):
+    yield chunk
+
+```
+Copy to clipboard
+Examples using chain
+  * [How to add scores to retriever results](https://python.langchain.com/docs/how_to/add_scores_retriever/)
+  * [How to create a dynamic (self-constructing) chain](https://python.langchain.com/docs/how_to/dynamic_chain/)
+  * [How to handle cases where no queries are generated](https://python.langchain.com/docs/how_to/query_no_queries/)
+  * [How to handle multiple queries when doing query analysis](https://python.langchain.com/docs/how_to/query_multiple_queries/)
+  * [How to handle multiple retrievers when doing query analysis](https://python.langchain.com/docs/how_to/query_multiple_retrievers/)
+  * [How to pass run time values to tools](https://python.langchain.com/docs/how_to/tool_runtime/)
+  * [How to run custom functions](https://python.langchain.com/docs/how_to/functions/)
+  * [How to stream runnables](https://python.langchain.com/docs/how_to/streaming/)
+  * [Tavily Search](https://python.langchain.com/docs/integrations/tools/tavily_search/)
+
+
+On this page 
+  * [`chain()`](https://python.langchain.com/api_reference/core/runnables/langchain_core.runnables.base.chain.html#langchain_core.runnables.base.chain)
+
+
+© Copyright 2025, LangChain Inc. 
+
