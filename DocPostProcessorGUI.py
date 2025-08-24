@@ -9,9 +9,11 @@ from tkinter import ttk, scrolledtext, messagebox, filedialog
 import threading
 import asyncio
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import queue
+import time
+import os
 
 from DocPostProcessor import DocumentPostProcessor
 
@@ -20,7 +22,8 @@ class DocPostProcessorGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("Documentation Post-Processor")
-        self.root.geometry("900x700")
+        self.root.geometry("1000x800")
+        self.root.minsize(700, 600)
         
         # Variables
         self.processing = False
@@ -29,10 +32,53 @@ class DocPostProcessorGUI:
         # Thread-safe message queue
         self.message_queue = queue.Queue()
         
+        # Progress tracking
+        self.total_files = 0
+        self.processed_files = 0
+        self.start_time = None
+        self.progress_update_interval = 100  # ms
+        
+        # Load environment variables
+        from dotenv import load_dotenv
+        import os
+        load_dotenv()
+        self.openai_api_key = os.getenv('OPENAI_API_KEY')
+        
+        # Configure style
+        self.setup_styles()
         self.setup_ui()
         
-        # Start checking for messages
+        # Center window and start checking for messages
+        self.center_window()
         self.check_messages()
+        
+        # Check API key status on startup
+        self.check_api_key_status()
+    
+    def setup_styles(self):
+        """Configure modern styling for the GUI."""
+        try:
+            style = ttk.Style()
+            style.theme_use('clam')
+            
+            # Configure button styles
+            style.configure("Accent.TButton", 
+                          background='#007ACC',
+                          foreground='white',
+                          font=('TkDefaultFont', 9, 'bold'))
+            style.map("Accent.TButton",
+                     background=[('active', '#005a9e')])
+        except Exception:
+            pass
+    
+    def center_window(self):
+        """Center the window on the screen."""
+        self.root.update_idletasks()
+        width = self.root.winfo_width()
+        height = self.root.winfo_height()
+        x = (self.root.winfo_screenwidth() // 2) - (width // 2)
+        y = (self.root.winfo_screenheight() // 2) - (height // 2)
+        self.root.geometry(f'{width}x{height}+{x}+{y}')
         
     def setup_ui(self):
         """Setup the user interface."""
@@ -44,29 +90,64 @@ class DocPostProcessorGUI:
         self.root.columnconfigure(0, weight=1)
         self.root.rowconfigure(0, weight=1)
         main_frame.columnconfigure(1, weight=1)
-        main_frame.rowconfigure(6, weight=1)
+        main_frame.rowconfigure(8, weight=1)
         
         # Input Directory
-        ttk.Label(main_frame, text="Input Directory:").grid(row=0, column=0, sticky=tk.W, pady=5)
-        self.input_var = tk.StringVar(value="Documentation/Anthropic")
-        self.input_entry = ttk.Entry(main_frame, textvariable=self.input_var, width=50)
-        self.input_entry.grid(row=0, column=1, sticky=(tk.W, tk.E), pady=5, padx=(10, 50))
+        input_frame = ttk.Frame(main_frame)
+        input_frame.grid(row=0, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
+        input_frame.columnconfigure(1, weight=1)
         
-        self.input_browse_btn = ttk.Button(main_frame, text="Browse", command=lambda: self.browse_directory('input'))
-        self.input_browse_btn.grid(row=0, column=1, sticky=tk.E, pady=5)
+        ttk.Label(input_frame, text="Input Directory:").grid(row=0, column=0, sticky=tk.W, padx=(0, 10))
+        self.input_var = tk.StringVar(value="Documentation/Anthropic")
+        self.input_entry = ttk.Entry(input_frame, textvariable=self.input_var, width=50)
+        self.input_entry.grid(row=0, column=1, sticky=(tk.W, tk.E), padx=(0, 10))
+        
+        self.input_browse_btn = ttk.Button(input_frame, text="Browse", command=lambda: self.browse_directory('input'))
+        self.input_browse_btn.grid(row=0, column=2, sticky=tk.W)
         
         # Output Directory
-        ttk.Label(main_frame, text="Output Directory:").grid(row=1, column=0, sticky=tk.W, pady=5)
-        self.output_var = tk.StringVar(value="processed_docs")
-        self.output_entry = ttk.Entry(main_frame, textvariable=self.output_var, width=50)
-        self.output_entry.grid(row=1, column=1, sticky=(tk.W, tk.E), pady=5, padx=(10, 50))
+        output_frame = ttk.Frame(main_frame)
+        output_frame.grid(row=1, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
+        output_frame.columnconfigure(1, weight=1)
         
-        self.output_browse_btn = ttk.Button(main_frame, text="Browse", command=lambda: self.browse_directory('output'))
-        self.output_browse_btn.grid(row=1, column=1, sticky=tk.E, pady=5)
+        ttk.Label(output_frame, text="Output Directory:").grid(row=0, column=0, sticky=tk.W, padx=(0, 10))
+        self.output_var = tk.StringVar(value="processed_docs")
+        self.output_entry = ttk.Entry(output_frame, textvariable=self.output_var, width=50)
+        self.output_entry.grid(row=0, column=1, sticky=(tk.W, tk.E), padx=(0, 10))
+        
+        self.output_browse_btn = ttk.Button(output_frame, text="Browse", command=lambda: self.browse_directory('output'))
+        self.output_browse_btn.grid(row=0, column=2, sticky=tk.W)
+        
+        # OpenAI Processing Option
+        openai_frame = ttk.Frame(main_frame)
+        openai_frame.grid(row=2, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
+        openai_frame.columnconfigure(1, weight=1)
+        
+        self.use_openai_var = tk.BooleanVar()
+        self.openai_checkbox = ttk.Checkbutton(
+            openai_frame, 
+            text="Process via OpenAI (requires API key in .env file)", 
+            variable=self.use_openai_var
+        )
+        self.openai_checkbox.grid(row=0, column=0, columnspan=2, sticky=tk.W)
+        
+        # API Key Status
+        self.api_status_var = tk.StringVar(value="API Key: Not checked")
+        self.api_status_label = ttk.Label(openai_frame, textvariable=self.api_status_var, foreground="gray")
+        self.api_status_label.grid(row=1, column=0, columnspan=2, sticky=tk.W, pady=(5, 0))
+        
+        # Refresh API Key Status Button
+        self.refresh_api_btn = ttk.Button(
+            openai_frame, 
+            text="Refresh API Status", 
+            command=self.check_api_key_status,
+            width=15
+        )
+        self.refresh_api_btn.grid(row=1, column=2, sticky=tk.E, pady=(5, 0))
         
         # Processing Options Frame
         options_frame = ttk.LabelFrame(main_frame, text="Processing Options", padding="10")
-        options_frame.grid(row=2, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
+        options_frame.grid(row=3, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
         
         # Chunk Size
         ttk.Label(options_frame, text="Chunk Size:").grid(row=0, column=0, sticky=tk.W, pady=5)
@@ -114,24 +195,13 @@ class DocPostProcessorGUI:
         )
         self.flatten_output_check.grid(row=3, column=0, columnspan=3, sticky=tk.W, pady=5)
         
-        # Use LLM Classification
+        # Use LLM Classification (deprecated - now handled by OpenAI checkbox above)
+        # This is kept for backward compatibility but not displayed
         self.use_llm_var = tk.BooleanVar(value=False)
-        self.use_llm_check = ttk.Checkbutton(
-            options_frame,
-            text="Use LLM for Classification (requires OpenAI API key)",
-            variable=self.use_llm_var,
-            command=self.toggle_api_key
-        )
-        self.use_llm_check.grid(row=4, column=0, columnspan=3, sticky=tk.W, pady=5)
-        
-        # API Key (hidden by default)
-        self.api_key_label = ttk.Label(options_frame, text="API Key:")
-        self.api_key_var = tk.StringVar()
-        self.api_key_entry = ttk.Entry(options_frame, textvariable=self.api_key_var, show="*", width=40)
         
         # Control Buttons
         button_frame = ttk.Frame(main_frame)
-        button_frame.grid(row=3, column=0, columnspan=2, pady=10)
+        button_frame.grid(row=4, column=0, columnspan=2, pady=10)
         
         self.process_btn = ttk.Button(
             button_frame, 
@@ -156,13 +226,33 @@ class DocPostProcessorGUI:
         )
         self.clear_btn.pack(side=tk.LEFT, padx=5)
         
-        # Progress
-        self.progress = ttk.Progressbar(main_frame, mode='indeterminate')
-        self.progress.grid(row=4, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
+        # Progress Section
+        progress_frame = ttk.LabelFrame(main_frame, text="Processing Progress", padding="10")
+        progress_frame.grid(row=5, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
+        progress_frame.columnconfigure(0, weight=1)
+        
+        # Progress bar
+        self.progress = ttk.Progressbar(progress_frame, mode='determinate')
+        self.progress.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=(0, 5))
+        
+        # Progress info frame
+        info_frame = ttk.Frame(progress_frame)
+        info_frame.grid(row=1, column=0, sticky=(tk.W, tk.E))
+        info_frame.columnconfigure(1, weight=1)
+        
+        # Progress labels
+        self.progress_label = ttk.Label(info_frame, text="Ready to process")
+        self.progress_label.grid(row=0, column=0, sticky=tk.W)
+        
+        self.eta_label = ttk.Label(info_frame, text="")
+        self.eta_label.grid(row=0, column=1, sticky=tk.E)
+        
+        self.speed_label = ttk.Label(info_frame, text="")
+        self.speed_label.grid(row=1, column=0, columnspan=2, sticky=tk.W)
         
         # Statistics Frame
         stats_frame = ttk.LabelFrame(main_frame, text="Processing Statistics", padding="5")
-        stats_frame.grid(row=5, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
+        stats_frame.grid(row=7, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
         
         self.stats_text = tk.Text(stats_frame, height=4, wrap=tk.WORD, bg='#f0f0f0')
         self.stats_text.pack(fill=tk.BOTH, expand=True)
@@ -171,7 +261,7 @@ class DocPostProcessorGUI:
         
         # Log Output
         log_frame = ttk.LabelFrame(main_frame, text="Processing Log", padding="5")
-        log_frame.grid(row=6, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S), pady=10)
+        log_frame.grid(row=8, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S), pady=10)
         
         self.log_text = scrolledtext.ScrolledText(
             log_frame, 
@@ -200,14 +290,20 @@ class DocPostProcessorGUI:
             else:
                 self.output_var.set(directory)
     
-    def toggle_api_key(self):
-        """Show/hide API key field based on checkbox."""
-        if self.use_llm_var.get():
-            self.api_key_label.grid(row=5, column=0, sticky=tk.W, pady=5)
-            self.api_key_entry.grid(row=5, column=1, columnspan=2, sticky=(tk.W, tk.E), pady=5, padx=(10, 0))
+    def check_api_key_status(self):
+        """Check and display API key status."""
+        if self.openai_api_key:
+            self.api_status_var.set("API Key: ✅ Found in .env file")
+            self.api_status_label.config(foreground="green")
+            self.use_openai_var.set(True)  # Enable by default if API key is found
         else:
-            self.api_key_label.grid_remove()
-            self.api_key_entry.grid_remove()
+            self.api_status_var.set("API Key: ❌ Not found in .env file")
+            self.api_status_label.config(foreground="red")
+            self.use_openai_var.set(False)  # Disable if no API key
+    
+    def toggle_api_key(self):
+        """This method is deprecated - API key is now loaded from .env file."""
+        pass
     
     def check_messages(self):
         """Check for messages from processor thread."""
@@ -219,6 +315,8 @@ class DocPostProcessorGUI:
                     self._log_to_widget(data["message"], data["level"])
                 elif msg_type == "status":
                     self.status_var.set(data)
+                elif msg_type == "progress":
+                    self._update_progress(data)
                 elif msg_type == "stats":
                     self._update_stats_widget(data)
                 elif msg_type == "complete":
@@ -240,6 +338,45 @@ class DocPostProcessorGUI:
         self.log_text.insert(tk.END, formatted_message)
         self.log_text.see(tk.END)
     
+    def _update_progress(self, progress_data):
+        """Update progress bar and ETA display (called on main thread)."""
+        current = progress_data.get('current', 0)
+        total = progress_data.get('total', 1)
+        phase = progress_data.get('phase', 'processing')
+        
+        # Update progress bar
+        progress_percent = (current / total) * 100 if total > 0 else 0
+        self.progress['value'] = progress_percent
+        
+        # Update progress label based on phase
+        if phase == 'classification':
+            self.progress_label.config(text=f"🚀 Classifying document {current} of {total} (OpenAI)")
+        else:
+            self.progress_label.config(text=f"📄 Processing file {current} of {total}")
+        
+        # Calculate and display ETA
+        if hasattr(self, 'start_time') and self.start_time and current > 0:
+            elapsed = time.time() - self.start_time
+            if current > 0:
+                avg_time_per_item = elapsed / current
+                remaining_items = total - current
+                eta_seconds = remaining_items * avg_time_per_item
+                
+                if eta_seconds > 0:
+                    eta_time = datetime.now() + timedelta(seconds=eta_seconds)
+                    self.eta_label.config(text=f"ETA: {eta_time.strftime('%H:%M:%S')}")
+                    
+                    # Update speed info based on phase
+                    items_per_second = current / elapsed if elapsed > 0 else 0
+                    if items_per_second > 0:
+                        unit = "docs/sec" if phase == 'classification' else "files/sec"
+                        self.speed_label.config(text=f"Speed: {items_per_second:.2f} {unit} | Elapsed: {elapsed:.1f}s")
+                else:
+                    self.eta_label.config(text="Almost done!")
+        
+        # Force GUI update
+        self.root.update_idletasks()
+    
     def _update_stats_widget(self, stats):
         """Update statistics display (called on main thread)."""
         self.stats_text.config(state=tk.NORMAL)
@@ -259,7 +396,14 @@ class DocPostProcessorGUI:
     def _processing_complete(self, summary):
         """Handle processing completion (called on main thread)."""
         self.processing = False
-        self.progress.stop()
+        self.progress['value'] = 100
+        self.progress_label.config(text="Processing complete!")
+        self.eta_label.config(text="Done!")
+        
+        # Calculate final stats
+        if self.start_time:
+            total_time = time.time() - self.start_time
+            self.speed_label.config(text=f"Completed in {total_time:.1f} seconds")
         self.process_btn.config(state=tk.NORMAL)
         self.stop_btn.config(state=tk.DISABLED)
         
@@ -318,19 +462,28 @@ class DocPostProcessorGUI:
             messagebox.showerror("Error", f"Input directory does not exist: {input_dir}")
             return
         
-        # Get API key if using LLM
+        # Check OpenAI processing option
+        use_openai = self.use_openai_var.get()
         api_key = None
-        if self.use_llm_var.get():
-            api_key = self.api_key_var.get().strip()
-            if not api_key:
-                messagebox.showerror("Error", "Please enter an OpenAI API key for LLM classification")
+        
+        if use_openai:
+            if not self.openai_api_key:
+                messagebox.showerror("Error", "OpenAI processing selected but no API key found in .env file.")
                 return
+            api_key = self.openai_api_key
         
         # Start processing in separate thread
         self.processing = True
         self.process_btn.config(state=tk.DISABLED)
         self.stop_btn.config(state=tk.NORMAL)
-        self.progress.start(10)
+        
+        # Initialize progress tracking
+        self.start_time = time.time()
+        self.progress['mode'] = 'determinate'
+        self.progress['value'] = 0
+        self.progress_label.config(text="Initializing...")
+        self.eta_label.config(text="")
+        self.speed_label.config(text="")
         
         # Get processing options
         process_subfolders = self.process_subfolders_var.get()
@@ -358,7 +511,7 @@ class DocPostProcessorGUI:
             self.log(f"Output directory: {output_dir}", "INFO")
             self.log(f"Process subfolders: {'Yes' if process_subfolders else 'No'}", "INFO")
             self.log(f"Flatten output: {'Yes' if flatten_output else 'No'}", "INFO")
-            self.log(f"Using LLM: {'Yes' if api_key else 'No'}", "INFO")
+            self.log(f"Using OpenAI: {'Yes' if api_key else 'No'}", "INFO")
             self.update_status("Processing documents...")
             
             # Create new event loop for thread
@@ -398,49 +551,160 @@ class DocPostProcessorGUI:
             loop.close()
 
 
+class GUIDocumentSorter:
+    """Custom DocumentSorter that sends progress updates to GUI."""
+    
+    def __init__(self, api_key, gui):
+        # Import here to avoid circular imports
+        from DocPostProcessor import DocumentSorter
+        self.sorter = DocumentSorter(api_key)
+        self.gui = gui
+        self.classification_count = 0
+    
+    async def sort_documents(self, documents):
+        """Sort documents with GUI progress tracking."""
+        self.classification_count = 0
+        total_docs = len(documents)
+        
+        # Send initial progress for classification phase
+        self.gui.message_queue.put(("progress", {
+            "current": 0, 
+            "total": total_docs, 
+            "phase": "classification"
+        }))
+        
+        self.gui.message_queue.put(("log", {
+            "message": f"🚀 Starting parallel OpenAI classification of {total_docs} documents...", 
+            "level": "INFO"
+        }))
+        
+        # Use the parallel classification from the parent sorter
+        # We'll override classify_document to track progress
+        original_classify = self.sorter.classify_document
+        
+        async def classify_with_progress(doc):
+            result = await original_classify(doc)
+            self.classification_count += 1
+            
+            # Send progress update
+            self.gui.message_queue.put(("progress", {
+                "current": self.classification_count, 
+                "total": total_docs, 
+                "phase": "classification"
+            }))
+            
+            return result
+        
+        # Temporarily replace the classify method
+        self.sorter.classify_document = classify_with_progress
+        
+        try:
+            # Call the parallel sort_documents method
+            result = await self.sorter.sort_documents(documents)
+            
+            self.gui.message_queue.put(("log", {
+                "message": f"✅ Classification complete! Processed {total_docs} documents", 
+                "level": "INFO"
+            }))
+            
+            return result
+        finally:
+            # Restore original method
+            self.sorter.classify_document = original_classify
+
+
 class GUIProcessor(DocumentPostProcessor):
-    """Custom processor that logs to GUI."""
+    """Custom processor that logs to GUI with enhanced progress tracking."""
     
     def __init__(self, input_dir, output_dir, api_key, gui, process_subfolders=True, flatten_output=True):
         super().__init__(input_dir, output_dir, api_key)
         self.gui = gui
         self.process_subfolders = process_subfolders
         self.flatten_output = flatten_output
+        self.current_file_count = 0
+        self.total_file_count = 0
+        
+        # Replace the sorter with our GUI-aware version
+        self.sorter = GUIDocumentSorter(api_key, gui)
+    
+    async def process_all_documents(self, recursive: bool = True, flatten_output: bool = True):
+        """Override to add progress tracking."""
+        # Get all files first to calculate total
+        all_files = []
+        input_path = Path(self.input_dir)
+        
+        if recursive:
+            pattern = "**/*.md"
+        else:
+            pattern = "*.md"
+            
+        for file_path in input_path.glob(pattern):
+            if file_path.is_file():
+                all_files.append(file_path)
+        
+        self.total_file_count = len(all_files)
+        self.current_file_count = 0
+        self.gui.message_queue.put(("progress", {"current": 0, "total": self.total_file_count}))
+        
+        # Call parent method with proper parameters and let it handle the actual processing
+        # We'll track progress through the process_document override
+        return await super().process_all_documents(recursive=recursive, flatten_output=flatten_output)
     
     async def process_document(self, file_path):
-        """Override to add GUI logging."""
+        """🚀 TURBO: Process document with batched progress updates for 13K+ files."""
         if not self.gui.processing:
             return None
         
-        self.gui.log(f"Processing: {file_path.name}")
+        # 🚀 Call optimized parent method (now with async I/O)
         result = await super().process_document(file_path)
         
-        if result:
-            self.gui.log(f"✓ Processed: {result.title} ({len(result.chunks)} chunks)")
-            self.gui.update_status(f"Processed {len(self.processed_docs)} documents")
-        else:
-            self.gui.log(f"✗ Skipped: {file_path.name} (no content)", "WARNING")
+        # 🚀 BATCH PROGRESS UPDATES (reduce GUI overhead for massive file counts)
+        self.current_file_count += 1
+        
+        # Only send progress updates every 25 files or on last file to reduce GUI spam
+        if self.current_file_count % 25 == 0 or self.current_file_count == self.total_file_count:
+            self.gui.message_queue.put(("progress", {
+                "current": self.current_file_count, 
+                "total": self.total_file_count,
+                "phase": "processing"
+            }))
+        
+        # 🚀 REDUCED LOGGING (only every 500 files to avoid overwhelming the GUI)
+        if self.current_file_count % 500 == 0:
+            self.gui.message_queue.put(("log", {
+                "message": f"🚀 TURBO: {self.current_file_count}/{self.total_file_count} files processed", 
+                "level": "INFO"
+            }))
         
         return result
 
 
 def main():
     """Main entry point."""
-    root = tk.Tk()
-    
-    # Try to use a modern theme
     try:
-        root.tk.call("source", "azure.tcl")
-        root.tk.call("set_theme", "light")
-    except:
+        root = tk.Tk()
+        
+        # Set window icon if available
         try:
-            style = ttk.Style()
-            style.theme_use('clam')
+            root.iconname("Documentation Post-Processor")
         except:
             pass
-    
-    app = DocPostProcessorGUI(root)
-    root.mainloop()
+        
+        # Handle window closing
+        def on_closing():
+            if messagebox.askokcancel("Quit", "Do you want to quit?"):
+                root.destroy()
+        
+        root.protocol("WM_DELETE_WINDOW", on_closing)
+        
+        app = DocPostProcessorGUI(root)
+        root.mainloop()
+        
+    except Exception as e:
+        print(f"Error starting GUI: {e}")
+        messagebox.showerror("Error", f"Failed to start application:\n{e}")
+        import sys
+        sys.exit(1)
 
 
 if __name__ == "__main__":

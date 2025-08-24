@@ -52,6 +52,8 @@ playwright install chromium
 echo "OPENAI_API_KEY=your-api-key-here" > .env
 ```
 
+**Note**: The application will automatically load the API key from the `.env` file. No need to manually input it each time.
+
 ## Usage
 
 ### Web Scraping

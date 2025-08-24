@@ -36,6 +36,7 @@ class DocumentationScraper:
         self.visited_urls: Set[str] = set()
         self.failed_urls: Set[str] = set()
         self.domain = None
+        self.should_stop = False
         
     def _is_valid_doc_url(self, url: str) -> bool:
         """Check if URL is a valid documentation page."""
@@ -183,24 +184,47 @@ title: {metadata.get('title', 'Untitled')}
             max_retries=3
         )
         
-        monitor = CrawlerMonitor(
-            max_visible_rows=10,
-            display_mode=DisplayMode.DETAILED
-        )
-        
-        dispatcher = MemoryAdaptiveDispatcher(
-            rate_limiter=rate_limiter,
-            monitor=monitor,
-            max_session_permit=5,  # Concurrent crawls
-            memory_threshold_percent=80.0
-        )
+        # Try to create monitor with fallback
+        try:
+            monitor = CrawlerMonitor(
+                display_mode=DisplayMode.DETAILED
+            )
+            
+            dispatcher = MemoryAdaptiveDispatcher(
+                rate_limiter=rate_limiter,
+                monitor=monitor,
+                max_session_permit=5,  # Concurrent crawls
+                memory_threshold_percent=80.0
+            )
+        except TypeError:
+            # Fallback: Create monitor without parameters or no monitor
+            try:
+                monitor = CrawlerMonitor()
+                dispatcher = MemoryAdaptiveDispatcher(
+                    rate_limiter=rate_limiter,
+                    monitor=monitor,
+                    max_session_permit=5,
+                    memory_threshold_percent=80.0
+                )
+            except:
+                # No monitor fallback
+                dispatcher = MemoryAdaptiveDispatcher(
+                    rate_limiter=rate_limiter,
+                    max_session_permit=5,
+                    memory_threshold_percent=80.0
+                )
         
         # URLs to process
         urls_to_crawl = {start_url}
         self.visited_urls = set()
         
         async with AsyncWebCrawler() as crawler:
-            while urls_to_crawl and len(self.visited_urls) < max_pages:
+            while urls_to_crawl and len(self.visited_urls) < max_pages and not self.should_stop:
+                # Check for stop condition
+                if self.should_stop:
+                    logger.info("Scraping stopped by user")
+                    break
+                    
                 # Get next batch of URLs
                 batch_size = min(10, len(urls_to_crawl))
                 current_batch = set(list(urls_to_crawl)[:batch_size])
@@ -216,25 +240,40 @@ title: {metadata.get('title', 'Untitled')}
                 
                 # Scrape pages in parallel
                 tasks = [self.scrape_page(crawler, url) for url in current_batch]
-                results = await asyncio.gather(*tasks)
+                
+                # Process tasks with early termination support
+                try:
+                    results = await asyncio.gather(*tasks)
+                except asyncio.CancelledError:
+                    logger.info("Batch processing cancelled")
+                    break
                 
                 # Process results
                 for result in results:
-                    if result:
+                    if result and not self.should_stop:
                         self.visited_urls.add(result['url'])
                         
-                        # Add new links to queue
-                        for link in result['links']:
-                            if link not in self.visited_urls and link not in self.failed_urls:
-                                urls_to_crawl.add(link)
+                        # Add new links to queue only if not stopping
+                        if not self.should_stop:
+                            for link in result['links']:
+                                if link not in self.visited_urls and link not in self.failed_urls:
+                                    urls_to_crawl.add(link)
+                
+                # Check stop condition again
+                if self.should_stop:
+                    logger.info("Scraping stopped by user during result processing")
+                    break
                 
                 # Progress update
                 logger.info(f"Progress: {len(self.visited_urls)} pages scraped, "
                           f"{len(urls_to_crawl)} in queue, "
                           f"{len(self.failed_urls)} failed")
                 
-                # Small delay between batches
-                await asyncio.sleep(1)
+                # Small delay between batches (with stop check)
+                for _ in range(10):  # Check stop every 100ms for 1 second
+                    if self.should_stop:
+                        break
+                    await asyncio.sleep(0.1)
         
         # Save crawl summary
         summary = {
