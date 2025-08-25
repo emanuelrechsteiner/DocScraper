@@ -1,4 +1,42 @@
 
-# Environment files
+# Environment files - NEVER commit API keys!
 .env
+.env.local
+.env.*.local
+*.env
 
+# API Keys and secrets
+*api_key*
+*secret*
+*token*
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# IDE files
+.vscode/settings.json
+.cursor/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

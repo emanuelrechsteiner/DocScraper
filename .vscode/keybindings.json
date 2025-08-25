@@ -1,0 +1,14 @@
+[
+    {
+        "key": "ctrl+shift+v",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Start Vector Database",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+s",
+        "command": "workbench.action.tasks.runTask", 
+        "args": "Vector Database Status",
+        "when": "editorTextFocus"
+    }
+]

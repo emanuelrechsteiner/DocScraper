@@ -1,0 +1,36 @@
+{
+    "name": "vector-database-commands",
+    "displayName": "Vector Database Commands",
+    "description": "Quick access to vector database operations",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": ["Other"],
+    "activationEvents": [
+        "onCommand:vectordb.start",
+        "onCommand:vectordb.status"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "vectordb.start",
+                "title": "Start Vector Database",
+                "category": "VectorDB"
+            },
+            {
+                "command": "vectordb.status", 
+                "title": "Vector Database Status",
+                "category": "VectorDB"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "vectordb.start",
+                "key": "ctrl+shift+v",
+                "when": "editorTextFocus"
+            }
+        ]
+    }
+}

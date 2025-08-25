@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Vector Database",
+            "type": "shell",
+            "command": "cd /Volumes/NvME-Satechi/VectorDatabase/mcp-vector-server && export VECTOR_DB_PATH='/Volumes/NvME-Satechi/VectorDatabase/20250824_135319_2025_Emanuels_Tech_Stack_Docs_VectorDB' && ./.venv/bin/python src/mcp_vector_server/simple_server.py",
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Vector Database Status",
+            "type": "shell",
+            "command": "python",
+            "args": ["test_vector_db.py"],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

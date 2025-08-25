@@ -1,0 +1,103 @@
+{
+  "_comment": "MCP Configuration Template for Vector Database Integration",
+  "_instructions": [
+    "1. Copy this file to your MCP config location:",
+    "   - macOS: ~/.cursor/mcp.json or ~/.claude-code/mcp.json", 
+    "   - Windows: %APPDATA%/Cursor/mcp.json",
+    "   - Linux: ~/.config/cursor/mcp.json",
+    "2. Update all paths marked with 'REPLACE_WITH_YOUR_PATH'",
+    "3. Remove these comment fields before using",
+    "4. Restart Claude Code/Cursor after making changes"
+  ],
+  
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "REPLACE_WITH_YOUR_HOME_DIRECTORY"],
+      "_example": "args: [\"/Users/username\"] or [\"/home/username\"] or [\"C:\\\\Users\\\\username\"]"
+    },
+    
+    "github": {
+      "command": "npx", 
+      "args": ["@modelcontextprotocol/server-github"],
+      "_note": "Requires GitHub CLI (gh) to be installed and authenticated"
+    },
+    
+    "vector-db": {
+      "command": "python3",
+      "args": ["REPLACE_WITH_MCP_SERVER_PATH/mcp-vector-server.py"],
+      "_example_args": ["/Users/username/mcp-vector-server/mcp-vector-server.py"],
+      "env": {
+        "VECTOR_DB_PATH": "REPLACE_WITH_VECTOR_DATABASE_PATH",
+        "_example_path": "/Users/username/VectorDatabase/20250824_135319_YourDocs_VectorDB"
+      }
+    },
+    
+    "memory": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-memory"],
+      "_note": "Provides persistent memory across conversations"
+    },
+    
+    "_optional_servers": {
+      "_comment": "Additional MCP servers you can add",
+      
+      "puppeteer": {
+        "command": "npx",
+        "args": ["@modelcontextprotocol/server-puppeteer"],
+        "_note": "Web automation and scraping"
+      },
+      
+      "sqlite": {
+        "command": "npx", 
+        "args": ["@modelcontextprotocol/server-sqlite", "REPLACE_WITH_DATABASE_PATH"],
+        "_note": "SQLite database access"
+      },
+      
+      "postgres": {
+        "command": "npx",
+        "args": ["@modelcontextprotocol/server-postgres"],
+        "env": {
+          "POSTGRES_CONNECTION_STRING": "postgresql://user:password@localhost:5432/dbname"
+        },
+        "_note": "PostgreSQL database access"
+      }
+    }
+  },
+  
+  "_platform_specific_examples": {
+    "macOS": {
+      "filesystem_args": ["/Users/username"],
+      "vector_db_args": ["/Users/username/mcp-vector-server/mcp-vector-server.py"],
+      "vector_db_path": "/Users/username/VectorDatabase/20250824_135319_YourDocs_VectorDB"
+    },
+    
+    "windows": {
+      "filesystem_args": ["C:\\\\Users\\\\username"],
+      "vector_db_args": ["C:\\\\Users\\\\username\\\\mcp-vector-server\\\\mcp-vector-server.py"],
+      "vector_db_path": "C:\\\\Users\\\\username\\\\VectorDatabase\\\\20250824_135319_YourDocs_VectorDB"
+    },
+    
+    "linux": {
+      "filesystem_args": ["/home/username"],
+      "vector_db_args": ["/home/username/mcp-vector-server/mcp-vector-server.py"],
+      "vector_db_path": "/home/username/VectorDatabase/20250824_135319_YourDocs_VectorDB"
+    }
+  },
+  
+  "_troubleshooting": {
+    "common_issues": [
+      "Path separators: Use forward slashes (/) or escaped backslashes (\\\\) in JSON",
+      "Permissions: Ensure Python scripts are executable (chmod +x)",
+      "Python path: Use 'python3' or full path to Python executable",
+      "Environment variables: Check that VECTOR_DB_PATH points to existing directory",
+      "Restart required: Always restart Claude Code after config changes"
+    ],
+    
+    "validation_commands": [
+      "python3 -c \"import json; json.load(open('mcp.json'))\"  # Validate JSON syntax",
+      "ls -la $VECTOR_DB_PATH  # Check vector database exists",
+      "python3 /path/to/mcp-vector-server.py --test  # Test MCP server"
+    ]
+  }
+}
