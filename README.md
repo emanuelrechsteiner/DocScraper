@@ -5,12 +5,14 @@ A comprehensive toolkit for scraping documentation websites and post-processing 
 ## Features
 
 ### Scraping Features
+- **Multiple Scraper Engines**: Choose between Crawl4AI (free, open source) or Firecrawl (API service)
 - **Automatic URL Discovery**: Automatically discovers and crawls all documentation pages on a domain
 - **Markdown Conversion**: Converts HTML content to clean markdown format
 - **Domain Limiting**: Stays within the specified domain to avoid crawling external sites
 - **Progress Tracking**: Real-time progress updates and summary statistics
 - **Error Handling**: Gracefully handles failed pages and continues crawling
 - **Rate Limiting**: Built-in delays to avoid overwhelming servers
+- **Settings Management**: User-friendly settings dialog for configuring scraper engines and API keys
 
 ### Post-Processing Features (NEW!)
 - **Document Cleaning**: Removes headers, footers, navigation elements, and duplicate content
@@ -47,12 +49,30 @@ pip install -r requirements.txt
 playwright install chromium
 ```
 
-4. (Optional) Set up environment variables for LLM features:
+4. Configure scraper engine and API keys (optional):
+
+The application supports two scraper engines:
+
+**Option 1: Crawl4AI (Free, Default)**
+- No configuration required
+- Uses the free, open-source Crawl4AI library
+- Works out of the box
+
+**Option 2: Firecrawl (API Service)**
+- Requires Firecrawl API key from https://firecrawl.dev
+- More reliable for complex websites
+- Configure via Settings dialog in the GUI or manually in `.env`:
 ```bash
-echo "OPENAI_API_KEY=your-api-key-here" > .env
+echo "SCRAPER_ENGINE=firecrawl" >> .env
+echo "FIRECRAWL_API_KEY=your-firecrawl-api-key-here" >> .env
 ```
 
-**Note**: The application will automatically load the API key from the `.env` file. No need to manually input it each time.
+**For LLM Post-Processing (Optional)**
+```bash
+echo "OPENAI_API_KEY=your-openai-api-key-here" >> .env
+```
+
+**Note**: All API keys are stored securely in the `.env` file and are never committed to version control.
 
 ## Usage
 
@@ -83,6 +103,13 @@ For a graphical interface:
 ```bash
 python DocScraperGUI.py
 ```
+
+**Settings Dialog:**
+- Click the "Settings" button to open the settings dialog
+- Choose between Crawl4AI (free) or Firecrawl (API service)
+- Enter your Firecrawl API key if using Firecrawl
+- Optionally configure OpenAI API key for post-processing
+- Settings are automatically saved to `.env` file
 
 ### Document Post-Processing
 
@@ -244,9 +271,20 @@ The post-processor creates a `vector_db_index.json` file optimized for vector da
 
 ## Configuration Options
 
+### Scraper Engine Selection
+- **Crawl4AI** (Default): Free, open-source web crawler
+  - No API key required
+  - Good for most documentation sites
+  - Runs locally using Playwright
+- **Firecrawl**: Commercial API service
+  - Requires API key from https://firecrawl.dev
+  - More reliable for complex, JavaScript-heavy websites
+  - Better handling of dynamic content
+
 ### Scraper Configuration
 - `max_pages`: Maximum number of pages to crawl
 - `output_dir`: Directory for saving scraped content
+- `scraper_engine`: Choose between 'crawl4ai' or 'firecrawl'
 - Rate limiting and concurrent crawl settings
 
 ### Post-Processor Configuration

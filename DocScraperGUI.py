@@ -14,6 +14,10 @@ from pathlib import Path
 from datetime import datetime
 
 from DocScraper import DocumentationScraper
+from firecrawl_scraper import FirecrawlDocumentationScraper
+from scraper_config import ScraperConfig
+from scraper_factory import ScraperFactory
+from settings_dialog import show_settings
 
 
 class DocScraperGUI:
@@ -27,14 +31,20 @@ class DocScraperGUI:
         self.scraping = False
         self.scraper_thread = None
         self.current_scraper = None
-        
+
+        # Configuration
+        self.config = ScraperConfig()
+
         # Thread-safe message queue
         self.message_queue = queue.Queue()
         
         # Configure style
         self.setup_styles()
         self.setup_ui()
-        
+
+        # Update engine info display
+        self.update_engine_info()
+
         # Center window and start checking for messages
         self.center_window()
         self.check_messages()
@@ -121,7 +131,7 @@ class DocScraperGUI:
         self.root.columnconfigure(0, weight=1)
         self.root.rowconfigure(0, weight=1)
         main_frame.columnconfigure(1, weight=1)
-        main_frame.rowconfigure(5, weight=1)
+        main_frame.rowconfigure(6, weight=1)
         
         # URL Input
         url_frame = ttk.Frame(main_frame)
@@ -163,40 +173,60 @@ class DocScraperGUI:
         ttk.Label(pages_frame, text="(Set to high value for complete documentation scraping)", 
                  font=('TkDefaultFont', 8)).grid(row=0, column=2, sticky=tk.W, padx=(10, 0))
         
+        # Scraper Engine Info
+        engine_frame = ttk.Frame(main_frame)
+        engine_frame.grid(row=3, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
+
+        ttk.Label(engine_frame, text="Scraper Engine:").pack(side=tk.LEFT)
+        self.engine_info_var = tk.StringVar()
+        self.engine_info_label = ttk.Label(
+            engine_frame,
+            textvariable=self.engine_info_var,
+            font=('TkDefaultFont', 9, 'bold')
+        )
+        self.engine_info_label.pack(side=tk.LEFT, padx=(5, 0))
+
         # Control Buttons
         button_frame = ttk.Frame(main_frame)
-        button_frame.grid(row=3, column=0, columnspan=2, pady=10)
-        
+        button_frame.grid(row=4, column=0, columnspan=2, pady=10)
+
+        self.settings_btn = ttk.Button(
+            button_frame,
+            text="Settings",
+            command=self.show_settings
+        )
+        self.settings_btn.pack(side=tk.LEFT, padx=5)
+
         self.start_btn = ttk.Button(
-            button_frame, 
-            text="Start Scraping", 
+            button_frame,
+            text="Start Scraping",
             command=self.start_scraping,
             style="Accent.TButton"
         )
         self.start_btn.pack(side=tk.LEFT, padx=5)
-        
+
         self.stop_btn = ttk.Button(
-            button_frame, 
-            text="Stop", 
+            button_frame,
+            text="Stop",
             command=self.stop_scraping,
             state=tk.DISABLED
         )
         self.stop_btn.pack(side=tk.LEFT, padx=5)
-        
+
         self.clear_btn = ttk.Button(
-            button_frame, 
-            text="Clear Log", 
+            button_frame,
+            text="Clear Log",
             command=self.clear_log
         )
         self.clear_btn.pack(side=tk.LEFT, padx=5)
         
         # Progress
         self.progress = ttk.Progressbar(main_frame, mode='indeterminate')
-        self.progress.grid(row=4, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
-        
+        self.progress.grid(row=5, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
+
         # Log Output
         log_frame = ttk.LabelFrame(main_frame, text="Scraping Log", padding="5")
-        log_frame.grid(row=5, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S), pady=10)
+        log_frame.grid(row=6, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S), pady=10)
         
         self.log_text = scrolledtext.ScrolledText(
             log_frame, 
@@ -221,7 +251,31 @@ class DocScraperGUI:
         directory = filedialog.askdirectory()
         if directory:
             self.output_var.set(directory)
-            
+
+    def show_settings(self):
+        """Show settings dialog."""
+        if self.scraping:
+            messagebox.showwarning("Warning", "Cannot change settings while scraping is in progress!")
+            return
+
+        # Show settings dialog
+        if show_settings(self.root):
+            # Settings were saved, reload config
+            self.config = ScraperConfig()
+            self.update_engine_info()
+            self.log("Settings updated successfully", "INFO")
+
+    def update_engine_info(self):
+        """Update the engine info display."""
+        info = ScraperFactory.get_scraper_info(self.config)
+        self.engine_info_var.set(info['message'])
+
+        # Update label color based on configuration status
+        if info['is_configured']:
+            self.engine_info_label.config(foreground='green')
+        else:
+            self.engine_info_label.config(foreground='red')
+
     def log(self, message, level="INFO"):
         """Thread-safe logging."""
         self.message_queue.put(("log", {"message": message, "level": level}))
@@ -292,34 +346,57 @@ class DocScraperGUI:
     def run_scraper(self, url, output_dir, max_pages):
         """Run the scraper in a separate thread."""
         try:
+            # Get scraper info
+            info = ScraperFactory.get_scraper_info(self.config)
+            engine = self.config.get_scraper_engine()
+
             self.log(f"Starting scrape of {url}", "INFO")
+            self.log(f"Scraper engine: {info['message']}", "INFO")
             self.log(f"Output directory: {output_dir}", "INFO")
             self.log(f"Max pages: {max_pages}", "INFO")
             self.update_status("Scraping in progress...")
-            
+
             # Create new event loop for thread
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
-            
-            # Create custom scraper that logs to GUI
-            self.current_scraper = GUIScraper(output_dir, self)
-            
+
+            # Create scraper using factory
+            try:
+                base_scraper = ScraperFactory.create_scraper(output_dir, self.config)
+            except ValueError as e:
+                self.log(f"Configuration error: {str(e)}", "ERROR")
+                self.update_status("Configuration error")
+                self.message_queue.put(("error", str(e)))
+                return
+
+            # Wrap scraper with GUI logging
+            if engine == ScraperConfig.ENGINE_CRAWL4AI:
+                # For crawl4ai, use GUIScraper wrapper
+                self.current_scraper = GUIScraper(output_dir, self)
+            else:
+                # For Firecrawl, use FirecrawlGUIScraper wrapper
+                self.current_scraper = FirecrawlGUIScraper(
+                    self.config.get_firecrawl_api_key(),
+                    output_dir,
+                    self
+                )
+
             # Run scraper
             loop.run_until_complete(
                 self.current_scraper.scrape_documentation(url, max_pages)
             )
-            
+
             self.log("Scraping completed successfully!", "SUCCESS")
             self.update_status("Scraping completed")
-            
+
             # Send completion message
             self.message_queue.put(("complete", output_dir))
-            
+
         except Exception as e:
             self.log(f"Error during scraping: {str(e)}", "ERROR")
             self.update_status("Error occurred")
             self.message_queue.put(("error", str(e)))
-            
+
         finally:
             self.current_scraper = None
             loop.close()
@@ -356,6 +433,44 @@ class GUIScraper(DocumentationScraper):
             else:
                 self.gui.log(f"Failed: {url}", "WARNING")
                 
+            return result
+        except Exception as e:
+            self.gui.log(f"Error scraping {url}: {str(e)}", "ERROR")
+            return None
+
+
+class FirecrawlGUIScraper(FirecrawlDocumentationScraper):
+    """Custom Firecrawl scraper that logs to GUI."""
+
+    def __init__(self, api_key, output_dir, gui):
+        super().__init__(api_key, output_dir)
+        self.gui = gui
+        self.should_stop = False
+
+    def stop(self):
+        """Stop the scraper."""
+        self.should_stop = True
+
+    async def scrape_page(self, url):
+        """Override to add GUI logging."""
+        # Check stop conditions
+        if not self.gui.scraping or self.should_stop:
+            return None
+
+        try:
+            self.gui.log(f"Scraping with Firecrawl: {url}")
+            result = await super().scrape_page(url)
+
+            # Check stop condition again after scraping
+            if not self.gui.scraping or self.should_stop:
+                return None
+
+            if result:
+                self.gui.log(f"Saved: {result['filepath']} ({result.get('links', []).__len__()} links found)")
+                self.gui.update_status(f"Scraped {len(self.visited_urls)} pages")
+            else:
+                self.gui.log(f"Failed: {url}", "WARNING")
+
             return result
         except Exception as e:
             self.gui.log(f"Error scraping {url}: {str(e)}", "ERROR")
