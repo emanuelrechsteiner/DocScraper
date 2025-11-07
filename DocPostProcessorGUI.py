@@ -20,7 +20,8 @@ class DocPostProcessorGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("Documentation Post-Processor")
-        self.root.geometry("900x700")
+        self.root.geometry("1000x800")
+        self.root.minsize(700, 600)
         
         # Variables
         self.processing = False
@@ -29,10 +30,38 @@ class DocPostProcessorGUI:
         # Thread-safe message queue
         self.message_queue = queue.Queue()
         
+        # Configure style
+        self.setup_styles()
         self.setup_ui()
         
-        # Start checking for messages
+        # Center window and start checking for messages
+        self.center_window()
         self.check_messages()
+    
+    def setup_styles(self):
+        """Configure modern styling for the GUI."""
+        try:
+            style = ttk.Style()
+            style.theme_use('clam')
+            
+            # Configure button styles
+            style.configure("Accent.TButton", 
+                          background='#007ACC',
+                          foreground='white',
+                          font=('TkDefaultFont', 9, 'bold'))
+            style.map("Accent.TButton",
+                     background=[('active', '#005a9e')])
+        except Exception:
+            pass
+    
+    def center_window(self):
+        """Center the window on the screen."""
+        self.root.update_idletasks()
+        width = self.root.winfo_width()
+        height = self.root.winfo_height()
+        x = (self.root.winfo_screenwidth() // 2) - (width // 2)
+        y = (self.root.winfo_screenheight() // 2) - (height // 2)
+        self.root.geometry(f'{width}x{height}+{x}+{y}')
         
     def setup_ui(self):
         """Setup the user interface."""
@@ -47,22 +76,30 @@ class DocPostProcessorGUI:
         main_frame.rowconfigure(6, weight=1)
         
         # Input Directory
-        ttk.Label(main_frame, text="Input Directory:").grid(row=0, column=0, sticky=tk.W, pady=5)
-        self.input_var = tk.StringVar(value="Documentation/Anthropic")
-        self.input_entry = ttk.Entry(main_frame, textvariable=self.input_var, width=50)
-        self.input_entry.grid(row=0, column=1, sticky=(tk.W, tk.E), pady=5, padx=(10, 50))
+        input_frame = ttk.Frame(main_frame)
+        input_frame.grid(row=0, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
+        input_frame.columnconfigure(1, weight=1)
         
-        self.input_browse_btn = ttk.Button(main_frame, text="Browse", command=lambda: self.browse_directory('input'))
-        self.input_browse_btn.grid(row=0, column=1, sticky=tk.E, pady=5)
+        ttk.Label(input_frame, text="Input Directory:").grid(row=0, column=0, sticky=tk.W, padx=(0, 10))
+        self.input_var = tk.StringVar(value="Documentation/Anthropic")
+        self.input_entry = ttk.Entry(input_frame, textvariable=self.input_var, width=50)
+        self.input_entry.grid(row=0, column=1, sticky=(tk.W, tk.E), padx=(0, 10))
+        
+        self.input_browse_btn = ttk.Button(input_frame, text="Browse", command=lambda: self.browse_directory('input'))
+        self.input_browse_btn.grid(row=0, column=2, sticky=tk.W)
         
         # Output Directory
-        ttk.Label(main_frame, text="Output Directory:").grid(row=1, column=0, sticky=tk.W, pady=5)
-        self.output_var = tk.StringVar(value="processed_docs")
-        self.output_entry = ttk.Entry(main_frame, textvariable=self.output_var, width=50)
-        self.output_entry.grid(row=1, column=1, sticky=(tk.W, tk.E), pady=5, padx=(10, 50))
+        output_frame = ttk.Frame(main_frame)
+        output_frame.grid(row=1, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
+        output_frame.columnconfigure(1, weight=1)
         
-        self.output_browse_btn = ttk.Button(main_frame, text="Browse", command=lambda: self.browse_directory('output'))
-        self.output_browse_btn.grid(row=1, column=1, sticky=tk.E, pady=5)
+        ttk.Label(output_frame, text="Output Directory:").grid(row=0, column=0, sticky=tk.W, padx=(0, 10))
+        self.output_var = tk.StringVar(value="processed_docs")
+        self.output_entry = ttk.Entry(output_frame, textvariable=self.output_var, width=50)
+        self.output_entry.grid(row=0, column=1, sticky=(tk.W, tk.E), padx=(0, 10))
+        
+        self.output_browse_btn = ttk.Button(output_frame, text="Browse", command=lambda: self.browse_directory('output'))
+        self.output_browse_btn.grid(row=0, column=2, sticky=tk.W)
         
         # Processing Options Frame
         options_frame = ttk.LabelFrame(main_frame, text="Processing Options", padding="10")
@@ -426,21 +463,30 @@ class GUIProcessor(DocumentPostProcessor):
 
 def main():
     """Main entry point."""
-    root = tk.Tk()
-    
-    # Try to use a modern theme
     try:
-        root.tk.call("source", "azure.tcl")
-        root.tk.call("set_theme", "light")
-    except:
+        root = tk.Tk()
+        
+        # Set window icon if available
         try:
-            style = ttk.Style()
-            style.theme_use('clam')
+            root.iconname("Documentation Post-Processor")
         except:
             pass
-    
-    app = DocPostProcessorGUI(root)
-    root.mainloop()
+        
+        # Handle window closing
+        def on_closing():
+            if messagebox.askokcancel("Quit", "Do you want to quit?"):
+                root.destroy()
+        
+        root.protocol("WM_DELETE_WINDOW", on_closing)
+        
+        app = DocPostProcessorGUI(root)
+        root.mainloop()
+        
+    except Exception as e:
+        print(f"Error starting GUI: {e}")
+        messagebox.showerror("Error", f"Failed to start application:\n{e}")
+        import sys
+        sys.exit(1)
 
 
 if __name__ == "__main__":

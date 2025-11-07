@@ -25,6 +25,20 @@ from cleaning_rules import (
     PatternCategory
 )
 
+# Phase 2: LLM and Chunk Optimization (optional imports)
+try:
+    from llm_cleaner import LLMValidator, LLMConfig, ValidationResult
+except ImportError:
+    LLMValidator = None
+    LLMConfig = None
+    ValidationResult = None
+
+try:
+    from chunk_optimizer import ChunkOptimizer, ChunkMetadata
+except ImportError:
+    ChunkOptimizer = None
+    ChunkMetadata = None
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -39,13 +53,14 @@ class CleaningConfig:
     remove_navigation: bool = True
     remove_headers_footers: bool = True
     remove_boilerplate: bool = True
-    enable_llm_validation: bool = True
+    enable_llm_validation: bool = False
     llm_confidence_threshold: float = 0.85
-    target_chunk_size: int = 1000
-    overlap_size: int = 200
+    target_chunk_size: int = 512
+    overlap_size: int = 50
     max_cost_per_document: float = 0.05
     rate_limit_rpm: int = 500
     openai_api_key: Optional[str] = None
+    enable_chunk_optimization: bool = True
 
     def __post_init__(self):
         """Validate configuration values"""
@@ -75,7 +90,10 @@ class CleaningResult:
     structure_score: float = 0.0
     rule_based_cleaning: bool = False
     llm_validation_used: bool = False
+    llm_validation: Optional[Dict] = None
     llm_cost: float = 0.0
+    chunk_optimization_used: bool = False
+    chunk_metadata: Optional[Dict] = None
     processing_time: float = 0.0
     content_quality_score: float = 0.0
     chunk_optimization_score: float = 0.0
@@ -233,6 +251,25 @@ class PostScraperCleaner:
         self.progress_callback = progress_callback
         self.rule_cleaner = RuleBasedCleaner(config)
 
+        # Phase 2: Initialize LLM validator if enabled
+        self.llm_validator = None
+        if config.enable_llm_validation and LLMValidator:
+            llm_config = LLMConfig(
+                api_key=config.openai_api_key,
+                rate_limit_rpm=config.rate_limit_rpm
+            )
+            self.llm_validator = LLMValidator(llm_config)
+            logger.info("LLM validator initialized")
+
+        # Phase 2: Initialize chunk optimizer if enabled
+        self.chunk_optimizer = None
+        if config.enable_chunk_optimization and ChunkOptimizer:
+            self.chunk_optimizer = ChunkOptimizer(
+                chunk_size=config.target_chunk_size,
+                overlap=config.overlap_size
+            )
+            logger.info("Chunk optimizer initialized")
+
         self.stats = {
             "total_processed": 0,
             "total_success": 0,
@@ -240,7 +277,8 @@ class PostScraperCleaner:
             "total_bytes_before": 0,
             "total_bytes_after": 0,
             "total_processing_time": 0.0,
-            "total_llm_cost": 0.0
+            "total_llm_cost": 0.0,
+            "total_chunks_created": 0,
         }
 
         logger.info("PostScraperCleaner initialized")
@@ -275,6 +313,36 @@ class PostScraperCleaner:
 
             result.content_quality_score = self._calculate_content_quality(cleaned_content)
             result.chunk_optimization_score = self._calculate_chunk_score(cleaned_content)
+
+            # Phase 2: LLM Validation (optional)
+            if self.llm_validator:
+                try:
+                    llm_result = self.llm_validator.validate_content(
+                        cleaned_content,
+                        metadata={"original_size": result.original_size}
+                    )
+                    result.llm_validation_used = True
+                    result.llm_validation = llm_result.to_dict() if hasattr(llm_result, 'to_dict') else {"is_valid": True, "confidence": 0.7}
+                    result.llm_cost = llm_result.cost if hasattr(llm_result, 'cost') else 0.0
+                    self.stats["total_llm_cost"] += result.llm_cost
+                except Exception as e:
+                    logger.warning(f"LLM validation failed: {e}")
+                    result.warnings.append(f"LLM validation error: {e}")
+
+            # Phase 2: Chunk Optimization (optional)
+            if self.chunk_optimizer:
+                try:
+                    optimized_content, chunk_meta = self.chunk_optimizer.optimize(
+                        cleaned_content,
+                        preserve_structure=True
+                    )
+                    result.chunk_optimization_used = True
+                    result.chunk_metadata = chunk_meta.to_dict() if hasattr(chunk_meta, 'to_dict') else {}
+                    self.stats["total_chunks_created"] += chunk_meta.total_chunks if hasattr(chunk_meta, 'total_chunks') else 0
+                    cleaned_content = optimized_content
+                except Exception as e:
+                    logger.warning(f"Chunk optimization failed: {e}")
+                    result.warnings.append(f"Chunk optimization error: {e}")
 
             output_path.parent.mkdir(parents=True, exist_ok=True)
             with open(output_path, 'w', encoding='utf-8') as f:
