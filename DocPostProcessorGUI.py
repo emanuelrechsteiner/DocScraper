@@ -167,16 +167,30 @@ class DocPostProcessorGUI:
         ttk.Label(options_frame, text="Chunk Overlap:").grid(row=1, column=0, sticky=tk.W, pady=5)
         self.chunk_overlap_var = tk.IntVar(value=200)
         self.chunk_overlap_spinbox = ttk.Spinbox(
-            options_frame, 
-            from_=0, 
-            to=1000, 
+            options_frame,
+            from_=0,
+            to=1000,
             increment=50,
             textvariable=self.chunk_overlap_var,
             width=10
         )
         self.chunk_overlap_spinbox.grid(row=1, column=1, sticky=tk.W, pady=5, padx=(10, 0))
         ttk.Label(options_frame, text="tokens").grid(row=1, column=2, sticky=tk.W, padx=(5, 0))
-        
+
+        # Max File Size
+        ttk.Label(options_frame, text="Max File Size:").grid(row=2, column=0, sticky=tk.W, pady=5)
+        self.max_file_size_var = tk.IntVar(value=10)
+        self.max_file_size_spinbox = ttk.Spinbox(
+            options_frame,
+            from_=1,
+            to=100,
+            increment=5,
+            textvariable=self.max_file_size_var,
+            width=10
+        )
+        self.max_file_size_spinbox.grid(row=2, column=1, sticky=tk.W, pady=5, padx=(10, 0))
+        ttk.Label(options_frame, text="MB").grid(row=2, column=2, sticky=tk.W, padx=(5, 0))
+
         # Process Subfolders
         self.process_subfolders_var = tk.BooleanVar(value=True)
         self.process_subfolders_check = ttk.Checkbutton(
@@ -184,8 +198,8 @@ class DocPostProcessorGUI:
             text="Process all subfolders recursively",
             variable=self.process_subfolders_var
         )
-        self.process_subfolders_check.grid(row=2, column=0, columnspan=3, sticky=tk.W, pady=5)
-        
+        self.process_subfolders_check.grid(row=3, column=0, columnspan=3, sticky=tk.W, pady=5)
+
         # Flatten Output
         self.flatten_output_var = tk.BooleanVar(value=True)
         self.flatten_output_check = ttk.Checkbutton(
@@ -193,7 +207,7 @@ class DocPostProcessorGUI:
             text="Flatten output (consolidate all files in single folder)",
             variable=self.flatten_output_var
         )
-        self.flatten_output_check.grid(row=3, column=0, columnspan=3, sticky=tk.W, pady=5)
+        self.flatten_output_check.grid(row=4, column=0, columnspan=3, sticky=tk.W, pady=5)
         
         # Use LLM Classification (deprecated - now handled by OpenAI checkbox above)
         # This is kept for backward compatibility but not displayed
@@ -511,6 +525,7 @@ class DocPostProcessorGUI:
             self.log(f"Output directory: {output_dir}", "INFO")
             self.log(f"Process subfolders: {'Yes' if process_subfolders else 'No'}", "INFO")
             self.log(f"Flatten output: {'Yes' if flatten_output else 'No'}", "INFO")
+            self.log(f"Max file size: {self.max_file_size_var.get()}MB", "INFO")
             self.log(f"Using OpenAI: {'Yes' if api_key else 'No'}", "INFO")
             self.update_status("Processing documents...")
             
@@ -519,10 +534,11 @@ class DocPostProcessorGUI:
             asyncio.set_event_loop(loop)
             
             # Create processor with custom logger
-            processor = GUIProcessor(input_dir, output_dir, api_key, self, 
-                                   process_subfolders=process_subfolders, 
-                                   flatten_output=flatten_output)
-            
+            processor = GUIProcessor(input_dir, output_dir, api_key, self,
+                                   process_subfolders=process_subfolders,
+                                   flatten_output=flatten_output,
+                                   max_file_size_mb=self.max_file_size_var.get())
+
             # Set chunk parameters
             processor.structurer.chunk_size = self.chunk_size_var.get()
             processor.structurer.chunk_overlap = self.chunk_overlap_var.get()
@@ -615,15 +631,15 @@ class GUIDocumentSorter:
 
 class GUIProcessor(DocumentPostProcessor):
     """Custom processor that logs to GUI with enhanced progress tracking."""
-    
-    def __init__(self, input_dir, output_dir, api_key, gui, process_subfolders=True, flatten_output=True):
-        super().__init__(input_dir, output_dir, api_key)
+
+    def __init__(self, input_dir, output_dir, api_key, gui, process_subfolders=True, flatten_output=True, max_file_size_mb=10):
+        super().__init__(input_dir, output_dir, api_key, max_file_size_mb=max_file_size_mb)
         self.gui = gui
         self.process_subfolders = process_subfolders
         self.flatten_output = flatten_output
         self.current_file_count = 0
         self.total_file_count = 0
-        
+
         # Replace the sorter with our GUI-aware version
         self.sorter = GUIDocumentSorter(api_key, gui)
     

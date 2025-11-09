@@ -613,33 +613,40 @@ class DocumentSorter:
 class DocumentPostProcessor:
     """Main post-processor that orchestrates cleaning, structuring, and sorting."""
     
-    def __init__(self, input_dir: str, output_dir: str, api_key: Optional[str] = None):
+    def __init__(self, input_dir: str, output_dir: str, api_key: Optional[str] = None, max_file_size_mb: int = 10):
         self.input_dir = Path(input_dir)
-        
+
+        # 🛡️ FILE SIZE LIMIT: Prevent crashes on oversized files
+        self.max_file_size_bytes = max_file_size_mb * 1024 * 1024  # Convert MB to bytes
+        logger.info(f"⚙️ Maximum file size limit: {max_file_size_mb}MB")
+
         # 🛡️ SECURITY: Create dated output directory to prevent overwrites
         from datetime import datetime
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         base_output = Path("/Volumes/NvME-Satechi/VectorDatabase")
-        
+
         # Create descriptive directory name with timestamp
         input_name = Path(input_dir).name.replace(" ", "_")
         dated_output_name = f"{timestamp}_{input_name}_VectorDB"
-        
+
         self.output_dir = base_output / dated_output_name
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         # Also create checkpoint directory
         self.checkpoint_dir = self.output_dir / "checkpoints"
         self.checkpoint_dir.mkdir(exist_ok=True)
-        
+
         logger.info(f"🛡️ Output will be saved to: {self.output_dir}")
-        
+
         self.cleaner = DocumentCleaner()
         self.structurer = DocumentStructurer()
         self.sorter = DocumentSorter(api_key)
-        
+
         self.processed_docs: List[ProcessedDocument] = []
-        
+
+        # Track skipped files
+        self.skipped_files = []
+
         # 🛡️ CHECKPOINT SYSTEM: Track progress to prevent token loss
         self.checkpoint_interval = 100  # Save every 100 processed documents
         self.last_checkpoint = 0
@@ -859,8 +866,22 @@ class DocumentPostProcessor:
     
     async def process_document(self, file_path: Path) -> Optional[ProcessedDocument]:
         """🚀 TURBO: Process a single document with optimized I/O and CPU usage."""
-        
+
         try:
+            # 🛡️ CHECK FILE SIZE BEFORE PROCESSING
+            file_size = file_path.stat().st_size
+            file_size_mb = file_size / (1024 * 1024)
+
+            if file_size > self.max_file_size_bytes:
+                logger.warning(f"⚠️ Skipping large file ({file_size_mb:.1f}MB): {file_path.name}")
+                logger.warning(f"   File exceeds maximum size limit of {self.max_file_size_bytes / (1024 * 1024):.0f}MB")
+                self.skipped_files.append({
+                    'file': str(file_path),
+                    'size_mb': file_size_mb,
+                    'reason': 'File too large'
+                })
+                return None
+
             # 🚀 ASYNC FILE READING (non-blocking I/O for better concurrency)
             try:
                 import aiofiles
@@ -871,7 +892,12 @@ class DocumentPostProcessor:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
         except Exception as e:
-            logger.error(f"Failed to read {file_path}: {e}")
+            logger.error(f"❌ Failed to read {file_path}: {e}")
+            self.skipped_files.append({
+                'file': str(file_path),
+                'error': str(e),
+                'reason': 'Read error'
+            })
             return None
         
         # 🚀 FAST METADATA EXTRACTION
@@ -917,7 +943,8 @@ class DocumentPostProcessor:
             'total_chunks': 0,
             'categories': dict(),  # Use regular dict instead of defaultdict
             'source_folders': list(source_folders.keys()) if source_folders else [],
-            'documents': []
+            'documents': [],
+            'skipped_files': self.skipped_files  # Track files that were skipped
         }
         
         # Save each document
@@ -1001,8 +1028,15 @@ class DocumentPostProcessor:
         
         with open(index_path, 'w', encoding='utf-8') as f:
             json.dump(vector_index, f, indent=2)
-        
-        logger.info(f"Processing complete! Summary saved to {summary_path}")
+
+        logger.info(f"✅ Processing complete! Summary saved to {summary_path}")
+        if self.skipped_files:
+            logger.warning(f"⚠️ Skipped {len(self.skipped_files)} files (too large or errors)")
+            for skipped in self.skipped_files[:5]:  # Show first 5
+                logger.warning(f"   - {Path(skipped['file']).name}: {skipped.get('reason', 'Unknown')}")
+            if len(self.skipped_files) > 5:
+                logger.warning(f"   ... and {len(self.skipped_files) - 5} more (see processing_summary.json)")
+
         return summary
 
 
@@ -1016,24 +1050,37 @@ async def main():
     load_dotenv()
         
     if len(sys.argv) < 3:
-        print("Usage: python DocPostProcessor.py <input_dir> <output_dir> [--use-llm]")
-        print("\nExample:")
+        print("Usage: python DocPostProcessor.py <input_dir> <output_dir> [--use-llm] [--max-file-size MB]")
+        print("\nOptions:")
+        print("  --use-llm           Use OpenAI for document classification (requires OPENAI_API_KEY)")
+        print("  --max-file-size MB  Maximum file size in MB (default: 10)")
+        print("\nExamples:")
         print("  python DocPostProcessor.py Documentation/Anthropic processed_docs")
         print("  python DocPostProcessor.py Documentation/Anthropic processed_docs --use-llm")
+        print("  python DocPostProcessor.py Documentation/Anthropic processed_docs --max-file-size 20")
         sys.exit(1)
-        
+
     input_dir = sys.argv[1]
     output_dir = sys.argv[2]
     use_llm = '--use-llm' in sys.argv
-        
+
+    # Parse max file size
+    max_file_size_mb = 10  # default
+    if '--max-file-size' in sys.argv:
+        try:
+            idx = sys.argv.index('--max-file-size')
+            max_file_size_mb = int(sys.argv[idx + 1])
+        except (IndexError, ValueError):
+            logger.warning("Invalid --max-file-size value, using default 10MB")
+
     # Get API key from environment variables
     api_key = os.getenv('OPENAI_API_KEY')
     if use_llm and not api_key:
         logger.warning("No OPENAI_API_KEY found in environment, falling back to rule-based classification")
         use_llm = False
-        
+
     # Process documents
-    processor = DocumentPostProcessor(input_dir, output_dir, api_key if use_llm else None)
+    processor = DocumentPostProcessor(input_dir, output_dir, api_key if use_llm else None, max_file_size_mb=max_file_size_mb)
     summary = await processor.process_all_documents()
         
     # Print summary
