@@ -697,27 +697,49 @@ class GUIProcessor(DocumentPostProcessor):
 
 def main():
     """Main entry point."""
+    import sys
+    import logging
+
+    # Configure logging based on command line arguments
+    log_level = logging.INFO
+    if '--verbose' in sys.argv or '-v' in sys.argv:
+        log_level = logging.DEBUG
+    elif '--quiet' in sys.argv or '-q' in sys.argv:
+        log_level = logging.WARNING
+
+    # Setup logging to both console and the GUI will capture it
+    logging.basicConfig(
+        level=log_level,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.StreamHandler(sys.stdout)
+        ]
+    )
+
+    logger = logging.getLogger(__name__)
+    logger.info(f"Starting DocPostProcessor GUI with {logging.getLevelName(log_level)} logging")
+
     try:
         root = tk.Tk()
-        
+
         # Set window icon if available
         try:
             root.iconname("Documentation Post-Processor")
         except:
             pass
-        
+
         # Handle window closing
         def on_closing():
             if messagebox.askokcancel("Quit", "Do you want to quit?"):
                 root.destroy()
-        
+
         root.protocol("WM_DELETE_WINDOW", on_closing)
-        
+
         app = DocPostProcessorGUI(root)
         root.mainloop()
-        
+
     except Exception as e:
-        print(f"Error starting GUI: {e}")
+        logger.error(f"Error starting GUI: {e}", exc_info=True)
         messagebox.showerror("Error", f"Failed to start application:\n{e}")
         import sys
         sys.exit(1)
