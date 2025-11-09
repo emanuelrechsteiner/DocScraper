@@ -53,6 +53,15 @@ class CleaningPattern:
 CLEANING_PATTERNS: List[CleaningPattern] = [
     # NAVIGATION PATTERNS
     CleaningPattern(
+        name="yaml_frontmatter",
+        pattern=r'^---\s*\n(?:.*?\n)*?---\s*\n',
+        replacement="",
+        confidence=0.98,
+        category=PatternCategory.BOILERPLATE,
+        description="Remove YAML frontmatter metadata block"
+    ),
+
+    CleaningPattern(
         name="skip_navigation",
         pattern=r'^(?:Skip to (?:main )?content|Jump to content)(?:\s*\n)?',
         replacement="",
@@ -209,14 +218,16 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
     ),
 
     # Additional Navigation Patterns
-    CleaningPattern(
-        name="on_this_page_toc",
-        pattern=r'(?:^|\n)On this page\s*\n(?:\s*\*\s+\[.+?\]\(.+?\)\s*\n)+',
-        replacement="\n",
-        confidence=0.92,
-        category=PatternCategory.NAVIGATION,
-        description="Remove 'On this page' table of contents with anchor links"
-    ),
+    # NOTE: "On this page" TOC is kept - it's useful for document navigation
+    # CleaningPattern disabled - user wants to keep this
+    # CleaningPattern(
+    #     name="on_this_page_toc",
+    #     pattern=r'(?:^|\n)On this page\s*\n(?:\s*\*\s+\[.+?\]\(.+?\)\s*\n)+',
+    #     replacement="\n",
+    #     confidence=0.92,
+    #     category=PatternCategory.NAVIGATION,
+    #     description="Remove 'On this page' table of contents with anchor links"
+    # ),
 
     CleaningPattern(
         name="nested_nav_sections",
@@ -227,24 +238,25 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
         description="Remove nested navigation menu sections with headers"
     ),
 
-    CleaningPattern(
-        name="category_breadcrumb",
-        pattern=r'(?:^|\n)(?:Capabilities|Features|API Reference|Documentation|Developer Guide|Resources)\s*\n(?=\s*#)',
-        replacement="\n",
-        confidence=0.80,
-        category=PatternCategory.NAVIGATION,
-        description="Remove single-word category breadcrumb before main heading"
-    ),
+    # NOTE: Category breadcrumbs and copy buttons are kept - user preference
+    # CleaningPattern(
+    #     name="category_breadcrumb",
+    #     pattern=r'(?:^|\n)(?:Capabilities|Features|API Reference|Documentation|Developer Guide|Resources)\s*\n(?=\s*#)',
+    #     replacement="\n",
+    #     confidence=0.80,
+    #     category=PatternCategory.NAVIGATION,
+    #     description="Remove single-word category breadcrumb before main heading"
+    # ),
 
     # Additional UI Patterns
-    CleaningPattern(
-        name="copy_page_button",
-        pattern=r'(?:^|\n)Copy page\s*\n?',
-        replacement="\n",
-        confidence=0.90,
-        category=PatternCategory.UI,
-        description="Remove 'Copy page' action buttons"
-    ),
+    # CleaningPattern(
+    #     name="copy_page_button",
+    #     pattern=r'(?:^|\n)Copy page\s*\n?',
+    #     replacement="\n",
+    #     confidence=0.90,
+    #     category=PatternCategory.UI,
+    #     description="Remove 'Copy page' action buttons"
+    # ),
 
     CleaningPattern(
         name="banner_announcement",
@@ -344,6 +356,61 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
         confidence=0.90,
         category=PatternCategory.UI,
         description="Remove footer terms and policies section"
+    ),
+
+    CleaningPattern(
+        name="next_steps_cards",
+        pattern=r'(?:^|\n)##\s+\n\[​\]\([^\)]+\)\nNext steps\s*\n##\s+\[[^\]]+\][^\n]+##\s+\[[^\]]+\][^\n]+',
+        replacement="\n",
+        confidence=0.85,
+        category=PatternCategory.REDUNDANT,
+        description="Remove 'Next steps' card section with links"
+    ),
+
+    CleaningPattern(
+        name="footer_diagram_images",
+        pattern=r'(?:^|\n)!\[[^\]]*(?:diagram|chart|illustration)[^\]]*\]\([^\)]+\)(?:\s*\n!\[[^\]]*(?:diagram|chart|illustration)[^\]]*\]\([^\)]+\))*\s*$',
+        replacement="\n",
+        confidence=0.80,
+        category=PatternCategory.UI,
+        description="Remove orphaned diagram/chart images at document footer"
+    ),
+
+    # Cleanup patterns for leftover fragments
+    CleaningPattern(
+        name="broken_link_fragments",
+        pattern=r'(?:^|\n)\]\([^\)]+\)\s*\n',
+        replacement="\n",
+        confidence=0.85,
+        category=PatternCategory.NAVIGATION,
+        description="Remove broken link fragments like ](url)"
+    ),
+
+    CleaningPattern(
+        name="orphaned_nav_text",
+        pattern=r'(?:^|\n)(?:Navigation|Menu|Sidebar)\s*\n',
+        replacement="\n",
+        confidence=0.82,
+        category=PatternCategory.NAVIGATION,
+        description="Remove orphaned navigation text labels"
+    ),
+
+    CleaningPattern(
+        name="orphaned_list_items",
+        pattern=r'(?:^|\n)\s*\*\s+(?:Guides?|Resources?|Documentation|Help)\s*\n\n',
+        replacement="\n",
+        confidence=0.75,
+        category=PatternCategory.NAVIGATION,
+        description="Remove orphaned single-item navigation lists"
+    ),
+
+    CleaningPattern(
+        name="code_comments_in_examples",
+        pattern=r'\n//\s+Additional\s+(?:thinking|text)\s+deltas\.\.\.\s*\n',
+        replacement="\n",
+        confidence=0.90,
+        category=PatternCategory.REDUNDANT,
+        description="Remove placeholder comments in code examples"
     ),
 ]
 
