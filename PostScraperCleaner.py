@@ -34,6 +34,12 @@ except ImportError:
     ValidationResult = None
 
 try:
+    from intelligent_cleaner import IntelligentContentAnalyzer, ContentAnalysis
+except ImportError:
+    IntelligentContentAnalyzer = None
+    ContentAnalysis = None
+
+try:
     from chunk_optimizer import ChunkOptimizer, ChunkMetadata
 except ImportError:
     ChunkOptimizer = None
@@ -261,6 +267,19 @@ class PostScraperCleaner:
             self.llm_validator = LLMValidator(llm_config)
             logger.info("LLM validator initialized")
 
+        # Phase 2: Initialize intelligent content analyzer if LLM enabled
+        self.intelligent_cleaner = None
+        if config.enable_llm_validation and IntelligentContentAnalyzer and LLMConfig:
+            llm_config = LLMConfig(
+                api_key=config.openai_api_key,
+                rate_limit_rpm=config.rate_limit_rpm,
+                model="gpt-4o",
+                temperature=0.1,
+                max_tokens=1500
+            )
+            self.intelligent_cleaner = IntelligentContentAnalyzer(llm_config)
+            logger.info("Intelligent content analyzer initialized with GPT-4o")
+
         # Phase 2: Initialize chunk optimizer if enabled
         self.chunk_optimizer = None
         if config.enable_chunk_optimization and ChunkOptimizer:
@@ -306,10 +325,43 @@ class PostScraperCleaner:
             result.original_size = len(content)
             self.stats["total_bytes_before"] += result.original_size
 
-            cleaned_content, metadata = self.rule_cleaner.clean(content)
-            result.rule_based_cleaning = True
-            result.removed_sections = metadata["removed_sections"]
-            result.structure_score = metadata["structure_score"]
+            # Pass 1: Intelligent content analysis (optional, LLM-powered)
+            # IMPORTANT: Run this FIRST on original content to get accurate line numbers
+            if self.intelligent_cleaner:
+                try:
+                    logger.info(f"Applying intelligent content analysis to {input_path.name}")
+                    analysis = self.intelligent_cleaner.analyze_structure(
+                        content,  # Use ORIGINAL content, not cleaned
+                        filename=input_path.name
+                    )
+                    cleaned_content = self.intelligent_cleaner.extract_main_content(
+                        content,  # Use ORIGINAL content
+                        analysis
+                    )
+                    result.llm_cost = analysis.analysis_cost
+                    self.stats["total_llm_cost"] += analysis.analysis_cost
+
+                    # Add analysis metadata to result
+                    result.removed_sections.extend([
+                        f"{s.section_type}:{s.start_line}-{s.end_line}"
+                        for s in analysis.sections_to_remove
+                    ])
+
+                    logger.info(f"Intelligent analysis: {len(analysis.sections_to_remove)} sections removed")
+                except Exception as e:
+                    logger.warning(f"Intelligent content analysis failed: {e}")
+                    result.warnings.append(f"Intelligent analysis error: {e}")
+                    # Fallback to original content if LLM fails
+                    cleaned_content = content
+            else:
+                cleaned_content = content
+
+            # Pass 2: Rule-based cleaning (universal patterns) on LLM-cleaned content
+            if cleaned_content:
+                cleaned_content, metadata = self.rule_cleaner.clean(cleaned_content)
+                result.rule_based_cleaning = True
+                result.removed_sections.extend(metadata["removed_sections"])
+                result.structure_score = metadata["structure_score"]
 
             result.content_quality_score = self._calculate_content_quality(cleaned_content)
             result.chunk_optimization_score = self._calculate_chunk_score(cleaned_content)

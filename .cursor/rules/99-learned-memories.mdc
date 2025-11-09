@@ -1,0 +1,35 @@
+---
+description: Lightweight ledger of stable project facts and decisions learned during chat—only durable information, not transient tasks.
+alwaysApply: false
+---
+
+# Learned Memories
+
+## Purpose
+
+Append durable facts and decisions here instead of duplicating ephemeral chat history.
+Do NOT include transient tasks or temporary context.
+
+## Format
+
+```
+YYYY-MM-DD: [Category] Description of durable decision or fact
+```
+
+## Entries
+
+2025-01-28: [Architecture] Two-phase pipeline: Scraping → Post-Processing. Scraping uses crawl4ai+Playwright, post-processing uses rule-based cleaning + optional LLM classification.
+
+2025-01-28: [Performance] Key optimization patterns: Use asyncio.Semaphore(25) for concurrency, process in batches of 50 files, save checkpoints every 100 documents, provide progress updates every 50 items with ETA calculation.
+
+2025-01-28: [API] OpenAI API integration is optional - system works without it using rule-based classification. LLM features require OPENAI_API_KEY environment variable.
+
+2025-01-28: [Storage] File-based storage using markdown files and JSON metadata. No database required. Output structure: cleaned/ for documents, chunks/ for embeddings, vector_db_index.json for vector DB ingestion.
+
+2025-01-28: [GUI] Tkinter-based GUIs use threading for long-running operations and queue.Queue for thread-safe message passing. Progress updates sent from worker threads to main thread.
+
+2025-01-28: [Testing] Test structure: unit tests co-located with source (test_*.py), integration tests in test_integration.py, async tests use @pytest.mark.asyncio decorator.
+
+2025-01-28: [Security] Never commit secrets. Use .env file for API keys. Validate URLs and sanitize filenames to prevent path traversal. Respect robots.txt and rate limits.
+
+2025-01-28: [Documentation] Standard docs structure in /docs: overview.md, architecture.md, api.md, dev-setup.md, testing.md, security.md, code-map.md. Legacy docs archived in docs/history/YYYY-MM-DD/.

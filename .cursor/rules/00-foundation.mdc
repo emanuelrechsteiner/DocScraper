@@ -1,0 +1,56 @@
+---
+description: Project foundation—what this repo is, how to talk to it, and where the source-of-truth docs live. Short, actionable.
+alwaysApply: false
+---
+
+# Project Foundation
+
+## Scope and Constraints
+
+DocScraper is a Python toolkit for scraping documentation websites and post-processing them for optimal use in vector databases and LLM applications.
+
+**Key Constraints:**
+- Python 3.13+ required
+- Respects robots.txt and rate limits
+- No execution of scraped JavaScript code
+- File-based storage (no database required)
+- Works offline except for optional LLM features
+
+## Canonical Documentation
+
+- Project overview: @docs/overview.md
+- Architecture: @docs/architecture.md
+- Development setup: @docs/dev-setup.md
+- Code organization: @docs/code-map.md
+- API reference: @docs/api.md
+- Testing guide: @docs/testing.md
+- Security practices: @docs/security.md
+
+## Generation Guardrails
+
+- Create small, PR-sized diffs
+- Never invent or hardcode secrets (use environment variables)
+- Always add tests with code changes
+- Follow existing patterns in the codebase
+- Ask for clarification when requirements are unclear
+- Stop and confirm before major architectural changes
+- Respect website terms of service and robots.txt files
+
+## Communication
+
+**How to ask for clarification:**
+- Check existing documentation first (@docs/)
+- Review similar implementations in codebase
+- Ask specific questions about requirements
+
+**When to stop and seek confirmation:**
+- Breaking changes to public APIs
+- Changes to data models or file formats
+- New external dependencies
+- Security-related changes
+- Performance-critical modifications
+
+**How to report blockers or concerns:**
+- Document in code comments
+- Create TODO comments with context
+- Reference related issues or discussions

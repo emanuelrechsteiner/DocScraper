@@ -1,0 +1,228 @@
+---
+description: Operational guardrails—secrets, envs, build/run commands, deployment, and risky-change checklist.
+alwaysApply: false
+---
+
+# Operations and Safety
+
+## Secrets Handling
+
+**Never commit secrets to git!**
+
+- Use environment variables for API keys
+- Store in `.env` file (gitignored)
+- Reference: `.env.example` (values redacted)
+- Never log secrets
+- Rotate keys regularly
+
+**Pattern:**
+```python
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY")
+
+if not api_key:
+    logger.warning("OpenAI API key not found, LLM features disabled")
+```
+
+## Environment Variables
+
+**Key Variables:**
+
+- `OPENAI_API_KEY`: OpenAI API key for LLM features (optional)
+- `MAX_CONCURRENT_REQUESTS`: Maximum parallel requests (default: 5)
+- `RATE_LIMIT_DELAY`: Delay between requests in seconds (default: 1.0)
+- `CHUNK_SIZE`: Target chunk size in tokens (default: 1000)
+- `CHUNK_OVERLAP`: Overlap between chunks (default: 200)
+- `LOG_LEVEL`: Logging verbosity (default: INFO)
+
+**Example `.env` file:**
+```bash
+# OpenAI API Configuration (Optional)
+OPENAI_API_KEY=sk-****REDACTED****
+
+# Scraping Configuration
+MAX_CONCURRENT_REQUESTS=5
+RATE_LIMIT_DELAY=1.0
+
+# Post-Processing Configuration
+CHUNK_SIZE=1000
+CHUNK_OVERLAP=200
+```
+
+## Build and Run Commands
+
+**Installation:**
+```bash
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Install Playwright browsers
+playwright install chromium
+```
+
+**Development:**
+```bash
+# Run scraper GUI
+python DocScraperGUI.py
+
+# Run post-processor GUI
+python DocPostProcessorGUI.py
+
+# Run CLI scraper
+python DocScraper.py https://docs.example.com
+
+# Run CLI post-processor
+python DocPostProcessor.py scraped_docs processed_docs
+```
+
+**Testing:**
+```bash
+# Run all tests
+pytest
+
+# Run with coverage
+pytest --cov=. --cov-report=html
+
+# Run specific test file
+pytest tests/test_scraper.py
+```
+
+**Linting/Formatting:**
+```bash
+# Format code (if black configured)
+black *.py
+
+# Type checking (if mypy configured)
+mypy *.py
+
+# Linting (if pylint configured)
+pylint *.py
+```
+
+## Deployment
+
+**Platform**: Local/Server (no cloud deployment currently)
+
+**Pre-deployment Checklist:**
+- [ ] All tests passing
+- [ ] No hardcoded secrets
+- [ ] Environment variables documented
+- [ ] Dependencies pinned in requirements.txt
+- [ ] README updated with setup instructions
+- [ ] Version numbers updated (if applicable)
+
+**Deployment Steps:**
+1. Clone repository
+2. Create virtual environment
+3. Install dependencies
+4. Install Playwright browsers
+5. Configure `.env` file
+6. Run tests to verify setup
+
+## Rollback Procedures
+
+**If issues occur:**
+1. Stop running processes
+2. Check logs for errors
+3. Review recent changes
+4. Revert to previous working version if needed
+5. Restore from backups if data corrupted
+
+## Dangerous Changes Checklist
+
+Before making these changes, get explicit confirmation:
+
+- [ ] Database schema changes (N/A - file-based)
+- [ ] Authentication/authorization logic (N/A - no auth)
+- [ ] Payment processing (N/A)
+- [ ] Data migrations (file format changes)
+- [ ] Security-related code (API key handling, input validation)
+- [ ] API breaking changes (public method signatures)
+- [ ] Infrastructure changes (new dependencies, system requirements)
+- [ ] Rate limiting changes (could affect target servers)
+- [ ] Output format changes (breaks compatibility)
+
+## Security Best Practices
+
+**Input Validation:**
+- Validate URLs before scraping
+- Sanitize filenames to prevent path traversal
+- Check file sizes before processing
+- Validate configuration values
+
+**Output Security:**
+- Don't execute scraped JavaScript
+- Sanitize content before saving
+- Use safe file permissions
+- Validate output paths
+
+**API Security:**
+- Never log API keys
+- Use environment variables
+- Implement rate limiting
+- Handle API errors gracefully
+
+**Example:**
+```python
+from pathlib import Path
+import re
+
+def sanitize_filename(url: str) -> str:
+    """Convert URL to safe filename."""
+    parsed = urlparse(url)
+    path = parsed.path.strip('/')
+    if not path:
+        path = "index"
+    
+    # Remove dangerous characters
+    filename = re.sub(r'[^\w\-_\.]', '_', path)
+    filename = re.sub(r'_+', '_', filename)
+    
+    # Prevent path traversal
+    if '..' in filename or filename.startswith('/'):
+        raise ValueError(f"Invalid filename: {filename}")
+    
+    return filename + '.md'
+```
+
+## Monitoring
+
+**What to Monitor:**
+- Processing success/failure rates
+- API rate limit usage
+- Memory usage for large batches
+- Processing time per document
+- Error rates and types
+
+**Logging:**
+- Log all errors with context
+- Track processing statistics
+- Monitor API costs (if using LLM)
+- Log performance metrics
+
+## Resource Limits
+
+**Memory:**
+- Process documents in batches
+- Use generators for large files
+- Clean up resources promptly
+- Monitor memory usage
+
+**Disk:**
+- Clean up temporary files
+- Monitor output directory size
+- Implement cleanup for old files
+- Use compression for large outputs
+
+**Network:**
+- Respect rate limits
+- Implement exponential backoff
+- Handle network errors gracefully
+- Monitor request rates

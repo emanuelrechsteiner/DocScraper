@@ -50,8 +50,10 @@ class CleaningPattern:
 
 
 # Define all cleaning patterns
+# NOTE: Patterns updated to be UNIVERSAL, not documentation-specific
+# Anthropic-specific patterns removed - intelligent cleaner handles structure
 CLEANING_PATTERNS: List[CleaningPattern] = [
-    # NAVIGATION PATTERNS
+    # UNIVERSAL BOILERPLATE PATTERNS (Work on ALL documentation)
     CleaningPattern(
         name="yaml_frontmatter",
         pattern=r'^---\s*\n(?:.*?\n)*?---\s*\n',
@@ -70,49 +72,17 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
         description="Remove 'Skip to main content' accessibility links"
     ),
 
+    # GENERIC NAVIGATION PATTERNS (Removed Anthropic-specific ones)
+    # NOTE: concatenated_nav_links, header_nav_section removed - too specific to Anthropic
+    # Intelligent cleaner will handle navigation menus semantically
+
     CleaningPattern(
         name="breadcrumbs",
         pattern=r'(?:^|\n)(?:Home\s*[>»/]\s*|[>»/]\s*)+[^\n]+(?:\n|$)',
         replacement="\n",
-        confidence=0.90,
-        category=PatternCategory.NAVIGATION,
-        description="Remove breadcrumb navigation trails"
-    ),
-
-    CleaningPattern(
-        name="sidebar_menu",
-        pattern=r'(?:^|\n)(?:##?\s*)?(?:Table of Contents|On This Page|In This Section|Navigation|Menu)(?:\s*\n)+(?:[-*+]\s+\[.+?\]\(.+?\)\s*\n)+',
-        replacement="\n",
         confidence=0.85,
         category=PatternCategory.NAVIGATION,
-        description="Remove sidebar navigation menus"
-    ),
-
-    CleaningPattern(
-        name="concatenated_nav_links",
-        pattern=r'(?:^|\n)\[(?:Home|Docs|Documentation|API|Guide|Overview|Resources|Console|Support)\]\([^\)]+\)(?:\[.+?\]\([^\)]+\)){2,}',
-        replacement="\n",
-        confidence=0.88,
-        category=PatternCategory.NAVIGATION,
-        description="Remove concatenated navigation links on single lines"
-    ),
-
-    CleaningPattern(
-        name="header_nav_section",
-        pattern=r'(?:English|Deutsch|Français)\s*\n\s*Search\.\.\.\s*\n.*?(?:\[Console\]|\[Support\]|\[Discord\]|\[Sign up\]|\[Login\]).*?(?:\n\s*\n)',
-        replacement="\n",
-        confidence=0.85,
-        category=PatternCategory.NAVIGATION,
-        description="Remove header navigation with language/search/login"
-    ),
-
-    CleaningPattern(
-        name="footer_company_links",
-        pattern=r'Company\s*\n(?:\[.+?\]\(.+?\)\s*\n?){3,}',
-        replacement="\n",
-        confidence=0.87,
-        category=PatternCategory.UI,
-        description="Remove footer company link sections"
+        description="Remove breadcrumb navigation trails (generic pattern)"
     ),
 
     CleaningPattern(
@@ -217,55 +187,18 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
         description="Remove social sharing buttons"
     ),
 
-    # Additional Navigation Patterns
-    # NOTE: "On this page" TOC is kept - it's useful for document navigation
-    # CleaningPattern disabled - user wants to keep this
-    # CleaningPattern(
-    #     name="on_this_page_toc",
-    #     pattern=r'(?:^|\n)On this page\s*\n(?:\s*\*\s+\[.+?\]\(.+?\)\s*\n)+',
-    #     replacement="\n",
-    #     confidence=0.92,
-    #     category=PatternCategory.NAVIGATION,
-    #     description="Remove 'On this page' table of contents with anchor links"
-    # ),
+    # NOTE: "On this page" TOC, category breadcrumbs, copy buttons removed from patterns
+    # Intelligent cleaner will decide whether to keep or remove based on semantic analysis
 
-    CleaningPattern(
-        name="nested_nav_sections",
-        pattern=r'(?:^|\n)#{2,5}\s*(?:First steps|Models? (?:&|and) pricing|Build with|Capabilities|Tools|Agent (?:Skills|SDK)|MCP|Prompt engineering|Test (?:&|and) evaluate|Strengthen guardrails|Administration|Claude on).*?\n(?:\s*\*\s+\[.+?\]\(.+?\)\s*\n)+',
-        replacement="\n",
-        confidence=0.85,
-        category=PatternCategory.NAVIGATION,
-        description="Remove nested navigation menu sections with headers"
-    ),
-
-    # NOTE: Category breadcrumbs and copy buttons are kept - user preference
+    # NOTE: Banner announcements pattern too specific - let intelligent cleaner handle
     # CleaningPattern(
-    #     name="category_breadcrumb",
-    #     pattern=r'(?:^|\n)(?:Capabilities|Features|API Reference|Documentation|Developer Guide|Resources)\s*\n(?=\s*#)',
+    #     name="banner_announcement",
+    #     pattern=r'(?:^|\n)(?:Agent Skills|New feature|Update|Announcement)[^!]*![^\]]*\]\([^\)]+\)\s*\.',
     #     replacement="\n",
-    #     confidence=0.80,
-    #     category=PatternCategory.NAVIGATION,
-    #     description="Remove single-word category breadcrumb before main heading"
-    # ),
-
-    # Additional UI Patterns
-    # CleaningPattern(
-    #     name="copy_page_button",
-    #     pattern=r'(?:^|\n)Copy page\s*\n?',
-    #     replacement="\n",
-    #     confidence=0.90,
+    #     confidence=0.75,
     #     category=PatternCategory.UI,
-    #     description="Remove 'Copy page' action buttons"
+    #     description="Remove banner announcements with links"
     # ),
-
-    CleaningPattern(
-        name="banner_announcement",
-        pattern=r'(?:^|\n)(?:Agent Skills|New feature|Update|Announcement)[^!]*![^\]]*\]\([^\)]+\)\s*\.',
-        replacement="\n",
-        confidence=0.75,
-        category=PatternCategory.UI,
-        description="Remove banner announcements with links"
-    ),
 
     CleaningPattern(
         name="logo_images",
@@ -349,34 +282,12 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
         description="Remove footer learn section with links"
     ),
 
-    CleaningPattern(
-        name="footer_terms_section",
-        pattern=r'Terms and policies\s*\n(?:\[.+?\]\(.+?\)\s*\n?){2,}',
-        replacement="\n",
-        confidence=0.90,
-        category=PatternCategory.UI,
-        description="Remove footer terms and policies section"
-    ),
+    # NOTE: Removed footer-specific patterns (footer_company_links, footer_help_section,
+    # footer_learn_section, footer_terms_section, next_steps_cards, footer_diagram_images)
+    # These are too specific to certain documentation structures
+    # Intelligent cleaner will identify and remove footer sections semantically
 
-    CleaningPattern(
-        name="next_steps_cards",
-        pattern=r'(?:^|\n)##\s+\n\[​\]\([^\)]+\)\nNext steps\s*\n##\s+\[[^\]]+\][^\n]+##\s+\[[^\]]+\][^\n]+',
-        replacement="\n",
-        confidence=0.85,
-        category=PatternCategory.REDUNDANT,
-        description="Remove 'Next steps' card section with links"
-    ),
-
-    CleaningPattern(
-        name="footer_diagram_images",
-        pattern=r'(?:^|\n)!\[[^\]]*(?:diagram|chart|illustration)[^\]]*\]\([^\)]+\)(?:\s*\n!\[[^\]]*(?:diagram|chart|illustration)[^\]]*\]\([^\)]+\))*\s*$',
-        replacement="\n",
-        confidence=0.80,
-        category=PatternCategory.UI,
-        description="Remove orphaned diagram/chart images at document footer"
-    ),
-
-    # Cleanup patterns for leftover fragments
+    # Cleanup patterns for leftover fragments (generic)
     CleaningPattern(
         name="broken_link_fragments",
         pattern=r'(?:^|\n)\]\([^\)]+\)\s*\n',
@@ -386,23 +297,8 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
         description="Remove broken link fragments like ](url)"
     ),
 
-    CleaningPattern(
-        name="orphaned_nav_text",
-        pattern=r'(?:^|\n)(?:Navigation|Menu|Sidebar)\s*\n',
-        replacement="\n",
-        confidence=0.82,
-        category=PatternCategory.NAVIGATION,
-        description="Remove orphaned navigation text labels"
-    ),
-
-    CleaningPattern(
-        name="orphaned_list_items",
-        pattern=r'(?:^|\n)\s*\*\s+(?:Guides?|Resources?|Documentation|Help)\s*\n\n',
-        replacement="\n",
-        confidence=0.75,
-        category=PatternCategory.NAVIGATION,
-        description="Remove orphaned single-item navigation lists"
-    ),
+    # NOTE: Removed orphaned_nav_text and orphaned_list_items - too specific
+    # Intelligent cleaner will handle these semantically
 
     CleaningPattern(
         name="code_comments_in_examples",

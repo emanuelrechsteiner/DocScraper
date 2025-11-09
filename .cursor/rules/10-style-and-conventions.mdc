@@ -1,0 +1,96 @@
+---
+description: Code style, naming, error handling, logging, and file layout for Python code in this repo.
+globs: ["**/*.py"]
+alwaysApply: false
+---
+
+# Style and Conventions
+
+## Formatting and Linting
+
+- **Python Version**: 3.13+
+- **Type Hints**: Use type hints for function parameters and return types
+- **Docstrings**: Use Google-style docstrings for classes and public methods
+- **Line Length**: Prefer 100 characters, max 120
+- **Imports**: Group imports: stdlib, third-party, local (separated by blank line)
+
+## Naming Conventions
+
+- **Files**: snake_case (e.g., `doc_scraper.py`)
+- **Classes**: PascalCase (e.g., `DocumentationScraper`)
+- **Functions/Methods**: snake_case (e.g., `crawl_documentation`)
+- **Constants**: UPPER_SNAKE_CASE (e.g., `MAX_CONCURRENT_REQUESTS`)
+- **Private methods**: _prefixed_snake_case (e.g., `_is_valid_doc_url`)
+- **Variables**: snake_case (e.g., `output_dir`)
+
+## Module Boundaries
+
+- **Import order**: stdlib → third-party → local
+- **Circular dependencies**: Avoid circular imports
+- **Feature-based organization**: Group related functionality
+
+## Error Handling
+
+- Use specific exception types when possible
+- Always log errors with context
+- User-facing errors should be friendly
+- Developer errors should be detailed with stack traces
+- Use try-except for external API calls
+- Implement graceful degradation for optional features
+
+**Example:**
+```python
+try:
+    result = await scraper.crawl_documentation(url)
+except NetworkError as e:
+    logger.error(f"Network error scraping {url}: {e}", exc_info=True)
+    raise
+except Exception as e:
+    logger.error(f"Unexpected error: {e}", exc_info=True)
+    raise ScrapingError(f"Failed to scrape {url}") from e
+```
+
+## Logging Patterns
+
+- Use structured logging with levels: DEBUG, INFO, WARN, ERROR
+- Include context in log messages (URLs, file paths, counts)
+- Use logger from module: `logger = logging.getLogger(__name__)`
+- Log at appropriate levels:
+  - DEBUG: Detailed diagnostic information
+  - INFO: General informational messages
+  - WARN: Warning messages for recoverable issues
+  - ERROR: Error messages for failures
+
+**Example:**
+```python
+import logging
+
+logger = logging.getLogger(__name__)
+
+logger.info(f"Starting scrape of {url}, max_pages={max_pages}")
+logger.debug(f"Domain extracted: {domain}")
+logger.warning(f"Rate limit approaching: {current_rate}/min")
+logger.error(f"Failed to scrape {url}: {error}")
+```
+
+## Async Patterns
+
+- Use `async`/`await` for I/O operations
+- Use `asyncio.gather()` for concurrent operations
+- Implement proper cleanup with context managers
+- Handle cancellation gracefully
+
+**Example:**
+```python
+async def process_batch(urls: List[str]):
+    tasks = [scrape_url(url) for url in urls]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    return results
+```
+
+## File Layout
+
+- Keep files focused (single responsibility)
+- Maximum ~1000 lines per file
+- Split large classes into smaller modules
+- Co-locate related functionality

@@ -1,0 +1,134 @@
+2025-11-09 10:07:03,006 - INFO - Starting DocPostProcessor GUI with verbose logging
+2025-11-09 10:07:36,680 - INFO - Starting document post-processing
+2025-11-09 10:07:36,680 - INFO - Input directory: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new
+2025-11-09 10:07:36,680 - INFO - Output directory: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new_processed
+2025-11-09 10:07:36,680 - INFO - Process subfolders: Yes
+2025-11-09 10:07:36,680 - INFO - Flatten output: Yes
+2025-11-09 10:07:36,680 - INFO - Using LLM: Yes
+2025-11-09 10:07:36,709 - INFO - OpenAI client initialized successfully
+2025-11-09 10:07:36,709 - INFO - Starting post-processing of documents in /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new
+2025-11-09 10:07:36,709 - INFO - Recursive: True, Flatten output: True
+2025-11-09 10:07:36,710 - INFO - Found 260 markdown files to process
+2025-11-09 10:07:36,710 - INFO - Processing: en_resources_prompt-library_tongue-twister.md
+2025-11-09 10:07:36,710 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_resources_prompt-library_tongue-twister.md
+2025-11-09 10:07:36,712 - INFO - ✓ Processed: Tongue twister - Claude Docs (1 chunks)
+2025-11-09 10:07:36,712 - INFO - Processing: en_docs_about-claude_models_choosing-a-model.md
+2025-11-09 10:07:36,712 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_about-claude_models_choosing-a-model.md
+2025-11-09 10:07:36,713 - INFO - ✓ Processed: Choosing the right model - Claude Docs (1 chunks)
+2025-11-09 10:07:36,713 - INFO - Processing: en_resources_prompt-library_sci-fi-scenario-simulator.md
+2025-11-09 10:07:36,713 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_resources_prompt-library_sci-fi-scenario-simulator.md
+2025-11-09 10:07:36,713 - INFO - ✓ Processed: Sci-fi scenario simulator - Claude Docs (1 chunks)
+2025-11-09 10:07:36,713 - INFO - Processing: en_prompt-library_meeting-scribe.md
+2025-11-09 10:07:36,713 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_meeting-scribe.md
+2025-11-09 10:07:36,714 - INFO - ✓ Processed: Meeting scribe - Claude Docs (1 chunks)
+2025-11-09 10:07:36,714 - INFO - Processing: en_docs_build-with-claude_prompt-engineering_chain-prompts.md
+2025-11-09 10:07:36,714 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_build-with-claude_prompt-engineering_chain-prompts.md
+2025-11-09 10:07:36,715 - INFO - ✓ Processed: Chain complex prompts for stronger performance - Claude Docs (1 chunks)
+2025-11-09 10:07:36,715 - INFO - Processing: en_resources_prompt-library_sql-sorcerer.md
+2025-11-09 10:07:36,715 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_resources_prompt-library_sql-sorcerer.md
+2025-11-09 10:07:36,715 - INFO - ✓ Processed: SQL sorcerer - Claude Docs (1 chunks)
+2025-11-09 10:07:36,715 - INFO - Processing: en_prompt-library_emoji-encoder.md
+2025-11-09 10:07:36,715 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_emoji-encoder.md
+2025-11-09 10:07:36,716 - INFO - ✓ Processed: Emoji encoder - Claude Docs (1 chunks)
+2025-11-09 10:07:36,716 - INFO - Processing: en_prompt-library_grading-guru.md
+2025-11-09 10:07:36,716 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_grading-guru.md
+2025-11-09 10:07:36,716 - INFO - ✓ Processed: Grading guru - Claude Docs (1 chunks)
+2025-11-09 10:07:36,716 - INFO - Processing: en_docs_about-claude_pricing.md
+2025-11-09 10:07:36,716 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_about-claude_pricing.md
+2025-11-09 10:07:36,717 - INFO - ✓ Processed: Pricing - Claude Docs (1 chunks)
+2025-11-09 10:07:36,717 - INFO - Processing: en_docs_build-with-claude_prompt-engineering_claude-4-best-practices.md
+2025-11-09 10:07:36,717 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_build-with-claude_prompt-engineering_claude-4-best-practices.md
+2025-11-09 10:07:36,718 - INFO - ✓ Processed: Prompting best practices - Claude Docs (1 chunks)
+2025-11-09 10:07:36,718 - INFO - Processing: en_docs_test-and-evaluate_strengthen-guardrails_reduce-latency.md
+2025-11-09 10:07:36,718 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_test-and-evaluate_strengthen-guardrails_reduce-latency.md
+2025-11-09 10:07:36,719 - INFO - ✓ Processed: Reducing latency - Claude Docs (1 chunks)
+2025-11-09 10:07:36,719 - INFO - Processing: en_docs_about-claude_glossary.md
+2025-11-09 10:07:36,719 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_about-claude_glossary.md
+2025-11-09 10:07:36,719 - INFO - ✓ Processed: Glossary - Claude Docs (1 chunks)
+2025-11-09 10:07:36,719 - INFO - Processing: en_prompt-library_ethical-dilemma-navigator.md
+2025-11-09 10:07:36,719 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_ethical-dilemma-navigator.md
+2025-11-09 10:07:36,720 - INFO - ✓ Processed: Ethical dilemma navigator - Claude Docs (1 chunks)
+2025-11-09 10:07:36,720 - INFO - Processing: en_docs_build-with-claude_pdf-support.md
+2025-11-09 10:07:36,720 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_build-with-claude_pdf-support.md
+2025-11-09 10:07:36,721 - INFO - ✓ Processed: PDF support - Claude Docs (1 chunks)
+2025-11-09 10:07:36,721 - INFO - Processing: en_docs_build-with-claude_prompt-engineering_be-clear-and-direct.md
+2025-11-09 10:07:36,721 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_build-with-claude_prompt-engineering_be-clear-and-direct.md
+2025-11-09 10:07:36,721 - INFO - ✓ Processed: Be clear, direct, and detailed - Claude Docs (1 chunks)
+2025-11-09 10:07:36,721 - INFO - Processing: en_docs_build-with-claude_files.md
+2025-11-09 10:07:36,721 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_build-with-claude_files.md
+2025-11-09 10:07:36,722 - INFO - ✓ Processed: Files API - Claude Docs (1 chunks)
+2025-11-09 10:07:36,722 - INFO - Processing: en_resources_prompt-library_neologism-creator.md
+2025-11-09 10:07:36,722 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_resources_prompt-library_neologism-creator.md
+2025-11-09 10:07:36,723 - INFO - ✓ Processed: Neologism creator - Claude Docs (1 chunks)
+2025-11-09 10:07:36,723 - INFO - Processing: en_docs_agents-and-tools_agent-skills_best-practices.md
+2025-11-09 10:07:36,723 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_agents-and-tools_agent-skills_best-practices.md
+2025-11-09 10:07:36,724 - INFO - ✓ Processed: Skill authoring best practices - Claude Docs (1 chunks)
+2025-11-09 10:07:36,724 - INFO - Processing: en_prompt-library_portmanteau-poet.md
+2025-11-09 10:07:36,724 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_portmanteau-poet.md
+2025-11-09 10:07:36,724 - INFO - ✓ Processed: Portmanteau poet - Claude Docs (1 chunks)
+2025-11-09 10:07:36,724 - INFO - Processing: en_resources_prompt-library_library.md
+2025-11-09 10:07:36,724 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_resources_prompt-library_library.md
+2025-11-09 10:07:36,725 - INFO - ✓ Processed: Prompt Library - Claude Docs (1 chunks)
+2025-11-09 10:07:36,725 - INFO - Processing: en_prompt-library_polyglot-superpowers.md
+2025-11-09 10:07:36,725 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_polyglot-superpowers.md
+2025-11-09 10:07:36,726 - INFO - ✓ Processed: Polyglot superpowers - Claude Docs (1 chunks)
+2025-11-09 10:07:36,726 - INFO - Processing: en_prompt-library_prose-polisher.md
+2025-11-09 10:07:36,726 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_prose-polisher.md
+2025-11-09 10:07:36,726 - INFO - ✓ Processed: Prose polisher - Claude Docs (1 chunks)
+2025-11-09 10:07:36,726 - INFO - Processing: docs_en_quickstart.md
+2025-11-09 10:07:36,726 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/docs_en_quickstart.md
+2025-11-09 10:07:36,727 - INFO - ✓ Processed: Page Not Found (1 chunks)
+2025-11-09 10:07:36,727 - INFO - Processing: en_prompt-library_code-consultant.md
+2025-11-09 10:07:36,727 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_code-consultant.md
+2025-11-09 10:07:36,727 - INFO - ✓ Processed: Code consultant - Claude Docs (1 chunks)
+2025-11-09 10:07:36,727 - INFO - Processing: en_docs_agents-and-tools_tool-use_memory-tool.md
+2025-11-09 10:07:36,727 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_agents-and-tools_tool-use_memory-tool.md
+2025-11-09 10:07:36,728 - INFO - ✓ Processed: Memory tool - Claude Docs (1 chunks)
+2025-11-09 10:07:36,728 - INFO - Processing: en_docs_claude-code_sdk_migration-guide.md
+2025-11-09 10:07:36,728 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_claude-code_sdk_migration-guide.md
+2025-11-09 10:07:36,729 - INFO - ✓ Processed: Migrate to Claude Agent SDK - Claude Code Docs (1 chunks)
+2025-11-09 10:07:36,729 - INFO - Processing: en_prompt-library_perspectives-ponderer.md
+2025-11-09 10:07:36,729 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_perspectives-ponderer.md
+2025-11-09 10:07:36,729 - INFO - ✓ Processed: Perspectives ponderer - Claude Docs (1 chunks)
+2025-11-09 10:07:36,729 - INFO - Processing: en_resources_prompt-library_prose-polisher.md
+2025-11-09 10:07:36,729 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_resources_prompt-library_prose-polisher.md
+2025-11-09 10:07:36,730 - INFO - ✓ Processed: Prose polisher - Claude Docs (1 chunks)
+2025-11-09 10:07:36,730 - INFO - Processing: en_docs_about-claude_model-deprecations.md
+2025-11-09 10:07:36,730 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_about-claude_model-deprecations.md
+2025-11-09 10:07:36,731 - INFO - ✓ Processed: Model deprecations - Claude Docs (1 chunks)
+2025-11-09 10:07:36,731 - INFO - Processing: en_prompt-library_neologism-creator.md
+2025-11-09 10:07:36,731 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_neologism-creator.md
+2025-11-09 10:07:36,731 - INFO - ✓ Processed: Neologism creator - Claude Docs (1 chunks)
+2025-11-09 10:07:36,731 - INFO - Processing: en_docs_agents-and-tools_tool-use_web-fetch-tool.md
+2025-11-09 10:07:36,731 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_agents-and-tools_tool-use_web-fetch-tool.md
+2025-11-09 10:07:36,732 - INFO - ✓ Processed: Web fetch tool - Claude Docs (1 chunks)
+2025-11-09 10:07:36,732 - INFO - Processing: en_docs_prompt-generator.md
+2025-11-09 10:07:36,732 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_prompt-generator.md
+2025-11-09 10:07:36,733 - INFO - ✓ Processed: Automatically generate first draft prompt templates - Claude Docs (1 chunks)
+2025-11-09 10:07:36,733 - INFO - Processing: en_resources_prompt-library_meeting-scribe.md
+2025-11-09 10:07:36,733 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_resources_prompt-library_meeting-scribe.md
+2025-11-09 10:07:36,733 - INFO - ✓ Processed: Meeting scribe - Claude Docs (1 chunks)
+2025-11-09 10:07:36,733 - INFO - Processing: en_prompt-library_tongue-twister.md
+2025-11-09 10:07:36,733 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_tongue-twister.md
+2025-11-09 10:07:36,734 - INFO - ✓ Processed: Tongue twister - Claude Docs (1 chunks)
+2025-11-09 10:07:36,734 - INFO - Processing: en_docs_build-with-claude_token-counting.md
+2025-11-09 10:07:36,734 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_build-with-claude_token-counting.md
+2025-11-09 10:07:36,735 - INFO - ✓ Processed: Token counting - Claude Docs (1 chunks)
+2025-11-09 10:07:36,735 - INFO - Processing: en_docs_build-with-claude_embeddings.md
+2025-11-09 10:07:36,735 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_build-with-claude_embeddings.md
+2025-11-09 10:07:36,735 - INFO - ✓ Processed: Embeddings - Claude Docs (1 chunks)
+2025-11-09 10:07:36,735 - INFO - Processing: en_resources_prompt-library_storytelling-sidekick.md
+2025-11-09 10:07:36,735 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_resources_prompt-library_storytelling-sidekick.md
+2025-11-09 10:07:36,736 - INFO - ✓ Processed: Storytelling sidekick - Claude Docs (1 chunks)
+2025-11-09 10:07:36,736 - INFO - Processing: docs_en_legal-and-compliance.md
+2025-11-09 10:07:36,736 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/docs_en_legal-and-compliance.md
+2025-11-09 10:07:36,736 - INFO - ✓ Processed: Page Not Found (1 chunks)
+2025-11-09 10:07:36,736 - INFO - Processing: en_docs_agents-and-tools_tool-use_fine-grained-tool-streaming.md
+2025-11-09 10:07:36,736 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_docs_agents-and-tools_tool-use_fine-grained-tool-streaming.md
+2025-11-09 10:07:36,737 - INFO - ✓ Processed: Fine-grained tool streaming - Claude Docs (1 chunks)
+2025-11-09 10:07:36,737 - INFO - Processing: en_prompt-library_futuristic-fashion-advisor.md
+2025-11-09 10:07:36,737 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/en_prompt-library_futuristic-fashion-advisor.md
+2025-11-09 10:07:36,738 - INFO - ✓ Processed: Futuristic fashion advisor - Claude Docs (1 chunks)
+2025-11-09 10:07:36,738 - INFO - Processing: llms-full.txt.md
+2025-11-09 10:07:36,738 - INFO - Processing: /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/llms-full.txt.md
+2025-11-09 10:07:36,738 - WARNING - Large file detected (39.4MB): /Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs/Anthropic_new/llms-full.txt.md

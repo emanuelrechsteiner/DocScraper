@@ -10,6 +10,7 @@ import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox, filedialog
 import threading
 import json
+import os
 from pathlib import Path
 from datetime import datetime, timedelta
 import queue
@@ -18,6 +19,20 @@ from typing import Optional, Callable, Dict, Any
 
 from PostScraperCleaner import PostScraperCleaner, CleaningConfig, CleaningResult
 from cleaning_rules import PatternRegistry, DEFAULT_REGISTRY
+
+# Load .env file for API keys
+def load_env():
+    """Load environment variables from .env file"""
+    env_file = Path(__file__).parent / ".env"
+    if env_file.exists():
+        with open(env_file) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, value = line.split('=', 1)
+                    os.environ[key.strip()] = value.strip()
+
+load_env()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -173,7 +188,11 @@ class PostScraperCleanerGUI:
         ttk.Checkbutton(config_frame, text="Remove Boilerplate", variable=self.remove_boilerplate_var).grid(row=1, column=0, sticky=tk.W, padx=5, pady=3)
 
         self.enable_llm_var = tk.BooleanVar(value=False)
-        self.llm_check = ttk.Checkbutton(config_frame, text="LLM Validation (Coming Soon)", variable=self.enable_llm_var, state=tk.DISABLED)
+        self.llm_check = ttk.Checkbutton(
+            config_frame,
+            text="🧠 Intelligent Analysis (LLM-Powered)",
+            variable=self.enable_llm_var
+        )
         self.llm_check.grid(row=1, column=1, sticky=tk.W, padx=5, pady=3)
 
         # Advanced options
@@ -362,6 +381,9 @@ class PostScraperCleanerGUI:
             daemon=True
         )
         self.processor_thread.start()
+
+        # Restart message checking loop
+        self.check_messages()
 
         # Start timer
         self.update_timer()
@@ -649,7 +671,8 @@ Removes navigation, boilerplate, and redundant content from scraped documentatio
             target_chunk_size=self.chunk_size_var.get(),
             overlap_size=self.overlap_var.get(),
             max_cost_per_document=float(self.max_cost_var.get()),
-            rate_limit_rpm=self.rate_limit_var.get()
+            rate_limit_rpm=self.rate_limit_var.get(),
+            openai_api_key=os.getenv("OPENAI_API_KEY")  # Load from .env
         )
 
 

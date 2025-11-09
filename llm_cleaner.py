@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 class LLMConfig:
     """Configuration for LLM-based validation"""
     api_key: Optional[str] = None
-    model: str = "gpt-4o-mini"
+    model: str = "gpt-4o"
     temperature: float = 0.1
     max_tokens: int = 1000
     rate_limit_rpm: int = 500
@@ -35,8 +35,8 @@ class LLMConfig:
     retry_delay: float = 1.0
     cache_enabled: bool = True
     cache_dir: Optional[Path] = None
-    input_cost_per_1m: float = 0.150
-    output_cost_per_1m: float = 0.600
+    input_cost_per_1m: float = 2.50
+    output_cost_per_1m: float = 10.00
 
     def __post_init__(self):
         """Validate configuration"""
