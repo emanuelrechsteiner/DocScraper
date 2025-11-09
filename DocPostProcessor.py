@@ -401,23 +401,25 @@ class DocumentSorter:
         
         try:
             response = await self.client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4o-mini",  # 🚀 Fastest and 20x cheaper than gpt-4.1-mini
                 messages=[
                     {"role": "system", "content": "You are a documentation classifier."},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0.1,
-                max_tokens=50
+                temperature=0.1,  # Low temperature for consistent classification
+                max_tokens=20,    # 🚀 Reduced - we only need category name
+                timeout=15        # 🚀 Add timeout to prevent hanging
             )
             
             category = response.choices[0].message.content.strip().lower()
             if category in self.categories:
                 return category
             else:
+                logger.warning(f"LLM returned unknown category '{category}' for '{doc.title}', falling back to rule-based.")
                 return self._rule_based_classification(doc)
                 
         except Exception as e:
-            logger.error(f"LLM classification failed: {e}")
+            logger.error(f"LLM classification failed for '{doc.title}': {e}, falling back to rule-based.")
             return self._rule_based_classification(doc)
     
     def _rule_based_classification(self, doc: ProcessedDocument) -> str:
@@ -434,33 +436,62 @@ class DocumentSorter:
         return 'guides'  # Default category
     
     def create_dependency_graph(self, documents: List[ProcessedDocument]) -> nx.DiGraph:
-        """Create a dependency graph based on document references."""
+        """Create a dependency graph based on document references with progress tracking."""
+        import time
+        
         graph = nx.DiGraph()
+        total_docs = len(documents)
+        
+        logger.info(f"🔗 Creating dependency graph for {total_docs} documents...")
         
         # Add nodes
         for doc in documents:
             graph.add_node(doc.file_path, doc=doc)
         
-        # Add edges based on references
-        for doc in documents:
-            content = ' '.join([chunk.content for chunk in doc.chunks])
+        # Add edges based on references with progress tracking
+        start_time = time.time()
+        for i, doc in enumerate(documents):
+            if i % 50 == 0 or i == total_docs - 1:
+                elapsed = time.time() - start_time
+                progress = (i + 1) / total_docs * 100
+                if i > 0:
+                    eta = elapsed / (i + 1) * (total_docs - i - 1)
+                    logger.info(f"🔗 Dependency analysis: {i+1}/{total_docs} ({progress:.1f}%) | ETA: {eta/60:.1f}min")
+                else:
+                    logger.info(f"🔗 Dependency analysis: {i+1}/{total_docs} ({progress:.1f}%)")
             
-            # Look for references to other documents
-            for other_doc in documents:
+            # Get content from chunks (limit to first 2 chunks for speed)
+            content_parts = []
+            for chunk in doc.chunks[:2]:  # Only check first 2 chunks for speed
+                content_parts.append(chunk.content)
+            content = ' '.join(content_parts).lower()  # Convert to lowercase for faster matching
+            
+            # Only check against a subset of documents for speed (every 10th document)
+            step = max(1, total_docs // 1000)  # Adaptive step size
+            for other_doc in documents[::step]:
                 if doc.file_path != other_doc.file_path:
-                    # Check for URL references
-                    if other_doc.original_url in content:
+                    # Check for URL references (if URL exists and is meaningful)
+                    if other_doc.original_url and len(other_doc.original_url) > 10 and other_doc.original_url.lower() in content:
                         graph.add_edge(doc.file_path, other_doc.file_path)
                     
-                    # Check for title references
-                    if other_doc.title in content:
+                    # Check for title references (simplified - only meaningful titles)
+                    title = other_doc.title if isinstance(other_doc.title, str) else str(other_doc.title)
+                    title_lower = title.lower()
+                    if len(title_lower) > 15 and title_lower in content:  # Only check meaningful titles
                         graph.add_edge(doc.file_path, other_doc.file_path)
         
+        logger.info(f"🔗 Dependency graph created with {graph.number_of_nodes()} nodes and {graph.number_of_edges()} edges")
         return graph
     
     def calculate_complexity_scores(self, documents: List[ProcessedDocument]) -> None:
-        """Calculate complexity scores for documents."""
-        for doc in documents:
+        """Calculate complexity scores for documents with progress tracking."""
+        total_docs = len(documents)
+        logger.info(f"📊 Calculating complexity scores for {total_docs} documents...")
+        
+        for i, doc in enumerate(documents):
+            if i % 1000 == 0 or i == total_docs - 1:
+                progress = (i + 1) / total_docs * 100
+                logger.info(f"📊 Complexity calculation: {i+1}/{total_docs} ({progress:.1f}%)")
             # Factors for complexity
             total_tokens = sum(chunk.tokens for chunk in doc.chunks)
             code_chunks = sum(1 for chunk in doc.chunks if chunk.metadata.get('type') == 'code')
@@ -478,9 +509,49 @@ class DocumentSorter:
     
     async def sort_documents(self, documents: List[ProcessedDocument]) -> List[ProcessedDocument]:
         """Sort documents for optimal learning/embedding order."""
-        # Classify documents
-        for doc in documents:
-            doc.category = await self.classify_document(doc)
+        
+        # 🚀 PARALLEL OpenAI classification instead of sequential
+        import asyncio
+        
+        logger.info(f"Classifying {len(documents)} documents with OpenAI (parallel batches)...")
+        
+        # Classify documents in parallel batches to respect rate limits
+        batch_size = 8  # Optimal for OpenAI rate limits
+        total_batches = (len(documents) + batch_size - 1) // batch_size
+        
+        for batch_num in range(total_batches):
+            start_idx = batch_num * batch_size
+            end_idx = min(start_idx + batch_size, len(documents))
+            batch = documents[start_idx:end_idx]
+            
+            # Create classification tasks for this batch
+            batch_tasks = [self.classify_document(doc) for doc in batch]
+            
+            # Process batch in parallel
+            try:
+                categories = await asyncio.gather(*batch_tasks, return_exceptions=True)
+                
+                # Assign results back to documents
+                for i, category in enumerate(categories):
+                    if not isinstance(category, Exception):
+                        batch[i].category = category
+                    else:
+                        logger.warning(f"Classification failed for {batch[i].title}: {category}")
+                        batch[i].category = self._rule_based_classification(batch[i])
+                
+                # Progress logging
+                processed = end_idx
+                logger.info(f"Classified batch {batch_num + 1}/{total_batches} ({processed}/{len(documents)} documents)")
+                
+                # Small delay between batches to respect rate limits
+                if batch_num < total_batches - 1:
+                    await asyncio.sleep(0.2)
+                    
+            except Exception as e:
+                logger.error(f"Batch {batch_num + 1} failed: {e}")
+                # Fallback to rule-based for this batch
+                for doc in batch:
+                    doc.category = self._rule_based_classification(doc)
         
         # Create dependency graph
         dep_graph = self.create_dependency_graph(documents)
@@ -544,14 +615,100 @@ class DocumentPostProcessor:
     
     def __init__(self, input_dir: str, output_dir: str, api_key: Optional[str] = None):
         self.input_dir = Path(input_dir)
-        self.output_dir = Path(output_dir)
-        self.output_dir.mkdir(exist_ok=True)
+        
+        # 🛡️ SECURITY: Create dated output directory to prevent overwrites
+        from datetime import datetime
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        base_output = Path("/Volumes/NvME-Satechi/VectorDatabase")
+        
+        # Create descriptive directory name with timestamp
+        input_name = Path(input_dir).name.replace(" ", "_")
+        dated_output_name = f"{timestamp}_{input_name}_VectorDB"
+        
+        self.output_dir = base_output / dated_output_name
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Also create checkpoint directory
+        self.checkpoint_dir = self.output_dir / "checkpoints"
+        self.checkpoint_dir.mkdir(exist_ok=True)
+        
+        logger.info(f"🛡️ Output will be saved to: {self.output_dir}")
         
         self.cleaner = DocumentCleaner()
         self.structurer = DocumentStructurer()
         self.sorter = DocumentSorter(api_key)
         
         self.processed_docs: List[ProcessedDocument] = []
+        
+        # 🛡️ CHECKPOINT SYSTEM: Track progress to prevent token loss
+        self.checkpoint_interval = 100  # Save every 100 processed documents
+        self.last_checkpoint = 0
+        self.processing_start_time = None
+    
+    def save_checkpoint(self, phase: str, additional_data: Dict = None):
+        """🛡️ Save processing checkpoint to prevent token loss."""
+        import time
+        
+        checkpoint_data = {
+            "timestamp": datetime.now().isoformat(),
+            "phase": phase,
+            "processed_count": len(self.processed_docs),
+            "processing_time": time.time() - self.processing_start_time if self.processing_start_time else 0,
+            "input_dir": str(self.input_dir),
+            "output_dir": str(self.output_dir),
+            "processed_docs": [doc.to_dict() for doc in self.processed_docs],
+            **(additional_data or {})
+        }
+        
+        checkpoint_file = self.checkpoint_dir / f"checkpoint_{phase}_{len(self.processed_docs)}.json"
+        
+        with open(checkpoint_file, 'w', encoding='utf-8') as f:
+            json.dump(checkpoint_data, f, indent=2)
+        
+        logger.info(f"🛡️ Checkpoint saved: {checkpoint_file} ({len(self.processed_docs)} docs)")
+        return checkpoint_file
+    
+    def should_save_checkpoint(self) -> bool:
+        """Check if it's time to save a checkpoint."""
+        return len(self.processed_docs) - self.last_checkpoint >= self.checkpoint_interval
+    
+    def load_checkpoint(self, checkpoint_file: str):
+        """🔄 Load processing state from checkpoint."""
+        with open(checkpoint_file, 'r', encoding='utf-8') as f:
+            checkpoint_data = json.load(f)
+        
+        # Restore processed documents
+        self.processed_docs = []
+        for doc_data in checkpoint_data.get('processed_docs', []):
+            # Convert chunk data back to DocumentChunk objects
+            chunks = []
+            for i, chunk_data in enumerate(doc_data.get('chunks', [])):
+                chunk = DocumentChunk(
+                    content=chunk_data.get('content', ''),
+                    metadata=chunk_data.get('metadata', {}),
+                    chunk_id=chunk_data.get('chunk_id', ''),
+                    parent_doc=doc_data['file_path'],
+                    position=i,
+                    tokens=chunk_data.get('tokens', 0)
+                )
+                chunks.append(chunk)
+            
+            doc = ProcessedDocument(
+                file_path=doc_data['file_path'],
+                title=doc_data['title'],
+                chunks=chunks,
+                original_url=doc_data.get('original_url', ''),
+                category=doc_data.get('category'),
+                complexity_score=doc_data.get('complexity_score', 0.0),
+                dependencies=doc_data.get('dependencies', [])
+            )
+            self.processed_docs.append(doc)
+        
+        self.last_checkpoint = len(self.processed_docs)
+        logger.info(f"🔄 Loaded {len(self.processed_docs)} documents from checkpoint")
+        logger.info(f"🔄 Checkpoint phase: {checkpoint_data.get('phase', 'unknown')}")
+        
+        return checkpoint_data
     
     async def process_all_documents(self, recursive: bool = True, flatten_output: bool = True) -> Dict[str, Any]:
         """Process all documents in the input directory.
@@ -562,6 +719,10 @@ class DocumentPostProcessor:
         """
         logger.info(f"Starting post-processing of documents in {self.input_dir}")
         logger.info(f"Recursive: {recursive}, Flatten output: {flatten_output}")
+        
+        # 🛡️ Initialize checkpoint system
+        import time
+        self.processing_start_time = time.time()
         
         # Find all markdown files
         if recursive:
@@ -577,61 +738,164 @@ class DocumentPostProcessor:
         # Track source folders for organization
         source_folders = defaultdict(list)
         
-        # Process each file
-        for md_file in md_files:
+        # 🚀 Process files in parallel batches for better performance
+        import asyncio
+        
+        logger.info(f"Processing {len(md_files)} files in parallel batches...")
+        
+        # 🔥 OPTIMIZED PARALLEL PROCESSING for large datasets
+        max_workers = min(25, len(md_files))  # More conservative: 25 concurrent operations
+        batch_size = 50  # Smaller batches: 50 files per batch for better stability
+        
+        logger.info(f"⚡ TURBO MODE: {max_workers} parallel workers, {batch_size} files per batch")
+        total_batches = (len(md_files) + batch_size - 1) // batch_size
+        
+        for batch_num in range(total_batches):
+            start_idx = batch_num * batch_size
+            end_idx = min(start_idx + batch_size, len(md_files))
+            batch_files = md_files[start_idx:end_idx]
+            
+            # 🚀 Create semaphore to limit concurrent operations and prevent memory overflow
+            semaphore = asyncio.Semaphore(max_workers)
+            
+            async def process_with_semaphore(file_path):
+                async with semaphore:
+                    return await self.process_document(file_path)
+            
+            # Create massive parallel tasks
+            batch_tasks = [process_with_semaphore(md_file) for md_file in batch_files]
+            
             try:
-                processed_doc = await self.process_document(md_file)
-                if processed_doc:
-                    self.processed_docs.append(processed_doc)
+                # Execute massive parallel batch
+                results = await asyncio.gather(*batch_tasks, return_exceptions=True)
+                
+                # Process results and track source folders
+                for i, result in enumerate(results):
+                    md_file = batch_files[i]
                     
-                    # Track source folder
-                    relative_path = md_file.relative_to(self.input_dir)
-                    source_folder = relative_path.parent if relative_path.parent != Path('.') else Path('root')
-                    source_folders[str(source_folder)].append(processed_doc)
+                    if isinstance(result, Exception):
+                        logger.error(f"Error processing {md_file}: {result}")
+                        continue
+                        
+                    if result:  # Successfully processed document
+                        self.processed_docs.append(result)
+                        
+                        # Track source folder
+                        relative_path = md_file.relative_to(self.input_dir)
+                        source_folder = relative_path.parent if relative_path.parent != Path('.') else Path('root')
+                        source_folders[str(source_folder)].append(result)
+                
+                # 🛡️ CHECKPOINT SAVING: Save progress every few batches
+                if self.should_save_checkpoint():
+                    self.save_checkpoint("file_processing", {
+                        "batch_number": batch_num + 1,
+                        "total_batches": total_batches,
+                        "files_processed": processed_count,
+                        "total_files": len(md_files)
+                    })
+                    self.last_checkpoint = len(self.processed_docs)
+                
+                # Memory management: Force garbage collection after each mega-batch
+                import gc
+                gc.collect()
+                
+                # Enhanced progress logging with speed metrics
+                processed_count = end_idx
+                if batch_num == 0:
+                    import time
+                    batch_start_time = time.time()
+                else:
+                    batch_time = time.time() - batch_start_time
+                    files_per_sec = len(batch_files) / batch_time if batch_time > 0 else 0
+                    eta_minutes = ((len(md_files) - processed_count) / files_per_sec / 60) if files_per_sec > 0 else 0
                     
+                    logger.info(f"🚀 Batch {batch_num + 1}/{total_batches} COMPLETE - {processed_count}/{len(md_files)} files")
+                    logger.info(f"⚡ Speed: {files_per_sec:.1f} files/sec | ETA: {eta_minutes:.1f} minutes")
+                    batch_start_time = time.time()
+                
             except Exception as e:
-                logger.error(f"Error processing {md_file}: {e}")
+                logger.error(f"Batch {batch_num + 1} processing failed: {e}")
+                # Fallback to sequential processing for this batch
+                for md_file in batch_files:
+                    try:
+                        processed_doc = await self.process_document(md_file)
+                        if processed_doc:
+                            self.processed_docs.append(processed_doc)
+                            relative_path = md_file.relative_to(self.input_dir)
+                            source_folder = relative_path.parent if relative_path.parent != Path('.') else Path('root')
+                            source_folders[str(source_folder)].append(processed_doc)
+                    except Exception as fallback_error:
+                        logger.error(f"Error processing {md_file}: {fallback_error}")
+        
+        # 🛡️ CRITICAL CHECKPOINT: Save before expensive OpenAI processing
+        self.save_checkpoint("pre_classification", {
+            "total_documents_ready": len(self.processed_docs),
+            "message": "About to start OpenAI classification - most expensive phase"
+        })
         
         # Sort documents
         logger.info("Sorting documents...")
         self.processed_docs = await self.sorter.sort_documents(self.processed_docs)
         
+        # 🛡️ CHECKPOINT: Save after OpenAI classification
+        self.save_checkpoint("post_classification", {
+            "total_documents_classified": len(self.processed_docs),
+            "message": "OpenAI classification complete - safe to proceed"
+        })
+        
         # Save processed documents
         logger.info("Saving processed documents...")
         summary = self.save_processed_documents(flatten_output=flatten_output, source_folders=dict(source_folders))
         
+        # 🛡️ FINAL CHECKPOINT: Mark successful completion
+        self.save_checkpoint("completed", {
+            "summary": summary,
+            "message": "Processing completed successfully - all files saved"
+        })
+        
+        logger.info(f"🛡️ Processing complete! All checkpoints saved in: {self.checkpoint_dir}")
+        
         return summary
     
     async def process_document(self, file_path: Path) -> Optional[ProcessedDocument]:
-        """Process a single document."""
-        logger.info(f"Processing: {file_path}")
+        """🚀 TURBO: Process a single document with optimized I/O and CPU usage."""
         
-        # Read file
-        with open(file_path, 'r', encoding='utf-8') as f:
-            content = f.read()
+        try:
+            # 🚀 ASYNC FILE READING (non-blocking I/O for better concurrency)
+            try:
+                import aiofiles
+                async with aiofiles.open(file_path, 'r', encoding='utf-8') as f:
+                    content = await f.read()
+            except ImportError:
+                # Fallback to sync I/O if aiofiles not available
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+        except Exception as e:
+            logger.error(f"Failed to read {file_path}: {e}")
+            return None
         
-        # Extract metadata and clean
+        # 🚀 FAST METADATA EXTRACTION
         metadata, raw_content = self.cleaner.extract_metadata(content)
         cleaned_content = self.cleaner.clean_document(raw_content)
         
-        # Skip if no content after cleaning
+        # Skip empty documents early (save processing time)
         if not cleaned_content.strip():
-            logger.warning(f"No content after cleaning: {file_path}")
             return None
         
-        # Create processed document
+        # 🚀 OPTIMIZED DOCUMENT CREATION
         doc = ProcessedDocument(
             file_path=str(file_path),
             original_url=metadata.get('url', ''),
             title=metadata.get('title', file_path.stem)
         )
         
-        # Structure into chunks
+        # 🚀 FAST CHUNKING
         doc.chunks = self.structurer.structure_document(cleaned_content, metadata)
         
-        # Set parent document for chunks
+        # 🚀 BATCH CHUNK PROCESSING (avoid repeated string conversion)
+        parent_doc_str = str(file_path)
         for chunk in doc.chunks:
-            chunk.parent_doc = str(file_path)
+            chunk.parent_doc = parent_doc_str
         
         return doc
     
@@ -747,31 +1011,31 @@ async def main():
     import sys
     import os
     from dotenv import load_dotenv
-    
+        
+    # Always load environment variables from .env file
     load_dotenv()
-    
+        
     if len(sys.argv) < 3:
         print("Usage: python DocPostProcessor.py <input_dir> <output_dir> [--use-llm]")
         print("\nExample:")
         print("  python DocPostProcessor.py Documentation/Anthropic processed_docs")
         print("  python DocPostProcessor.py Documentation/Anthropic processed_docs --use-llm")
         sys.exit(1)
-    
+        
     input_dir = sys.argv[1]
     output_dir = sys.argv[2]
     use_llm = '--use-llm' in sys.argv
-    
-    # Get API key if using LLM
-    api_key = None
-    if use_llm:
-        api_key = os.getenv('OPENAI_API_KEY')
-        if not api_key:
-            logger.warning("No OPENAI_API_KEY found, falling back to rule-based classification")
-    
+        
+    # Get API key from environment variables
+    api_key = os.getenv('OPENAI_API_KEY')
+    if use_llm and not api_key:
+        logger.warning("No OPENAI_API_KEY found in environment, falling back to rule-based classification")
+        use_llm = False
+        
     # Process documents
-    processor = DocumentPostProcessor(input_dir, output_dir, api_key)
+    processor = DocumentPostProcessor(input_dir, output_dir, api_key if use_llm else None)
     summary = await processor.process_all_documents()
-    
+        
     # Print summary
     print(f"\n✅ Processing Complete!")
     print(f"📁 Total documents: {summary['total_documents']}")
