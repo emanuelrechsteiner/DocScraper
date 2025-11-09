@@ -80,6 +80,33 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
     ),
 
     CleaningPattern(
+        name="concatenated_nav_links",
+        pattern=r'(?:^|\n)\[(?:Home|Docs|Documentation|API|Guide|Overview|Resources|Console|Support)\]\([^\)]+\)(?:\[.+?\]\([^\)]+\)){2,}',
+        replacement="\n",
+        confidence=0.88,
+        category=PatternCategory.NAVIGATION,
+        description="Remove concatenated navigation links on single lines"
+    ),
+
+    CleaningPattern(
+        name="header_nav_section",
+        pattern=r'(?:English|Deutsch|Français)\s*\n\s*Search\.\.\.\s*\n.*?(?:\[Console\]|\[Support\]|\[Discord\]|\[Sign up\]|\[Login\]).*?(?:\n\s*\n)',
+        replacement="\n",
+        confidence=0.85,
+        category=PatternCategory.NAVIGATION,
+        description="Remove header navigation with language/search/login"
+    ),
+
+    CleaningPattern(
+        name="footer_company_links",
+        pattern=r'Company\s*\n(?:\[.+?\]\(.+?\)\s*\n?){3,}',
+        replacement="\n",
+        confidence=0.87,
+        category=PatternCategory.UI,
+        description="Remove footer company link sections"
+    ),
+
+    CleaningPattern(
         name="toc_nav",
         pattern=r'(?:^|\n)(?:##?\s*)?(?:Contents?|TOC)(?:\s*\n)+(?:[-*+]\s+.*\n)+',
         replacement="\n",
@@ -179,6 +206,144 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
         confidence=0.87,
         category=PatternCategory.REDUNDANT,
         description="Remove social sharing buttons"
+    ),
+
+    # Additional Navigation Patterns
+    CleaningPattern(
+        name="on_this_page_toc",
+        pattern=r'(?:^|\n)On this page\s*\n(?:\s*\*\s+\[.+?\]\(.+?\)\s*\n)+',
+        replacement="\n",
+        confidence=0.92,
+        category=PatternCategory.NAVIGATION,
+        description="Remove 'On this page' table of contents with anchor links"
+    ),
+
+    CleaningPattern(
+        name="nested_nav_sections",
+        pattern=r'(?:^|\n)#{2,5}\s*(?:First steps|Models? (?:&|and) pricing|Build with|Capabilities|Tools|Agent (?:Skills|SDK)|MCP|Prompt engineering|Test (?:&|and) evaluate|Strengthen guardrails|Administration|Claude on).*?\n(?:\s*\*\s+\[.+?\]\(.+?\)\s*\n)+',
+        replacement="\n",
+        confidence=0.85,
+        category=PatternCategory.NAVIGATION,
+        description="Remove nested navigation menu sections with headers"
+    ),
+
+    CleaningPattern(
+        name="category_breadcrumb",
+        pattern=r'(?:^|\n)(?:Capabilities|Features|API Reference|Documentation|Developer Guide|Resources)\s*\n(?=\s*#)',
+        replacement="\n",
+        confidence=0.80,
+        category=PatternCategory.NAVIGATION,
+        description="Remove single-word category breadcrumb before main heading"
+    ),
+
+    # Additional UI Patterns
+    CleaningPattern(
+        name="copy_page_button",
+        pattern=r'(?:^|\n)Copy page\s*\n?',
+        replacement="\n",
+        confidence=0.90,
+        category=PatternCategory.UI,
+        description="Remove 'Copy page' action buttons"
+    ),
+
+    CleaningPattern(
+        name="banner_announcement",
+        pattern=r'(?:^|\n)(?:Agent Skills|New feature|Update|Announcement)[^!]*![^\]]*\]\([^\)]+\)\s*\.',
+        replacement="\n",
+        confidence=0.75,
+        category=PatternCategory.UI,
+        description="Remove banner announcements with links"
+    ),
+
+    CleaningPattern(
+        name="logo_images",
+        pattern=r'\[[^\n]{0,100}!\[(?:light|dark) logo\]\([^\)]+\)[^\n]{0,100}\]\([^\)]+\)',
+        replacement="",
+        confidence=0.95,
+        category=PatternCategory.UI,
+        description="Remove site logo image links"
+    ),
+
+    CleaningPattern(
+        name="flag_language_indicator",
+        pattern=r'!\[(?:US|UK|EU|[A-Z]{2})\]\([^\)]*flags/[^\)]+\)\s*\n?(?:English|Deutsch|Français|Español|中文)?',
+        replacement="\n",
+        confidence=0.88,
+        category=PatternCategory.UI,
+        description="Remove country flag and language indicator"
+    ),
+
+    CleaningPattern(
+        name="search_placeholder",
+        pattern=r'(?:^|\n)Search\.\.\.\s*\n?(?:⌘K)?\s*\n?',
+        replacement="\n",
+        confidence=0.90,
+        category=PatternCategory.UI,
+        description="Remove search placeholder text and keyboard shortcuts"
+    ),
+
+    CleaningPattern(
+        name="helpful_feedback_widget",
+        pattern=r'(?:^|\n)Was this page helpful\?\s*\n?(?:Yes)?(?:No)?\s*\n?',
+        replacement="\n",
+        confidence=0.93,
+        category=PatternCategory.UI,
+        description="Remove 'Was this page helpful?' feedback widget"
+    ),
+
+    CleaningPattern(
+        name="prev_next_navigation",
+        pattern=r'(?:^|\n)\[(?:Previous|Next|←|→).*?\]\([^\)]+\)\[(?:Previous|Next|←|→).*?\]\([^\)]+\)',
+        replacement="\n",
+        confidence=0.88,
+        category=PatternCategory.NAVIGATION,
+        description="Remove previous/next page navigation links"
+    ),
+
+    CleaningPattern(
+        name="ai_disclaimer",
+        pattern=r'(?:^|\n)(?:Assistant|AI|Bot)\s*\n?(?:Responses are generated using AI and may contain mistakes\.|This is an AI assistant\.)',
+        replacement="\n",
+        confidence=0.90,
+        category=PatternCategory.BOILERPLATE,
+        description="Remove AI/Assistant disclaimer messages"
+    ),
+
+    # Additional Footer Patterns
+    CleaningPattern(
+        name="social_media_links",
+        pattern=r'(?:^|\n)\[(?:x|twitter|linkedin|facebook|github|discord)\]\([^\)]+\)(?:\[(?:x|twitter|linkedin|facebook|github|discord)\]\([^\)]+\))*',
+        replacement="\n",
+        confidence=0.89,
+        category=PatternCategory.UI,
+        description="Remove social media icon links"
+    ),
+
+    CleaningPattern(
+        name="footer_help_section",
+        pattern=r'Help and security\s*\n(?:\[.+?\]\(.+?\)\s*)+',
+        replacement="\n",
+        confidence=0.87,
+        category=PatternCategory.UI,
+        description="Remove footer help and security links section"
+    ),
+
+    CleaningPattern(
+        name="footer_learn_section",
+        pattern=r'Learn\s*\n(?:\[.+?\]\(.+?\)\s*)+',
+        replacement="\n",
+        confidence=0.87,
+        category=PatternCategory.UI,
+        description="Remove footer learn section with links"
+    ),
+
+    CleaningPattern(
+        name="footer_terms_section",
+        pattern=r'Terms and policies\s*\n(?:\[.+?\]\(.+?\)\s*\n?){2,}',
+        replacement="\n",
+        confidence=0.90,
+        category=PatternCategory.UI,
+        description="Remove footer terms and policies section"
     ),
 ]
 
