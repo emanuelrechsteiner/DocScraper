@@ -499,6 +499,108 @@ class PostScraperCleaner:
         self.stats["total_processing_time"] += result.processing_time
         self.stats["total_llm_cost"] += result.llm_cost
 
+    def clean_directory_tree(
+        self,
+        input_root: Path,
+        output_root: Path,
+        pattern: str = "**/*.md"
+    ) -> List[CleaningResult]:
+        """
+        Process directory tree with mirrored structure and '_cleaned' suffix.
+
+        Example:
+            Input:  /input/docs/chroma/file.md
+            Output: /output/docs/chroma_cleaned/file.md
+
+        Args:
+            input_root: Root input directory
+            output_root: Root output directory
+            pattern: Glob pattern for finding files (default: **/*.md for recursive)
+
+        Returns:
+            List of CleaningResult objects
+        """
+        input_root = Path(input_root)
+        output_root = Path(output_root)
+
+        if not input_root.exists():
+            logger.error(f"Input directory not found: {input_root}")
+            return []
+
+        if not input_root.is_dir():
+            logger.error(f"Input path is not a directory: {input_root}")
+            return []
+
+        # Find all markdown files recursively
+        input_files = sorted(list(input_root.glob(pattern)))
+
+        if not input_files:
+            logger.warning(f"No files matching '{pattern}' in {input_root}")
+            return []
+
+        logger.info(f"Processing {len(input_files)} files from {input_root}")
+        logger.info(f"Mirroring directory structure to {output_root} with '_cleaned' suffix")
+
+        results = []
+
+        for i, input_file in enumerate(input_files, 1):
+            try:
+                # Calculate relative path from input root
+                rel_path = input_file.relative_to(input_root)
+
+                # Transform directory names by appending '_cleaned'
+                # Example: docs/chroma/file.md -> docs/chroma_cleaned/file.md
+                transformed_parts = []
+                for part in rel_path.parts[:-1]:  # All parts except the filename
+                    transformed_parts.append(f"{part}_cleaned")
+
+                # Add the filename back (without modification)
+                transformed_parts.append(rel_path.parts[-1])
+
+                # Build output path
+                output_file = output_root / Path(*transformed_parts)
+
+                # Log the transformation
+                logger.info(f"[{i}/{len(input_files)}] {rel_path} -> {output_file.relative_to(output_root)}")
+
+                # Process the file
+                result = self.clean_document(input_file, output_file)
+                results.append(result)
+
+                # Progress callback
+                if self.progress_callback:
+                    self.progress_callback({
+                        "type": "progress",
+                        "processed": i,
+                        "total": len(input_files),
+                        "current_file": str(rel_path),
+                        "output_file": str(output_file.relative_to(output_root))
+                    })
+
+            except Exception as e:
+                logger.error(f"Error processing {input_file}: {e}")
+                result = CleaningResult(
+                    input_file=input_file,
+                    success=False,
+                    error_message=str(e)
+                )
+                results.append(result)
+
+        # Print summary
+        successful = sum(1 for r in results if r.success)
+        failed = len(results) - successful
+        total_cost = sum(r.llm_cost for r in results)
+
+        logger.info(f"\n{'='*80}")
+        logger.info(f"Directory tree processing complete:")
+        logger.info(f"✅ Successful: {successful}/{len(results)}")
+        logger.info(f"❌ Failed: {failed}/{len(results)}")
+        logger.info(f"💰 Total LLM cost: ${total_cost:.6f}")
+        logger.info(f"📁 Output: {output_root}")
+        logger.info(f"{'='*80}\n")
+
+        return results
+
     def get_statistics(self) -> Dict:
         """Get processing statistics"""
         stats = self.stats.copy()
