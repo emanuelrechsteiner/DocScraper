@@ -1,0 +1,205 @@
+---
+description: How to add and run tests; coverage thresholds; smoke tests and fixtures.
+alwaysApply: false
+---
+
+# Testing and Quality
+
+## Running Tests
+
+- **All tests**: `pytest`
+- **Unit tests**: `pytest tests/test_*.py`
+- **Integration tests**: `pytest tests/test_integration.py`
+- **Coverage**: `pytest --cov=. --cov-report=html`
+- **Verbose**: `pytest -v`
+
+## Coverage Thresholds
+
+- **Minimum**: 80% line coverage
+- **Branches**: 75%
+- **Functions**: 80%
+- **Statements**: 80%
+
+## Test Structure
+
+- Co-locate tests with source: `component.py` → `test_component.py`
+- Test file naming: `test_*.py`
+- Use descriptive test names: `test_should_[expected_behavior]_when_[condition]`
+- Group related tests in classes
+
+**Example:**
+```python
+import pytest
+from DocScraper import DocumentationScraper
+
+class TestDocumentationScraper:
+    @pytest.fixture
+    def scraper(self):
+        return DocumentationScraper(output_dir="test_output")
+    
+    def test_should_validate_url_when_same_domain(self, scraper):
+        scraper.domain = "docs.example.com"
+        assert scraper._is_valid_doc_url("https://docs.example.com/page")
+    
+    def test_should_reject_url_when_different_domain(self, scraper):
+        scraper.domain = "docs.example.com"
+        assert not scraper._is_valid_doc_url("https://other.com/page")
+```
+
+## Minimal Smoke Tests
+
+Write these first for new features:
+
+1. **Happy path test**: Basic functionality works
+2. **Error case test**: Handles errors gracefully
+3. **Edge case test**: Handles boundary conditions
+
+**Example:**
+```python
+def test_scraper_happy_path():
+    """Test basic scraping functionality."""
+    scraper = DocumentationScraper()
+    # Test basic operation
+    
+def test_scraper_handles_invalid_url():
+    """Test error handling for invalid URLs."""
+    scraper = DocumentationScraper()
+    # Test error case
+    
+def test_scraper_handles_empty_site():
+    """Test edge case of empty documentation site."""
+    scraper = DocumentationScraper()
+    # Test edge case
+```
+
+## Fixtures and Mocks
+
+- Use pytest fixtures for common setup
+- Mock external dependencies (APIs, file system)
+- Use factories for test data
+- Clean up resources in fixtures
+
+**Example:**
+```python
+import pytest
+from unittest.mock import Mock, patch
+from pathlib import Path
+
+@pytest.fixture
+def mock_crawler():
+    """Mock crawl4ai crawler."""
+    with patch('DocScraper.AsyncWebCrawler') as mock:
+        mock_instance = Mock()
+        mock.return_value.__aenter__.return_value = mock_instance
+        yield mock_instance
+
+@pytest.fixture
+def temp_output_dir(tmp_path):
+    """Temporary output directory."""
+    output_dir = tmp_path / "output"
+    output_dir.mkdir()
+    yield output_dir
+    # Cleanup handled by tmp_path fixture
+```
+
+## Async Testing
+
+- Use `pytest-asyncio` for async tests
+- Mark async test functions with `@pytest.mark.asyncio`
+- Use `asyncio.run()` or `await` in tests
+
+**Example:**
+```python
+import pytest
+import asyncio
+
+@pytest.mark.asyncio
+async def test_async_scraping():
+    scraper = DocumentationScraper()
+    result = await scraper.crawl_documentation("https://example.com", max_pages=1)
+    assert result['successful'] > 0
+```
+
+## GUI Testing
+
+- Test GUI components in isolation
+- Mock long-running operations
+- Test event handlers
+- Verify UI state changes
+
+**Example:**
+```python
+import pytest
+import tkinter as tk
+from unittest.mock import Mock
+
+@pytest.fixture
+def root():
+    root = tk.Tk()
+    yield root
+    root.destroy()
+
+def test_gui_initialization(root):
+    app = DocScraperGUI(root)
+    assert app.url_entry is not None
+    assert app.start_button is not None
+```
+
+## Integration Testing
+
+- Test complete workflows
+- Use real file system (with cleanup)
+- Test component interactions
+- Verify output formats
+
+**Example:**
+```python
+@pytest.mark.integration
+async def test_scrape_and_process_workflow(tmp_path):
+    """Test complete scrape → process workflow."""
+    # Scrape
+    scraper = DocumentationScraper(output_dir=str(tmp_path / "scraped"))
+    await scraper.crawl_documentation("https://example.com", max_pages=5)
+    
+    # Process
+    processor = DocumentPostProcessor(
+        input_dir=str(tmp_path / "scraped"),
+        output_dir=str(tmp_path / "processed")
+    )
+    result = await processor.process_all_documents()
+    
+    # Verify
+    assert result['total_documents'] > 0
+    assert (tmp_path / "processed" / "vector_db_index.json").exists()
+```
+
+## Performance Testing
+
+- Benchmark critical operations
+- Test with realistic data sizes
+- Monitor memory usage
+- Set performance thresholds
+
+**Example:**
+```python
+import time
+
+def test_chunking_performance():
+    """Test chunking completes in reasonable time."""
+    structurer = DocumentStructurer()
+    large_content = "# Test\n\n" + ("Content " * 1000)
+    
+    start = time.time()
+    chunks = structurer.create_chunks(large_content)
+    elapsed = time.time() - start
+    
+    assert elapsed < 1.0  # Should complete in < 1 second
+    assert len(chunks) > 0
+```
+
+## CI Integration
+
+- Tests run on: PR and push to main
+- Configuration: `.github/workflows/test.yml` (if exists)
+- Fail CI on test failures
+- Generate coverage reports

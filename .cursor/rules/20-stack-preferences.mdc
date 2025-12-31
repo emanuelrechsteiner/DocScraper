@@ -1,0 +1,188 @@
+---
+description: Framework/libs patterns for DocScraper—async scraping, post-processing, GUI, and vector DB integration.
+globs: ["**/*.py"]
+alwaysApply: false
+---
+
+# Stack-Specific Patterns
+
+## Framework Preferences
+
+### Web Scraping
+- **Primary**: crawl4ai with Playwright backend
+- **Fallback**: BeautifulSoup4 + requests for simple cases
+- **Async**: Use asyncio for concurrent operations
+- **Rate Limiting**: Built-in rate limiter with configurable delays
+
+**Pattern:**
+```python
+from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl4ai import MemoryAdaptiveDispatcher, RateLimiter
+
+async with AsyncWebCrawler() as crawler:
+    result = await crawler.arun(
+        url=url,
+        config=CrawlerRunConfig(
+            dispatcher=MemoryAdaptiveDispatcher(max_concurrency=5),
+            rate_limiter=RateLimiter(max_requests_per_minute=60)
+        )
+    )
+```
+
+### GUI Framework
+- **Framework**: Tkinter (included with Python)
+- **Threading**: Use threading for long-running operations
+- **Message Queue**: Use queue.Queue for thread-safe communication
+- **Progress Updates**: Update GUI from worker threads safely
+
+**Pattern:**
+```python
+import tkinter as tk
+from queue import Queue
+import threading
+
+class DocScraperGUI:
+    def __init__(self, root):
+        self.root = root
+        self.message_queue = Queue()
+        self.setup_ui()
+        self.check_queue()
+    
+    def check_queue(self):
+        while not self.message_queue.empty():
+            message = self.message_queue.get()
+            self.update_ui(message)
+        self.root.after(100, self.check_queue)
+```
+
+### LLM Integration
+- **Provider**: OpenAI API (optional)
+- **Error Handling**: Graceful fallback to rule-based when API unavailable
+- **Rate Limiting**: Respect API rate limits
+- **Cost Management**: Track and log API costs
+
+**Pattern:**
+```python
+from openai import OpenAI
+import os
+
+class DocumentSorter:
+    def __init__(self, api_key: Optional[str] = None):
+        self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+        self.client = OpenAI(api_key=self.api_key) if self.api_key else None
+    
+    def categorize_with_llm(self, content: str) -> Optional[dict]:
+        if not self.client:
+            return None  # Fallback to rule-based
+        
+        try:
+            response = self.client.chat.completions.create(...)
+            return self._parse_response(response)
+        except Exception as e:
+            logger.warning(f"LLM classification failed: {e}, using rule-based")
+            return None
+```
+
+### Data Processing
+- **Chunking**: Semantic boundaries with size limits
+- **Metadata**: Preserve source URLs, titles, categories
+- **Output Format**: JSON for vector DB compatibility
+- **File I/O**: Use pathlib.Path for cross-platform paths
+
+**Pattern:**
+```python
+from pathlib import Path
+import json
+
+def save_chunks(chunks: List[dict], output_dir: Path):
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    index_file = output_dir / "vector_db_index.json"
+    with open(index_file, "w") as f:
+        json.dump(chunks, f, indent=2)
+```
+
+## Validation and Configuration
+
+### Input Validation
+- Validate URLs before scraping
+- Check file paths for security (prevent path traversal)
+- Validate configuration values
+- Sanitize filenames
+
+**Pattern:**
+```python
+from urllib.parse import urlparse
+
+def validate_url(url: str) -> bool:
+    parsed = urlparse(url)
+    return parsed.scheme in ["http", "https"] and parsed.netloc
+```
+
+### Configuration Management
+- Use dataclasses for configuration
+- Load from environment variables
+- Provide sensible defaults
+- Validate on initialization
+
+**Pattern:**
+```python
+from dataclasses import dataclass
+from typing import Optional
+import os
+
+@dataclass
+class ScraperConfig:
+    max_pages: int = 100
+    output_dir: str = "scraped_docs"
+    api_key: Optional[str] = None
+    
+    def __post_init__(self):
+        if self.max_pages < 1:
+            raise ValueError("max_pages must be >= 1")
+        if self.api_key is None:
+            self.api_key = os.getenv("OPENAI_API_KEY")
+```
+
+## Data Layer
+
+### File Storage
+- Markdown files for scraped content
+- JSON files for metadata and indices
+- Preserve directory structure when needed
+- Use atomic writes for critical files
+
+**Pattern:**
+```python
+from pathlib import Path
+import tempfile
+import shutil
+
+def atomic_write(content: str, target: Path):
+    """Write file atomically to prevent corruption."""
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(mode='w', delete=False, dir=target.parent) as f:
+        f.write(content)
+        temp_path = Path(f.name)
+    shutil.move(temp_path, target)
+```
+
+## Error Recovery
+
+- Implement retry logic with exponential backoff
+- Save checkpoints for long-running operations
+- Continue processing on individual failures
+- Log failures for later retry
+
+**Pattern:**
+```python
+from tenacity import retry, stop_after_attempt, wait_exponential
+
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
+async def fetch_with_retry(url: str):
+    try:
+        return await crawler.arun(url)
+    except Exception as e:
+        logger.warning(f"Retry attempt for {url}: {e}")
+        raise
+```
