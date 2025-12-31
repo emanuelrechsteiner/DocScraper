@@ -40,3 +40,7 @@ logs/
 *.tmp
 *.temp
 .cache/
+
+# Corpus data - local only
+final_corpus/
+*.jsonl
