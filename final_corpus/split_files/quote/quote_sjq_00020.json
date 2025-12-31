@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00020",
+  "title": "Quote: We're still heavily into the box. We love the box. We have a...",
+  "speaker": "Steve Jobs",
+  "year": 2000,
+  "event": "Apple's One-Dollar-a-Year Man",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Apple"
+  ],
+  "content": "We're still heavily into the box. We love the box. We have amazing computers today, and amazing hardware in the pipeline. I still spend a lot of my time working on new computers, and it will always be a primal thing for Apple. But the user experience is what we care about most, and we're expanding that experience beyond the box by making better use of the Internet. The user experience now entails four things: the hardware, the operating system, the applications, and the Net. We want to do all four uniquely well for our customers.",
+  "full_transcript": "We're still heavily into the box. We love the box. We have amazing computers today, and amazing hardware in the pipeline. I still spend a lot of my time working on new computers, and it will always be a primal thing for Apple. But the user experience is what we care about most, and we're expanding that experience beyond the box by making better use of the Internet. The user experience now entails four things: the hardware, the operating system, the applications, and the Net. We want to do all four uniquely well for our customers.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 1,
+      "examples": [
+        "We want to"
+      ]
+    },
+    "values": {
+      "count": 2,
+      "examples": [
+        "user experience"
+      ]
+    }
+  },
+  "source_url": "http://archive.fortune.com/magazines/fortune/fortune_archive/2000/01/24/272277/index.htm",
+  "source_type": "verbatim_quote",
+  "word_count": 96,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

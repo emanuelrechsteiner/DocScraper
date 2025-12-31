@@ -1,0 +1,34 @@
+{
+  "id": "anecdote_sja_story_00074",
+  "title": "Story: Three weeks after we launched I got a call in the office fro...",
+  "speaker": "Steve Jobs",
+  "year": 2012,
+  "event": "Steve Jobs wasn't a fan of the Siri name",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "marketing_brand"
+  ],
+  "content": "Three weeks after we launched I got a call in the office from someone at Apple that said, \"Scott Forstall wants to talk to you and he's the head software guy.\" And I said sure...\nOnly it wasn't Scott that called it was Steve. And Steve never announces where he's gonna be and what he's gonna do because there's too much commotion around it. So he said, \"Dag, this is Steve Jobs.\"\nAnd he wanted me to come over to his house the next day, and I did, and I spent 3 hours with him in front of his fireplace having this surreal conversation about the future. And, you know, he talked about why Apple was going to win, and we talked about how Siri was doing. And he was very excited about the fact that.. you know, he was very interested in this area in general but, you know, they're patient, they don't jump on anything until they feel they can go after something new and he felt that we cracked it. So that was his attraction.\nI ended up very lucky, timing wise. I got to work with him for a year before he got real sick. And he's pretty incredible. The stories are true. All of the stories.",
+  "full_transcript": "Three weeks after we launched I got a call in the office from someone at Apple that said, \"Scott Forstall wants to talk to you and he's the head software guy.\" And I said sure...\nOnly it wasn't Scott that called it was Steve. And Steve never announces where he's gonna be and what he's gonna do because there's too much commotion around it. So he said, \"Dag, this is Steve Jobs.\"\nAnd he wanted me to come over to his house the next day, and I did, and I spent 3 hours with him in front of his fireplace having this surreal conversation about the future. And, you know, he talked about why Apple was going to win, and we talked about how Siri was doing. And he was very excited about the fact that.. you know, he was very interested in this area in general but, you know, they're patient, they don't jump on anything until they feel they can go after something new and he felt that we cracked it. So that was his attraction.\nI ended up very lucky, timing wise. I got to work with him for a year before he got real sick. And he's pretty incredible. The stories are true. All of the stories.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 1,
+      "examples": [
+        "I ended"
+      ]
+    },
+    "reasoning": {
+      "count": 2,
+      "examples": [
+        "because",
+        "So that"
+      ]
+    }
+  },
+  "source_url": "http://www.networkworld.com/article/2221246/smartphones/steve-jobs-wasn-t-a-fan-of-the-siri-name.html",
+  "source_type": "anecdote",
+  "word_count": 211,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

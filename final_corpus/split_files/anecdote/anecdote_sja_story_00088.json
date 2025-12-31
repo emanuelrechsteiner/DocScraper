@@ -1,0 +1,48 @@
+{
+  "id": "anecdote_sja_story_00088",
+  "title": "Story: It was me, Van Toffler (president of MTV Networks Music Grou...",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand",
+    "storytelling_persuasion",
+    "meetings_decision"
+  ],
+  "content": "It was me, Van Toffler (president of MTV Networks Music Group), Tom Freston (CEO of MTV-parent company Viacom), and Jimmy Iovine (music producer, chairman of Interscope-Geffen). It was Jimmy who introduced us to Jobs, and we flew up to Pixar to go meet him. I'm a product guy, so it was thrilling for me. If you're a product guy, Steve Jobs is the guy you want to meet. He was incredibly gracious and nice.\nWe had been thinking up ideas about how we could work with Apple...So, I give him my views on the future of music, and I was always big on subscription services. He listened and then he said, \"Jason, you seem like a nice guy, but your ideas are all wrong.\" He was so blunt and funny, the whole room burst into laughter.\nLater, he takes us on a tour of Pixar and shows us some clips of the movie they're working on, and as we're walking around the beautiful Pixar campus, Freston turns to me and says: \"Don't talk in the next meeting.\" We laughed. \n[_Steve Jobs once nixed my music-subscription pitch_ , Jason Hirschhorn, CNET, Feb 2011]",
+  "full_transcript": "It was me, Van Toffler (president of MTV Networks Music Group), Tom Freston (CEO of MTV-parent company Viacom), and Jimmy Iovine (music producer, chairman of Interscope-Geffen). It was Jimmy who introduced us to Jobs, and we flew up to Pixar to go meet him. I'm a product guy, so it was thrilling for me. If you're a product guy, Steve Jobs is the guy you want to meet. He was incredibly gracious and nice.\nWe had been thinking up ideas about how we could work with Apple...So, I give him my views on the future of music, and I was always big on subscription services. He listened and then he said, \"Jason, you seem like a nice guy, but your ideas are all wrong.\" He was so blunt and funny, the whole room burst into laughter.\nLater, he takes us on a tour of Pixar and shows us some clips of the movie they're working on, and as we're walking around the beautiful Pixar campus, Freston turns to me and says: \"Don't talk in the next meeting.\" We laughed. \n[_Steve Jobs once nixed my music-subscription pitch_ , Jason Hirschhorn, CNET, Feb 2011]",
+  "cognitive_patterns": {
+    "values": {
+      "count": 1,
+      "examples": [
+        "beautiful"
+      ]
+    },
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "the future of"
+      ]
+    },
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "wrong"
+      ]
+    },
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "like a"
+      ]
+    }
+  },
+  "source_url": null,
+  "source_type": "anecdote",
+  "word_count": 192,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

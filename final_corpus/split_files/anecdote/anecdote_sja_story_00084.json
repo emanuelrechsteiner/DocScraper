@@ -1,0 +1,27 @@
+{
+  "id": "anecdote_sja_story_00084",
+  "title": "Story: He was running NeXT Computer. I was a young pup consultant w...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "Memories of Steve Jobs",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "marketing_brand"
+  ],
+  "content": "He was running NeXT Computer. I was a young pup consultant who had to tell him his baby was ugly. My elder colleagues made sure I spoke first so he wouldn't be offended.\nAfter he heard my story, he stood up and did his pitch for the NeXT OS. Just like he always did when he introduced the Macintosh, iMac, iPod, iPhone or iPad - he electrified the crowd with his vision and enthusiasm. For a moment, I thought every fact I collected and put together over the previous two months were from never-never land.\nSteve then walked over and thanked me for doing a good job and he said he understood it was time to move on.",
+  "full_transcript": "He was running NeXT Computer. I was a young pup consultant who had to tell him his baby was ugly. My elder colleagues made sure I spoke first so he wouldn't be offended.\nAfter he heard my story, he stood up and did his pitch for the NeXT OS. Just like he always did when he introduced the Macintosh, iMac, iPod, iPhone or iPad - he electrified the crowd with his vision and enthusiasm. For a moment, I thought every fact I collected and put together over the previous two months were from never-never land.\nSteve then walked over and thanked me for doing a good job and he said he understood it was time to move on.",
+  "cognitive_patterns": {
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "Just like"
+      ]
+    }
+  },
+  "source_url": "http://fortune.com/2011/10/06/memories-of-steve-jobs/",
+  "source_type": "anecdote",
+  "word_count": 118,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

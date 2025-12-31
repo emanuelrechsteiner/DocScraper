@@ -1,0 +1,54 @@
+{
+  "id": "anecdote_sja_story_00025",
+  "title": "Story: [An early version of the Segway, codenamed Ginger at the tim...",
+  "speaker": "Steve Jobs",
+  "year": 2003,
+  "event": "Steve Jobs and Jeff Bezos meet \"Ginger\"",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand",
+    "simplicity",
+    "meetings_decision"
+  ],
+  "content": "[An early version of the Segway, codenamed Ginger at the time, is showed to Steve Jobs, John Doerr and Jeff Bezos.] Within a couple of minutes, after some quick introductions, everyone settled around the big square table, Jobs at one corner, flanked by Dean and Doerr.\n\"Good morning to everyone,\" said Tim, smiling at the front of the table. \"Before we start, we'd like to ask you to hold your questions until after each presentation.\"  \n\"Yeah, right!\" snorted Bezos, followed by that honking laugh.  \n\"Otherwise we might as well not be here,\" said Jobs.  \n\"How long is your presentation?\" asked Doerr. \"Each pitch is about ten minutes.\"  \n\"I can't do that,\" said Jobs. \"I'm not built that way. So if you want me to leave, I will, but I can't just sit here.\"\nTim studied Jobs for a moment, then turned to the screen and put up a spec sheet about Metro and Pro. \"As you can see-\" began Tim.  \n\"Let's talk about the bigger question,\" interrupted Jobs. \"Why two machines?\"  \n\"We've talked about that,\" said Tim, \"and we think-\"\n\"Because I see a big problem here,\" said Jobs. \"I was thinking about it all night. I couldn't sleep after Dean came over.\" There were notes scribbled on the palm of his hand. He explained his experience with the iMac, how there were four models now but he had launched with just one color to give his designers, salespeople, and the public an absolute focus. He had waited seven months to introduce the other models. Bezos and Doerr nodded as he spoke.\n[...] \"What does everyone think about the design?\" asked Doerr, switching subjects.  \n\"What do you think?\" said Jobs to Tim. It was a challenge, not a question.  \n\"I think it's coming along,\" said Tim, \"though we expect-\" \"I think it sucks!\" said Jobs.  \nHis vehemence made Tim pause. \"Why?\" he asked, a bit stiffly.  \n\"It just does.\"  \n\"In what sense?\" said Tim, getting his feet back under him. \"Give me a clue.\"  \n\"Its shape is not innovative, it's not elegant, it doesn't feel anthropomorphic,\" said Jobs, ticking off three of his design mantras.\n\"You have this incredibly innovative machine but it looks very traditional.\" The last word delivered like a stab. [...] \"There are design firms out there that could come up with things we've never thought of,\" Jobs continued, \"things that would make you shit in your pants.\"",
+  "full_transcript": "[An early version of the Segway, codenamed Ginger at the time, is showed to Steve Jobs, John Doerr and Jeff Bezos.] Within a couple of minutes, after some quick introductions, everyone settled around the big square table, Jobs at one corner, flanked by Dean and Doerr.\n\"Good morning to everyone,\" said Tim, smiling at the front of the table. \"Before we start, we'd like to ask you to hold your questions until after each presentation.\"  \n\"Yeah, right!\" snorted Bezos, followed by that honking laugh.  \n\"Otherwise we might as well not be here,\" said Jobs.  \n\"How long is your presentation?\" asked Doerr. \"Each pitch is about ten minutes.\"  \n\"I can't do that,\" said Jobs. \"I'm not built that way. So if you want me to leave, I will, but I can't just sit here.\"\nTim studied Jobs for a moment, then turned to the screen and put up a spec sheet about Metro and Pro. \"As you can see-\" began Tim.  \n\"Let's talk about the bigger question,\" interrupted Jobs. \"Why two machines?\"  \n\"We've talked about that,\" said Tim, \"and we think-\"\n\"Because I see a big problem here,\" said Jobs. \"I was thinking about it all night. I couldn't sleep after Dean came over.\" There were notes scribbled on the palm of his hand. He explained his experience with the iMac, how there were four models now but he had launched with just one color to give his designers, salespeople, and the public an absolute focus. He had waited seven months to introduce the other models. Bezos and Doerr nodded as he spoke.\n[...] \"What does everyone think about the design?\" asked Doerr, switching subjects.  \n\"What do you think?\" said Jobs to Tim. It was a challenge, not a question.  \n\"I think it's coming along,\" said Tim, \"though we expect-\" \"I think it sucks!\" said Jobs.  \nHis vehemence made Tim pause. \"Why?\" he asked, a bit stiffly.  \n\"It just does.\"  \n\"In what sense?\" said Tim, getting his feet back under him. \"Give me a clue.\"  \n\"Its shape is not innovative, it's not elegant, it doesn't feel anthropomorphic,\" said Jobs, ticking off three of his design mantras.\n\"You have this incredibly innovative machine but it looks very traditional.\" The last word delivered like a stab. [...] \"There are design firms out there that could come up with things we've never thought of,\" Jobs continued, \"things that would make you shit in your pants.\"",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 2,
+      "examples": [
+        "I think"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "Because"
+      ]
+    },
+    "values": {
+      "count": 1,
+      "examples": [
+        "elegant"
+      ]
+    },
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "sucks"
+      ]
+    },
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "like a"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20080715231937/http://hbswk.hbs.edu/archive/3533.html",
+  "source_type": "anecdote",
+  "word_count": 401,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "anecdote_sja_story_00039",
+  "title": "Story: Just as my vision turned into a painful blur, Steve turned t...",
+  "speaker": "Steve Jobs",
+  "year": 2010,
+  "event": "Meeting Steve",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "marketing_brand",
+    "competition",
+    "storytelling_persuasion",
+    "simplicity"
+  ],
+  "content": "Just as my vision turned into a painful blur, Steve turned to Andrew and asked, \"What makes you think a dull PC guy like yourself can appreciate an elegant machine for artists like the Macintosh?\"\n\"Well, Steve,\" Andrew chuckled, \"I didn't used to be so dull. Before PC World, I edited the Whole Earth Catalog, and I'm still a Dead-Head.\"\n\"Look,\" I volunteered, \"Andrew actually went to the Dead concert in Egypt and we were both at the US Festival-this IBM thing is just something we fell into and gosh, you can't blame us, it's been quite an amazing trip.\"\n\"Oh, yeah, and I suppose you both dropped acid on your way to Cupertino this morning?\"\nWe all laughed at Steve's joke.",
+  "full_transcript": "Just as my vision turned into a painful blur, Steve turned to Andrew and asked, \"What makes you think a dull PC guy like yourself can appreciate an elegant machine for artists like the Macintosh?\"\n\"Well, Steve,\" Andrew chuckled, \"I didn't used to be so dull. Before PC World, I edited the Whole Earth Catalog, and I'm still a Dead-Head.\"\n\"Look,\" I volunteered, \"Andrew actually went to the Dead concert in Egypt and we were both at the US Festival-this IBM thing is just something we fell into and gosh, you can't blame us, it's been quite an amazing trip.\"\n\"Oh, yeah, and I suppose you both dropped acid on your way to Cupertino this morning?\"\nWe all laughed at Steve's joke.",
+  "cognitive_patterns": {
+    "values": {
+      "count": 1,
+      "examples": [
+        "elegant"
+      ]
+    }
+  },
+  "source_url": "http://www.cultofmac.com/39023/my-close-encounters-with-steve-jobs-meeting-steve/",
+  "source_type": "anecdote",
+  "word_count": 122,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

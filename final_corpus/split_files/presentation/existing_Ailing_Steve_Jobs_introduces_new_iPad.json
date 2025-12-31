@@ -1,0 +1,33 @@
+{
+  "id": "existing_Ailing_Steve_Jobs_introduces_new_iPad",
+  "title": "Ailing Steve Jobs introduces new iPad",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "presentation",
+  "era": null,
+  "topics": [
+    "iPad"
+  ],
+  "content": "We've been working on this product for a while, and I just didn't want to miss today, so.\n\nAnd that is iPad 2.\n\nEverybody's got a tablet. Is 2011 going to be the year of the copycats? Well, probably not so much because most of these tablets aren't even catching up with the first iPad.",
+  "full_transcript": "# Ailing Steve Jobs introduces new iPad\n\n**Source**: https://www.youtube.com/watch?v=jLPdT09Xig4\n\n**Transcribed**: 2025-12-26 12:52\n\n---\n\n**[Speaker 1]**: There is so much excitement surrounding Apple's announcement of the iPad 2, but it was the man who delivered the news who's actually generating some of the biggest buzz. CEO Steve Jobs, who of course went on medical leave earlier this year, was on hand for the honors. What do Wednesday's events mean for the future of the tech giant Apple? We'll get you more on that in a moment, but first, here's CBS News correspondent John Blackstone with the details on those announcements.\n**[John Blackstone]**: Steve Jobs likes surprises, and he delivered a big one just by showing up to unveil Apple's second generation iPad.\n**[Steve Jobs]**: We've been working on this product for a while, and I just didn't want to miss today, so.\n**[John Blackstone]**: Jobs has been on medical leave since January, and with a tabloid recently reporting he was near death, his unexpected return to the Apple stage almost overshadowed the latest gadget.\n**[Steve Jobs]**: And that is iPad 2.\n**[John Blackstone]**: Jobs, who has battled cancer and had a liver transplant, is obviously thin, but he's lost none of his eagerness to boast of Apple's superiority.\n**[Steve Jobs]**: Everybody's got a tablet. Is 2011 going to be the year of the copycats? Well, probably not so much because most of these tablets aren't even catching up with the first iPad.\n**[John Blackstone]**: The 15 million people who bought the first iPad will now be looking with envy at the thinner, faster iPad 2. John Blackstone, CBS News, San Francisco.\n**[Speaker 1]**: And CBS News business and economics correspondent Rebecca Jarvis is with us this morning with more. We saw he looked a little bit thinner. As John pointed out though, he had lost none of his eagerness. How did he sound to everybody? How did he come across?\n**[Rebecca Jarvis]**: Yeah, he came across, Erica, like the same old Steve Jobs. This guy who took swipes at the competition. He said that last year was the year of the iPad, and this year is the year of the copycats. So, he is back to being his old self in terms of his presence and his presentation. He did not, however, address the fact that he's been sick. He didn't say the reason. He didn't even bring it up. And he's been pretty private about that all along. So, so that may not have been a huge surprise. It was a little bit of a surprise though that he was actually there. There was some speculation that he would be there and what it could do to the stock. So, what was the effect?\n**[Speaker 1]**: Mm-hmm.\n**[Rebecca Jarvis]**: Yeah, the effect was very direct, Erica. When you take a look at what happened to Apple's shares yesterday, you see that the stock immediately shot up when Steve Jobs walked out on stage. It shot up about 2%. What's interesting to note is that after Steve Jobs walked out on stage, the stock initially shot up. He starts unveiling the iPad, and it loses some of its luster. So, the stock started trading down. I think the big takeaway here is that the company right now is more a company about a man versus a machine. And that man is Steve Jobs, and the future of the company is Steve Jobs, which is good and bad.\n**[Speaker 1]**: It it it's absolutely good and bad. Of course, they have to continue putting out machines that people want to buy, but so much of the vision has been set, the tone of this company has been set by Steve Jobs. Wall Street wants to know what's going to happen next if he if he ends up passing. So, people may look at this and say, well, that's all well and good. You know, there's an effect on Wall Street when he comes out, but, you know, I don't have Apple stock. It doesn't really matter to me. We're all a little bit more involved than we realize.\n**[Rebecca Jarvis]**: Yes, Apple is one of the most widely held stocks out there, Erica, and most people, even if they don't own Apple stock directly, you and I may not even realize, or anyone out there may not even realize they do own Apple stock because it's one of the most widely held stocks. It's held by Janus, it's held by Fidelity, it's held by all of these mutual funds, so the chances are it's in your retirement account. You may not even know it.\n**[Speaker 1]**: There you go. So, now we're paying even more attention.\n**[Rebecca Jarvis]**: Exactly.\n**[Speaker 1]**: Rebecca, thanks.\n**[Rebecca Jarvis]**: Thanks.\n",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "going to be"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=jLPdT09Xig4",
+  "source_type": "existing",
+  "word_count": 794,
+  "steve_jobs_percentage": 6.93,
+  "processed_at": "2025-12-31T14:49:09.333648"
+}

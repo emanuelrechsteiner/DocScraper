@@ -1,0 +1,36 @@
+{
+  "id": "anecdote_sja_story_00062",
+  "title": "Story: To my knowledge, the only tech conference Steve Jobs regular...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "Eric Schmidt on Steve Jobs",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "leadership_pressure",
+    "marketing_brand",
+    "meetings_decision"
+  ],
+  "content": "To my knowledge, the only tech conference Steve Jobs regularly appeared at, the only event he didn't somehow control, was our D: All Things Digital conference, where he appeared repeatedly for unrehearsed, onstage interviews. We had one rule that really bothered him: We never allowed slides, which were his main presentation tool.\nOne year, about an hour before his appearance, I was informed that he was backstage preparing dozens of slides, even though I had reminded him a week earlier of the no-slides policy. I asked two of his top aides to tell him he couldn't use the slides, but they each said they couldn't do it, that I had to. So, I went backstage and told him the slides were out. Famously prickly, he could have stormed out, refused to go on. And he did try to argue with me. But, when I insisted, he just said \"Okay.\" And he went on stage without them, and was, as usual, the audience's favorite speaker.\n[_The Steve Jobs I Knew_ , Walt Mossberg, 5 Oct 2011](http://allthingsd.com/?p=129366&ak_action=printable)\nAt the end of this presentation, Jobs pulled back a sheet that had covered an elliptical object on the conference table. The first new product on his grid: the iMac. It was a weird, egg-shaped beast but disarmingly attractive. Like all great Steve Jobs products, it had a human feel to it. You wanted to touch it. Its plastic case was a feel-good shade of fruity blue. During its development the informal code names for the project had been the names of Columbus's ships: _Nina, Pinta, Santa Maria_. Why? \"A new world,\" he explained.\nAfter putting the machine through its paces, he bore down on me. \"Isn't that just _great_?\" he asked, with the pride of a very pushy parent. Yes, I agreed, it's really neat. \"It's not just 'neat',\" he corrected me. \"It's fucking _fantastic_.\"\n[_The Perfect Thing: How the iPod Shuffles Commerce, Culture, and Coolness_ , Steven Levy, 23 Oct 2006](http://www.amazon.com/gp/product/B000MGATVC/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=allaboustevjo-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=B000MGATVC)\nI should tell you this story. We're in a meeting at NeXT, before Steve went back to Apple. I've got my chief scientist. After the meeting, we leave and try to unravel the argument to figure out where Steve was wrong-because he was obviously wrong. And we couldn't do it. We're standing in the parking lot.\nHe sees us from his office, and he comes back out to argue with us some more. It was over a technical issue involving Objective C, a computer language. Why he would care about this was beyond me. I've never seen that kind of passion.",
+  "full_transcript": "To my knowledge, the only tech conference Steve Jobs regularly appeared at, the only event he didn't somehow control, was our D: All Things Digital conference, where he appeared repeatedly for unrehearsed, onstage interviews. We had one rule that really bothered him: We never allowed slides, which were his main presentation tool.\nOne year, about an hour before his appearance, I was informed that he was backstage preparing dozens of slides, even though I had reminded him a week earlier of the no-slides policy. I asked two of his top aides to tell him he couldn't use the slides, but they each said they couldn't do it, that I had to. So, I went backstage and told him the slides were out. Famously prickly, he could have stormed out, refused to go on. And he did try to argue with me. But, when I insisted, he just said \"Okay.\" And he went on stage without them, and was, as usual, the audience's favorite speaker.\n[_The Steve Jobs I Knew_ , Walt Mossberg, 5 Oct 2011](http://allthingsd.com/?p=129366&ak_action=printable)\nAt the end of this presentation, Jobs pulled back a sheet that had covered an elliptical object on the conference table. The first new product on his grid: the iMac. It was a weird, egg-shaped beast but disarmingly attractive. Like all great Steve Jobs products, it had a human feel to it. You wanted to touch it. Its plastic case was a feel-good shade of fruity blue. During its development the informal code names for the project had been the names of Columbus's ships: _Nina, Pinta, Santa Maria_. Why? \"A new world,\" he explained.\nAfter putting the machine through its paces, he bore down on me. \"Isn't that just _great_?\" he asked, with the pride of a very pushy parent. Yes, I agreed, it's really neat. \"It's not just 'neat',\" he corrected me. \"It's fucking _fantastic_.\"\n[_The Perfect Thing: How the iPod Shuffles Commerce, Culture, and Coolness_ , Steven Levy, 23 Oct 2006](http://www.amazon.com/gp/product/B000MGATVC/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=allaboustevjo-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=B000MGATVC)\nI should tell you this story. We're in a meeting at NeXT, before Steve went back to Apple. I've got my chief scientist. After the meeting, we leave and try to unravel the argument to figure out where Steve was wrong-because he was obviously wrong. And we couldn't do it. We're standing in the parking lot.\nHe sees us from his office, and he comes back out to argue with us some more. It was over a technical issue involving Objective C, a computer language. Why he would care about this was beyond me. I've never seen that kind of passion.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "criticism": {
+      "count": 2,
+      "examples": [
+        "wrong"
+      ]
+    }
+  },
+  "source_url": "http://www.bloomberg.com/news/articles/2011-10-06/eric-schmidt-on-steve-jobs",
+  "source_type": "anecdote",
+  "word_count": 429,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

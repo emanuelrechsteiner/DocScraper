@@ -1,0 +1,28 @@
+{
+  "id": "anecdote_sja_story_00020",
+  "title": "Story: At a high-school gym in Berkeley, Calif., [Steve Jobs is] re...",
+  "speaker": "Steve Jobs",
+  "year": 1988,
+  "event": "Steve Jobs Comes Back",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand"
+  ],
+  "content": "At a high-school gym in Berkeley, Calif., [Steve Jobs is] rehearsing the rollout that will introduce his new baby, the NeXT computer, to the world. Dressed in blue jeans and a red flannel shirt, Jobs paces back and forth, reading lines into a wireless microphone. [...]. When the first slide appears on the screen, Jobs enthuses: \"I really like that green.\" Around him, other NeXT executives chime in: \"Great green. Great green\".\nThe computer goes through its paces, playing music with the sound of a live orchestra, pulling up images as clear as photographs, retrieving quotes from a memory bank big enough to hold a bookshelf full of classics. Then a software glitch makes the image on the sleek black monitor freeze. NeXT employees tense up, expecting an infamous Jobs outburst. Jobs just stares at the screen, then shrugs. \"We're hosed,\" he says calmly. \"We'll fix that. No problem.\"\nLater, a video shows the automated assembly plant that Jobs has built to manufacture the NeXT machines. Wandering back to sit with a handful of employees, Jobs watches as robot hands install the state-of-the-art chips that will power the computer. For a second he looks almost teary. \"It's beautiful,\" he says softly.",
+  "full_transcript": "At a high-school gym in Berkeley, Calif., [Steve Jobs is] rehearsing the rollout that will introduce his new baby, the NeXT computer, to the world. Dressed in blue jeans and a red flannel shirt, Jobs paces back and forth, reading lines into a wireless microphone. [...]. When the first slide appears on the screen, Jobs enthuses: \"I really like that green.\" Around him, other NeXT executives chime in: \"Great green. Great green\".\nThe computer goes through its paces, playing music with the sound of a live orchestra, pulling up images as clear as photographs, retrieving quotes from a memory bank big enough to hold a bookshelf full of classics. Then a software glitch makes the image on the sleek black monitor freeze. NeXT employees tense up, expecting an infamous Jobs outburst. Jobs just stares at the screen, then shrugs. \"We're hosed,\" he says calmly. \"We'll fix that. No problem.\"\nLater, a video shows the automated assembly plant that Jobs has built to manufacture the NeXT machines. Wandering back to sit with a handful of employees, Jobs watches as robot hands install the state-of-the-art chips that will power the computer. For a second he looks almost teary. \"It's beautiful,\" he says softly.",
+  "cognitive_patterns": {
+    "values": {
+      "count": 1,
+      "examples": [
+        "beautiful"
+      ]
+    }
+  },
+  "source_url": "http://www.newsweek.com/steve-jobs-comes-back-207006",
+  "source_type": "anecdote",
+  "word_count": 201,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

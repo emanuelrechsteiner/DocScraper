@@ -1,0 +1,36 @@
+{
+  "id": "existing_Steve_Jobs_explains_the_importance_of_making_machines_that_are_intuitive_IDCA_19",
+  "title": "Steve Jobs explains the importance of making machines that are intuitive, IDCA, 1983",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "presentation",
+  "era": null,
+  "topics": [
+    "iPhone",
+    "Technology"
+  ],
+  "content": "Well, the major thing is that we've got to make things intuitively obvious.\nAnd it turns out that people know how to do a lot of things already.\nIn other words, if you walk into a typical office, there's all these, there's stacks of paper on the desk, and, um, the one on the top's the most important, and people know how to switch priority, right?\nAnd people know how to deal, uh, with concurrent things going on at once.\nThey're constantly switching between things every few minutes.\nAnd they know how to deal with interruptions.\nThe phone rings, they get an urgent message.\nAnd so what we've got to do is leverage off what people already know how to do, and part of the reason we model our computers on these metaphors that already exist out there, like the desktop, is because we can leverage all this, this, this experience that people already have, and they intuitively just take to it like water.\nThe second thing we do is, right now, when you buy an application, each one works differently.\nIn other words, not only do you have the specific knowledge about the application to learn, but it, it interacts with you through the computer differently than the last one.\nThe word processor, you move the cursor around this way.\nVisicalc, you move it around another way.\nAnd, and what we've got to do is make it so that when you learn how to use one application, all the rest of them work in pretty much the same way.\nAnd to come up with a general mech, we spent a lot of time coming up with a general mechanism that was so powerful that there was not one type of program where it wouldn't be perfect for.\nWe think we did that.\nWe think we absolutely did that.\nAnd so in trying to make some consistency throughout the system, we can leverage the learning.",
+  "full_transcript": "# Steve Jobs explains the importance of making machines that are intuitive, IDCA, 1983\n\n**Source**: https://www.youtube.com/watch?v=owxmFmg5SVk\n\n**Transcribed**: 2025-12-26 16:17\n\n---\n\n**[Steve Jobs]**: Well, the major thing is that we've got to make things intuitively obvious.\nAnd it turns out that people know how to do a lot of things already.\nIn other words, if you walk into a typical office, there's all these, there's stacks of paper on the desk, and, um, the one on the top's the most important, and people know how to switch priority, right?\nAnd people know how to deal, uh, with concurrent things going on at once.\nThey're constantly switching between things every few minutes.\nAnd they know how to deal with interruptions.\nThe phone rings, they get an urgent message.\nAnd so what we've got to do is leverage off what people already know how to do, and part of the reason we model our computers on these metaphors that already exist out there, like the desktop, is because we can leverage all this, this, this experience that people already have, and they intuitively just take to it like water.\nThe second thing we do is, right now, when you buy an application, each one works differently.\nIn other words, not only do you have the specific knowledge about the application to learn, but it, it interacts with you through the computer differently than the last one.\nThe word processor, you move the cursor around this way.\nVisicalc, you move it around another way.\nAnd, and what we've got to do is make it so that when you learn how to use one application, all the rest of them work in pretty much the same way.\nAnd to come up with a general mech, we spent a lot of time coming up with a general mechanism that was so powerful that there was not one type of program where it wouldn't be perfect for.\nWe think we did that.\nWe think we absolutely did that.\nAnd so in trying to make some consistency throughout the system, we can leverage the learning.\n",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 2,
+      "examples": [
+        "because",
+        "so that"
+      ]
+    },
+    "analogy": {
+      "count": 2,
+      "examples": [
+        "the same way",
+        "metaphor"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=owxmFmg5SVk",
+  "source_type": "existing",
+  "word_count": 347,
+  "steve_jobs_percentage": 93.66,
+  "processed_at": "2025-12-31T14:49:09.218814"
+}

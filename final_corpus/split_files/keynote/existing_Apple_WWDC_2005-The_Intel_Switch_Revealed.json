@@ -1,0 +1,74 @@
+{
+  "id": "existing_Apple_WWDC_2005-The_Intel_Switch_Revealed",
+  "title": "Apple WWDC 2005-The Intel Switch Revealed",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "keynote",
+  "era": null,
+  "topics": [
+    "Mac",
+    "Design",
+    "NeXT",
+    "Apple",
+    "Technology",
+    "Leadership",
+    "Philosophy"
+  ],
+  "content": "# Apple WWDC 2005-The Intel Switch Revealed\n\n**Source**: https://www.youtube.com/watch?v=ghdTqnYnFyg\n\n**Transcribed**: 2025-12-26 12:51\n\n---\n\n**[Speaker 1]**: Now, let's go to a big topic.\nTransitions.\nLet's talk about transitions.\nThe Mac in its history has had two major transitions so far, right?\nThe first one, 68k to Power PC.\nAnd that transition happened about 10 years ago in the mid 90s.\nI wasn't here then, but the team then did a great job from everything I hear.\nAnd the Power PC, the Power PC set Apple up for the next decade.\nIt was a good move.\nThe second major transition though, has been even bigger.\nAnd that's the transition from OS9 to OS10 that we just finished a few years ago, the early part of this decade.\nThis was a brain transplant.\nAnd even though these operating systems vary in name only by one, they are worlds apart in their technology.\nOS10 is the most advanced operating system on the planet and it has set Apple up for the next 20 years.\nToday, it's time to begin a third transition.\nWe want to constantly be making the best computers for you and the rest of our users.\nAnd so it's time for a third transition and yes, it's true.\nWe are going to begin the transition from the Power PC to Intel processors and we are going to begin it for you now and for our customers next year.\nNow, why are we going to do this, right?\nDidn't we just get through going from OS9 to OS10?\nIsn't the business great right now?\nWhy do we want another transition?\nBecause we want to be making the best computers for our customer looking forward.\n\nNow, I stood up here two years ago in front of you and I promised you this.\nAnd we haven't been able to deliver that to you yet.\nI think a lot of you would like a G5 in your Powerbook and we haven't been able to deliver that to you yet.\nBut these aren't even the most important reasons.\nThe most important reasons are that as we look ahead, though we have great products right now and we've got some great Power PC products still yet to come.\nAs we look ahead, we can envision some amazing products we want to build for you and we don't know how to build them with the future Power PC roadmap.\nAnd that's why we're going to do this.\nWhen we look at Intel, they've got great performance, yes, but they've got something else that's very important to us.\nJust as important as performance is power consumption.\nAnd the way we look at it is performance per watt.\nFor one watt of power, how much performance do you get?\nAnd when we look at the future road maps projected out mid 2006 and beyond, what we see is the Power PC gives us sort of 15 units of performance per watt, but the Intel roadmap in the future gives us 70.\nAnd so this tells us what we have to do.\nNow, this is not going to be a transition that happens overnight.\nIt's going to happen over a period of a few years.\nAgain, we've got great products right now and we've got some great Power PC products in the pipeline yet to to be introduced.\nBut starting next year, we will begin introducing Macs with Intel processors in them and over time this transition will occur.\nSo when we meet here again this time next year, our plan is to be shipping Macs with Intel processors by then.\nAnd when we meet here again two years from now, our plan is that the transition will be mostly complete and we think it will be complete by the end of 2007.\nSo this is a two-year transition.\n\nSo, first transition, 68k to Power PC, second transition, OS9 to OS10.\nWe're going to begin a third transition from the Power PC to Intel processors.\nThere are two major challenges in this transition.\nThe first one is making Mac OS10 sing on Intel processors, right?\nNow, I have something to tell you today.\nMac OS10 has been leading a secret double life for the past five years.\nThere have been rumors to this effect, but this is Apple's campus in Cupertino.\nLet's zoom in on it.\nIn that building right there, we've had teams doing the just in case scenario.\nAnd our rules have been that our designs for OS10 must be processor independent and that every project must be built for both the Power PC and Intel processors.\nAnd so today for the first time, I can confirm the rumors that every release of Mac OS10 has been compiled for both Power PC and Intel.\nThis has been going on for the last five years.\nJust in case.\nSo Mac OS10 is cross platform by design right from the very beginning.\nSo, Mac OS10 is singing on Intel processors and I'd just like to show you right now.\nAs a matter of fact, as a matter of fact, the system I've been using here, let's go have a look.\nLet's go have a look here.\nAll right, there you go.\nSo, we've been running on an Intel system all morning and let me just go uh, you know, do do a few simple things.\nUh baseball, you know, boom.\nAll the normal stuff just works.\nLet's go back to these uh dashboard widgets that we just brought out.\nThere they are.\nAnd um, you know, we can even uh, let's see here, uh, you know, go find uh calendar events here.\nVery simple.\nLet me go uh show you mail.\nThere's mail right here.\nSafari.\nHere's uh here's the new widget stuff.\nWay to find some widgets.\nBoom on apple.com.\nLet me show you iPhoto.\nLoading in uh 4,000 photos.\nHere we are.\nAnd uh let me go ahead and play a movie.\nHere's uh let me get rid of this.\nHere's a movie trailer here.\nFrom Doug, director of the Born Identity.\nBrad Pitt.\nCome on.\nAngelina Jolie.\nAll right, enough of that.\nUm, so this is Mac OS10 running on Intel processors.\n",
+  "full_transcript": "# Apple WWDC 2005-The Intel Switch Revealed\n\n**Source**: https://www.youtube.com/watch?v=ghdTqnYnFyg\n\n**Transcribed**: 2025-12-26 12:51\n\n---\n\n**[Speaker 1]**: Now, let's go to a big topic.\nTransitions.\nLet's talk about transitions.\nThe Mac in its history has had two major transitions so far, right?\nThe first one, 68k to Power PC.\nAnd that transition happened about 10 years ago in the mid 90s.\nI wasn't here then, but the team then did a great job from everything I hear.\nAnd the Power PC, the Power PC set Apple up for the next decade.\nIt was a good move.\nThe second major transition though, has been even bigger.\nAnd that's the transition from OS9 to OS10 that we just finished a few years ago, the early part of this decade.\nThis was a brain transplant.\nAnd even though these operating systems vary in name only by one, they are worlds apart in their technology.\nOS10 is the most advanced operating system on the planet and it has set Apple up for the next 20 years.\nToday, it's time to begin a third transition.\nWe want to constantly be making the best computers for you and the rest of our users.\nAnd so it's time for a third transition and yes, it's true.\nWe are going to begin the transition from the Power PC to Intel processors and we are going to begin it for you now and for our customers next year.\nNow, why are we going to do this, right?\nDidn't we just get through going from OS9 to OS10?\nIsn't the business great right now?\nWhy do we want another transition?\nBecause we want to be making the best computers for our customer looking forward.\n\nNow, I stood up here two years ago in front of you and I promised you this.\nAnd we haven't been able to deliver that to you yet.\nI think a lot of you would like a G5 in your Powerbook and we haven't been able to deliver that to you yet.\nBut these aren't even the most important reasons.\nThe most important reasons are that as we look ahead, though we have great products right now and we've got some great Power PC products still yet to come.\nAs we look ahead, we can envision some amazing products we want to build for you and we don't know how to build them with the future Power PC roadmap.\nAnd that's why we're going to do this.\nWhen we look at Intel, they've got great performance, yes, but they've got something else that's very important to us.\nJust as important as performance is power consumption.\nAnd the way we look at it is performance per watt.\nFor one watt of power, how much performance do you get?\nAnd when we look at the future road maps projected out mid 2006 and beyond, what we see is the Power PC gives us sort of 15 units of performance per watt, but the Intel roadmap in the future gives us 70.\nAnd so this tells us what we have to do.\nNow, this is not going to be a transition that happens overnight.\nIt's going to happen over a period of a few years.\nAgain, we've got great products right now and we've got some great Power PC products in the pipeline yet to to be introduced.\nBut starting next year, we will begin introducing Macs with Intel processors in them and over time this transition will occur.\nSo when we meet here again this time next year, our plan is to be shipping Macs with Intel processors by then.\nAnd when we meet here again two years from now, our plan is that the transition will be mostly complete and we think it will be complete by the end of 2007.\nSo this is a two-year transition.\n\nSo, first transition, 68k to Power PC, second transition, OS9 to OS10.\nWe're going to begin a third transition from the Power PC to Intel processors.\nThere are two major challenges in this transition.\nThe first one is making Mac OS10 sing on Intel processors, right?\nNow, I have something to tell you today.\nMac OS10 has been leading a secret double life for the past five years.\nThere have been rumors to this effect, but this is Apple's campus in Cupertino.\nLet's zoom in on it.\nIn that building right there, we've had teams doing the just in case scenario.\nAnd our rules have been that our designs for OS10 must be processor independent and that every project must be built for both the Power PC and Intel processors.\nAnd so today for the first time, I can confirm the rumors that every release of Mac OS10 has been compiled for both Power PC and Intel.\nThis has been going on for the last five years.\nJust in case.\nSo Mac OS10 is cross platform by design right from the very beginning.\nSo, Mac OS10 is singing on Intel processors and I'd just like to show you right now.\nAs a matter of fact, as a matter of fact, the system I've been using here, let's go have a look.\nLet's go have a look here.\nAll right, there you go.\nSo, we've been running on an Intel system all morning and let me just go uh, you know, do do a few simple things.\nUh baseball, you know, boom.\nAll the normal stuff just works.\nLet's go back to these uh dashboard widgets that we just brought out.\nThere they are.\nAnd um, you know, we can even uh, let's see here, uh, you know, go find uh calendar events here.\nVery simple.\nLet me go uh show you mail.\nThere's mail right here.\nSafari.\nHere's uh here's the new widget stuff.\nWay to find some widgets.\nBoom on apple.com.\nLet me show you iPhoto.\nLoading in uh 4,000 photos.\nHere we are.\nAnd uh let me go ahead and play a movie.\nHere's uh let me get rid of this.\nHere's a movie trailer here.\nFrom Doug, director of the Born Identity.\nBrad Pitt.\nCome on.\nAngelina Jolie.\nAll right, enough of that.\nUm, so this is Mac OS10 running on Intel processors.\n",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 3,
+      "examples": [
+        "We want to",
+        "we want to"
+      ]
+    },
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I think"
+      ]
+    },
+    "reasoning": {
+      "count": 2,
+      "examples": [
+        "Because",
+        "that's why"
+      ]
+    },
+    "values": {
+      "count": 2,
+      "examples": [
+        "simple"
+      ]
+    },
+    "prediction": {
+      "count": 7,
+      "examples": [
+        "will be",
+        "going to be",
+        "in the future"
+      ]
+    },
+    "analogy": {
+      "count": 2,
+      "examples": [
+        "like a",
+        "just like"
+      ]
+    },
+    "story": {
+      "count": 3,
+      "examples": [
+        "years ago"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=ghdTqnYnFyg",
+  "source_type": "existing",
+  "word_count": 1034,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T14:49:08.606462"
+}

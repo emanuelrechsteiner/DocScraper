@@ -1,0 +1,39 @@
+{
+  "id": "quote_sjq_00030",
+  "title": "Quote: We've got really capable people at Apple. I made Tim [Cook] ...",
+  "speaker": "Steve Jobs",
+  "year": 2008,
+  "event": "Steve Jobs speaks out",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Management"
+  ],
+  "content": "We've got really capable people at Apple. I made Tim [Cook] COO and gave him the Mac division and he's done brilliantly. I mean, some people say, 'Oh, God, if [Jobs] got run over by a bus, Apple would be in trouble.' And, you know, I think it wouldn't be a party, but there are really capable people at Apple. And the board would have some good choices about who to pick as CEO. My job is to make the whole executive team good enough to be successors, so that's what I try to do.",
+  "full_transcript": "We've got really capable people at Apple. I made Tim [Cook] COO and gave him the Mac division and he's done brilliantly. I mean, some people say, 'Oh, God, if [Jobs] got run over by a bus, Apple would be in trouble.' And, you know, I think it wouldn't be a party, but there are really capable people at Apple. And the board would have some good choices about who to pick as CEO. My job is to make the whole executive team good enough to be successors, so that's what I try to do.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 1,
+      "examples": [
+        "I made"
+      ]
+    },
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I think"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "so that"
+      ]
+    }
+  },
+  "source_url": "http://archive.fortune.com/galleries/2008/fortune/0803/gallery.jobsqna.fortune/index.html",
+  "source_type": "verbatim_quote",
+  "word_count": 95,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

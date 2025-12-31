@@ -1,0 +1,48 @@
+{
+  "id": "anecdote_sja_story_00086",
+  "title": "Story: Today, I met Steve Jobs! It was as simple as \"Hello, I'm Ste...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "I Installed Steve Jobs’ Trampoline",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand",
+    "competition",
+    "simplicity"
+  ],
+  "content": "Today, I met Steve Jobs! It was as simple as \"Hello, I'm Steve... nice to meet you. Come on into my house.\" And with that, we walked through his front gate and through the garage to the backyard.\n[...] We set up in the back corner of the yard, and began the install, which took us three hours to complete. During the process, he would come out and check on us every 45 minutes or so, usually staying for a bit to chat about the trampoline, the company that built it, the manufacturing process, or how the trampoline could be simplified and improved upon. We didn't really get any opportunities to chat about things outside the task at hand, but it was nice that he would spend any time at all with us. He even got up to test-jump a bit too (I really, really wish I had that on video).\n[...] He finally finished talking and came around back. Rob explained a little about the satefy rules and the specifics of the install as we walked back towards the back corner of the yard. He jumped up inside the trampoline and started jumping with his daughter. It was really sweet. He jumped around inside a bit, then got out and gave some encouraging words to her and her friends. Then he paid us the install fee (plus the largest tip Rob has ever received on an install).\n\"And one more thing\" we sheepishly said; \"Can you sign our iPods???\" \n\"You don't want me to do that - it will rub off,\" he quips.\nHe looks at mine and continues, \"and that one is going to be a collectors' item soon!\" I think to myself, \"exactly!\" and say \"true, it's a classic design.\"\nThen he asks us some questions about how many of our friends have iPods and if we use iTunes Music Store and we answer honestly. I mention that I am waiting to get a new iPod with a larger hard drive (hoping that he will reveal any information on the rumored next model). He seems to pause a moment, but doesn't let any secret cats, out of any well-designed Apple bags. But, I could tell that he wanted to say something.",
+  "full_transcript": "Today, I met Steve Jobs! It was as simple as \"Hello, I'm Steve... nice to meet you. Come on into my house.\" And with that, we walked through his front gate and through the garage to the backyard.\n[...] We set up in the back corner of the yard, and began the install, which took us three hours to complete. During the process, he would come out and check on us every 45 minutes or so, usually staying for a bit to chat about the trampoline, the company that built it, the manufacturing process, or how the trampoline could be simplified and improved upon. We didn't really get any opportunities to chat about things outside the task at hand, but it was nice that he would spend any time at all with us. He even got up to test-jump a bit too (I really, really wish I had that on video).\n[...] He finally finished talking and came around back. Rob explained a little about the satefy rules and the specifics of the install as we walked back towards the back corner of the yard. He jumped up inside the trampoline and started jumping with his daughter. It was really sweet. He jumped around inside a bit, then got out and gave some encouraging words to her and her friends. Then he paid us the install fee (plus the largest tip Rob has ever received on an install).\n\"And one more thing\" we sheepishly said; \"Can you sign our iPods???\" \n\"You don't want me to do that - it will rub off,\" he quips.\nHe looks at mine and continues, \"and that one is going to be a collectors' item soon!\" I think to myself, \"exactly!\" and say \"true, it's a classic design.\"\nThen he asks us some questions about how many of our friends have iPods and if we use iTunes Music Store and we answer honestly. I mention that I am waiting to get a new iPod with a larger hard drive (hoping that he will reveal any information on the rumored next model). He seems to pause a moment, but doesn't let any secret cats, out of any well-designed Apple bags. But, I could tell that he wanted to say something.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I think"
+      ]
+    },
+    "values": {
+      "count": 1,
+      "examples": [
+        "simple"
+      ]
+    },
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "going to be"
+      ]
+    },
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "don't want"
+      ]
+    }
+  },
+  "source_url": "http://www.cultofmac.com/111862/i-installed-steve-jobs-trampoline-me-steve-stories/",
+  "source_type": "anecdote",
+  "word_count": 374,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "anecdote_sja_story_00012",
+  "title": "Story: Steve had no idea who Herb Caen was, much less the tremendou...",
+  "speaker": "Steve Jobs",
+  "year": 2010,
+  "event": "Steve Brings Tina to the Macworld Dinner Party",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand",
+    "storytelling_persuasion"
+  ],
+  "content": "Steve had no idea who Herb Caen was, much less the tremendous clout he had with hundreds of thousands of Bay Area followers who religiously read his \"Baghdad by the Bay\" daily columns. One mention in one of Herb's \"three dot\" columns could make or break your social life or even your career. So, I introduced Steve to Herb.\nHerb said, \"It's a great pleasure to meet you at last,\" and Steve's only reply was, \"how come the Chronicle is such a bad newspaper?\"\n\"It used to be a good paper,\" Herb said with a twinkle in his eyes. \"Why, what would you consider a good newspaper?\"\nThis certainly got Will Hearst attention. \"Hopefully, the Examiner,\" he laughed.\n\"I only read the San Jose Mercury,\" Steve said. \"It covers the greatest industry in the Universe like no one else.\"\n\"But Steve,\" Will interjected, \"The Mercury is in Silicon Valley so of course they cover technology more.\"\n\nSteve Jobs said: It covers the greatest industry in the Universe like no one else. | I only read the San Jose Mercury,",
+  "full_transcript": "Steve had no idea who Herb Caen was, much less the tremendous clout he had with hundreds of thousands of Bay Area followers who religiously read his \"Baghdad by the Bay\" daily columns. One mention in one of Herb's \"three dot\" columns could make or break your social life or even your career. So, I introduced Steve to Herb.\nHerb said, \"It's a great pleasure to meet you at last,\" and Steve's only reply was, \"how come the Chronicle is such a bad newspaper?\"\n\"It used to be a good paper,\" Herb said with a twinkle in his eyes. \"Why, what would you consider a good newspaper?\"\nThis certainly got Will Hearst attention. \"Hopefully, the Examiner,\" he laughed.\n\"I only read the San Jose Mercury,\" Steve said. \"It covers the greatest industry in the Universe like no one else.\"\n\"But Steve,\" Will interjected, \"The Mercury is in Silicon Valley so of course they cover technology more.\"\n\nSteve Jobs said: It covers the greatest industry in the Universe like no one else. | I only read the San Jose Mercury,",
+  "cognitive_patterns": {
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "bad"
+      ]
+    }
+  },
+  "source_url": "http://www.cultofmac.com/40455/steve-brings-tina-to-the-macworld-dinner-party-recollections/",
+  "source_type": "anecdote",
+  "word_count": 179,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

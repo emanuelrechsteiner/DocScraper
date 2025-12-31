@@ -1,0 +1,36 @@
+{
+  "id": "anecdote_sja_story_00011",
+  "title": "Story: It's Monday morning, and Jobs is onstage at the Flint Center...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "The First Time I Met Steve Jobs…",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand",
+    "competition",
+    "meetings_decision"
+  ],
+  "content": "It's Monday morning, and Jobs is onstage at the Flint Center in Cupertino, obsessing. Tomorrow the auditorium will overflow with thousands of Apple loyalists; right now he's rehearsing the killer moment where he says, \"Say hello to the new iMacs,\" and the machines glide out from behind the dark curtain and across the stage. But the current lighting leaves their translucence insufficiently vivid on the gigantic onstage screen. So Jobs wants the lights brighter and turned on earlier in the roll-out. The producer, Steph Adams, speaks into his headset, telling the backstage guys to yeah, just try it again, with the edgy tone of a man whose job consists of placating a perfectionist. No good. Jobs jogs halfway up the aisle and slouches into a center seat, his legs slung over the seat backs of the next row. \"Let's keep doing it till we get it right, O.K.?\"\nThey go again. The iMacs are still underlighted. \"No, no,\" Jobs whines, agonized. \"This isn't working at all.\"\nAnd again. Now the lights are bright enough, but they're still coming on too late. \"I'm getting tired of asking about this,\" Jobs growls.\nAgain. And finally they get it right, the five impeccably lighted iMacs gleaming as they glide forward smoothly on the giant screen. \"Oh! Right there! That's great!\" Jobs yells, elated at the very notion of a universe capable of producing these insanely beautiful machines. \"That's perfect!\" he bellows, his voice booming across the empty auditorium. \"Wooh!\"\nAnd you know what? He's right. The iMacs do look better when the lights come on earlier.\n[_Apple and Pixar: Steve's Two Jobs_ , Michael Krant, David S. Jackson, Janice Maloney and Cathy Booth, Time Magazine, 18 Oct 1999](http://content.time.com/time/world/article/0,8599,2053869,00.html)\nThe story goes that ESPN president George Bodenheimer [...] spotted Apple CEO Steve Jobs in a hallway. It seemed like a good time to introduce himself. \"I am George Bodenheimer,\" he said to Jobs. \"I run ESPN.\" Jobs just looked at him and said nothing other than \"Your phone is the dumbest fucking idea I have ever heard,\" then turned and walked away.",
+  "full_transcript": "It's Monday morning, and Jobs is onstage at the Flint Center in Cupertino, obsessing. Tomorrow the auditorium will overflow with thousands of Apple loyalists; right now he's rehearsing the killer moment where he says, \"Say hello to the new iMacs,\" and the machines glide out from behind the dark curtain and across the stage. But the current lighting leaves their translucence insufficiently vivid on the gigantic onstage screen. So Jobs wants the lights brighter and turned on earlier in the roll-out. The producer, Steph Adams, speaks into his headset, telling the backstage guys to yeah, just try it again, with the edgy tone of a man whose job consists of placating a perfectionist. No good. Jobs jogs halfway up the aisle and slouches into a center seat, his legs slung over the seat backs of the next row. \"Let's keep doing it till we get it right, O.K.?\"\nThey go again. The iMacs are still underlighted. \"No, no,\" Jobs whines, agonized. \"This isn't working at all.\"\nAnd again. Now the lights are bright enough, but they're still coming on too late. \"I'm getting tired of asking about this,\" Jobs growls.\nAgain. And finally they get it right, the five impeccably lighted iMacs gleaming as they glide forward smoothly on the giant screen. \"Oh! Right there! That's great!\" Jobs yells, elated at the very notion of a universe capable of producing these insanely beautiful machines. \"That's perfect!\" he bellows, his voice booming across the empty auditorium. \"Wooh!\"\nAnd you know what? He's right. The iMacs do look better when the lights come on earlier.\n[_Apple and Pixar: Steve's Two Jobs_ , Michael Krant, David S. Jackson, Janice Maloney and Cathy Booth, Time Magazine, 18 Oct 1999](http://content.time.com/time/world/article/0,8599,2053869,00.html)\nThe story goes that ESPN president George Bodenheimer [...] spotted Apple CEO Steve Jobs in a hallway. It seemed like a good time to introduce himself. \"I am George Bodenheimer,\" he said to Jobs. \"I run ESPN.\" Jobs just looked at him and said nothing other than \"Your phone is the dumbest fucking idea I have ever heard,\" then turned and walked away.",
+  "cognitive_patterns": {
+    "values": {
+      "count": 1,
+      "examples": [
+        "beautiful"
+      ]
+    },
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "like a"
+      ]
+    }
+  },
+  "source_url": "http://www.fastcompany.com/1776100/the-first-time-i-met-steve-jobs",
+  "source_type": "anecdote",
+  "word_count": 348,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

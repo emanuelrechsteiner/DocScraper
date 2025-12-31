@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00008",
+  "title": "Quote: I used to say that Apple should be the Sony of this business...",
+  "speaker": "Steve Jobs",
+  "year": 1998,
+  "event": "Steve Jobs: 'There's Sanity Returning'",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Apple"
+  ],
+  "content": "I used to say that Apple should be the Sony of this business, but in reality, I think Apple should be the Apple of this business.",
+  "full_transcript": "I used to say that Apple should be the Sony of this business, but in reality, I think Apple should be the Apple of this business.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I think"
+      ]
+    }
+  },
+  "source_url": "http://www.bloomberg.com/news/articles/1998-05-25/steve-jobs-theres-sanity-returning",
+  "source_type": "verbatim_quote",
+  "word_count": 26,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

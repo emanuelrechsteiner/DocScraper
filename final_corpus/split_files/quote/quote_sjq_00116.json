@@ -1,0 +1,28 @@
+{
+  "id": "quote_sjq_00116",
+  "title": "Quote: I know what it's like to have your private life painted in t...",
+  "speaker": "Steve Jobs",
+  "year": 1984,
+  "event": "The Birth of the Mac: Rolling Stone's 1984 Feature on Steve Jobs and his Whiz Kids",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Competitors"
+  ],
+  "content": "I know what it's like to have your private life painted in the worst possible light in front of a lot of people. I've learned what it's like for everyone you meet after that to sort of have preconceptions about you... It's been a character-building experience.",
+  "full_transcript": "I know what it's like to have your private life painted in the worst possible light in front of a lot of people. I've learned what it's like for everyone you meet after that to sort of have preconceptions about you... It's been a character-building experience.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 2,
+      "examples": [
+        "I know",
+        "I've learned"
+      ]
+    }
+  },
+  "source_url": "http://www.rollingstone.com/music/news/the-birth-of-the-mac-rolling-stones-1984-feature-on-steve-jobs-and-his-whiz-kids-20111006?print=true",
+  "source_type": "verbatim_quote",
+  "word_count": 46,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

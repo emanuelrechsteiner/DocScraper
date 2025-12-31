@@ -1,0 +1,39 @@
+{
+  "id": "quote_sjq_00093",
+  "title": "Quote: I think death is the most wonderful invention of life. It pu...",
+  "speaker": "Steve Jobs",
+  "year": 1985,
+  "event": "Playboy Interview: Steve Jobs",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Philosophy"
+  ],
+  "content": "I think death is the most wonderful invention of life. It purges the system of these old models that are obsolete. I think that's one of Apple's challenges, really. When two young people walk in with the next thing, are we going to embrace it and say this is fantastic? Are we going to be willing to drop our models, or are we going to explain it away? I think we'll do better, because we're completely aware of it and we make it a priority.",
+  "full_transcript": "I think death is the most wonderful invention of life. It purges the system of these old models that are obsolete. I think that's one of Apple's challenges, really. When two young people walk in with the next thing, are we going to embrace it and say this is fantastic? Are we going to be willing to drop our models, or are we going to explain it away? I think we'll do better, because we're completely aware of it and we make it a priority.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 3,
+      "examples": [
+        "I think"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "going to be"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20120322025837/http://www.playboy.com/magazine/playboy-interview-steve-jobs",
+  "source_type": "verbatim_quote",
+  "word_count": 85,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

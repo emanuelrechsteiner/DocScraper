@@ -1,0 +1,30 @@
+{
+  "id": "anecdote_sja_story_00015",
+  "title": "Story: Jobs said he was betting the company on the machine and so i...",
+  "speaker": "Steve Jobs",
+  "year": 2009,
+  "event": "Interview: The Man Who Named the iMac and Wrote Think Different",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand",
+    "meetings_decision"
+  ],
+  "content": "Jobs said he was betting the company on the machine and so it needed a great name. He suggested one at the meeting, Segall says, but it was terrible. [It was later revealed the name was 'MacMan']\nJobs said the new computer was a Mac, so the name had to reference the Macintosh brand. The name had to make it clear the machine was designed for the internet. It also had to be applicable to several other upcoming products. And it had to be quick: the packaging needed to be ready in a week.\nSegall says he came back with five names. Four were ringers, sacrificial lambs for the name he loved - iMac. \"It referenced the Mac, and the \"i\" meant internet,\" Segall says. \"But it also meant individual, imaginative and all the other things it came to stand for.\" The \"i\" prefix could also be applied to whatever other internet products Apple was working on. Jobs rejected them all, including iMac.\n\"He didn't like iMac when he saw it,\" Segall says. \"I personally liked it, so I went back again with three or four new names, but I said we still like \"iMac.\" He said: 'I don't hate it this week, but I still don't like it.'\"\nSegall didn't hear any more about the name from Jobs personally, but friends told him that Jobs was silk-screening the name on prototypes of the new computer. He was testing it out to see if it looked good. \"He rejected it twice but then it just appeared on the machine,\" Segall says, laughing. \"He never formally accepted it.\"\nWhile working on the name, Jobs purposely worked in a small, tight-knit group. He didn't want to have a lot of opinions at the table. He also didn't do any market research or testing. \"Apple in my entire time never tested a thing in print or on TV,\" Segall says. \"Everybody else tests everything.\"",
+  "full_transcript": "Jobs said he was betting the company on the machine and so it needed a great name. He suggested one at the meeting, Segall says, but it was terrible. [It was later revealed the name was 'MacMan']\nJobs said the new computer was a Mac, so the name had to reference the Macintosh brand. The name had to make it clear the machine was designed for the internet. It also had to be applicable to several other upcoming products. And it had to be quick: the packaging needed to be ready in a week.\nSegall says he came back with five names. Four were ringers, sacrificial lambs for the name he loved - iMac. \"It referenced the Mac, and the \"i\" meant internet,\" Segall says. \"But it also meant individual, imaginative and all the other things it came to stand for.\" The \"i\" prefix could also be applied to whatever other internet products Apple was working on. Jobs rejected them all, including iMac.\n\"He didn't like iMac when he saw it,\" Segall says. \"I personally liked it, so I went back again with three or four new names, but I said we still like \"iMac.\" He said: 'I don't hate it this week, but I still don't like it.'\"\nSegall didn't hear any more about the name from Jobs personally, but friends told him that Jobs was silk-screening the name on prototypes of the new computer. He was testing it out to see if it looked good. \"He rejected it twice but then it just appeared on the machine,\" Segall says, laughing. \"He never formally accepted it.\"\nWhile working on the name, Jobs purposely worked in a small, tight-knit group. He didn't want to have a lot of opinions at the table. He also didn't do any market research or testing. \"Apple in my entire time never tested a thing in print or on TV,\" Segall says. \"Everybody else tests everything.\"",
+  "cognitive_patterns": {
+    "criticism": {
+      "count": 2,
+      "examples": [
+        "terrible",
+        "don't like"
+      ]
+    }
+  },
+  "source_url": "http://www.cultofmac.com/20172/20172/",
+  "source_type": "anecdote",
+  "word_count": 321,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

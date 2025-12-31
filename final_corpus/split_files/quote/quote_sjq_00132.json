@@ -1,0 +1,28 @@
+{
+  "id": "quote_sjq_00132",
+  "title": "Quote: Some detractors like those at Listen.com say that downloadin...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "Steve Jobs on the iTunes Music Store: The Unpublished Interview",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Apple",
+    "Creativity"
+  ],
+  "content": "Some detractors like those at Listen.com say that downloading isn't the most popular feature on their music service Rhapsody.Â What's your response? Well, that's correct. Downloading sucks on their service. You download a track and you can't burn it to a CD without paying them more money--you can't put it on your MP3 player, you can't put it on multiple computers--it sucks!Â So of course nobody downloads! You pay extra to download even on top of subscription fees. No wonder they have hardly any download traffic--[they] hardly even have any subscribers.",
+  "full_transcript": "Some detractors like those at Listen.com say that downloading isn't the most popular feature on their music service Rhapsody.Â What's your response? Well, that's correct. Downloading sucks on their service. You download a track and you can't burn it to a CD without paying them more money--you can't put it on your MP3 player, you can't put it on multiple computers--it sucks!Â So of course nobody downloads! You pay extra to download even on top of subscription fees. No wonder they have hardly any download traffic--[they] hardly even have any subscribers.",
+  "cognitive_patterns": {
+    "criticism": {
+      "count": 2,
+      "examples": [
+        "sucks"
+      ]
+    }
+  },
+  "source_url": "http://www.technologizer.com/2011/12/07/steve-jobs-on-the-itunes-music-store-the-unpublished-interview/",
+  "source_type": "verbatim_quote",
+  "word_count": 91,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

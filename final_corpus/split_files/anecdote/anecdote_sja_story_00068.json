@@ -1,0 +1,28 @@
+{
+  "id": "anecdote_sja_story_00068",
+  "title": "Story: He's paid $100,000 to have the logo for NeXT Computer. Paul ...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "Insights on the writing of Steve Jobs",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand"
+  ],
+  "content": "He's paid $100,000 to have the logo for NeXT Computer. Paul Rand, who did it, who was a great designer - [Steve Jobs] said, \"I want you to design a business card for me.\" It was \"Steven P. Jobs.\" And they fought over whether the period after the P should be under the P, which is what you could do with bitmap displays, or if it should be right afterward, which was the normal way of doing it.\nAnd they fought so badly that Paul Rand would not surrender, and Steve Jobs had it done his own way. This is the passion for detail and perfection that is usually considered a micromanaging passion, but he does connect it, too, to the broad vision. And the broad vision is... I mean, look, the whole desktop publishing industry comes out of the fact that he cared about fonts.",
+  "full_transcript": "He's paid $100,000 to have the logo for NeXT Computer. Paul Rand, who did it, who was a great designer - [Steve Jobs] said, \"I want you to design a business card for me.\" It was \"Steven P. Jobs.\" And they fought over whether the period after the P should be under the P, which is what you could do with bitmap displays, or if it should be right afterward, which was the normal way of doing it.\nAnd they fought so badly that Paul Rand would not surrender, and Steve Jobs had it done his own way. This is the passion for detail and perfection that is usually considered a micromanaging passion, but he does connect it, too, to the broad vision. And the broad vision is... I mean, look, the whole desktop publishing industry comes out of the fact that he cared about fonts.",
+  "cognitive_patterns": {
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "bad"
+      ]
+    }
+  },
+  "source_url": "http://fortune.com/2011/12/27/insights-on-the-writing-of-steve-jobs/",
+  "source_type": "anecdote",
+  "word_count": 146,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

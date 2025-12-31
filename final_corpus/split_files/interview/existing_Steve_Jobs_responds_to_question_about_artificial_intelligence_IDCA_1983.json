@@ -1,0 +1,47 @@
+{
+  "id": "existing_Steve_Jobs_responds_to_question_about_artificial_intelligence_IDCA_1983",
+  "title": "Steve Jobs responds to question about artificial intelligence, IDCA, 1983",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "interview",
+  "era": null,
+  "topics": [
+    "Mac",
+    "Technology",
+    "Philosophy"
+  ],
+  "content": "# Steve Jobs responds to question about artificial intelligence, IDCA, 1983\n\n**Source**: https://www.youtube.com/watch?v=tkzGtGzXIEc\n\n**Transcribed**: 2025-12-26 16:20\n\n---\n\n**[Speaker 1]**: And so we're finding the way we've built computers in the past isn't working for the kinds of things we want to do in the future.\nAnd we're examining new architectures.\nThese fancy words like non-von Neumann machines, etc.\nAnd what we're doing is we're starting to look to the human brain.\nHow is the human brain architected?\nAnd we're finding that computers are very good at doing very simple things extremely accurately and the human mind is very good at doing very complex things adequately.\n\nAnd there's a ton of people now starting to look to the brain as a model of an architecture to build a computer.\nThe main differentiation that exists now between the two machines, and I'm going to use the word machine to describe the brain for a moment, is that man is self-conscious, obviously.\nWe are conscious that we're conscious.\nI am thinking.\nAnd to our knowledge, no computer or any even of the high primates has yet to say, I am thinking.\nAnd so a tremendous amount of work is going on in the artificial intelligence community to try to understand what self-consciousness is, to try to understand if a computer can ever be self-conscious.\n\nBut I think the biggest thing that motivates a lot of us is unlike what we just heard, we don't know.\nWe honestly don't know whether we are more than just a machine.\nAnd we are building better and better computers, we're running up against roadblocks.\nA lot of people are spending the best parts of their lives right now to try to understand the architecture of the brain and how we can make better and better machines to emulate it.\nAnd I actually think by the end of our lifetimes, we're going to know the answer to this question.\nAnd that's what's driving a lot of us.\n",
+  "full_transcript": "# Steve Jobs responds to question about artificial intelligence, IDCA, 1983\n\n**Source**: https://www.youtube.com/watch?v=tkzGtGzXIEc\n\n**Transcribed**: 2025-12-26 16:20\n\n---\n\n**[Speaker 1]**: And so we're finding the way we've built computers in the past isn't working for the kinds of things we want to do in the future.\nAnd we're examining new architectures.\nThese fancy words like non-von Neumann machines, etc.\nAnd what we're doing is we're starting to look to the human brain.\nHow is the human brain architected?\nAnd we're finding that computers are very good at doing very simple things extremely accurately and the human mind is very good at doing very complex things adequately.\n\nAnd there's a ton of people now starting to look to the brain as a model of an architecture to build a computer.\nThe main differentiation that exists now between the two machines, and I'm going to use the word machine to describe the brain for a moment, is that man is self-conscious, obviously.\nWe are conscious that we're conscious.\nI am thinking.\nAnd to our knowledge, no computer or any even of the high primates has yet to say, I am thinking.\nAnd so a tremendous amount of work is going on in the artificial intelligence community to try to understand what self-consciousness is, to try to understand if a computer can ever be self-conscious.\n\nBut I think the biggest thing that motivates a lot of us is unlike what we just heard, we don't know.\nWe honestly don't know whether we are more than just a machine.\nAnd we are building better and better computers, we're running up against roadblocks.\nA lot of people are spending the best parts of their lives right now to try to understand the architecture of the brain and how we can make better and better machines to emulate it.\nAnd I actually think by the end of our lifetimes, we're going to know the answer to this question.\nAnd that's what's driving a lot of us.\n",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 1,
+      "examples": [
+        "we want to"
+      ]
+    },
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I think"
+      ]
+    },
+    "values": {
+      "count": 1,
+      "examples": [
+        "simple"
+      ]
+    },
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "in the future"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=tkzGtGzXIEc",
+  "source_type": "existing",
+  "word_count": 329,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T14:49:09.441300"
+}

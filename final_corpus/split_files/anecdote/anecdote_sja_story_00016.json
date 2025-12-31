@@ -1,0 +1,27 @@
+{
+  "id": "anecdote_sja_story_00016",
+  "title": "Story: Apparently, Jobs was asked to contribute an item to a time c...",
+  "speaker": "Steve Jobs",
+  "year": 2012,
+  "event": "The story of a lost time capsule containing Steve Jobs’ Lisa mouse",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "marketing_brand"
+  ],
+  "content": "Apparently, Jobs was asked to contribute an item to a time capsule that was being created in honor of the theme of that conference: \"The Future Isn't What It Used to Be\" _(note: in Aspen in 1983)_. He looked around to find something to add:\nAfter Steve Jobs' speech, in which he used an Apple Lisa computer to control what Celuch recalls was a 6 projector setup, John approached Jobs and asked for something that he could include in the time capsule.\nJobs thought about it for a few seconds and then unplugged the mouse from the Lisa. Celuch recalls that he was amused by the manner in which he was handed the mouse, as Jobs held the mouse by its cord, almost as one would hold a real mouse by the tail. So into the time capsule the Lisa mouse went, where it was buried at the end of the conference to be unearthed about 20 years later.\nBut that time capsule was never dug up and its location is now a mystery. The land changed hands, improvements were made and the capsule was lost.\n\nSteve Jobs said: The Future Isn't What It Used to Be",
+  "full_transcript": "Apparently, Jobs was asked to contribute an item to a time capsule that was being created in honor of the theme of that conference: \"The Future Isn't What It Used to Be\" _(note: in Aspen in 1983)_. He looked around to find something to add:\nAfter Steve Jobs' speech, in which he used an Apple Lisa computer to control what Celuch recalls was a 6 projector setup, John approached Jobs and asked for something that he could include in the time capsule.\nJobs thought about it for a few seconds and then unplugged the mouse from the Lisa. Celuch recalls that he was amused by the manner in which he was handed the mouse, as Jobs held the mouse by its cord, almost as one would hold a real mouse by the tail. So into the time capsule the Lisa mouse went, where it was buried at the end of the conference to be unearthed about 20 years later.\nBut that time capsule was never dug up and its location is now a mystery. The land changed hands, improvements were made and the capsule was lost.\n\nSteve Jobs said: The Future Isn't What It Used to Be",
+  "cognitive_patterns": {
+    "prediction": {
+      "count": 2,
+      "examples": [
+        "The Future Is"
+      ]
+    }
+  },
+  "source_url": "http://thenextweb.com/apple/2012/10/04/the-story-of-a-lost-time-capsule-containing-steve-jobs-lisa-mouse/",
+  "source_type": "anecdote",
+  "word_count": 197,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

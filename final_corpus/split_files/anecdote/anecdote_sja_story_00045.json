@@ -1,0 +1,28 @@
+{
+  "id": "anecdote_sja_story_00045",
+  "title": "Story: I bumped into Steve at the Palo Alto Whole Foods near both o...",
+  "speaker": "Steve Jobs",
+  "year": 2012,
+  "event": "What are the best stories about people randomly meeting Steve Jobs?",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "leadership_pressure",
+    "marketing_brand"
+  ],
+  "content": "I bumped into Steve at the Palo Alto Whole Foods near both of our homes. He was in front of me in line paying for his groceries. It was the express checkout and he was wearing his traditional black turtle-neck. This was back in the early 2000s.\nHere was a very wealthy, smart guy arguing with the cashier about what the correct change was for his purchase. He was demanding that he got another quarter ($0.25) for his change. This discussion went on for several minutes and held up the line so much that everyone behind him (including us) were getting annoyed.\nI guess Steve had to be right. The cashier gave him a quarter and he walked away.",
+  "full_transcript": "I bumped into Steve at the Palo Alto Whole Foods near both of our homes. He was in front of me in line paying for his groceries. It was the express checkout and he was wearing his traditional black turtle-neck. This was back in the early 2000s.\nHere was a very wealthy, smart guy arguing with the cashier about what the correct change was for his purchase. He was demanding that he got another quarter ($0.25) for his change. This discussion went on for several minutes and held up the line so much that everyone behind him (including us) were getting annoyed.\nI guess Steve had to be right. The cashier gave him a quarter and he walked away.",
+  "cognitive_patterns": {
+    "story": {
+      "count": 1,
+      "examples": [
+        "back in"
+      ]
+    }
+  },
+  "source_url": "https://www.quora.com/What-are-the-best-stories-about-people-randomly-meeting-Steve-Jobs/answer/Roy-Pereira",
+  "source_type": "anecdote",
+  "word_count": 119,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

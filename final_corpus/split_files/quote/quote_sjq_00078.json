@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00078",
+  "title": "Quote: I saw a video tape that we weren't supposed to see. It was p...",
+  "speaker": "Steve Jobs",
+  "year": 1985,
+  "event": "Playboy Interview: Steve Jobs",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Competitors"
+  ],
+  "content": "I saw a video tape that we weren't supposed to see. It was prepared for the Joint Chiefs of Staff. By watching the tape, we discovered that, at least as of a few years ago, every tactical nuclear weapon in Europe manned by U.S. personnel was targeted by an Apple II computer. Now, we didn't sell computers to the military; they went out and bought them at a dealer's, I guess. But it didn't make us feel good to know that our computers were being used to target nuclear weapons in Europe. The only bright side of it was that at least they weren't [Radio Shack] TRS-80s! Thank God for that.",
+  "full_transcript": "I saw a video tape that we weren't supposed to see. It was prepared for the Joint Chiefs of Staff. By watching the tape, we discovered that, at least as of a few years ago, every tactical nuclear weapon in Europe manned by U.S. personnel was targeted by an Apple II computer. Now, we didn't sell computers to the military; they went out and bought them at a dealer's, I guess. But it didn't make us feel good to know that our computers were being used to target nuclear weapons in Europe. The only bright side of it was that at least they weren't [Radio Shack] TRS-80s! Thank God for that.",
+  "cognitive_patterns": {
+    "story": {
+      "count": 1,
+      "examples": [
+        "years ago"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20120322025837/http://www.playboy.com/magazine/playboy-interview-steve-jobs",
+  "source_type": "verbatim_quote",
+  "word_count": 111,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

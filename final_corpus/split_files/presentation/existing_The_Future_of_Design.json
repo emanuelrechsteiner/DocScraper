@@ -1,0 +1,41 @@
+{
+  "id": "existing_The_Future_of_Design",
+  "title": "The Future of Design",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "presentation",
+  "era": null,
+  "topics": [
+    "Design",
+    "Innovation",
+    "Technology"
+  ],
+  "content": "# The Future of Design\n\n**Source**: https://www.youtube.com/watch?v=xNqs_S-zEBY\n\n**Transcribed**: 2025-12-26 13:28\n\n---\n\n**[Speaker 1]**: Right now we interact with computers in a very unnatural sort of 2D way.\nAnd we're trying to create these 3D objects using a variety of 2D tools.\nAnd it it it just it doesn't feel natural, it doesn't feel normal the way you should do things.\nSo we started playing around with the idea and using a few of things that are available out there such as the Leap Motion and Siemens NX, which is what we use to design the rocket.\nAnd we wrote some code to integrate the two and we started off with what you see uh here, which is a wireframe of the Merlin rocket engine.\nAnd and what I can do is I can I'm going to grab it and I can rotate it in multiple dimensions.\n\nAnd then what I can do is I can put another hand in there and I can zoom or I can zoom in and out on the on the wireframe.\nAnd then I can also translate it.\nSo I can move it around the screen.\nAnd then zoom and translate.\nAnd this is what we we started off with a few months ago.\n\nAnd you can you can also spin it and then catch it.\nSo this is kind of fun, a fun way to interface with what is really a very complex model.\n\nNow we'll go to go from this to what we're able to advance to a few weeks after the wireframe, which is to to actually use a a full 3D uh CAD model of the engine.\n\nSo here what you're seeing is the actual interaction with the CAD software, manipulating the real 3D model of the Merlin engine just using hand gestures.\nIf you can just go in there and do what you need to do, just understanding the fundamentals of how the things should work as opposed to figure out how to make the computer make it work, then you can you can achieve a lot more in a lot shorter period of time.\nSo then we went to a a 3D projection.\nWe started off with the kind of 3D projection that you're familiar with in the movies where you use 3D glasses.\n\nWe also did a free standing glass projection, which is what the sort of technology that was used in the Iron Man movies.\nAnd then finally we used the the Oculus Rift, which is immersive virtual reality that actually tracks your head position and you really are moving around the object and feels like it's right there in front of you.\nNow let's use this for an actual component on the rocket, which is a cryogenic valve housing.\nYou can really apply your intuition and take something from your mind to a physical object with far greater ease than we currently do.\nNow that we've gotten it the object out of our head and into the computer, how do we get it out of the computer and into reality?\nSo we're actually going to print this with a 3D laser metal printer.\n\nSo the way that the 3D printer works is it lays down fine particles of either titanium or inconel.\nAnd then it goes over it with a laser and melts that those tiny particles onto the prior layer.\nSo it builds it up like just layer by layer.\n\nSo I I I believe we're on the verge of a major breakthrough in design and manufacturing in being able to take the the concept of something from your mind, translate that into a 3D object really intuitively uh on the computer and then take that that virtual 3D object and be able to to make it real just by printing it.\nSo it it's it's going to revolutionize design and manufacturing in the 21st century.\n",
+  "full_transcript": "# The Future of Design\n\n**Source**: https://www.youtube.com/watch?v=xNqs_S-zEBY\n\n**Transcribed**: 2025-12-26 13:28\n\n---\n\n**[Speaker 1]**: Right now we interact with computers in a very unnatural sort of 2D way.\nAnd we're trying to create these 3D objects using a variety of 2D tools.\nAnd it it it just it doesn't feel natural, it doesn't feel normal the way you should do things.\nSo we started playing around with the idea and using a few of things that are available out there such as the Leap Motion and Siemens NX, which is what we use to design the rocket.\nAnd we wrote some code to integrate the two and we started off with what you see uh here, which is a wireframe of the Merlin rocket engine.\nAnd and what I can do is I can I'm going to grab it and I can rotate it in multiple dimensions.\n\nAnd then what I can do is I can put another hand in there and I can zoom or I can zoom in and out on the on the wireframe.\nAnd then I can also translate it.\nSo I can move it around the screen.\nAnd then zoom and translate.\nAnd this is what we we started off with a few months ago.\n\nAnd you can you can also spin it and then catch it.\nSo this is kind of fun, a fun way to interface with what is really a very complex model.\n\nNow we'll go to go from this to what we're able to advance to a few weeks after the wireframe, which is to to actually use a a full 3D uh CAD model of the engine.\n\nSo here what you're seeing is the actual interaction with the CAD software, manipulating the real 3D model of the Merlin engine just using hand gestures.\nIf you can just go in there and do what you need to do, just understanding the fundamentals of how the things should work as opposed to figure out how to make the computer make it work, then you can you can achieve a lot more in a lot shorter period of time.\nSo then we went to a a 3D projection.\nWe started off with the kind of 3D projection that you're familiar with in the movies where you use 3D glasses.\n\nWe also did a free standing glass projection, which is what the sort of technology that was used in the Iron Man movies.\nAnd then finally we used the the Oculus Rift, which is immersive virtual reality that actually tracks your head position and you really are moving around the object and feels like it's right there in front of you.\nNow let's use this for an actual component on the rocket, which is a cryogenic valve housing.\nYou can really apply your intuition and take something from your mind to a physical object with far greater ease than we currently do.\nNow that we've gotten it the object out of our head and into the computer, how do we get it out of the computer and into reality?\nSo we're actually going to print this with a 3D laser metal printer.\n\nSo the way that the 3D printer works is it lays down fine particles of either titanium or inconel.\nAnd then it goes over it with a laser and melts that those tiny particles onto the prior layer.\nSo it builds it up like just layer by layer.\n\nSo I I I believe we're on the verge of a major breakthrough in design and manufacturing in being able to take the the concept of something from your mind, translate that into a 3D object really intuitively uh on the computer and then take that that virtual 3D object and be able to to make it real just by printing it.\nSo it it's it's going to revolutionize design and manufacturing in the 21st century.\n",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I believe"
+      ]
+    },
+    "values": {
+      "count": 1,
+      "examples": [
+        "integrate"
+      ]
+    },
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "The Future of"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=xNqs_S-zEBY",
+  "source_type": "existing",
+  "word_count": 651,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T14:49:09.106132"
+}

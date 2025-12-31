@@ -1,0 +1,47 @@
+{
+  "id": "quote_sjq_00042",
+  "title": "Quote: That's the moment that an artist really decides who he or sh...",
+  "speaker": "Steve Jobs",
+  "year": 1998,
+  "event": "The Three Faces Of Steve",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Philosophy"
+  ],
+  "content": "That's the moment that an artist really decides who he or she is. If they keep on risking failure, they're still artists. Dylan and Picasso were always risking failure. This Apple thing is that way for me. I don't want to fail, of course. But even though I didn't know how bad things really were, I still had a lot to think about before I said yes. I had to consider the implications for Pixar, for my family, for my reputation. I decided that I didn't really care, because this is what I want to do. If I try my best and fail, well, I tried my best. What makes you become conservative is realizing that you have something to lose. Remember _The Whole Earth Catalog_? The last edition had a photo on the back cover of a remote country road you might find yourself on while hitchhiking up to Oregon. It was a beautiful shot, and it had a caption that really grabbed me. It said: 'Stay hungry. Stay foolish.' It wasn't an ad for anything--just one of Stewart Brand's profound statements. It's wisdom. 'Stay hungry. Stay foolish.'",
+  "full_transcript": "That's the moment that an artist really decides who he or she is. If they keep on risking failure, they're still artists. Dylan and Picasso were always risking failure. This Apple thing is that way for me. I don't want to fail, of course. But even though I didn't know how bad things really were, I still had a lot to think about before I said yes. I had to consider the implications for Pixar, for my family, for my reputation. I decided that I didn't really care, because this is what I want to do. If I try my best and fail, well, I tried my best. What makes you become conservative is realizing that you have something to lose. Remember _The Whole Earth Catalog_? The last edition had a photo on the back cover of a remote country road you might find yourself on while hitchhiking up to Oregon. It was a beautiful shot, and it had a caption that really grabbed me. It said: 'Stay hungry. Stay foolish.' It wasn't an ad for anything--just one of Stewart Brand's profound statements. It's wisdom. 'Stay hungry. Stay foolish.'",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 2,
+      "examples": [
+        "I decided",
+        "I want to"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "values": {
+      "count": 1,
+      "examples": [
+        "beautiful"
+      ]
+    },
+    "criticism": {
+      "count": 2,
+      "examples": [
+        "bad",
+        "don't want"
+      ]
+    }
+  },
+  "source_url": "http://archive.fortune.com/magazines/fortune/fortune_archive/1998/11/09/250880/index.htm",
+  "source_type": "verbatim_quote",
+  "word_count": 189,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

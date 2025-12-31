@@ -1,0 +1,30 @@
+{
+  "id": "anecdote_sja_story_00030",
+  "title": "Story: Jobs had always been unapologetic about the incompatibility ...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "What are some great stories about Steve Jobs?",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "leadership_pressure",
+    "marketing_brand",
+    "meetings_decision"
+  ],
+  "content": "Jobs had always been unapologetic about the incompatibility [between iPod and other music software than iTunes], insisting that Apple should not make iPods interoperable with competitors until its customer demand it. I once tried to get him to admit that the limitation was unfriendly to customers, but he would not bulge. He challenged me to provide an example where Apple's actions could harm a listener. Finally I came up with something.\n\"You love Bob Dylan, Steve,\" I said. \"He records with Sony, your competitor in selling muisc. What if Sony sold a really great, previously unreleased Dylan song on its music store? None of your iTunes customers could download it and listen to it on their computers or iPods. Isn't that a disadvantage?\"\n\"Bob Dylan loves us,\" said Jobs. \"He's never do that.\"\nI thought that was a fairly lame comeback. But a few months later, Dylan did okay the release of two fantastic outtakes from the legendary Blood on the Tracks sessions for online sale -on the iTunes store, not his own label Sony's store.\n[_The Perfect Thing: How the iPod Shuffles Commerce, Culture, and Coolness_ , Steven Levy, 23 Oct 2006](http://www.amazon.com/gp/product/B000MGATVC/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=allaboustevjo-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=B000MGATVC)\nI left Macromedia in the winter of 1991. About a month later I get a call from Jobs - asking me to develop for the NeXT machine.\nI tell him: \"Steve - we developed for a B&W Steve Jobs machine once before. When the NeXT is in color - give me a call.\"\nJobs then asks me \"what are you going to do?\" and I tell him that I'm consulting with Intel, Sony, JVC and Fujitsu\" and he tells me \"be careful you might turn into a dickhead\".",
+  "full_transcript": "Jobs had always been unapologetic about the incompatibility [between iPod and other music software than iTunes], insisting that Apple should not make iPods interoperable with competitors until its customer demand it. I once tried to get him to admit that the limitation was unfriendly to customers, but he would not bulge. He challenged me to provide an example where Apple's actions could harm a listener. Finally I came up with something.\n\"You love Bob Dylan, Steve,\" I said. \"He records with Sony, your competitor in selling muisc. What if Sony sold a really great, previously unreleased Dylan song on its music store? None of your iTunes customers could download it and listen to it on their computers or iPods. Isn't that a disadvantage?\"\n\"Bob Dylan loves us,\" said Jobs. \"He's never do that.\"\nI thought that was a fairly lame comeback. But a few months later, Dylan did okay the release of two fantastic outtakes from the legendary Blood on the Tracks sessions for online sale -on the iTunes store, not his own label Sony's store.\n[_The Perfect Thing: How the iPod Shuffles Commerce, Culture, and Coolness_ , Steven Levy, 23 Oct 2006](http://www.amazon.com/gp/product/B000MGATVC/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=allaboustevjo-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=B000MGATVC)\nI left Macromedia in the winter of 1991. About a month later I get a call from Jobs - asking me to develop for the NeXT machine.\nI tell him: \"Steve - we developed for a B&W Steve Jobs machine once before. When the NeXT is in color - give me a call.\"\nJobs then asks me \"what are you going to do?\" and I tell him that I'm consulting with Intel, Sony, JVC and Fujitsu\" and he tells me \"be careful you might turn into a dickhead\".",
+  "cognitive_patterns": {
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "should not"
+      ]
+    }
+  },
+  "source_url": "https://www.quora.com/What-are-some-great-stories-about-Steve-Jobs/answer/Marc-Canter",
+  "source_type": "anecdote",
+  "word_count": 281,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

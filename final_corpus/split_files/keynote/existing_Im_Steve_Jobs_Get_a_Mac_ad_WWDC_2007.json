@@ -1,0 +1,36 @@
+{
+  "id": "existing_Im_Steve_Jobs_Get_a_Mac_ad_WWDC_2007",
+  "title": "I'm Steve Jobs Get a Mac ad WWDC 2007",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "keynote",
+  "era": null,
+  "topics": [
+    "iPhone",
+    "iPod",
+    "Mac",
+    "Apple"
+  ],
+  "content": "Hello everyone.\nI'm Steve Jobs.\nYes, that's right, it's me.\nChief executive of Apple Inc, One Infinite Loop, Cupertino, California 95014.\nI know the address, that's how you know it's me, Steve Jobs.\nWell, I've got some big news this year, and I want the whole world to hear it.\nI quit.\n\nYes, that's right.\nI'm resigning effective immediately, and what's more, I'm shutting down all of Apple.\nNow, I know this comes as a surprise to some of you, but if you think about it, you'll see I really didn't have a choice.\nI mean, Vista's been performing so well, uh, you know, they've sold tens of dozens of copies.\nIt was so clear to me that Leopard was just going to get lost in all of that wow.\nAnd then I got my iPod killer.\nThe Zune.\nLook at this baby, huh?\nBrown.\nNow, I'm sure you'd agree that it's time for Apple to wave the white flag and concede defeat to the boys up in Redmond, Washington.\nNow, don't shed tears over the iPhone and all that other junk we talked about.\nJust carry those big brains of yours up out of the Mascarpone center and go on home.\nYou're no longer needed.\nPC.\nBut but hey, oh, hi Mac.\nWhat's what's what's going on?\nHow are you?\nAgain, really?\nWhy?\nI thought we talked about this last year.\nYou you think these people are really going to believe that you're Steve Jobs?\nYou're right.\nYou're right.",
+  "full_transcript": "# I'm Steve Jobs Get a Mac ad WWDC 2007\n\n**Source**: https://www.youtube.com/watch?v=7vIrnw3mtxg\n\n**Transcribed**: 2025-12-26 11:20\n\n---\n\n**[Steve Jobs]**: Hello everyone.\nI'm Steve Jobs.\nYes, that's right, it's me.\nChief executive of Apple Inc, One Infinite Loop, Cupertino, California 95014.\nI know the address, that's how you know it's me, Steve Jobs.\nWell, I've got some big news this year, and I want the whole world to hear it.\nI quit.\n\nYes, that's right.\nI'm resigning effective immediately, and what's more, I'm shutting down all of Apple.\nNow, I know this comes as a surprise to some of you, but if you think about it, you'll see I really didn't have a choice.\nI mean, Vista's been performing so well, uh, you know, they've sold tens of dozens of copies.\nIt was so clear to me that Leopard was just going to get lost in all of that wow.\nAnd then I got my iPod killer.\nThe Zune.\nLook at this baby, huh?\nBrown.\nNow, I'm sure you'd agree that it's time for Apple to wave the white flag and concede defeat to the boys up in Redmond, Washington.\nNow, don't shed tears over the iPhone and all that other junk we talked about.\nJust carry those big brains of yours up out of the Mascarpone center and go on home.\nYou're no longer needed.\nPC.\nBut but hey, oh, hi Mac.\nWhat's what's what's going on?\nHow are you?\nAgain, really?\nWhy?\nI thought we talked about this last year.\nYou you think these people are really going to believe that you're Steve Jobs?\nYou're right.\nYou're right.\n\n**[Phil Schiller]**: Hello, I'm Phil Schiller.\n",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 2,
+      "examples": [
+        "I know"
+      ]
+    },
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "going to be"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=7vIrnw3mtxg",
+  "source_type": "existing",
+  "word_count": 274,
+  "steve_jobs_percentage": 91.24,
+  "processed_at": "2025-12-31T14:49:08.398458"
+}

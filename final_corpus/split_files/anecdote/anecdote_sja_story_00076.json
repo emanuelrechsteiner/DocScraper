@@ -1,0 +1,31 @@
+{
+  "id": "anecdote_sja_story_00076",
+  "title": "Story: When Steve tried to hire me I said, \" I don't like having a ...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "When Steve tried to hire me I said...",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [],
+  "content": "When Steve tried to hire me I said, \" I don't like having a boss.\"\nHe said, \"A lot of people say working for me is like not having a boss.\"\nYes, it's a true story.",
+  "full_transcript": "When Steve tried to hire me I said, \" I don't like having a boss.\"\nHe said, \"A lot of people say working for me is like not having a boss.\"\nYes, it's a true story.",
+  "cognitive_patterns": {
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "don't like"
+      ]
+    },
+    "story": {
+      "count": 1,
+      "examples": [
+        "true story"
+      ]
+    }
+  },
+  "source_url": "https://twitter.com/#!/wilshipley/status/107555737575763968",
+  "source_type": "anecdote",
+  "word_count": 36,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

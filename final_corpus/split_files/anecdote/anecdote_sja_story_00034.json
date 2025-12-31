@@ -1,0 +1,29 @@
+{
+  "id": "anecdote_sja_story_00034",
+  "title": "Story: Apple opened its first retail store [...] in the Washington,...",
+  "speaker": "Steve Jobs",
+  "year": 2012,
+  "event": "Untold Stories About Steve Jobs: Friends and Colleagues Share Their Memories",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "negotiation_cost",
+    "marketing_brand"
+  ],
+  "content": "Apple opened its first retail store [...] in the Washington, D.C., suburbs, near my home. [Steve Jobs] conducted a press tour for journalists, as proud of the store as a father is of his first child. I commented that, surely, there'd only be a few stores, and asked what Apple knew about retailing.\nHe looked at me like I was crazy, said there'd be many, many stores, and that the company had spent a year tweaking the layout of the stores, using a mockup at a secret location. I teased him by asking if he, personally, despite his hard duties as CEO, had approved tiny details like the translucency of the glass and the color of the wood.\nHe said he had, of course.\n[_The Steve Jobs I Knew_ , Walt Mossberg, 5 Oct 2011](http://allthingsd.com/?p=129366&ak_action=printable)\n[...] Jobs convinced Adams to start a software business around NeXT, which he did with a $2 million investment from Sequoia Capital. But as the business was under way, Jobs called Adams again to let him know that NeXT was going to give up its workstation business and focus instead on software.\n\"He told me that the cost of hardware is coming down and we think it's a commodity. I said, 'Then why don't you sell PCs?' Jobs told me, 'I'd rather sell dog s- than PCs.'\"\nAdams says he has many memories of Jobs from those days at NeXT - how Jobs, a vegan, would pass by engineers enjoying their Subway sandwiches and comment, \"Oh, the smell of burnt animal flesh. How delightful.\" In 1986, Jobs dressed up as Santa Claus and handed out $100 bills to employees. Adams also said Jobs was constantly telling employees who had screwed up or done something he didn't like to \"fire yourself.\" Was Jobs serious? \"Well, if you didn't get a termination notice then you knew he was only kidding.\"",
+  "full_transcript": "Apple opened its first retail store [...] in the Washington, D.C., suburbs, near my home. [Steve Jobs] conducted a press tour for journalists, as proud of the store as a father is of his first child. I commented that, surely, there'd only be a few stores, and asked what Apple knew about retailing.\nHe looked at me like I was crazy, said there'd be many, many stores, and that the company had spent a year tweaking the layout of the stores, using a mockup at a secret location. I teased him by asking if he, personally, despite his hard duties as CEO, had approved tiny details like the translucency of the glass and the color of the wood.\nHe said he had, of course.\n[_The Steve Jobs I Knew_ , Walt Mossberg, 5 Oct 2011](http://allthingsd.com/?p=129366&ak_action=printable)\n[...] Jobs convinced Adams to start a software business around NeXT, which he did with a $2 million investment from Sequoia Capital. But as the business was under way, Jobs called Adams again to let him know that NeXT was going to give up its workstation business and focus instead on software.\n\"He told me that the cost of hardware is coming down and we think it's a commodity. I said, 'Then why don't you sell PCs?' Jobs told me, 'I'd rather sell dog s- than PCs.'\"\nAdams says he has many memories of Jobs from those days at NeXT - how Jobs, a vegan, would pass by engineers enjoying their Subway sandwiches and comment, \"Oh, the smell of burnt animal flesh. How delightful.\" In 1986, Jobs dressed up as Santa Claus and handed out $100 bills to employees. Adams also said Jobs was constantly telling employees who had screwed up or done something he didn't like to \"fire yourself.\" Was Jobs serious? \"Well, if you didn't get a termination notice then you knew he was only kidding.\"",
+  "cognitive_patterns": {
+    "values": {
+      "count": 1,
+      "examples": [
+        "delight"
+      ]
+    }
+  },
+  "source_url": "http://www.forbes.com/sites/connieguglielmo/2012/10/03/untold-stories-about-steve-jobs-friends-and-colleagues-share-their-memories/",
+  "source_type": "anecdote",
+  "word_count": 313,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

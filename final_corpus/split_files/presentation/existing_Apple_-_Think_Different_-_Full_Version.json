@@ -1,0 +1,28 @@
+{
+  "id": "existing_Apple_-_Think_Different_-_Full_Version",
+  "title": "Apple - Think Different - Full Version",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "presentation",
+  "era": null,
+  "topics": [
+    "Apple"
+  ],
+  "content": "# Apple - Think Different - Full Version\n\n**Source**: https://www.youtube.com/watch?v=5sMBhDv4sik\n\n**Transcribed**: 2025-12-26 11:13\n\n---\n\n**[Speaker 1]**: Here's to the crazy ones, the misfits, the rebels, the troublemakers, the round pegs in the square holes, the ones who see things differently. They're not fond of rules, and they have no respect for the status quo.\n\nYou can quote them, disagree with them, glorify or vilify them. About the only thing you can't do is ignore them, because they change things. They push the human race forward. And while some may see them as the crazy ones, we see genius.\n\nBecause the people who are crazy enough to think they can change the world are the ones who do.\n",
+  "full_transcript": "# Apple - Think Different - Full Version\n\n**Source**: https://www.youtube.com/watch?v=5sMBhDv4sik\n\n**Transcribed**: 2025-12-26 11:13\n\n---\n\n**[Speaker 1]**: Here's to the crazy ones, the misfits, the rebels, the troublemakers, the round pegs in the square holes, the ones who see things differently. They're not fond of rules, and they have no respect for the status quo.\n\nYou can quote them, disagree with them, glorify or vilify them. About the only thing you can't do is ignore them, because they change things. They push the human race forward. And while some may see them as the crazy ones, we see genius.\n\nBecause the people who are crazy enough to think they can change the world are the ones who do.\n",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 2,
+      "examples": [
+        "because",
+        "Because"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=5sMBhDv4sik",
+  "source_type": "existing",
+  "word_count": 117,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T14:49:08.779100"
+}

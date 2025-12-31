@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00039",
+  "title": "Quote: The only purpose for me in building a company is so that it ...",
+  "speaker": "Steve Jobs",
+  "year": 1998,
+  "event": "The Three Faces Of Steve",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Creativity"
+  ],
+  "content": "The only purpose for me in building a company is so that it can make products. Of course, building a very strong company and a foundation of talent and culture is essential over the long run to keep making great products. On the other hand, to me, the company is one of humanity's most amazing inventions. It's totally abstract. Sure, you have to build something with bricks and mortar to put the people in, but basically a company is this abstract construct we've invented, and it's incredibly powerful.",
+  "full_transcript": "The only purpose for me in building a company is so that it can make products. Of course, building a very strong company and a foundation of talent and culture is essential over the long run to keep making great products. On the other hand, to me, the company is one of humanity's most amazing inventions. It's totally abstract. Sure, you have to build something with bricks and mortar to put the people in, but basically a company is this abstract construct we've invented, and it's incredibly powerful.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "so that"
+      ]
+    }
+  },
+  "source_url": "http://archive.fortune.com/magazines/fortune/fortune_archive/1998/11/09/250880/index.htm",
+  "source_type": "verbatim_quote",
+  "word_count": 88,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

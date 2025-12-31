@@ -1,0 +1,34 @@
+{
+  "id": "anecdote_sja_story_00055",
+  "title": "Story: Anyway, when the [keynote where Noah Wyle played Steve Jobs ...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "Noah Wyle on playing Steve Jobs",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand"
+  ],
+  "content": "Anyway, when the [keynote where Noah Wyle played Steve Jobs on stage] was over, he invited me to have dinner with him at a soba-noodle shop in downtown Manhattan. My wife was invited, too, along with his executive-design team. And I kick myself over what happened next. They all -I don't want to say they live in fear of him- are certainly are subservient to his will and whim. But I had no dog in the race I felt much freer to crack jokes and engage him in conversation, which surprised them a bit. At a certain point in the meal, out of nowhere, he turned to his designers and said, \"You know what I want to make?\" And they all snapped their heads around and replied, \"What, Steve? What, Steve?\"  \n\"You know those picture frames that has my kid in his baseball cap and uniform?\"  \n\"Yeah, Steve! Yeah, Steve! We know picture frames!\"  \n\"Well, I want to make a picture frame where the picture's not a picture, but a little movie of the kid swinging the bat and hitting the ball. Can we do that?\"  \n\"We can do that, Steve!\" said the designers in unison.  \n\"I'll show you what I mean.\"\nAnd he took his napkin and started sketching out the schematics and he passed the napkin around the table. They all approved the design - nobody touched it, there were no changes or suggestions. The check soon came and we started to get up the leave-and the napkin just sat there on the table. I thought to myself, \"I got to take that napkin\" and my hand was on it, but Steve called from the door and asked, \"Noah, you want to share a cab with me?\" So I put the napkin down. I could have had an Edison original.",
+  "full_transcript": "Anyway, when the [keynote where Noah Wyle played Steve Jobs on stage] was over, he invited me to have dinner with him at a soba-noodle shop in downtown Manhattan. My wife was invited, too, along with his executive-design team. And I kick myself over what happened next. They all -I don't want to say they live in fear of him- are certainly are subservient to his will and whim. But I had no dog in the race I felt much freer to crack jokes and engage him in conversation, which surprised them a bit. At a certain point in the meal, out of nowhere, he turned to his designers and said, \"You know what I want to make?\" And they all snapped their heads around and replied, \"What, Steve? What, Steve?\"  \n\"You know those picture frames that has my kid in his baseball cap and uniform?\"  \n\"Yeah, Steve! Yeah, Steve! We know picture frames!\"  \n\"Well, I want to make a picture frame where the picture's not a picture, but a little movie of the kid swinging the bat and hitting the ball. Can we do that?\"  \n\"We can do that, Steve!\" said the designers in unison.  \n\"I'll show you what I mean.\"\nAnd he took his napkin and started sketching out the schematics and he passed the napkin around the table. They all approved the design - nobody touched it, there were no changes or suggestions. The check soon came and we started to get up the leave-and the napkin just sat there on the table. I thought to myself, \"I got to take that napkin\" and my hand was on it, but Steve called from the door and asked, \"Noah, you want to share a cab with me?\" So I put the napkin down. I could have had an Edison original.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 2,
+      "examples": [
+        "I want to"
+      ]
+    },
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "don't want"
+      ]
+    }
+  },
+  "source_url": "http://fortune.com/2011/10/07/noah-wyle-on-playing-steve-jobs/",
+  "source_type": "anecdote",
+  "word_count": 302,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

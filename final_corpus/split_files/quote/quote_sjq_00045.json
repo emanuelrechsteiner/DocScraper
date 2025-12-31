@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00045",
+  "title": "Quote: On vacation recently I was reading this book by [physicist a...",
+  "speaker": "Steve Jobs",
+  "year": 1998,
+  "event": "The Three Faces Of Steve",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Philosophy"
+  ],
+  "content": "On vacation recently I was reading this book by [physicist and Nobel laureate] Richard Feynmann. He had cancer, you know. In this book he was describing one of his last operations before he died. The doctor said to him, 'Look, Richard, I'm not sure you're going to make it.' And Feynmann made the doctor promise that if it became clear he wasn't going to survive, to take away the anesthetic. Do you know why? Feynmann said, 'I want to feel what it's like to turn off.' That's a good way to put yourself in the present--to look at what's affecting you right now and be curious about it even if it's bad.",
+  "full_transcript": "On vacation recently I was reading this book by [physicist and Nobel laureate] Richard Feynmann. He had cancer, you know. In this book he was describing one of his last operations before he died. The doctor said to him, 'Look, Richard, I'm not sure you're going to make it.' And Feynmann made the doctor promise that if it became clear he wasn't going to survive, to take away the anesthetic. Do you know why? Feynmann said, 'I want to feel what it's like to turn off.' That's a good way to put yourself in the present--to look at what's affecting you right now and be curious about it even if it's bad.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 1,
+      "examples": [
+        "I want to"
+      ]
+    },
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "bad"
+      ]
+    }
+  },
+  "source_url": "http://archive.fortune.com/magazines/fortune/fortune_archive/1998/11/09/250880/index.htm",
+  "source_type": "verbatim_quote",
+  "word_count": 112,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

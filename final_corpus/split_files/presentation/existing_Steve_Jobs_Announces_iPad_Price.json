@@ -1,0 +1,39 @@
+{
+  "id": "existing_Steve_Jobs_Announces_iPad_Price",
+  "title": "Steve Jobs Announces iPad Price",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "presentation",
+  "era": null,
+  "topics": [
+    "iPad"
+  ],
+  "content": "# Steve Jobs Announces iPad Price\n\n**Source**: https://www.youtube.com/watch?v=QUuFbrjvTGw\n\n**Transcribed**: 2025-12-26 12:18\n\n---\n\n**[Speaker 1]**: an amazing product, tremendous breath.\nWhat should we price it at?\nWell, if you listen to the pundits, we're going to price it at under $1,000, which is code for $9.99.\nWhen we set out to develop the iPad, we not only had very ambitious technical goals and user interface goals, but we had a very aggressive price goal because we want to put this in the hands of lots of people.\nAnd just like we were able to meet or exceed our technical goals, we have met our cost goals.\nAnd I am thrilled to announce to you that the iPad pricing starts not at $9.99, but at just $499.\n$499.\nAt $499, a lot of people can afford an iPad.",
+  "full_transcript": "# Steve Jobs Announces iPad Price\n\n**Source**: https://www.youtube.com/watch?v=QUuFbrjvTGw\n\n**Transcribed**: 2025-12-26 12:18\n\n---\n\n**[Speaker 1]**: an amazing product, tremendous breath.\nWhat should we price it at?\nWell, if you listen to the pundits, we're going to price it at under $1,000, which is code for $9.99.\nWhen we set out to develop the iPad, we not only had very ambitious technical goals and user interface goals, but we had a very aggressive price goal because we want to put this in the hands of lots of people.\nAnd just like we were able to meet or exceed our technical goals, we have met our cost goals.\nAnd I am thrilled to announce to you that the iPad pricing starts not at $9.99, but at just $499.\n$499.\nAt $499, a lot of people can afford an iPad.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 1,
+      "examples": [
+        "we want to"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "just like"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=QUuFbrjvTGw",
+  "source_type": "existing",
+  "word_count": 136,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T14:49:09.480191"
+}

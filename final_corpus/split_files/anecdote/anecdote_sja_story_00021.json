@@ -1,0 +1,45 @@
+{
+  "id": "anecdote_sja_story_00021",
+  "title": "Story: Anyway, a few moments later, Steve Jobs himself entered the ...",
+  "speaker": "Steve Jobs",
+  "year": 2012,
+  "event": "How Steve Jobs Almost Leaked The Original iPhone's Existence Before Introducing It At MacWorld",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "negotiation_cost",
+    "marketing_brand",
+    "competition",
+    "storytelling_persuasion",
+    "simplicity",
+    "meetings_decision"
+  ],
+  "content": "Anyway, a few moments later, Steve Jobs himself entered the giant Apple boardroom, threw his feet up on the table, and got to the meat of the matter.\n[...] Jobs wanted to know how big we were, and how long we've been doing this. He wanted to know a few more things that I can't even really remember. I remember he asked, \"Do you have any other ideas for apps you want to work on?\" I replied, genuinely, \"Well, we've got an idea for a digital photo management program...\" and he replied with a simple, \"Yeah. Don't do that one.\" Everyone in the room laughed but I had no idea why - remember, my head was still exploding - so Steven Frank had to explain to me that he meant, basically, it was already being made and, of course, it would be called iPhoto. Oh. I get it now.\nWe also seem to remember Jobs painted us a vibrant (but genuinely honest) picture of how he viewed Audion fairing against iTunes: \"It's like you guys are a little push-cart going down the railroad tracks, and we're a giant steam engine about to run you down.\"\n[...] Anyway, when it came time to conclude the point of the meeting, Jobs summed everything up in a very persuasive and powerful way: \"We want you guys to work with us. You guys have shown us that you can do a lot with a little. You guys kick ass. Your software totally kicks ass. Cabel, your marketing kicks ass. We think you do incredible work and we'd love to have you join us.\"\n[_The True Story of Audion_ , Cabel Sasser, 2007](http://www.panic.com/extras/audionstory/)\nShortly before Jobs and Apple unveiled the original iPhone at MacWorld in 2007, a group of engineers from the iPhone team went to Jobs' home to debug a problem with the phone's WiFi. At one point while the team was working, a FedEx employee buzzed outside the house to deliver a package to Jobs.\n\"Steve goes out to meet him because he has to sign for this package, but he's got the iPhone in one of his hands,\" said a former Apple employee was with the iPhone team at the time. \"Steve just walks out casually, [hides] the phone behind his back, signs the package, and the FedEx dude marches off.\"\nThe idea that Jobs would walk outside carrying an iPhone in plain sight shocked this employee, given how much effort Apple put into keeping the product secret at all costs.\n\"You have to understand, when we carried the phones to his house, we carried them in these Pelican lock boxes. These phones were never to leave Apple's campus, and Steve just casually throws it behind his back. That was the first time I saw someone casually come close to seeing the iPhone before it was announced, and he didn't even know it. If the FexEx guy had just tilted his head, he would have seen it.",
+  "full_transcript": "Anyway, a few moments later, Steve Jobs himself entered the giant Apple boardroom, threw his feet up on the table, and got to the meat of the matter.\n[...] Jobs wanted to know how big we were, and how long we've been doing this. He wanted to know a few more things that I can't even really remember. I remember he asked, \"Do you have any other ideas for apps you want to work on?\" I replied, genuinely, \"Well, we've got an idea for a digital photo management program...\" and he replied with a simple, \"Yeah. Don't do that one.\" Everyone in the room laughed but I had no idea why - remember, my head was still exploding - so Steven Frank had to explain to me that he meant, basically, it was already being made and, of course, it would be called iPhoto. Oh. I get it now.\nWe also seem to remember Jobs painted us a vibrant (but genuinely honest) picture of how he viewed Audion fairing against iTunes: \"It's like you guys are a little push-cart going down the railroad tracks, and we're a giant steam engine about to run you down.\"\n[...] Anyway, when it came time to conclude the point of the meeting, Jobs summed everything up in a very persuasive and powerful way: \"We want you guys to work with us. You guys have shown us that you can do a lot with a little. You guys kick ass. Your software totally kicks ass. Cabel, your marketing kicks ass. We think you do incredible work and we'd love to have you join us.\"\n[_The True Story of Audion_ , Cabel Sasser, 2007](http://www.panic.com/extras/audionstory/)\nShortly before Jobs and Apple unveiled the original iPhone at MacWorld in 2007, a group of engineers from the iPhone team went to Jobs' home to debug a problem with the phone's WiFi. At one point while the team was working, a FedEx employee buzzed outside the house to deliver a package to Jobs.\n\"Steve goes out to meet him because he has to sign for this package, but he's got the iPhone in one of his hands,\" said a former Apple employee was with the iPhone team at the time. \"Steve just walks out casually, [hides] the phone behind his back, signs the package, and the FedEx dude marches off.\"\nThe idea that Jobs would walk outside carrying an iPhone in plain sight shocked this employee, given how much effort Apple put into keeping the product secret at all costs.\n\"You have to understand, when we carried the phones to his house, we carried them in these Pelican lock boxes. These phones were never to leave Apple's campus, and Steve just casually throws it behind his back. That was the first time I saw someone casually come close to seeing the iPhone before it was announced, and he didn't even know it. If the FexEx guy had just tilted his head, he would have seen it.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "values": {
+      "count": 1,
+      "examples": [
+        "simple"
+      ]
+    },
+    "story": {
+      "count": 2,
+      "examples": [
+        "I remember",
+        "True Story"
+      ]
+    }
+  },
+  "source_url": "http://www.businessinsider.com/how-steve-jobs-almost-leaked-the-original-iphones-existence-2012-7",
+  "source_type": "anecdote",
+  "word_count": 495,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

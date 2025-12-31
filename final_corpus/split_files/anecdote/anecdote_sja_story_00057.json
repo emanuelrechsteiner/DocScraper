@@ -1,0 +1,27 @@
+{
+  "id": "anecdote_sja_story_00057",
+  "title": "Story: In 1988, I was self-employed as a recruiter and had referred...",
+  "speaker": "Steve Jobs",
+  "year": 2012,
+  "event": "What are the best stories about people randomly meeting Steve Jobs?",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "marketing_brand"
+  ],
+  "content": "In 1988, I was self-employed as a recruiter and had referred a number of candidates to Steve at NeXT Computer, which he subsequently hired. I had also worked at Sun Microsystems as a contract recruiter. In September of that year, Steve invited me to his offices on Deer Creek Road in Palo Alto for an informal interview. He was 45 minutes late. As soon as Steve led me into his office and closed the door, he turned and said, \"You recruited for Sun and Sun hires shitty people.\"  \n\"Well,\" I retorted, \"You hired the ones Sun didn't want.\"  \nAt that point, Steve cracked a big smile and exclaimed, \"Touché!\"\nAfter that, we had a nice chat for about twenty minutes. During this time, a crowd of NeXT employees gathered and paced outside. When Steve opened the door to escort me out, he was mobbed like a celebrity, while I was shoved aside. As I was about to exit the lobby, I heard Steve call out my name. I turned and saw Steve bending down and waving to me, childlike. I walked away thinking to myself, \"That guy can be a real jerk, but he sure is charming.\"",
+  "full_transcript": "In 1988, I was self-employed as a recruiter and had referred a number of candidates to Steve at NeXT Computer, which he subsequently hired. I had also worked at Sun Microsystems as a contract recruiter. In September of that year, Steve invited me to his offices on Deer Creek Road in Palo Alto for an informal interview. He was 45 minutes late. As soon as Steve led me into his office and closed the door, he turned and said, \"You recruited for Sun and Sun hires shitty people.\"  \n\"Well,\" I retorted, \"You hired the ones Sun didn't want.\"  \nAt that point, Steve cracked a big smile and exclaimed, \"Touché!\"\nAfter that, we had a nice chat for about twenty minutes. During this time, a crowd of NeXT employees gathered and paced outside. When Steve opened the door to escort me out, he was mobbed like a celebrity, while I was shoved aside. As I was about to exit the lobby, I heard Steve call out my name. I turned and saw Steve bending down and waving to me, childlike. I walked away thinking to myself, \"That guy can be a real jerk, but he sure is charming.\"",
+  "cognitive_patterns": {
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "like a"
+      ]
+    }
+  },
+  "source_url": "https://www.quora.com/What-are-the-best-stories-about-people-randomly-meeting-Steve-Jobs/answer/Bill-Lee-13",
+  "source_type": "anecdote",
+  "word_count": 197,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

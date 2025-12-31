@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00154",
+  "title": "Quote: My observation, is that the doers are the major thinkers. Th...",
+  "speaker": "Steve Jobs",
+  "year": 1990,
+  "event": "Steve Jobs Interview",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Management"
+  ],
+  "content": "My observation, is that the doers are the major thinkers. The people that really create the things that change this industry are both the thinker and doer in one person. And if we really go back and we examine, you know, did Leonardo have a guy off to the side that was thinking five years out in the future what he would paint or the technology he would use to paint it, of course not. Leonardo was the artist but he also mixed all his own paints. He also was a fairly good chemist. He knew about pigments, knew about human anatomy. And combining all of those skills together, the art and the science, the thinking and the doing, was what resulted in the exceptional result. And there is no difference in our industry. The people that have really made the contributions have been the thinkers and the doers. And a lot of people of course - it's very easy to take credit for the thinking. The doing is more concrete. But somebody, it's very easy to say 'oh I thought of this three years ago'. But usually when you dig a little deeper, you find that the people that really did it were also the people that really worked through the hard intellectual problems as well.",
+  "full_transcript": "My observation, is that the doers are the major thinkers. The people that really create the things that change this industry are both the thinker and doer in one person. And if we really go back and we examine, you know, did Leonardo have a guy off to the side that was thinking five years out in the future what he would paint or the technology he would use to paint it, of course not. Leonardo was the artist but he also mixed all his own paints. He also was a fairly good chemist. He knew about pigments, knew about human anatomy. And combining all of those skills together, the art and the science, the thinking and the doing, was what resulted in the exceptional result. And there is no difference in our industry. The people that have really made the contributions have been the thinkers and the doers. And a lot of people of course - it's very easy to take credit for the thinking. The doing is more concrete. But somebody, it's very easy to say 'oh I thought of this three years ago'. But usually when you dig a little deeper, you find that the people that really did it were also the people that really worked through the hard intellectual problems as well.",
+  "cognitive_patterns": {
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "in the future"
+      ]
+    },
+    "story": {
+      "count": 1,
+      "examples": [
+        "years ago"
+      ]
+    }
+  },
+  "source_url": "http://openvault.wgbh.org/catalog/7b7ae3-steve-jobs-interview",
+  "source_type": "verbatim_quote",
+  "word_count": 217,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

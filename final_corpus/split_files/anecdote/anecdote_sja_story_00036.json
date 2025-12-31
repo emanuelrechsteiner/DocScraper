@@ -1,0 +1,31 @@
+{
+  "id": "anecdote_sja_story_00036",
+  "title": "Story: In my own involvement with him, my real personal enjoyment o...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "Exclusive Q &A: Bono on Steve Jobs' Rock and Roll Spirit",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [],
+  "content": "In my own involvement with him, my real personal enjoyment of him as a man, he was a clear thinker, on lots of subjects, and I could turn to him. My actual last conversation with him was he called me because he was worried about my health, which is a clue to him. This tough guy was very tender, and he said, \"I don't like the look of you, you look worn out,\" and I said, \"What? I'm fine!\" He wouldn't listen to me.\nWhen I hurt my spine and I was in trouble, this package arrived of books and CDs and music and honey from their garden - tons of stuff arrived at the house. And so, yes, he was a captain of industry, a warrior for his companies. But I found him to be a very thoughtful friend, and a wonderfully detailed and interested parent of his kids, and lover of his wife.",
+  "full_transcript": "In my own involvement with him, my real personal enjoyment of him as a man, he was a clear thinker, on lots of subjects, and I could turn to him. My actual last conversation with him was he called me because he was worried about my health, which is a clue to him. This tough guy was very tender, and he said, \"I don't like the look of you, you look worn out,\" and I said, \"What? I'm fine!\" He wouldn't listen to me.\nWhen I hurt my spine and I was in trouble, this package arrived of books and CDs and music and honey from their garden - tons of stuff arrived at the house. And so, yes, he was a captain of industry, a warrior for his companies. But I found him to be a very thoughtful friend, and a wonderfully detailed and interested parent of his kids, and lover of his wife.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "don't like"
+      ]
+    }
+  },
+  "source_url": "http://www.rollingstone.com/music/news/exclusive-bono-on-steve-jobs-rock-and-roll-spirit-20111007",
+  "source_type": "anecdote",
+  "word_count": 155,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

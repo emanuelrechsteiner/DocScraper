@@ -1,0 +1,47 @@
+{
+  "id": "existing_Steve_JobsAndroid_versus_the_iPhone",
+  "title": "Steve Jobs:Android versus the iPhone",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "interview",
+  "era": null,
+  "topics": [
+    "iPhone",
+    "iPod"
+  ],
+  "content": "Well, that's a good question.\nYou know, it it the question is what have we done to to make sure that these uh these applications are going to be secure and and and don't uh violate user privacy and other things that uh that they could do technically.\nAnd this is a this is a big concern.\nIt is a dangerous world out there.\nThere are mobile viruses of all sorts uh that that that people have to put up to with.\nAnd so we've tried to strike a a really good path here.\nOn one side, you've got a a closed device like the iPod, uh which always works.\nYou pick it up, it always works because you don't you don't have to worry about third-party apps mucking it up.\nAnd on the other side, you've got a Windows PC where people spend a lot of time every day just getting it back up to where it's usable.\nAnd and we we want to take the best of both.\nWe want to take the reliability uh and the dependability of that iPod and we want to take the ability to run third-party apps from the PC world but without uh without the malicious applications.\nSo how are we going to do that?\nThe way we're going to do that is that the developers have to register with us and for that $99 that they pay to join the program, they actually get a electronic certificate.\nAnd that tells us who they are.\nSo if they write a malicious app, we can track them down, we can tell their parents and uh and uh uh we will know who they are.\nThe other thing that we can do, since the distribution of their applications is going to be through the App Store, if we're alerted to a malicious app that we didn't catch, we'll turn off the spigot so no more people download it.\nAnd uh so we're putting controls in place, some of which we're talking about here today and others which we'll just keep to ourselves for now to to keep the iPhone a great experience for users.\nBut we put a lot of thought into this and I think it's a real problem.\n\nWe'll do the best job we can and we'll learn as we go.\n\nThat's correct, but we think we put in good safeguards where if we miss something, we'll be alerted to it real fast by users and we'll just turn off the spigot so no more users have problems and we'll again, go talk to that developer's parents and get them to",
+  "full_transcript": "# Steve Jobs:Android versus the iPhone\n\n**Source**: https://www.youtube.com/watch?v=pqrCk7gpTsA\n\n**Transcribed**: 2025-12-26 13:05\n\n---\n\n**[Speaker 1]**: Yes, sir.\n**[Speaker 2]**: What sort of safeguards have you built in to make sure all these apps and applications that are going to be coming onto the iPhone are secure?\n**[Steve Jobs]**: Well, that's a good question.\nYou know, it it the question is what have we done to to make sure that these uh these applications are going to be secure and and and don't uh violate user privacy and other things that uh that they could do technically.\nAnd this is a this is a big concern.\nIt is a dangerous world out there.\nThere are mobile viruses of all sorts uh that that that people have to put up to with.\nAnd so we've tried to strike a a really good path here.\nOn one side, you've got a a closed device like the iPod, uh which always works.\nYou pick it up, it always works because you don't you don't have to worry about third-party apps mucking it up.\nAnd on the other side, you've got a Windows PC where people spend a lot of time every day just getting it back up to where it's usable.\nAnd and we we want to take the best of both.\nWe want to take the reliability uh and the dependability of that iPod and we want to take the ability to run third-party apps from the PC world but without uh without the malicious applications.\nSo how are we going to do that?\nThe way we're going to do that is that the developers have to register with us and for that $99 that they pay to join the program, they actually get a electronic certificate.\nAnd that tells us who they are.\nSo if they write a malicious app, we can track them down, we can tell their parents and uh and uh uh we will know who they are.\nThe other thing that we can do, since the distribution of their applications is going to be through the App Store, if we're alerted to a malicious app that we didn't catch, we'll turn off the spigot so no more people download it.\nAnd uh so we're putting controls in place, some of which we're talking about here today and others which we'll just keep to ourselves for now to to keep the iPhone a great experience for users.\nBut we put a lot of thought into this and I think it's a real problem.\n\n**[Speaker 3]**: You have anything to add to that?\n**[Speaker 4]**: Well, I mean, technically we're we're putting, you know, putting a number of different things in place from sandboxing to other technical things you want to do to protect applications and the system.\nBut primarily, you know, we're actually when people submit their applications, we'll make sure that it's not doing certain things it shouldn't be doing.\nLegally, you're obligated not to do those things as part of the limitations.\nAnd so we think both technically and on the other side, we can really, you know, protect people and we will.\n**[Steve Jobs]**: We'll do the best job we can and we'll learn as we go.\n**[Speaker 2]**: So it's not in a way you're saying it's not going to be as secure as the closed iPod platform by definition because you've got outside people coming in.\n**[Steve Jobs]**: That's correct, but we think we put in good safeguards where if we miss something, we'll be alerted to it real fast by users and we'll just turn off the spigot so no more users have problems and we'll again, go talk to that developer's parents and get them to",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 3,
+      "examples": [
+        "we want to",
+        "We want to"
+      ]
+    },
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I think"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "prediction": {
+      "count": 2,
+      "examples": [
+        "going to be"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=pqrCk7gpTsA",
+  "source_type": "existing",
+  "word_count": 623,
+  "steve_jobs_percentage": 70.47,
+  "processed_at": "2025-12-31T14:49:08.397799"
+}

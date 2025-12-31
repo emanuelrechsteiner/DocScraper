@@ -1,0 +1,33 @@
+{
+  "id": "existing_Steve_Jobs_speaks_to_the_BBC_about_Pixar_1987",
+  "title": "Steve Jobs speaks to the BBC about Pixar (1987)",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "presentation",
+  "era": null,
+  "topics": [
+    "Technology"
+  ],
+  "content": "I think it's the second only the second time that a computer animated film has ever been nominated and the first one was sort of a uh not a completely computer animated one.\nThe computer I just guess just did the in betweening.\nThe computer did the in between.\nSo this is the first time a truly computer animated film has been nominated.\nI think that's great.\nAnd I think it portends uh much more of this stuff in the future.",
+  "full_transcript": "# Steve Jobs speaks to the BBC about Pixar (1987)\n\n**Source**: https://www.youtube.com/watch?v=LFmECInypSI\n\n**Transcribed**: 2025-12-26 11:59\n\n---\n\n**[Speaker 1]**: Happy birthday Pixar and happy first anniversary.\nYou can come out and get a piece of cake and we'll bring the drinks around.\nAlso, would you uh sort of mix it up and introduce yourselves to the new people over here?\n**[Speaker 2]**: Ed Catmull, Pixar's joint vice president, opening a party to celebrate the company's first year of independent operations selling the computer.\nThey also found out today they had something else to celebrate.\nLuxo Jr. has been nominated in the 1987 Academy Awards.\n**[Speaker 3]**: The owner of the company is Apple founder Steve Jobs.\nHow did he feel about the nomination?\n**[Steve Jobs]**: I think it's the second only the second time that a computer animated film has ever been nominated and the first one was sort of a uh not a completely computer animated one.\nThe computer I just guess just did the in betweening.\nThe computer did the in between.\nSo this is the first time a truly computer animated film has been nominated.\nI think that's great.\nAnd I think it portends uh much more of this stuff in the future.\n**[Speaker 4]**: the future of the why we want to implement things in in uh hardware and computer graphics is because the basic algorithms are very, very complex.\nAnd in order to get any work done in our lifetime, we have to get a speed up now and not wait for general purpose machines to finally catch up to us.\nUh I think they'll catch up to us by the way in about 2000 or 2010.\nUh cost effectively.\nSo we've got to drop it into hardware now.\n**[Speaker 5]**: Rob Cook and I, who's one of the senior uh scientists around here, um invented a process for doing this sort of thing.\nAnd um it's somewhat radical.\nUh we've written it up for Siggraph this year finally after four years of thinking about it.\nUh but um we're currently putting it in hardware.\nAnd it should enable us to make pictures uh on the order of 100 to 1,000 times faster than a Vax.\nUh which means for the first time that the cost of the machinery is no problem is is not the driving force in making an animated film.\nUh the rendering part now becomes cheap.\nAnd what becomes expensive is the people time, the animators, the the model building and so I'm going to turn my attention to that in the future.\n**[Speaker 6]**: animation at at a at a high level of perfection is not economically feasible anymore.\nLike in the in the haydays of Disney where there were thousands of artists that you could hire very cheaply, that was wonderful.\nUh maybe not for the artists, but for Disney.\nAnd uh now it's the only way is to do it is going to be with a computer.\nSo be nice to get rid of all that trashy animation and get back to some, you know, Fantasia quality stuff.\n**[Speaker 7]**: What our business is is is visualization.\nAnd uh animation of complex processes falls out of that.\nAnd there are several steps in animation.\nOne is that you have to model what you're going to to move.\nYou have to animate it, which is adding adding the time to the model.\nAnd then you have to render the result.\nNow, the rendering of the result, which has it is the part that has taken everybody's best brains for the last 15 years.\nBut it's the least human part.\nI mean, it's physics.\nYou you say here are the light sources, here are the colors, uh here's uh here's the textures we want on the surface and the kind of glossy finish or or matte finish we want.\nUm go render it machine.\nYou want that just to happen.\nJust instantaneous if possible so that the real work of doing a a piece of art or a piece of scientific uh education is is the design of the piece and the uh uh the creation of the storyline and the the look uh and and the you know, back to human part.\nSo that's where we're headed.\n",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 3,
+      "examples": [
+        "I think"
+      ]
+    },
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "in the future"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=LFmECInypSI",
+  "source_type": "existing",
+  "word_count": 717,
+  "steve_jobs_percentage": 11.3,
+  "processed_at": "2025-12-31T14:49:08.736710"
+}

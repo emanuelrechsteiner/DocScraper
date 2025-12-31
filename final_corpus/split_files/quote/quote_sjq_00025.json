@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00025",
+  "title": "Quote: Things happen fairly slowly, you know. They do. These waves ...",
+  "speaker": "Steve Jobs",
+  "year": 2008,
+  "event": "Steve Jobs speaks out",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Prophecies"
+  ],
+  "content": "Things happen fairly slowly, you know. They do. These waves of technology, you can see them way before they happen, and you just have to choose wisely which ones you're going to surf. If you choose unwisely, then you can waste a lot of energy, but if you choose wisely it actually unfolds fairly slowly. It takes years. One of our biggest insights [years ago] was that we didn't want to get into any business where we didn't own or control the primary technology because you'll get your head handed to you.",
+  "full_transcript": "Things happen fairly slowly, you know. They do. These waves of technology, you can see them way before they happen, and you just have to choose wisely which ones you're going to surf. If you choose unwisely, then you can waste a lot of energy, but if you choose wisely it actually unfolds fairly slowly. It takes years. One of our biggest insights [years ago] was that we didn't want to get into any business where we didn't own or control the primary technology because you'll get your head handed to you.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "story": {
+      "count": 1,
+      "examples": [
+        "years ago"
+      ]
+    }
+  },
+  "source_url": "http://archive.fortune.com/galleries/2008/fortune/0803/gallery.jobsqna.fortune/index.html",
+  "source_type": "verbatim_quote",
+  "word_count": 92,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

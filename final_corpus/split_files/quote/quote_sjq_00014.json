@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00014",
+  "title": "Quote: And it comes from saying no to 1,000 things to make sure we ...",
+  "speaker": "Steve Jobs",
+  "year": 2004,
+  "event": "The Seed of Apple's Innovation",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Competitors"
+  ],
+  "content": "And it comes from saying no to 1,000 things to make sure we don't get on the wrong track or try to do too much. We're always thinking about new markets we could enter, but it's only by saying no that you can concentrate on the things that are really important.",
+  "full_transcript": "And it comes from saying no to 1,000 things to make sure we don't get on the wrong track or try to do too much. We're always thinking about new markets we could enter, but it's only by saying no that you can concentrate on the things that are really important.",
+  "cognitive_patterns": {
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "wrong"
+      ]
+    }
+  },
+  "source_url": "http://www.bloomberg.com/news/articles/2004-10-11/the-seed-of-apples-innovation",
+  "source_type": "verbatim_quote",
+  "word_count": 51,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

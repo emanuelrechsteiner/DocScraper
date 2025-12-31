@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00026",
+  "title": "Quote: It's not about pop culture, and it's not about fooling peopl...",
+  "speaker": "Steve Jobs",
+  "year": 2008,
+  "event": "Steve Jobs speaks out",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Apple"
+  ],
+  "content": "It's not about pop culture, and it's not about fooling people, and it's not about convincing people that they want something they don't. We figure out what we want. And I think we're pretty good at having the right discipline to think through whether a lot of other people are going to want it, too. That's what we get paid to do. So you can't go out and ask people, you know, what the next big [thing.] There's a great quote by Henry Ford, right? He said, 'If I'd have asked my customers what they wanted, they would have told me 'A faster horse.'",
+  "full_transcript": "It's not about pop culture, and it's not about fooling people, and it's not about convincing people that they want something they don't. We figure out what we want. And I think we're pretty good at having the right discipline to think through whether a lot of other people are going to want it, too. That's what we get paid to do. So you can't go out and ask people, you know, what the next big [thing.] There's a great quote by Henry Ford, right? He said, 'If I'd have asked my customers what they wanted, they would have told me 'A faster horse.'",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I think"
+      ]
+    }
+  },
+  "source_url": "http://archive.fortune.com/galleries/2008/fortune/0803/gallery.jobsqna.fortune/index.html",
+  "source_type": "verbatim_quote",
+  "word_count": 104,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

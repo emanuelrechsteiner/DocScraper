@@ -1,0 +1,35 @@
+{
+  "id": "new_iMac_Shootout",
+  "title": "iMac Shootout",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "presentation",
+  "era": null,
+  "topics": [
+    "Mac",
+    "Design",
+    "Technology"
+  ],
+  "content": "# iMac Shootout\n\n**Source**: /Volumes/NvME-Satechi/steve-jobs.ai/Database_Steve_Jobs/1990s/iMac Shootout.mp4\n\n**Transcribed**: 2025-12-31 10:38\n\n---\n\n**Narrator**: The iMac's superior performance is easy to benchmark, but its real power lies in its simplicity. How do you measure simplicity?\n\n**Narrator**: Meet Adam Taggart, age 26. He will be assembling a Hewlett-Packard Pavilion 8250.\n\n**Narrator**: Meet seven-year-old Johan Thomas. He'll be setting up an iMac.\n\n**Narrator**: Johan will be assisted by Brody, a border collie. Let's start the clock and see how long it takes to get from out of the box onto the internet.\n\n**Narrator**: Adam's Hewlett-Packard 8250 is based on the Intel Celeron 266 MHz processor and boasts lots of features. It's a good computer for a Wintel PC. It comes in two big boxes.\n\n**Narrator**: Johan's iMac comes in just one box, but that doesn't mean he's working with less computer. The PowerPC G3 processor that powers every iMac makes it twice as fast as Adam's PC.\n\n**Narrator**: The iMac is loaded with all the same features, plus it has built-in 100Base-T Ethernet networking and a bigger 15-inch display. More power wrapped in an all-in-one package.\n\n**Narrator**: Adam was off to a good start, but he's falling behind. He has lots of components to unpack and hook up. He needs help. Let's speed him up to make it fair.\n\n**Narrator**: The iMac's all-in-one design makes it easy for Johan and Brody. Connect the power, keyboard, mouse, and built-in modem.\n\n**Narrator**: Adam's getting confused. Putting together a PC takes concentration. He's double-checking the directions.\n\n**Narrator**: At 4 minutes and 40 seconds, Johan powers up the iMac. Time for a break.\n\n**Narrator**: Those external speakers are costing Adam time. And look at all those cables.\n\n**Narrator**: Johan is close to the finish line. Using Internet Setup Assistant, from out of the box onto the internet, he logs on at 8 minutes 15 seconds. Game over.\n\n**Narrator**: At 14 minutes 51 seconds, Adam finally powers up the Pavilion. Now might be a good time to review some of the extensive documentation that comes with every PC.\n\n**Narrator**: With all the time he saved, Johan checks his stock portfolio.\n\n**Narrator**: At 18 minutes 10 seconds, Adam locates his certificate of authenticity and starts to register Windows.\n\n**Narrator**: Do we really need to see more?\n\n**Narrator**: Adam's final time to log on is 27 minutes 39 seconds, over three times longer than Johan and Brody. Now you're probably thinking, this isn't fair. You're right. Brody helped.\n",
+  "full_transcript": "# iMac Shootout\n\n**Source**: /Volumes/NvME-Satechi/steve-jobs.ai/Database_Steve_Jobs/1990s/iMac Shootout.mp4\n\n**Transcribed**: 2025-12-31 10:38\n\n---\n\n**Narrator**: The iMac's superior performance is easy to benchmark, but its real power lies in its simplicity. How do you measure simplicity?\n\n**Narrator**: Meet Adam Taggart, age 26. He will be assembling a Hewlett-Packard Pavilion 8250.\n\n**Narrator**: Meet seven-year-old Johan Thomas. He'll be setting up an iMac.\n\n**Narrator**: Johan will be assisted by Brody, a border collie. Let's start the clock and see how long it takes to get from out of the box onto the internet.\n\n**Narrator**: Adam's Hewlett-Packard 8250 is based on the Intel Celeron 266 MHz processor and boasts lots of features. It's a good computer for a Wintel PC. It comes in two big boxes.\n\n**Narrator**: Johan's iMac comes in just one box, but that doesn't mean he's working with less computer. The PowerPC G3 processor that powers every iMac makes it twice as fast as Adam's PC.\n\n**Narrator**: The iMac is loaded with all the same features, plus it has built-in 100Base-T Ethernet networking and a bigger 15-inch display. More power wrapped in an all-in-one package.\n\n**Narrator**: Adam was off to a good start, but he's falling behind. He has lots of components to unpack and hook up. He needs help. Let's speed him up to make it fair.\n\n**Narrator**: The iMac's all-in-one design makes it easy for Johan and Brody. Connect the power, keyboard, mouse, and built-in modem.\n\n**Narrator**: Adam's getting confused. Putting together a PC takes concentration. He's double-checking the directions.\n\n**Narrator**: At 4 minutes and 40 seconds, Johan powers up the iMac. Time for a break.\n\n**Narrator**: Those external speakers are costing Adam time. And look at all those cables.\n\n**Narrator**: Johan is close to the finish line. Using Internet Setup Assistant, from out of the box onto the internet, he logs on at 8 minutes 15 seconds. Game over.\n\n**Narrator**: At 14 minutes 51 seconds, Adam finally powers up the Pavilion. Now might be a good time to review some of the extensive documentation that comes with every PC.\n\n**Narrator**: With all the time he saved, Johan checks his stock portfolio.\n\n**Narrator**: At 18 minutes 10 seconds, Adam locates his certificate of authenticity and starts to register Windows.\n\n**Narrator**: Do we really need to see more?\n\n**Narrator**: Adam's final time to log on is 27 minutes 39 seconds, over three times longer than Johan and Brody. Now you're probably thinking, this isn't fair. You're right. Brody helped.\n",
+  "cognitive_patterns": {
+    "values": {
+      "count": 2,
+      "examples": [
+        "simplicity"
+      ]
+    },
+    "prediction": {
+      "count": 2,
+      "examples": [
+        "will be"
+      ]
+    }
+  },
+  "source_url": "/Volumes/NvME-Satechi/steve-jobs.ai/Database_Steve_Jobs/1990s/iMac",
+  "source_type": "new",
+  "word_count": 406,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T14:49:10.052830"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00108",
+  "title": "Quote: I have a great respect for incremental improvement, and I've...",
+  "speaker": "Steve Jobs",
+  "year": 1994,
+  "event": "Steve Jobs in 1994: The Rolling Stone Interview",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Creativity"
+  ],
+  "content": "I have a great respect for incremental improvement, and I've done that sort of thing in my life, but I've always been attracted to the more revolutionary changes. I don't know why. Because they're harder. They're much more stressful emotionally. And you usually go through a period where everybody tells you that you've completely failed.",
+  "full_transcript": "I have a great respect for incremental improvement, and I've done that sort of thing in my life, but I've always been attracted to the more revolutionary changes. I don't know why. Because they're harder. They're much more stressful emotionally. And you usually go through a period where everybody tells you that you've completely failed.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "Because"
+      ]
+    },
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "failed"
+      ]
+    }
+  },
+  "source_url": "http://www.rollingstone.com/culture/news/steve-jobs-in-1994-the-rolling-stone-interview-20110117?print=true",
+  "source_type": "verbatim_quote",
+  "word_count": 55,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

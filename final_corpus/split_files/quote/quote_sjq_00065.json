@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00065",
+  "title": "Quote: I was very lucky to grow up in a time when music really matt...",
+  "speaker": "Steve Jobs",
+  "year": 2006,
+  "event": "Good for the Soul",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Creativity"
+  ],
+  "content": "I was very lucky to grow up in a time when music really mattered. It wasn't just something in the background; it really mattered to a generation of kids growing up. It really changed the world. I think that music faded in importance for a while, and the iPod has helped to bring music back into people's lives in a really meaningful way. Music is so deep within all of us, but it's easy to go for a day or a week or a month or a year without really listening to music. And the iPod has changed that for tens of millions of people, and that makes me really happy, because I think music is good for the soul.",
+  "full_transcript": "I was very lucky to grow up in a time when music really mattered. It wasn't just something in the background; it really mattered to a generation of kids growing up. It really changed the world. I think that music faded in importance for a while, and the iPod has helped to bring music back into people's lives in a really meaningful way. Music is so deep within all of us, but it's easy to go for a day or a week or a month or a year without really listening to music. And the iPod has changed that for tens of millions of people, and that makes me really happy, because I think music is good for the soul.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 2,
+      "examples": [
+        "I think"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20070403075607/http://www.msnbc.msn.com/id/15262121/site/newsweek/",
+  "source_type": "verbatim_quote",
+  "word_count": 120,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

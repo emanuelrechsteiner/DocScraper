@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00149",
+  "title": "Quote: Hollywood's really different than Silicon Valley. And neithe...",
+  "speaker": "Steve Jobs",
+  "year": 1999,
+  "event": "Apple and Pixar: Steve's Two Jobs",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Philosophy"
+  ],
+  "content": "Hollywood's really different than Silicon Valley. And neither understands the other at all. People up here think being creative is some guys in their late 20s and early 30s sitting around old couches drinking beer thinking up jokes. It couldn't be further from the truth. The creative process is just as disciplined as the technical process; it requires just as much talent. And yet people in Hollywood think technology is only as deep as something you buy. There's no technical culture in Hollywood, they couldn't attract and retain good engineers to save their life, because they're second class citizens down there. Just like creative people are second class citizens in Silicon Valley.",
+  "full_transcript": "Hollywood's really different than Silicon Valley. And neither understands the other at all. People up here think being creative is some guys in their late 20s and early 30s sitting around old couches drinking beer thinking up jokes. It couldn't be further from the truth. The creative process is just as disciplined as the technical process; it requires just as much talent. And yet people in Hollywood think technology is only as deep as something you buy. There's no technical culture in Hollywood, they couldn't attract and retain good engineers to save their life, because they're second class citizens down there. Just like creative people are second class citizens in Silicon Valley.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "Just like"
+      ]
+    }
+  },
+  "source_url": "http://content.time.com/time/world/article/0,8599,2053869,00.html",
+  "source_type": "verbatim_quote",
+  "word_count": 112,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

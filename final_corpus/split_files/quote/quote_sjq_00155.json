@@ -1,0 +1,34 @@
+{
+  "id": "quote_sjq_00155",
+  "title": "Quote: I remember reading an article when I was about twelve years ...",
+  "speaker": "Steve Jobs",
+  "year": 1990,
+  "event": "Steve Jobs Interview",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Creativity"
+  ],
+  "content": "I remember reading an article when I was about twelve years old. I think it might have been Scientific American, where they measured the efficiency of locomotion for all these species on planet earth. How many kilocalories did they expend to get from point A to point B? And the condor won, came in at the top of the list, surpassed everything else. And humans came in about a third of the way down the list, which was not such a great showing for the crown of creation. But somebody there had the imagination to test the efficiency of a human riding a bicycle. A human riding a bicycle blew away the condor all the way off the top of the list. And it made a really big impression on me that we humans are tool builders. And that we can fashion tools that amplify these inherent abilities that we have to spectacular magnitudes. And so for me, a computer has always been a bicycle of the mind. Something that takes us far beyond our inherent abilities. And I think we're just at the early stages of this tool.",
+  "full_transcript": "I remember reading an article when I was about twelve years old. I think it might have been Scientific American, where they measured the efficiency of locomotion for all these species on planet earth. How many kilocalories did they expend to get from point A to point B? And the condor won, came in at the top of the list, surpassed everything else. And humans came in about a third of the way down the list, which was not such a great showing for the crown of creation. But somebody there had the imagination to test the efficiency of a human riding a bicycle. A human riding a bicycle blew away the condor all the way off the top of the list. And it made a really big impression on me that we humans are tool builders. And that we can fashion tools that amplify these inherent abilities that we have to spectacular magnitudes. And so for me, a computer has always been a bicycle of the mind. Something that takes us far beyond our inherent abilities. And I think we're just at the early stages of this tool.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 2,
+      "examples": [
+        "I think"
+      ]
+    },
+    "story": {
+      "count": 2,
+      "examples": [
+        "when I was",
+        "I remember"
+      ]
+    }
+  },
+  "source_url": "http://openvault.wgbh.org/catalog/7b7ae3-steve-jobs-interview",
+  "source_type": "verbatim_quote",
+  "word_count": 189,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

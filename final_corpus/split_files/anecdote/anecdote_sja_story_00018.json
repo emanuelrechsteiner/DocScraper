@@ -1,0 +1,28 @@
+{
+  "id": "anecdote_sja_story_00018",
+  "title": "Story: Jobs could be ruthless when he talked to the labels. Kevin G...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "Steve Jobs’ Music Vision",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "marketing_brand",
+    "meetings_decision"
+  ],
+  "content": "Jobs could be ruthless when he talked to the labels. Kevin Gage, then Warner's technology vice president, remembers one key meeting at Apple's Cupertino, California headquarters where he and Vidich tried to persuade Jobs that digital rights management - virtual \"locks\" to prevent songs from being shared - was necessary to get other labels on board.\nHe was three slides into a PowerPoint presentation when Jobs, rocking in his chair, exploded into a tirade about how the music business just didn't get it. \"He said, 'You've got your head stuck up your ass' to me a number of times,\" Gage recalls. \"There's that side of Steve - but in a smooth kind of way. He never reacted to Roger [Ames, then Warner's CEO] the same way he reacted to Paul and myself, put it that way. When Roger came into the room, you saw Steve at his brightest and sharpest.\"",
+  "full_transcript": "Jobs could be ruthless when he talked to the labels. Kevin Gage, then Warner's technology vice president, remembers one key meeting at Apple's Cupertino, California headquarters where he and Vidich tried to persuade Jobs that digital rights management - virtual \"locks\" to prevent songs from being shared - was necessary to get other labels on board.\nHe was three slides into a PowerPoint presentation when Jobs, rocking in his chair, exploded into a tirade about how the music business just didn't get it. \"He said, 'You've got your head stuck up your ass' to me a number of times,\" Gage recalls. \"There's that side of Steve - but in a smooth kind of way. He never reacted to Roger [Ames, then Warner's CEO] the same way he reacted to Paul and myself, put it that way. When Roger came into the room, you saw Steve at his brightest and sharpest.\"",
+  "cognitive_patterns": {
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "the same way"
+      ]
+    }
+  },
+  "source_url": "http://www.rollingstone.com/music/news/steve-jobs-music-vision-20111007?print=true",
+  "source_type": "anecdote",
+  "word_count": 150,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

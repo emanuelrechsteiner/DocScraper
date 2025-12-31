@@ -1,0 +1,29 @@
+{
+  "id": "quote_sjq_00077",
+  "title": "Quote: Some people are saying that we ought to put an IBM PC on eve...",
+  "speaker": "Steve Jobs",
+  "year": 1985,
+  "event": "Playboy Interview: Steve Jobs",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Apple",
+    "Early",
+    "years"
+  ],
+  "content": "Some people are saying that we ought to put an IBM PC on every desk in America to improve productivity. It won't work. The special incantations you have to learn this time are 'slash q-zs' and things like that. The manual for WordStar, the most popular word-processing program, is 400 pages thick. To write a novel, you have to read a novel--one that reads like a mystery to most people. They're not going to learn slash q-z any more than they're going to learn Morse code. That is what Macintosh is all about.",
+  "full_transcript": "Some people are saying that we ought to put an IBM PC on every desk in America to improve productivity. It won't work. The special incantations you have to learn this time are 'slash q-zs' and things like that. The manual for WordStar, the most popular word-processing program, is 400 pages thick. To write a novel, you have to read a novel--one that reads like a mystery to most people. They're not going to learn slash q-z any more than they're going to learn Morse code. That is what Macintosh is all about.",
+  "cognitive_patterns": {
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "like a"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20120322025837/http://www.playboy.com/magazine/playboy-interview-steve-jobs",
+  "source_type": "verbatim_quote",
+  "word_count": 93,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

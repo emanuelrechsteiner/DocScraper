@@ -1,0 +1,27 @@
+{
+  "id": "anecdote_sja_story_00080",
+  "title": "Story: \"Apple has already come back,\" and now that his days are not...",
+  "speaker": "Steve Jobs",
+  "year": 1998,
+  "event": "Steve Jobs Unveils the iMac",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "marketing_brand"
+  ],
+  "content": "\"Apple has already come back,\" and now that his days are not so intently involved in crisis management, and he is able to spend more time with his family, he appears to be having a wonderful time.\nHe runs Apple in a mode that can only be described as post-CEO. Sometimes he will greet visitors in shorts, sandals and a two-day beard growth. His office is a surprisingly compact rectangle cluttered with books, videos and advertising awards. On the phone, sitting at a desk that sports both Mac and Windows laptops [running NeXTSTEP], he schmoozes and deals with everyone from Pixar executives to Jerry Seinfeld, concerning Apple's ad on the Final Episode.\nLast week he spent an extraordinary amount of time monitoring every last detail of the iMac intro; a typical executive decision was the elimination of a clarinet on a video soundtrack because it sounded \"too synthetic.\"",
+  "full_transcript": "\"Apple has already come back,\" and now that his days are not so intently involved in crisis management, and he is able to spend more time with his family, he appears to be having a wonderful time.\nHe runs Apple in a mode that can only be described as post-CEO. Sometimes he will greet visitors in shorts, sandals and a two-day beard growth. His office is a surprisingly compact rectangle cluttered with books, videos and advertising awards. On the phone, sitting at a desk that sports both Mac and Windows laptops [running NeXTSTEP], he schmoozes and deals with everyone from Pixar executives to Jerry Seinfeld, concerning Apple's ad on the Final Episode.\nLast week he spent an extraordinary amount of time monitoring every last detail of the iMac intro; a typical executive decision was the elimination of a clarinet on a video soundtrack because it sounded \"too synthetic.\"",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    }
+  },
+  "source_url": "http://www.newsweek.com/steve-jobs-unveils-imac-169734",
+  "source_type": "anecdote",
+  "word_count": 148,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

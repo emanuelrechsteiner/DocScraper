@@ -1,0 +1,47 @@
+{
+  "id": "existing_Steve_Jobs_Paused_for_18_Seconds_to_Answer_This_Question__apple_stevejobs_succes",
+  "title": "Steve Jobs Paused for 18 Seconds to Answer This Question… #apple #stevejobs #successtips",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "interview",
+  "era": null,
+  "topics": [
+    "NeXT",
+    "Apple",
+    "Leadership"
+  ],
+  "content": "Good question.\nUm,\nI'm not sure I learned this when I was at Apple, but I learned it based on the data when I was at Apple.\nUh, and that is\nI now take a longer term view on people.\nIn other words, when I see something not being done right, my first reaction isn't to go fix it.\nUm, it's to say\nwe're building a team here and we're going to do great stuff for the next decade, not just the next year.\nAnd so what do I need to do to help so that the person that's screwing up learns.",
+  "full_transcript": "# Steve Jobs Paused for 18 Seconds to Answer This Question… #apple #stevejobs #successtips\n\n**Source**: https://www.youtube.com/shorts/g5jQBuOrPkQ\n\n**Transcribed**: 2025-12-26 16:15\n\n---\n\n**[Speaker 1]**: Yeah.\n**[Speaker 2]**: What's the most important thing that you personally learned at Apple that you're doing it now?\n**[Steve Jobs]**: Good question.\nUm,\nI'm not sure I learned this when I was at Apple, but I learned it based on the data when I was at Apple.\nUh, and that is\nI now take a longer term view on people.\nIn other words, when I see something not being done right, my first reaction isn't to go fix it.\nUm, it's to say\nwe're building a team here and we're going to do great stuff for the next decade, not just the next year.\nAnd so what do I need to do to help so that the person that's screwing up learns.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 1,
+      "examples": [
+        "I need to"
+      ]
+    },
+    "epistemology": {
+      "count": 2,
+      "examples": [
+        "I learned"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "so that"
+      ]
+    },
+    "story": {
+      "count": 2,
+      "examples": [
+        "when I was"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/shorts/g5jQBuOrPkQ",
+  "source_type": "existing",
+  "word_count": 145,
+  "steve_jobs_percentage": 70.34,
+  "processed_at": "2025-12-31T14:49:08.619318"
+}

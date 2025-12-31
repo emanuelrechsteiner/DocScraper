@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00109",
+  "title": "Quote: The Macintosh was sort of like this wonderful romance in you...",
+  "speaker": "Steve Jobs",
+  "year": 1994,
+  "event": "Steve Jobs in 1994: The Rolling Stone Interview",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Creativity"
+  ],
+  "content": "The Macintosh was sort of like this wonderful romance in your life that you once had -- and that produced about 10 million children. In a way it will never be over in your life. You'll still smell that romance every morning when you get up. And when you open the window, the cool air will hit your face, and you'll smell that romance in the air. And you'll see your children around, and you feel good about it. And nothing will ever make you feel bad about it.",
+  "full_transcript": "The Macintosh was sort of like this wonderful romance in your life that you once had -- and that produced about 10 million children. In a way it will never be over in your life. You'll still smell that romance every morning when you get up. And when you open the window, the cool air will hit your face, and you'll smell that romance in the air. And you'll see your children around, and you feel good about it. And nothing will ever make you feel bad about it.",
+  "cognitive_patterns": {
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "bad"
+      ]
+    }
+  },
+  "source_url": "http://www.rollingstone.com/culture/news/steve-jobs-in-1994-the-rolling-stone-interview-20110117?print=true",
+  "source_type": "verbatim_quote",
+  "word_count": 89,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

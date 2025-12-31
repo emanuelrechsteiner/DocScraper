@@ -1,0 +1,31 @@
+{
+  "id": "existing_iPad_2_Introduction_by_Steve_Jobs",
+  "title": "iPad 2 Introduction by Steve Jobs",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "presentation",
+  "era": null,
+  "topics": [
+    "iPhone",
+    "iPad",
+    "iPod",
+    "Design",
+    "Philosophy"
+  ],
+  "content": "What is iPad 2?\nWhat have we learned?\nWhat can we improve?\nWell, it is an all new design.\nIt is not a tweak design, it's not got marginal improvements, it's a completely new design.\n\nAnd the first thing is, it's dramatically faster.\nWe have a new chip, we call A5.\nOur chip wizards have come up with this, and it's great.\nIt's dual core processors, right?\nTwo processors inside.\nAnd so we get up to twice as fast on CPU performance, but we've really gone all out on the graphics performance.\nUp to nine times faster graphics.\n\nSecond, we've built in some cameras for video.\nWe've got a rear camera out the back, and we've got a front facing camera out the front.\nWe'll talk more about that in a few minutes.\nWe've also built in the gyroscope that we have in the iPhone and the iPod touch.\n\nNow, having built in all of this stuff, one of the most startling things about the iPad 2 is it is dramatically thinner.\nNot a little bit thinner, a third thinner.\n33% thinner.\nThat's what it looks like.\nIt's lighter as well, going from 1.5 pounds down to 1.3.\nAnd you might not think that's a lot, but when you get down to 1.5 pounds, a tenth of a pound is a lot.\nAnd it feels quite a bit lighter.\n\nSo this is what it looks like.\nIt's really thin.\nAnd it comes in two colors, black and white.\nWe're going to be shipping white from day one.\nIn addition to having both colors, we also have models that work with both AT&T and Verizon's 3G networking from day one.\nAnd we have the same legendary 10 hour battery life as the original iPad with all of this extra stuff in it and yet dramatically thinner.\nAnd again, that's over a month of standby.\n\nNow, in addition to preserving the battery life, when we add all this stuff, we've also preserved the price.\nAnd so we're going to keep the same exact prices starting at just $4.99.\nSame exact prices as the current iPad, yet with all of these new features, a dramatically improved product.\nSo when are we going to ship it?\nApril, May, June?\nNo.\nOn March 11th, that's a week from this Friday.\nWe are shipping in volume in the US.\nAnd two weeks after that, on March 25th, we are shipping in at least 26 more countries including all of our high volume countries except a few where we're still getting regulatory approvals.\nSo 26 countries or more on March 25th.",
+  "full_transcript": "# iPad 2 Introduction by Steve Jobs\n\n**Source**: https://www.youtube.com/watch?v=8mrx4XV275A\n\n**Transcribed**: 2025-12-26 11:20\n\n---\n\n**[Steve Jobs]**: What is iPad 2?\nWhat have we learned?\nWhat can we improve?\nWell, it is an all new design.\nIt is not a tweak design, it's not got marginal improvements, it's a completely new design.\n\nAnd the first thing is, it's dramatically faster.\nWe have a new chip, we call A5.\nOur chip wizards have come up with this, and it's great.\nIt's dual core processors, right?\nTwo processors inside.\nAnd so we get up to twice as fast on CPU performance, but we've really gone all out on the graphics performance.\nUp to nine times faster graphics.\n\nSecond, we've built in some cameras for video.\nWe've got a rear camera out the back, and we've got a front facing camera out the front.\nWe'll talk more about that in a few minutes.\nWe've also built in the gyroscope that we have in the iPhone and the iPod touch.\n\nNow, having built in all of this stuff, one of the most startling things about the iPad 2 is it is dramatically thinner.\nNot a little bit thinner, a third thinner.\n33% thinner.\nThat's what it looks like.\nIt's lighter as well, going from 1.5 pounds down to 1.3.\nAnd you might not think that's a lot, but when you get down to 1.5 pounds, a tenth of a pound is a lot.\nAnd it feels quite a bit lighter.\n\nSo this is what it looks like.\nIt's really thin.\nAnd it comes in two colors, black and white.\nWe're going to be shipping white from day one.\nIn addition to having both colors, we also have models that work with both AT&T and Verizon's 3G networking from day one.\nAnd we have the same legendary 10 hour battery life as the original iPad with all of this extra stuff in it and yet dramatically thinner.\nAnd again, that's over a month of standby.\n\nNow, in addition to preserving the battery life, when we add all this stuff, we've also preserved the price.\nAnd so we're going to keep the same exact prices starting at just $4.99.\nSame exact prices as the current iPad, yet with all of these new features, a dramatically improved product.\nSo when are we going to ship it?\nApril, May, June?\nNo.\nOn March 11th, that's a week from this Friday.\nWe are shipping in volume in the US.\nAnd two weeks after that, on March 25th, we are shipping in at least 26 more countries including all of our high volume countries except a few where we're still getting regulatory approvals.\nSo 26 countries or more on March 25th.\n",
+  "cognitive_patterns": {
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "going to be"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=8mrx4XV275A",
+  "source_type": "existing",
+  "word_count": 449,
+  "steve_jobs_percentage": 96.66,
+  "processed_at": "2025-12-31T14:49:09.332436"
+}

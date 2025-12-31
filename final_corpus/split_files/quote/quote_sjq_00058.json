@@ -1,0 +1,29 @@
+{
+  "id": "quote_sjq_00058",
+  "title": "Quote: Even though some people have come out with neat products, if...",
+  "speaker": "Steve Jobs",
+  "year": 1984,
+  "event": "The Bang Behind the Bucks, The Life Behind the Style",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Early",
+    "years",
+    "Technology"
+  ],
+  "content": "Even though some people have come out with neat products, if their company is perceived as a sweatshop or a revolving door, it's not considered much of a success. Remember, the role models were Hewlett and Packard. Their main achievement was that they built a company. Nobody remembers their first frequency-counter, their first audio oscillator, their first this or that. And they sell so many products now that no one person really symbolizes the company. [...] And they built a company and they lived that philosophy for 35 or 40 years and that's why they're heroes. Hewlett and Packard started what became the Valley.",
+  "full_transcript": "Even though some people have come out with neat products, if their company is perceived as a sweatshop or a revolving door, it's not considered much of a success. Remember, the role models were Hewlett and Packard. Their main achievement was that they built a company. Nobody remembers their first frequency-counter, their first audio oscillator, their first this or that. And they sell so many products now that no one person really symbolizes the company. [...] And they built a company and they lived that philosophy for 35 or 40 years and that's why they're heroes. Hewlett and Packard started what became the Valley.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "that's why"
+      ]
+    }
+  },
+  "source_url": "http://www.thedailybeast.com/articles/2011/10/06/steve-jobs-1984-access-magazine-interview.html",
+  "source_type": "verbatim_quote",
+  "word_count": 104,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

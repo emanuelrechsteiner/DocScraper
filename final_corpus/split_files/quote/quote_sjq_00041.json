@@ -1,0 +1,40 @@
+{
+  "id": "quote_sjq_00041",
+  "title": "Quote: I don't think much about my time of life. I just get up in t...",
+  "speaker": "Steve Jobs",
+  "year": 1998,
+  "event": "The Three Faces Of Steve",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Philosophy"
+  ],
+  "content": "I don't think much about my time of life. I just get up in the morning and it's a new day. Somebody told me when I was 17 to live each day as if it were my last, and that one day I'd be right. I am at a stage where I don't have to do things just to get by. But then I've always been that way because I've never really cared about money that much. I guess what I'm trying to say is that I feel the same way now as I felt when I was 17.",
+  "full_transcript": "I don't think much about my time of life. I just get up in the morning and it's a new day. Somebody told me when I was 17 to live each day as if it were my last, and that one day I'd be right. I am at a stage where I don't have to do things just to get by. But then I've always been that way because I've never really cared about money that much. I guess what I'm trying to say is that I feel the same way now as I felt when I was 17.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "the same way"
+      ]
+    },
+    "story": {
+      "count": 3,
+      "examples": [
+        "when I was",
+        "one day"
+      ]
+    }
+  },
+  "source_url": "http://archive.fortune.com/magazines/fortune/fortune_archive/1998/11/09/250880/index.htm",
+  "source_type": "verbatim_quote",
+  "word_count": 99,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

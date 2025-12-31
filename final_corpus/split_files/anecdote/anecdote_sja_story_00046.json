@@ -1,0 +1,29 @@
+{
+  "id": "anecdote_sja_story_00046",
+  "title": "Story: On my first day at NeXT, as we walked around the building, m...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "Steve Jurvetson on Steve Jobs",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand",
+    "meetings_decision"
+  ],
+  "content": "On my first day at NeXT, as we walked around the building, my colleagues shared in hushed voices that Jobs personally chose the wood flooring and various appointments. He even specified the outdoor sprinkler system layout.\nI witnessed his attention to detail during a marketing reorganization meeting. The VP of marketing read Jobs's e-mailed reaction to the new org chart. Jobs simply requested that the charts be reprinted with the official corporate blue and green colors. Shifted color space was like a horribly distorted concerto to his senses.",
+  "full_transcript": "On my first day at NeXT, as we walked around the building, my colleagues shared in hushed voices that Jobs personally chose the wood flooring and various appointments. He even specified the outdoor sprinkler system layout.\nI witnessed his attention to detail during a marketing reorganization meeting. The VP of marketing read Jobs's e-mailed reaction to the new org chart. Jobs simply requested that the charts be reprinted with the official corporate blue and green colors. Shifted color space was like a horribly distorted concerto to his senses.",
+  "cognitive_patterns": {
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "like a"
+      ]
+    }
+  },
+  "source_url": "http://www.bloomberg.com/news/articles/2011-10-06/steve-jurvetson-on-steve-jobs",
+  "source_type": "anecdote",
+  "word_count": 88,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

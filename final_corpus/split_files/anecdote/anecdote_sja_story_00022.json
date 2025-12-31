@@ -1,0 +1,28 @@
+{
+  "id": "anecdote_sja_story_00022",
+  "title": "Story: I never knew when Steve was going to call. But I knew that w...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "Stories About Steve",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "leadership_pressure",
+    "marketing_brand"
+  ],
+  "content": "I never knew when Steve was going to call. But I knew that when he did, it would probably be in the middle of the night.\nIn 2001 my company was developing Ethernet chips for Mac computers. Steve was enormously excited about our product. He was enormously excited about everything. And restless and sometimes agitated-and frankly, he could be a bit of a pain. He was like a bulldog. He worked all the time, day and night, and he expected everyone around him to be that way, too. He insisted that the person at the top or someone who had absolute control was the guy he interfaced with. He demanded that he get as much time as necessary.\nIf it was 3 in the morning and Steve had a thought or a question or complaint, he picked up the phone and called, right then. The concept of \"that can wait until the morning\" did not apply. He wasn't going to sleep until he addressed the issue.",
+  "full_transcript": "I never knew when Steve was going to call. But I knew that when he did, it would probably be in the middle of the night.\nIn 2001 my company was developing Ethernet chips for Mac computers. Steve was enormously excited about our product. He was enormously excited about everything. And restless and sometimes agitated-and frankly, he could be a bit of a pain. He was like a bulldog. He worked all the time, day and night, and he expected everyone around him to be that way, too. He insisted that the person at the top or someone who had absolute control was the guy he interfaced with. He demanded that he get as much time as necessary.\nIf it was 3 in the morning and Steve had a thought or a question or complaint, he picked up the phone and called, right then. The concept of \"that can wait until the morning\" did not apply. He wasn't going to sleep until he addressed the issue.",
+  "cognitive_patterns": {
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "like a"
+      ]
+    }
+  },
+  "source_url": "http://www.bloomberg.com/news/photo-essays/2011-10-11/stories-about-steve#slide5",
+  "source_type": "anecdote",
+  "word_count": 166,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

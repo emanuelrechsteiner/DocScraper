@@ -1,0 +1,28 @@
+{
+  "id": "quote_sjq_00080",
+  "title": "Quote: (Does it take insane people to make insanely great things?) ...",
+  "speaker": "Steve Jobs",
+  "year": 1985,
+  "event": "Playboy Interview: Steve Jobs",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Competitors",
+    "Creativity"
+  ],
+  "content": "(Does it take insane people to make insanely great things?) Actually, making an insanely great product has a lot to do with the process of making the product, how you learn things and adopt new ideas and throw out old ideas. But, yeah, the people who made Mac are sort of on the edge.",
+  "full_transcript": "(Does it take insane people to make insanely great things?) Actually, making an insanely great product has a lot to do with the process of making the product, how you learn things and adopt new ideas and throw out old ideas. But, yeah, the people who made Mac are sort of on the edge.",
+  "cognitive_patterns": {
+    "values": {
+      "count": 2,
+      "examples": [
+        "insanely great"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20120322025837/http://www.playboy.com/magazine/playboy-interview-steve-jobs",
+  "source_type": "verbatim_quote",
+  "word_count": 54,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

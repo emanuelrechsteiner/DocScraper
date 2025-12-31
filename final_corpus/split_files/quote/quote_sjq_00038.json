@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00038",
+  "title": "Quote: When I was growing up, a guy across the street had a Volkswa...",
+  "speaker": "Steve Jobs",
+  "year": 1998,
+  "event": "The Three Faces Of Steve",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Technology"
+  ],
+  "content": "When I was growing up, a guy across the street had a Volkswagen Bug. He really wanted to make it into a Porsche. He spent all his spare money and time accessorizing this VW, making it look and sound loud. By the time he was done, he did not have a Porsche. He had a loud, ugly VW.",
+  "full_transcript": "When I was growing up, a guy across the street had a Volkswagen Bug. He really wanted to make it into a Porsche. He spent all his spare money and time accessorizing this VW, making it look and sound loud. By the time he was done, he did not have a Porsche. He had a loud, ugly VW.",
+  "cognitive_patterns": {
+    "story": {
+      "count": 1,
+      "examples": [
+        "When I was"
+      ]
+    }
+  },
+  "source_url": "http://archive.fortune.com/magazines/fortune/fortune_archive/1998/11/09/250880/index.htm",
+  "source_type": "verbatim_quote",
+  "word_count": 58,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00071",
+  "title": "Quote: Apple was about as pure of a Silicon Valley company as you c...",
+  "speaker": "Steve Jobs",
+  "year": 1985,
+  "event": "Jobs Talks About His Rise and Fall",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Creativity"
+  ],
+  "content": "Apple was about as pure of a Silicon Valley company as you could imagine. We started in a garage. Woz and I both grew up in Silicon Valley. Our role model was Hewlett-Packard. And so I guess that's what we went into it thinking. Hewlett-Packard, you know, Jobs and Wozniak.",
+  "full_transcript": "Apple was about as pure of a Silicon Valley company as you could imagine. We started in a garage. Woz and I both grew up in Silicon Valley. Our role model was Hewlett-Packard. And so I guess that's what we went into it thinking. Hewlett-Packard, you know, Jobs and Wozniak.",
+  "cognitive_patterns": {
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "imagine"
+      ]
+    }
+  },
+  "source_url": "http://www.newsweek.com/jobs-talks-about-his-rise-and-fall-207016",
+  "source_type": "verbatim_quote",
+  "word_count": 50,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

@@ -1,0 +1,50 @@
+{
+  "id": "anecdote_sja_story_00040",
+  "title": "Story: Some time later, I worked on a Twitter client with my pal Bu...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "A Studio Chief Pens Revealing First-Person Steve Jobs Remembrance",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "negotiation_cost",
+    "leadership_pressure",
+    "marketing_brand"
+  ],
+  "content": "Some time later, I worked on a Twitter client with my pal Buzz. A friend of his who worked at Apple told us this little story.\nOne day while riding the elevator at Infinite Loop, he found himself in the freakiest scenario any Apple employee can imagine: alone, with the elevator door opening to let Steve in. Being a well-adjusted individual, Buzz's friend promptly disappeared into the tap-world of his iPhone, lest he say or do something wrong in Steve's presence. It was still the early days of iPhone apps, and Steve did something that had apparently become a habit with him. He reached for the iPhone and asked,  \n\"What app is that?\"  \n\"Birdfeed\", came the reply.\nSteve tapped here and there, flicked the scrollview a bit, then handed the phone back. \"The background needs more texture,\" he said.\nI'll do better next time, Steve.\n[_Steve_ , Neven Mrgan, 5 Oct 2011](http://mrgan.tumblr.com/post/11090229578/steve)\nDuring the spring and summer of 2006, Steve Jobs was negotiating with Fox and other studios to expand iTunes from selling digital music and TV shows to selling feature films. I had known Steve for several years, and as usual, he had very strong views -- in this instance, about how movies on iTunes should be priced, marketed and presented to his growing base of devoted followers.\nUnfortunately, many of those views were inconsistent with existing media, and as was often the case, he thought the studio guys were Luddites (if not idiots). I was one of them. We spent many hours on the phone and in person hashing out ways to reconcile the new offering with our concerns about it. We were very eager to make it work -- but nowhere near as eager as Steve, who wanted to corral all the studios and make one of his bold and exciting announcements, which he'd scheduled for September. We wanted to change things; he wanted to change them now.\nWe argued and debated back and forth into the summer, and as August arrived, we remained a fair distance apart. So, as a respite from Relentless Steve, I sneaked off to my annual retreat on the tiny island of Antiparos, near Paros in Greece. I thought I was safe. But not from Steve. He stalked me, eventually sending this e-mail:\nFrom: Steve Jobs  \nDate: Sat, 26 Aug 2006 16:51:12 -0700  \nTo: Jim Gianopulos  \nCc: Steve Jobs  \nSubject: I'm coming to Paros\nJim,\nWe need to talk and if that's not possible over the phone or via e-mail, then I need to come to Paros and go for a walk on the beach with you and resolve this. The time is now to begin creating a new online distribution vehicle for movies, and Apple is the company to do it. I need your help.\nHow do I find you once I get to the airport on Paros?\nThanks,  \nSteve\nHe never made it to Paros, but we eventually made a deal, and it evolved into a great friendship, one that I will always cherish.",
+  "full_transcript": "Some time later, I worked on a Twitter client with my pal Buzz. A friend of his who worked at Apple told us this little story.\nOne day while riding the elevator at Infinite Loop, he found himself in the freakiest scenario any Apple employee can imagine: alone, with the elevator door opening to let Steve in. Being a well-adjusted individual, Buzz's friend promptly disappeared into the tap-world of his iPhone, lest he say or do something wrong in Steve's presence. It was still the early days of iPhone apps, and Steve did something that had apparently become a habit with him. He reached for the iPhone and asked,  \n\"What app is that?\"  \n\"Birdfeed\", came the reply.\nSteve tapped here and there, flicked the scrollview a bit, then handed the phone back. \"The background needs more texture,\" he said.\nI'll do better next time, Steve.\n[_Steve_ , Neven Mrgan, 5 Oct 2011](http://mrgan.tumblr.com/post/11090229578/steve)\nDuring the spring and summer of 2006, Steve Jobs was negotiating with Fox and other studios to expand iTunes from selling digital music and TV shows to selling feature films. I had known Steve for several years, and as usual, he had very strong views -- in this instance, about how movies on iTunes should be priced, marketed and presented to his growing base of devoted followers.\nUnfortunately, many of those views were inconsistent with existing media, and as was often the case, he thought the studio guys were Luddites (if not idiots). I was one of them. We spent many hours on the phone and in person hashing out ways to reconcile the new offering with our concerns about it. We were very eager to make it work -- but nowhere near as eager as Steve, who wanted to corral all the studios and make one of his bold and exciting announcements, which he'd scheduled for September. We wanted to change things; he wanted to change them now.\nWe argued and debated back and forth into the summer, and as August arrived, we remained a fair distance apart. So, as a respite from Relentless Steve, I sneaked off to my annual retreat on the tiny island of Antiparos, near Paros in Greece. I thought I was safe. But not from Steve. He stalked me, eventually sending this e-mail:\nFrom: Steve Jobs  \nDate: Sat, 26 Aug 2006 16:51:12 -0700  \nTo: Jim Gianopulos  \nCc: Steve Jobs  \nSubject: I'm coming to Paros\nJim,\nWe need to talk and if that's not possible over the phone or via e-mail, then I need to come to Paros and go for a walk on the beach with you and resolve this. The time is now to begin creating a new online distribution vehicle for movies, and Apple is the company to do it. I need your help.\nHow do I find you once I get to the airport on Paros?\nThanks,  \nSteve\nHe never made it to Paros, but we eventually made a deal, and it evolved into a great friendship, one that I will always cherish.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 3,
+      "examples": [
+        "We wanted to",
+        "We need to",
+        "I need to"
+      ]
+    },
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "wrong"
+      ]
+    },
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "imagine"
+      ]
+    },
+    "story": {
+      "count": 1,
+      "examples": [
+        "One day"
+      ]
+    }
+  },
+  "source_url": "http://www.hollywoodreporter.com/news/jim-gianopulos-steve-jobs-dead-248311",
+  "source_type": "anecdote",
+  "word_count": 504,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

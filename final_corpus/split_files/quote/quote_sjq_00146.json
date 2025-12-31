@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00146",
+  "title": "Quote: There's different things in life you can do. You can become ...",
+  "speaker": "Steve Jobs",
+  "year": 1999,
+  "event": "Apple and Pixar: Steve's Two Jobs",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Family"
+  ],
+  "content": "There's different things in life you can do. You can become a painter, you can become a sculptor. You can make something by yourself. But that's not what I do. I do the other thing, which is, you work at things that one person can't do, and that you need large numbers of people to do. I know people like symbols, but it's always unsettling when people write stories about me, because they tend to overlook a lot of other people.",
+  "full_transcript": "There's different things in life you can do. You can become a painter, you can become a sculptor. You can make something by yourself. But that's not what I do. I do the other thing, which is, you work at things that one person can't do, and that you need large numbers of people to do. I know people like symbols, but it's always unsettling when people write stories about me, because they tend to overlook a lot of other people.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I know"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    }
+  },
+  "source_url": "http://content.time.com/time/world/article/0,8599,2053869,00.html",
+  "source_type": "verbatim_quote",
+  "word_count": 81,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

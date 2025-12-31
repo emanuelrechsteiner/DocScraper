@@ -1,0 +1,28 @@
+{
+  "id": "quote_sjq_00084",
+  "title": "Quote: I used to think about selling 1,000,000 computers a year, bu...",
+  "speaker": "Steve Jobs",
+  "year": 1985,
+  "event": "Playboy Interview: Steve Jobs",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Early",
+    "years"
+  ],
+  "content": "I used to think about selling 1,000,000 computers a year, but it was just a thought. When it actually happens, it's a totally different thing. So it was, 'Holy shit, it's actually coming true!' But what's hard to explain is that this does not feel like overnight. Next year will be my tenth year. I had never done anything longer than a year in my life. Six months, for me, was a long time when we started Apple. So this has been my life since I've been sort of a free-willed adult. Each year has been so robust with problems and successes and learning experiences and human experiences that a year is a lifetime at Apple. So this has been ten lifetimes.",
+  "full_transcript": "I used to think about selling 1,000,000 computers a year, but it was just a thought. When it actually happens, it's a totally different thing. So it was, 'Holy shit, it's actually coming true!' But what's hard to explain is that this does not feel like overnight. Next year will be my tenth year. I had never done anything longer than a year in my life. Six months, for me, was a long time when we started Apple. So this has been my life since I've been sort of a free-willed adult. Each year has been so robust with problems and successes and learning experiences and human experiences that a year is a lifetime at Apple. So this has been ten lifetimes.",
+  "cognitive_patterns": {
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "will be"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20120322025837/http://www.playboy.com/magazine/playboy-interview-steve-jobs",
+  "source_type": "verbatim_quote",
+  "word_count": 122,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "anecdote_sja_story_00003",
+  "title": "Story: \"Steve was the first guy I found who would be regularly curl...",
+  "speaker": "Steve Jobs",
+  "year": 2012,
+  "event": "Untold Stories About Steve Jobs: Friends and Colleagues Share Their Memories",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "marketing_brand",
+    "work_ethic"
+  ],
+  "content": "\"Steve was the first guy I found who would be regularly curled up under his desk in the morning after an all-nighter. A lot of people think that success is luck and being in the right place at the right time. But I think if you're willing to work harder than anybody else, you can create an awful lot of your own luck. We tended to have this philosophical relationship. He liked to talk about big ideas and where did big ideas come from. He was always interested in talking about creating products and how do you know when a product is ready for market.\"\nIn the early 1980s Bushnell bought a 15,000-square-foot house in Paris and invited all his Silicon Valley friends to a housewarming party. There was a band, lots of food and drink, lavishly attired guests-and Jobs, who had left Atari to start Apple in 1976. While everyone else was dressed up for the party, Jobs showed up in his Levi's. \nBushnell remembers \"sitting on the Left Bank [the day after the party], me sipping coffee and Steve always drinking tea, sort of watching Paris walk by. We had a delightful conversation about the importance of creativity. He was at a phase where he knew that the Apple II was nearing the end of its life. He was not happy with the Apple III. He was just starting to kick around the ideas for the Lisa and what was going to be the Macintosh. We were talking about trackballs and joysticks and mice, and the whole idea of having a little hand in the screen, which is essentially what the mouse was.\n\"I last saw him a year before his death. He was very, very thin, but he didn't look frail. He had a strength about him. He said, 'I think I'm going to beat this thing.'\"",
+  "full_transcript": "\"Steve was the first guy I found who would be regularly curled up under his desk in the morning after an all-nighter. A lot of people think that success is luck and being in the right place at the right time. But I think if you're willing to work harder than anybody else, you can create an awful lot of your own luck. We tended to have this philosophical relationship. He liked to talk about big ideas and where did big ideas come from. He was always interested in talking about creating products and how do you know when a product is ready for market.\"\nIn the early 1980s Bushnell bought a 15,000-square-foot house in Paris and invited all his Silicon Valley friends to a housewarming party. There was a band, lots of food and drink, lavishly attired guests-and Jobs, who had left Atari to start Apple in 1976. While everyone else was dressed up for the party, Jobs showed up in his Levi's. \nBushnell remembers \"sitting on the Left Bank [the day after the party], me sipping coffee and Steve always drinking tea, sort of watching Paris walk by. We had a delightful conversation about the importance of creativity. He was at a phase where he knew that the Apple II was nearing the end of its life. He was not happy with the Apple III. He was just starting to kick around the ideas for the Lisa and what was going to be the Macintosh. We were talking about trackballs and joysticks and mice, and the whole idea of having a little hand in the screen, which is essentially what the mouse was.\n\"I last saw him a year before his death. He was very, very thin, but he didn't look frail. He had a strength about him. He said, 'I think I'm going to beat this thing.'\"",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 2,
+      "examples": [
+        "I think"
+      ]
+    },
+    "values": {
+      "count": 1,
+      "examples": [
+        "delight"
+      ]
+    },
+    "prediction": {
+      "count": 2,
+      "examples": [
+        "going to be"
+      ]
+    },
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "awful"
+      ]
+    }
+  },
+  "source_url": "http://www.forbes.com/sites/connieguglielmo/2012/10/03/untold-stories-about-steve-jobs-friends-and-colleagues-share-their-memories/",
+  "source_type": "anecdote",
+  "word_count": 310,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "existing_Steve_Jobs_answers_a_question_about_giving_employees_ownership_of_Apple_IDCA_198",
+  "title": "Steve Jobs answers a question about giving employees ownership of Apple, IDCA, 1983",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "interview",
+  "era": null,
+  "topics": [
+    "Apple",
+    "Philosophy"
+  ],
+  "content": "You know what stock options are?\nYeah.\nYeah, that.\nNo?\nOkay.\nWell, very quickly, what you could do is if somebody came to work for your company, you could let them buy some stock in the company.\nThe problem is, they might have to shell out $100,000 to buy stock in your company.\nIf your company went broke, they'd lose all their life savings or whatever.\nAnd, uh, so that doesn't work.\nSo what you do is you, when somebody comes to work, let's say the stock's trading at $10 a share, you give them the option to buy, uh, you know, 1,000 or 10,000 shares at $10, but they don't, they have four years to exercise that option.\nSo if the stock goes down or stays the same, they never exercise it.\nThey don't have to put up any money, they don't lose anything.\nBut if it goes to $100 a share, they can easily go out to a bank and borrow the money to buy it at 10 because it's worth 100.\nIn exchange for that privilege of not having to have them put up any money and take any risk, we only dole out their ability to exercise that stock option 25% a year, thereby locking in people really for four years if the stock goes up.\nIt's a pretty standard thing.\nA lot of people are doing it.\n\nAnd before we went public, um, over 80% of Apple was owned by the employees.\nUh, right now, I'd say over 50% of Apple is owned by the employees.\nThere's some larger blocks in there, but still, um, and again, I don't think finance is what, what drives people at Apple.\nI don't think it's money, but feeling like you own a piece of the company and this is your damn company, and if you see something, we always tell people, you work for Apple first and your boss second.\nWe feel pretty strongly about that, and it tends to really reinforce that attitude.",
+  "full_transcript": "# Steve Jobs answers a question about giving employees ownership of Apple, IDCA, 1983\n\n**Source**: https://www.youtube.com/watch?v=DLzXG3FLTjQ\n\n**Transcribed**: 2025-12-26 16:16\n\n---\n\n**[Steve Jobs]**: You know what stock options are?\nYeah.\nYeah, that.\nNo?\nOkay.\nWell, very quickly, what you could do is if somebody came to work for your company, you could let them buy some stock in the company.\nThe problem is, they might have to shell out $100,000 to buy stock in your company.\nIf your company went broke, they'd lose all their life savings or whatever.\nAnd, uh, so that doesn't work.\nSo what you do is you, when somebody comes to work, let's say the stock's trading at $10 a share, you give them the option to buy, uh, you know, 1,000 or 10,000 shares at $10, but they don't, they have four years to exercise that option.\nSo if the stock goes down or stays the same, they never exercise it.\nThey don't have to put up any money, they don't lose anything.\nBut if it goes to $100 a share, they can easily go out to a bank and borrow the money to buy it at 10 because it's worth 100.\nIn exchange for that privilege of not having to have them put up any money and take any risk, we only dole out their ability to exercise that stock option 25% a year, thereby locking in people really for four years if the stock goes up.\nIt's a pretty standard thing.\nA lot of people are doing it.\n\nAnd before we went public, um, over 80% of Apple was owned by the employees.\nUh, right now, I'd say over 50% of Apple is owned by the employees.\nThere's some larger blocks in there, but still, um, and again, I don't think finance is what, what drives people at Apple.\nI don't think it's money, but feeling like you own a piece of the company and this is your damn company, and if you see something, we always tell people, you work for Apple first and your boss second.\nWe feel pretty strongly about that, and it tends to really reinforce that attitude.\n",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 2,
+      "examples": [
+        "because",
+        "so that"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=DLzXG3FLTjQ",
+  "source_type": "existing",
+  "word_count": 358,
+  "steve_jobs_percentage": 93.85,
+  "processed_at": "2025-12-31T14:49:08.630730"
+}

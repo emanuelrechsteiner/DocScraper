@@ -1,0 +1,33 @@
+{
+  "id": "existing_Steve_Jobs_Talks_About_The_Powermac_G5_Not_Making_3ghz_WWDC_2004",
+  "title": "Steve Jobs Talks About The Powermac G5 Not Making 3ghz WWDC 2004",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "keynote",
+  "era": null,
+  "topics": [
+    "Mac"
+  ],
+  "content": "# Steve Jobs Talks About The Powermac G5 Not Making 3ghz WWDC 2004\n\n**Source**: https://www.youtube.com/watch?v=ObO3co4qttw\n\n**Transcribed**: 2025-12-26 12:13\n\n---\n\n**[Speaker 1]**: Um, now I'd like to talk about the Power Mac.\nWe just introduced a new line of Power Macs a few weeks ago as well.\n2 1/2 GHz.\nSo we've got dual processors in every single model of Power Mac now, up to 2 1/2 GHz G5 processors, up to 1.25 GHz front side bus.\nThis is super important because this is how you move information in and out of the processor, which is oftentimes far more important than the actual processing speed of the processor itself.\nAnd, you know, the fastest our competitors offer is 800 MHz.\nWe're at 1.25 GHz and it's it's incredible, plus you have two of them.\n8x SuperDrive starting at 1999 for dual processor system.\nSo these are the new Power Macs.\nNow, I want to talk about 2 1/2 GHz because I stood up here a year ago and said we'd have 3 GHz within a year.\nWhat happened?\nWhat happened was the G5, as you know, is a very complex chip.\nAnd in the semiconductor industry, to make things run faster, they've traditionally shrank the geometries.\nAnd so the Power PC was being made in 130 nanometer geometries, and in the last year, the semiconductor industry has gone from 130 nanometer to 90 nanometer, expecting everything would just get faster, no problem.\nIt hit the wall.\nThe whole industry hit the wall at 90 nanometer, and it's been a lot harder than people thought.\nAnd so the speed increases have been very small compared with what we've been used to for the last five years.\nAnd IBM's done really well relative to the rest of the industry, but less than we all hoped.\nSo let's take a look.\nTwo biggest two biggest technologists in 90 nanometer, Intel and IBM.\nA year ago, when we stood here and you sat here, 3.2 GHz was the fastest Intel processor money could buy, and we just introduced 2 GHz on our Power PC G5.\nIntel had a 3.4 GHz release during the course of the year, and just this last week, they introduced 3.6 GHz, and just a few weeks ago, we introduced 2.5.\nSo everybody's showing their cards within the last week or two, and here's what they are.\nAnd take a look at this.\nIntel's gone up 12 1/2% in a year, and IBM's going up 25.\nSo we're not thrilled about missing 3 GHz.\nBut we are pleased that the Power PC has increased its performance twice as fast as Intel, as the entire semiconductor industry has had a tough time with 90 nanometer.\nNow, in addition to going up twice as twice the level of performance that Intel has over the last year, we give you two of them.\nAnd so we think the Power Mac is an incredibly high performance system, the highest performance system that you can buy.\nAnd we'll keep striving for that 3 GHz, one of these days we'll make it, but we're doing pretty well relative to the rest of the industry.",
+  "full_transcript": "# Steve Jobs Talks About The Powermac G5 Not Making 3ghz WWDC 2004\n\n**Source**: https://www.youtube.com/watch?v=ObO3co4qttw\n\n**Transcribed**: 2025-12-26 12:13\n\n---\n\n**[Speaker 1]**: Um, now I'd like to talk about the Power Mac.\nWe just introduced a new line of Power Macs a few weeks ago as well.\n2 1/2 GHz.\nSo we've got dual processors in every single model of Power Mac now, up to 2 1/2 GHz G5 processors, up to 1.25 GHz front side bus.\nThis is super important because this is how you move information in and out of the processor, which is oftentimes far more important than the actual processing speed of the processor itself.\nAnd, you know, the fastest our competitors offer is 800 MHz.\nWe're at 1.25 GHz and it's it's incredible, plus you have two of them.\n8x SuperDrive starting at 1999 for dual processor system.\nSo these are the new Power Macs.\nNow, I want to talk about 2 1/2 GHz because I stood up here a year ago and said we'd have 3 GHz within a year.\nWhat happened?\nWhat happened was the G5, as you know, is a very complex chip.\nAnd in the semiconductor industry, to make things run faster, they've traditionally shrank the geometries.\nAnd so the Power PC was being made in 130 nanometer geometries, and in the last year, the semiconductor industry has gone from 130 nanometer to 90 nanometer, expecting everything would just get faster, no problem.\nIt hit the wall.\nThe whole industry hit the wall at 90 nanometer, and it's been a lot harder than people thought.\nAnd so the speed increases have been very small compared with what we've been used to for the last five years.\nAnd IBM's done really well relative to the rest of the industry, but less than we all hoped.\nSo let's take a look.\nTwo biggest two biggest technologists in 90 nanometer, Intel and IBM.\nA year ago, when we stood here and you sat here, 3.2 GHz was the fastest Intel processor money could buy, and we just introduced 2 GHz on our Power PC G5.\nIntel had a 3.4 GHz release during the course of the year, and just this last week, they introduced 3.6 GHz, and just a few weeks ago, we introduced 2.5.\nSo everybody's showing their cards within the last week or two, and here's what they are.\nAnd take a look at this.\nIntel's gone up 12 1/2% in a year, and IBM's going up 25.\nSo we're not thrilled about missing 3 GHz.\nBut we are pleased that the Power PC has increased its performance twice as fast as Intel, as the entire semiconductor industry has had a tough time with 90 nanometer.\nNow, in addition to going up twice as twice the level of performance that Intel has over the last year, we give you two of them.\nAnd so we think the Power Mac is an incredibly high performance system, the highest performance system that you can buy.\nAnd we'll keep striving for that 3 GHz, one of these days we'll make it, but we're doing pretty well relative to the rest of the industry.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 1,
+      "examples": [
+        "I want to"
+      ]
+    },
+    "reasoning": {
+      "count": 2,
+      "examples": [
+        "because"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=ObO3co4qttw",
+  "source_type": "existing",
+  "word_count": 527,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T14:49:09.217840"
+}

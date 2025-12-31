@@ -1,0 +1,48 @@
+{
+  "id": "anecdote_sja_story_00033",
+  "title": "Story: The Western Electronic Manufacturers Association used to hol...",
+  "speaker": "Steve Jobs",
+  "year": 2012,
+  "event": "One on One: Ken Segall, the Man Who Put the ‘i’ in iMac",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand",
+    "competition"
+  ],
+  "content": "The Western Electronic Manufacturers Association used to hold annual industry conferences in Monterey. Steve keynoted one of the conferences in the early 1980s. But rather than tout the greatness of Apple, or the potential of personal computers, or anything material or mundane, Steve spoke passionately for 40 minutes on one subject -- the dangers of nuclear warfare. That was it.\nThe audience, needless to say, was dumbfounded. Steve spoke, took no questions, and sat down. Steve, it turns out, had a lot of passions.\n[_Memories of Steve_ , Ben Rosen, 22 Oct 2011](http://www.benrosen.com/2011/10/memories-of-steve.html)\nA good friend of mine, Tom Suiter, was a very good friend of Steve's. [...] Steve called him one day when he was starting NeXT - he had broken away from Apple and taken his people, and they were looking for a name for the company. He called him excitedly to say: \"Hey Tom, I have this name I'm thinking of for my new company. I'm thinking of calling it Two.\"  \nTom paused and said: \"Well, I don't know about that, Steve. People might ask you about what happened to One.\"  \nThen Steve said, \"That's why I'm calling you. I think it's a good name, but if you've got a better one that'd be great, could you think about that?\"\nLater Tom found himself listening to a speech from Bill Gates. During the speech Bill Gates kept using the word \"next\" when he was talking about new technologies coming from Microsoft. He used the word often enough that Tom noted his repetition and thought, \"Wait a minute: next, that means future, that's a cool thing.\" And the next day he called Steve and said, \"I've got the name for you. Next.\" And there's that pause on the other end, where with Steve you never know what's going to come. It could be, \"That's the stupidest thing I've ever heard,\" or it could be, \"Great.\" And he says, \"I love it!\"\n\nSteve Jobs said: That's why I'm calling you. I think it's a good name, but if you've got a better one that'd be great, could you think about that? | I've got the name for you. Next.",
+  "full_transcript": "The Western Electronic Manufacturers Association used to hold annual industry conferences in Monterey. Steve keynoted one of the conferences in the early 1980s. But rather than tout the greatness of Apple, or the potential of personal computers, or anything material or mundane, Steve spoke passionately for 40 minutes on one subject -- the dangers of nuclear warfare. That was it.\nThe audience, needless to say, was dumbfounded. Steve spoke, took no questions, and sat down. Steve, it turns out, had a lot of passions.\n[_Memories of Steve_ , Ben Rosen, 22 Oct 2011](http://www.benrosen.com/2011/10/memories-of-steve.html)\nA good friend of mine, Tom Suiter, was a very good friend of Steve's. [...] Steve called him one day when he was starting NeXT - he had broken away from Apple and taken his people, and they were looking for a name for the company. He called him excitedly to say: \"Hey Tom, I have this name I'm thinking of for my new company. I'm thinking of calling it Two.\"  \nTom paused and said: \"Well, I don't know about that, Steve. People might ask you about what happened to One.\"  \nThen Steve said, \"That's why I'm calling you. I think it's a good name, but if you've got a better one that'd be great, could you think about that?\"\nLater Tom found himself listening to a speech from Bill Gates. During the speech Bill Gates kept using the word \"next\" when he was talking about new technologies coming from Microsoft. He used the word often enough that Tom noted his repetition and thought, \"Wait a minute: next, that means future, that's a cool thing.\" And the next day he called Steve and said, \"I've got the name for you. Next.\" And there's that pause on the other end, where with Steve you never know what's going to come. It could be, \"That's the stupidest thing I've ever heard,\" or it could be, \"Great.\" And he says, \"I love it!\"\n\nSteve Jobs said: That's why I'm calling you. I think it's a good name, but if you've got a better one that'd be great, could you think about that? | I've got the name for you. Next.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 2,
+      "examples": [
+        "I think"
+      ]
+    },
+    "reasoning": {
+      "count": 2,
+      "examples": [
+        "That's why"
+      ]
+    },
+    "criticism": {
+      "count": 2,
+      "examples": [
+        "stupid",
+        "broken"
+      ]
+    },
+    "story": {
+      "count": 1,
+      "examples": [
+        "one day"
+      ]
+    }
+  },
+  "source_url": "http://bits.blogs.nytimes.com/2012/07/06/ken-segall-insanely-simple/?pagewanted=all",
+  "source_type": "anecdote",
+  "word_count": 360,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

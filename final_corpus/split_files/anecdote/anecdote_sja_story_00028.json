@@ -1,0 +1,34 @@
+{
+  "id": "anecdote_sja_story_00028",
+  "title": "Story: One time, Steve and I sat in Dr. [Edwin] Land's conference r...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "John Sculley on Steve Jobs",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand"
+  ],
+  "content": "One time, Steve and I sat in Dr. [Edwin] Land's conference room at his office on the Charles River that he used after he was fired from Polaroid. I sat there listening while these two geniuses discussed where great inventions come from.\nPointing toward the center of the empty conference table, Dr. Land said, \"I didn't invent the Polaroid camera, it's always existed, just waiting to be discovered.\" Steve replied, \"That's right. I knew long before we built it exactly what the Mac was. It always existed. I never had to ask customers what they wanted. If it's something truly revolutionary, they won't be able to help you.\" All of Steve's visionary products have always existed, they were just waiting for him to discover them.\n\nSteve Jobs said: That's right. I knew long before we built it exactly what the Mac was. It always existed. I never had to ask customers what they wanted. If it's something truly revolutionary, they won't be able to help you. | I didn't invent the Polaroid camera, it's always existed, just waiting to be discovered.",
+  "full_transcript": "One time, Steve and I sat in Dr. [Edwin] Land's conference room at his office on the Charles River that he used after he was fired from Polaroid. I sat there listening while these two geniuses discussed where great inventions come from.\nPointing toward the center of the empty conference table, Dr. Land said, \"I didn't invent the Polaroid camera, it's always existed, just waiting to be discovered.\" Steve replied, \"That's right. I knew long before we built it exactly what the Mac was. It always existed. I never had to ask customers what they wanted. If it's something truly revolutionary, they won't be able to help you.\" All of Steve's visionary products have always existed, they were just waiting for him to discover them.\n\nSteve Jobs said: That's right. I knew long before we built it exactly what the Mac was. It always existed. I never had to ask customers what they wanted. If it's something truly revolutionary, they won't be able to help you. | I didn't invent the Polaroid camera, it's always existed, just waiting to be discovered.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 2,
+      "examples": [
+        "we built"
+      ]
+    },
+    "story": {
+      "count": 1,
+      "examples": [
+        "One time"
+      ]
+    }
+  },
+  "source_url": "http://www.bloomberg.com/news/articles/2011-10-06/john-sculley-on-steve-jobs",
+  "source_type": "anecdote",
+  "word_count": 181,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

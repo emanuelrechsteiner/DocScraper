@@ -1,0 +1,35 @@
+{
+  "id": "quote_sjq_00010",
+  "title": "Quote: The organization is clean and simple to understand, and very...",
+  "speaker": "Steve Jobs",
+  "year": 1998,
+  "event": "Steve Jobs: 'There's Sanity Returning'",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Creativity"
+  ],
+  "content": "The organization is clean and simple to understand, and very accountable. Everything just got simpler. That's been one of my mantras -- focus and simplicity. Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple. But it's worth it in the end because once you get there, you can move mountains.",
+  "full_transcript": "The organization is clean and simple to understand, and very accountable. Everything just got simpler. That's been one of my mantras -- focus and simplicity. Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple. But it's worth it in the end because once you get there, you can move mountains.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "values": {
+      "count": 5,
+      "examples": [
+        "simple",
+        "simplicity",
+        "Simple"
+      ]
+    }
+  },
+  "source_url": "http://www.bloomberg.com/news/articles/1998-05-25/steve-jobs-theres-sanity-returning",
+  "source_type": "verbatim_quote",
+  "word_count": 61,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

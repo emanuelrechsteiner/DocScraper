@@ -1,0 +1,35 @@
+{
+  "id": "anecdote_sja_story_00005",
+  "title": "Story: Early on a July workday in 1997, Jim McCluney, then head of ...",
+  "speaker": "Steve Jobs",
+  "year": 2006,
+  "event": "Steve Jobs's Magic Kingdom",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "marketing_brand",
+    "customer_delight"
+  ],
+  "content": "Early on a July workday in 1997, Jim McCluney, then head of Apple's worldwide operations got the call. McCluney was summoned with other top brass of the beleaguered company to Apple Computer's boardroom on its Cupertino campus. Embattled Chief Executive Gil Amelio wasted no time. With an air of barely concealed relief, he said: \"Well, I'm sad to report that it's time for me to move on. Take care,\" McCluney recalls. And he left.\nA few minutes later, in walked Steve Jobs. The co-founder of the once proud company had been fired by Apple 12 years before. He had returned seven months earlier as a consultant, when Amelio acquired his NeXT Software. And now Jobs was back in charge. Wearing shorts, sneakers, and a few days' growth of beard, he sat down in a swivel chair and spun slowly, says McCluney, now president of storage provider Emulex.\n\"O.K., tell me what's wrong with this place,\" Jobs said. After some mumbled replies, he jumped in: \"It's the products! So what's wrong with the products?\" Again, executives began offering some answers. Jobs cut them off. \"The products suck!\" he roared. \"There's no sex in them anymore!\"\n\nSteve Jobs said: It's the products! So what's wrong with the products? | O.K., tell me what's wrong with this place,",
+  "full_transcript": "Early on a July workday in 1997, Jim McCluney, then head of Apple's worldwide operations got the call. McCluney was summoned with other top brass of the beleaguered company to Apple Computer's boardroom on its Cupertino campus. Embattled Chief Executive Gil Amelio wasted no time. With an air of barely concealed relief, he said: \"Well, I'm sad to report that it's time for me to move on. Take care,\" McCluney recalls. And he left.\nA few minutes later, in walked Steve Jobs. The co-founder of the once proud company had been fired by Apple 12 years before. He had returned seven months earlier as a consultant, when Amelio acquired his NeXT Software. And now Jobs was back in charge. Wearing shorts, sneakers, and a few days' growth of beard, he sat down in a swivel chair and spun slowly, says McCluney, now president of storage provider Emulex.\n\"O.K., tell me what's wrong with this place,\" Jobs said. After some mumbled replies, he jumped in: \"It's the products! So what's wrong with the products?\" Again, executives began offering some answers. Jobs cut them off. \"The products suck!\" he roared. \"There's no sex in them anymore!\"\n\nSteve Jobs said: It's the products! So what's wrong with the products? | O.K., tell me what's wrong with this place,",
+  "cognitive_patterns": {
+    "criticism": {
+      "count": 5,
+      "examples": [
+        "wrong",
+        "suck"
+      ]
+    },
+    "story": {
+      "count": 1,
+      "examples": [
+        "back in"
+      ]
+    }
+  },
+  "source_url": "http://www.bloomberg.com/news/articles/2006-02-05/steve-jobs-magic-kingdom",
+  "source_type": "anecdote",
+  "word_count": 215,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

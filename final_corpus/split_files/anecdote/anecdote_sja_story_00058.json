@@ -1,0 +1,25 @@
+{
+  "id": "anecdote_sja_story_00058",
+  "title": "Story: True to form, the shepherd [Steve Jobs] to his Apple flock o...",
+  "speaker": "Steve Jobs",
+  "year": 2011,
+  "event": "How Apple works: Inside the world's biggest startup",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [],
+  "content": "True to form, the shepherd [Steve Jobs] to his Apple flock often teaches in parables. One such lesson could be called the \"Difference Between the Janitor and the Vice President,\" and it's a sermon Jobs delivers every time an executive reaches the VP level.\nJobs imagines his garbage regularly not being emptied in his office, and when he asks the janitor why, he gets an excuse: The locks have been changed, and the janitor doesn't have a key. This is an acceptable excuse coming from someone who empties trash bins for a living. The janitor gets to explain why something went wrong. Senior people do not. \"When you're the janitor,\" Jobs has repeatedly told incoming VPs, \"reasons matter.\" He continues: \"Somewhere between the janitor and the CEO, reasons stop mattering.\" That \"Rubicon,\" he has said, \"is crossed when you become a VP.\"",
+  "full_transcript": "True to form, the shepherd [Steve Jobs] to his Apple flock often teaches in parables. One such lesson could be called the \"Difference Between the Janitor and the Vice President,\" and it's a sermon Jobs delivers every time an executive reaches the VP level.\nJobs imagines his garbage regularly not being emptied in his office, and when he asks the janitor why, he gets an excuse: The locks have been changed, and the janitor doesn't have a key. This is an acceptable excuse coming from someone who empties trash bins for a living. The janitor gets to explain why something went wrong. Senior people do not. \"When you're the janitor,\" Jobs has repeatedly told incoming VPs, \"reasons matter.\" He continues: \"Somewhere between the janitor and the CEO, reasons stop mattering.\" That \"Rubicon,\" he has said, \"is crossed when you become a VP.\"",
+  "cognitive_patterns": {
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "wrong"
+      ]
+    }
+  },
+  "source_url": "http://fortune.com/2011/05/09/inside-apple/",
+  "source_type": "anecdote",
+  "word_count": 142,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

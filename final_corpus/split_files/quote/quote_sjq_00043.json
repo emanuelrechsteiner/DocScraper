@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00043",
+  "title": "Quote: You just are yourself, and you work with other people. If yo...",
+  "speaker": "Steve Jobs",
+  "year": 1998,
+  "event": "The Three Faces Of Steve",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Philosophy"
+  ],
+  "content": "You just are yourself, and you work with other people. If you're inspiring to other people, it makes an impression on them. For example, I hear people at Disney talking about what it was like to work with Walt. They loved him. I know that people at Pixar are going to talk about their days with John Lasseter in the same way. Who knows? Maybe someday somebody will feel that way about working with me. I have no idea.",
+  "full_transcript": "You just are yourself, and you work with other people. If you're inspiring to other people, it makes an impression on them. For example, I hear people at Disney talking about what it was like to work with Walt. They loved him. I know that people at Pixar are going to talk about their days with John Lasseter in the same way. Who knows? Maybe someday somebody will feel that way about working with me. I have no idea.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I know"
+      ]
+    },
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "the same way"
+      ]
+    }
+  },
+  "source_url": "http://archive.fortune.com/magazines/fortune/fortune_archive/1998/11/09/250880/index.htm",
+  "source_type": "verbatim_quote",
+  "word_count": 79,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

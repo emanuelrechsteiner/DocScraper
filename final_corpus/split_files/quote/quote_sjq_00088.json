@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00088",
+  "title": "Quote: What happens in most companies is that you don't keep great ...",
+  "speaker": "Steve Jobs",
+  "year": 1985,
+  "event": "Playboy Interview: Steve Jobs",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Management"
+  ],
+  "content": "What happens in most companies is that you don't keep great people under working environments where individual accomplishment is discouraged rather than encouraged. The great people leave and you end up with mediocrity. I know, because that's how Apple was built. Apple is an Ellis Island company. Apple is built on refugees from other companies. These are the extremely bright individual contributors who were troublemakers at other companies.",
+  "full_transcript": "What happens in most companies is that you don't keep great people under working environments where individual accomplishment is discouraged rather than encouraged. The great people leave and you end up with mediocrity. I know, because that's how Apple was built. Apple is an Ellis Island company. Apple is built on refugees from other companies. These are the extremely bright individual contributors who were troublemakers at other companies.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I know"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20120322025837/http://www.playboy.com/magazine/playboy-interview-steve-jobs",
+  "source_type": "verbatim_quote",
+  "word_count": 68,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

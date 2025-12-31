@@ -1,0 +1,36 @@
+{
+  "id": "anecdote_sja_story_00026",
+  "title": "Story: Pito showed Steve a clunky, character-based, primitive sprea...",
+  "speaker": "Steve Jobs",
+  "year": 1988,
+  "event": "Steve Jobs: Can He Do It Again",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "leadership_pressure",
+    "marketing_brand",
+    "competition",
+    "meetings_decision"
+  ],
+  "content": "Pito showed Steve a clunky, character-based, primitive spreadsheet, but all of the elements of the future were there: there were formulas at the bottom of the spreadsheet, rather than integrated in the cells; it was multi-dimensional; and the user could instantly call up different views of the same data set.\nImmediately, Jobs wanted Back Bay for the NeXT. \"He kept getting more excited; he was the most excited person in the room,\" remembers Pito.\nBack Bay fit right in with Steve's vision, says Allen: \"Right from the start, he was looking for something new... It might have been better financially for his company to get 1-2-3 [ported to the NeXT], but that would have compromised his vision.... [Back Bay] was attractive because it was a new kind of spreadsheet.\"\nA few days after the decision [to port Black Bay to the NeXT platform], Steve Jobs sent a huge bouquet of flowers to Cambridge. \"It was like he was wooing us,\" says Lynda. \"It must have been three feet tall!\"\n[_Paul Kleppner and Lynda Urgotis remember a NeXT user group meeting at the end of 1989..._ , Simson Garfinkel, 1991](http://simson.net/clips/91.NW.Improv.html)\nJobs's nagging perfectionism extended to every detail. He insisted on a finish inside the [NeXT] cube's magnesium shell -- even though it would never be seen.\nHe disliked a tiny line left in the chassis by the molds for the cube, a flaw most computer makers deem unavoidable. Jobs flew to Chicago to persuade the die caster to retool. \"Not a lot of die casters expect a celebrity to fly in,\" says Kelley.",
+  "full_transcript": "Pito showed Steve a clunky, character-based, primitive spreadsheet, but all of the elements of the future were there: there were formulas at the bottom of the spreadsheet, rather than integrated in the cells; it was multi-dimensional; and the user could instantly call up different views of the same data set.\nImmediately, Jobs wanted Back Bay for the NeXT. \"He kept getting more excited; he was the most excited person in the room,\" remembers Pito.\nBack Bay fit right in with Steve's vision, says Allen: \"Right from the start, he was looking for something new... It might have been better financially for his company to get 1-2-3 [ported to the NeXT], but that would have compromised his vision.... [Back Bay] was attractive because it was a new kind of spreadsheet.\"\nA few days after the decision [to port Black Bay to the NeXT platform], Steve Jobs sent a huge bouquet of flowers to Cambridge. \"It was like he was wooing us,\" says Lynda. \"It must have been three feet tall!\"\n[_Paul Kleppner and Lynda Urgotis remember a NeXT user group meeting at the end of 1989..._ , Simson Garfinkel, 1991](http://simson.net/clips/91.NW.Improv.html)\nJobs's nagging perfectionism extended to every detail. He insisted on a finish inside the [NeXT] cube's magnesium shell -- even though it would never be seen.\nHe disliked a tiny line left in the chassis by the molds for the cube, a flaw most computer makers deem unavoidable. Jobs flew to Chicago to persuade the die caster to retool. \"Not a lot of die casters expect a celebrity to fly in,\" says Kelley.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "values": {
+      "count": 1,
+      "examples": [
+        "integrate"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20160319062440/http://www.businessweek.com/1989-94/pre88/b30761.htm",
+  "source_type": "anecdote",
+  "word_count": 262,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

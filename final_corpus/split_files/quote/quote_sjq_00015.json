@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00015",
+  "title": "Quote: That was one of the things that came out most clearly from t...",
+  "speaker": "Steve Jobs",
+  "year": 2004,
+  "event": "The Seed of Apple's Innovation",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Creativity"
+  ],
+  "content": "That was one of the things that came out most clearly from this whole experience [with cancer]. I realized that I love my life. I really do. I've got the greatest family in the world, and I've got my work. And that's pretty much all I do. I don't socialize much or go to conferences. I love my family, and I love running Apple, and I love Pixar. And I get to do that. I'm very lucky.",
+  "full_transcript": "That was one of the things that came out most clearly from this whole experience [with cancer]. I realized that I love my life. I really do. I've got the greatest family in the world, and I've got my work. And that's pretty much all I do. I don't socialize much or go to conferences. I love my family, and I love running Apple, and I love Pixar. And I get to do that. I'm very lucky.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I realize"
+      ]
+    }
+  },
+  "source_url": "http://www.bloomberg.com/news/articles/2004-10-11/the-seed-of-apples-innovation",
+  "source_type": "verbatim_quote",
+  "word_count": 77,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

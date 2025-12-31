@@ -1,0 +1,49 @@
+{
+  "id": "existing_Apple_WWDC_2006-Windows_Vista_Copies_Mac_OS_X",
+  "title": "Apple WWDC 2006-Windows Vista Copies Mac OS X",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "keynote",
+  "era": null,
+  "topics": [
+    "Mac",
+    "Innovation",
+    "Apple",
+    "Technology"
+  ],
+  "content": "# Apple WWDC 2006-Windows Vista Copies Mac OS X\n\n**Source**: https://www.youtube.com/watch?v=N-2C2gb6ws8\n\n**Transcribed**: 2025-12-26 12:10\n\n---\n\n**[Speaker 1]**: So, this is what we've been doing for the last five years.\nWhat has our competitor been doing for the last five years?\nWell, they've been trying to ship a single release that's had many names, but is now called Vista.\nAnd to give you our thoughts on Vista, I'd like to bring up Bertrand Serlet.\n\n**[Bertrand Serlet]**: Two years ago at WWDC, we sort with poke a little bit of fun at the folks in Redmond who were still working on Longhorn.\nSo we hung in the hallways of the conference those big banners that said, Redmond, start your photocopiers.\nIt was only a joke, but they actually took it seriously.\nWhy am I saying that?\nWell, let's look at a typical screenshot of Tiger and what we've seen on the latest beta of Vista.\nSome similarities here.\nLet's look at Spotlight.\nNow, um, with Spotlight, finally, it's easier to find information on your local disk than information on the web.\nAnd we have this incredible technology under the hood.\nAfter the WinFS debacle, they've been scrambling to understand how to implement that stuff.\nNow, in terms of UI, they did a major innovation.\nInstead of having the menu on the top right, they put it on the bottom left.\nAnother key technology is of course the browser technology.\nWith Safari, we kind of restart the innovation and creation in the browser space by having a browser that's both elegant, simple, yet powerful.\nAnd in Tiger, we added a personal clipping assistant functionality, Safari RSS.\nGuess what?\nIE7 RSS.\nThey even have the same layout for the little kind of filter box on the right.\nNow, talking of similar layout, um, there's our mail program and for the longest time, Windows had this kind of combo that does mail and calendaring and address book.\nWell, no longer.\nIt's now an independent program.\nThis is Ical, our calendaring program and this is Windows Calendar.\nThey even tried to copy the color scheme and didn't get that quite right.\nNow, this is a logo.\nNow, you may think that I made up the logo by taking the standard Microsoft Windows logo and adding a nice aqua bubble on top.\nNo, that's the official logo.\nBut you know, underneath it all, it's still Windows.\nIt still has the registry as its core.\nIt's still DLL hell.\nAnd it has this well-loved feature that's called activation.\nIf you can't innovate, I guess you just imitate, but it's never quite as good as the original.\nSo, enough said about Vista.\nVista is still in the future for Windows customers, but for us, it's features from our past.\nIt's features we've had in Tiger, in Panther, some since the beginning of Mac OS 10 and we've already iterated several times on those features.\nSo, to talk about the future, our future, I'm going to turn back to Steve.\n\n**[Speaker 1]**: Thank you, Bertrand.\nYou know, our friends up north spend over $5 billion a year on R&D.\nAnd yet, these days all they seem to be able to do is try to copy Google and Apple.\nSo, I guess it's a good example of how money isn't everything.",
+  "full_transcript": "# Apple WWDC 2006-Windows Vista Copies Mac OS X\n\n**Source**: https://www.youtube.com/watch?v=N-2C2gb6ws8\n\n**Transcribed**: 2025-12-26 12:10\n\n---\n\n**[Speaker 1]**: So, this is what we've been doing for the last five years.\nWhat has our competitor been doing for the last five years?\nWell, they've been trying to ship a single release that's had many names, but is now called Vista.\nAnd to give you our thoughts on Vista, I'd like to bring up Bertrand Serlet.\n\n**[Bertrand Serlet]**: Two years ago at WWDC, we sort with poke a little bit of fun at the folks in Redmond who were still working on Longhorn.\nSo we hung in the hallways of the conference those big banners that said, Redmond, start your photocopiers.\nIt was only a joke, but they actually took it seriously.\nWhy am I saying that?\nWell, let's look at a typical screenshot of Tiger and what we've seen on the latest beta of Vista.\nSome similarities here.\nLet's look at Spotlight.\nNow, um, with Spotlight, finally, it's easier to find information on your local disk than information on the web.\nAnd we have this incredible technology under the hood.\nAfter the WinFS debacle, they've been scrambling to understand how to implement that stuff.\nNow, in terms of UI, they did a major innovation.\nInstead of having the menu on the top right, they put it on the bottom left.\nAnother key technology is of course the browser technology.\nWith Safari, we kind of restart the innovation and creation in the browser space by having a browser that's both elegant, simple, yet powerful.\nAnd in Tiger, we added a personal clipping assistant functionality, Safari RSS.\nGuess what?\nIE7 RSS.\nThey even have the same layout for the little kind of filter box on the right.\nNow, talking of similar layout, um, there's our mail program and for the longest time, Windows had this kind of combo that does mail and calendaring and address book.\nWell, no longer.\nIt's now an independent program.\nThis is Ical, our calendaring program and this is Windows Calendar.\nThey even tried to copy the color scheme and didn't get that quite right.\nNow, this is a logo.\nNow, you may think that I made up the logo by taking the standard Microsoft Windows logo and adding a nice aqua bubble on top.\nNo, that's the official logo.\nBut you know, underneath it all, it's still Windows.\nIt still has the registry as its core.\nIt's still DLL hell.\nAnd it has this well-loved feature that's called activation.\nIf you can't innovate, I guess you just imitate, but it's never quite as good as the original.\nSo, enough said about Vista.\nVista is still in the future for Windows customers, but for us, it's features from our past.\nIt's features we've had in Tiger, in Panther, some since the beginning of Mac OS 10 and we've already iterated several times on those features.\nSo, to talk about the future, our future, I'm going to turn back to Steve.\n\n**[Speaker 1]**: Thank you, Bertrand.\nYou know, our friends up north spend over $5 billion a year on R&D.\nAnd yet, these days all they seem to be able to do is try to copy Google and Apple.\nSo, I guess it's a good example of how money isn't everything.",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 1,
+      "examples": [
+        "I made"
+      ]
+    },
+    "values": {
+      "count": 2,
+      "examples": [
+        "simple",
+        "elegant"
+      ]
+    },
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "in the future"
+      ]
+    },
+    "story": {
+      "count": 1,
+      "examples": [
+        "years ago"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=N-2C2gb6ws8",
+  "source_type": "existing",
+  "word_count": 550,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T14:49:09.465222"
+}

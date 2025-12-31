@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00073",
+  "title": "Quote: I'm not a 62-year-old statesman that's traveled around the w...",
+  "speaker": "Steve Jobs",
+  "year": 1985,
+  "event": "Jobs Talks About His Rise and Fall",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Management"
+  ],
+  "content": "I'm not a 62-year-old statesman that's traveled around the world all his life. So I'm sure that there was a situation when I was 25 that if I could go back, knowing what I know now, I could have handled much better. And I'm sure I'll be able to say the same thing when I'm 35 about the situation in 1985. I can be very intense in my convictions. And I don't know; all in all, I kind of like myself and I'm not that anxious to change.",
+  "full_transcript": "I'm not a 62-year-old statesman that's traveled around the world all his life. So I'm sure that there was a situation when I was 25 that if I could go back, knowing what I know now, I could have handled much better. And I'm sure I'll be able to say the same thing when I'm 35 about the situation in 1985. I can be very intense in my convictions. And I don't know; all in all, I kind of like myself and I'm not that anxious to change.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I know"
+      ]
+    },
+    "story": {
+      "count": 1,
+      "examples": [
+        "when I was"
+      ]
+    }
+  },
+  "source_url": "http://www.newsweek.com/jobs-talks-about-his-rise-and-fall-207016",
+  "source_type": "verbatim_quote",
+  "word_count": 88,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

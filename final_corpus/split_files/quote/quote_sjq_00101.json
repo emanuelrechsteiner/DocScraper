@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00101",
+  "title": "Quote: Japan's very interesting. Some people think it copies things...",
+  "speaker": "Steve Jobs",
+  "year": 1985,
+  "event": "Playboy Interview: Steve Jobs",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Technology"
+  ],
+  "content": "Japan's very interesting. Some people think it copies things. I don't think that anymore. I think what they do is reinvent things. They will get something that's already been invented and study it until they thoroughly understand it. In some cases, they understand it better than the original inventor. Out of that understanding, they will reinvent it in a more refined second-generation version. That strategy works only when what they're working with isn't changing very much--the stereo industry and the automobile industry are two examples. When the target is moving quickly, they find it very difficult, because that reinvention cycle takes a few years. As long as the definition of what a personal computer is keeps changing at the rate that it is, they will have a very hard time.",
+  "full_transcript": "Japan's very interesting. Some people think it copies things. I don't think that anymore. I think what they do is reinvent things. They will get something that's already been invented and study it until they thoroughly understand it. In some cases, they understand it better than the original inventor. Out of that understanding, they will reinvent it in a more refined second-generation version. That strategy works only when what they're working with isn't changing very much--the stereo industry and the automobile industry are two examples. When the target is moving quickly, they find it very difficult, because that reinvention cycle takes a few years. As long as the definition of what a personal computer is keeps changing at the rate that it is, they will have a very hard time.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I think"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20120322025837/http://www.playboy.com/magazine/playboy-interview-steve-jobs",
+  "source_type": "verbatim_quote",
+  "word_count": 130,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

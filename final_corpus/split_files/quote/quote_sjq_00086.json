@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00086",
+  "title": "Quote: Well, my favorite things in life are books, sushi and.... My...",
+  "speaker": "Steve Jobs",
+  "year": 1985,
+  "event": "Playboy Interview: Steve Jobs",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Family"
+  ],
+  "content": "Well, my favorite things in life are books, sushi and.... My favorite things in life don't cost any money. It's really clear that the most precious resource we all have is time. As it is, I pay a price by not having much of a personal life. I don't have the time to pursue love affairs or to tour small towns in Italy and sit in cafes and eat tomato-and-mozzarella salad. Occasionally, I spend a little money to save myself a hassle, which means time. And that's the extent of it. I bought an apartment in New York, but it's because I love that city. I'm trying to educate myself, being from a small town in California, not having grown up with the sophistication and culture of a large city. I consider it part of my education. You know, there are many people at Apple who can buy everything that they could ever possibly want and still have most of their money unspent. I hate talking about this as a problem; people are going to read this and think, Yeah, well, give me your problem. They're going to think I'm an arrogant little asshole.",
+  "full_transcript": "Well, my favorite things in life are books, sushi and.... My favorite things in life don't cost any money. It's really clear that the most precious resource we all have is time. As it is, I pay a price by not having much of a personal life. I don't have the time to pursue love affairs or to tour small towns in Italy and sit in cafes and eat tomato-and-mozzarella salad. Occasionally, I spend a little money to save myself a hassle, which means time. And that's the extent of it. I bought an apartment in New York, but it's because I love that city. I'm trying to educate myself, being from a small town in California, not having grown up with the sophistication and culture of a large city. I consider it part of my education. You know, there are many people at Apple who can buy everything that they could ever possibly want and still have most of their money unspent. I hate talking about this as a problem; people are going to read this and think, Yeah, well, give me your problem. They're going to think I'm an arrogant little asshole.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    }
+  },
+  "source_url": "https://web.archive.org/web/20120322025837/http://www.playboy.com/magazine/playboy-interview-steve-jobs",
+  "source_type": "verbatim_quote",
+  "word_count": 194,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

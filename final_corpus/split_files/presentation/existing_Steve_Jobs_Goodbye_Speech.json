@@ -1,0 +1,28 @@
+{
+  "id": "existing_Steve_Jobs_Goodbye_Speech",
+  "title": "Steve Job's Goodbye Speech",
+  "speaker": "Steve Jobs",
+  "year": null,
+  "event": null,
+  "event_type": "presentation",
+  "era": null,
+  "topics": [
+    "Apple",
+    "Leadership"
+  ],
+  "content": "I'm very happy to be here today with you all.\nAnd uh as some of you may know about five months ago, I had a liver transplant.\nSo I now have the liver of a mid 20s person who died in a car crash and was generous enough to donate their organs.\nAnd I wouldn't be here without such generosity.\nSo I hope all of us can be as generous and elect to become organ donors.\n\nI'd like to take a moment and thank everybody in the Apple community for the heartfelt support I got too.\nIt really meant a lot.\nAnd uh I'd also like to especially thank Tim Cook and the entire executive team of Apple.\nThey really rose to the occasion and ran the company very ably in that difficult period.\nSo thank you guys.\nLet's give him a round of applause.\nSo, I'm vertical.\nI'm back at Apple, loving every day of it.\nAnd uh I'm getting to work with our incredibly talented teams to come up with some great new products for you all in the future.\nSo it's it's wonderful.\nThank you.",
+  "full_transcript": "# Steve Job's Goodbye Speech\n\n**Source**: https://www.youtube.com/watch?v=sJm0P8xpDzA\n\n**Transcribed**: 2025-12-26 09:39\n\n---\n\n**[Crowd]**: \n**[Steve Jobs]**: I'm very happy to be here today with you all.\nAnd uh as some of you may know about five months ago, I had a liver transplant.\nSo I now have the liver of a mid 20s person who died in a car crash and was generous enough to donate their organs.\nAnd I wouldn't be here without such generosity.\nSo I hope all of us can be as generous and elect to become organ donors.\n\nI'd like to take a moment and thank everybody in the Apple community for the heartfelt support I got too.\nIt really meant a lot.\nAnd uh I'd also like to especially thank Tim Cook and the entire executive team of Apple.\nThey really rose to the occasion and ran the company very ably in that difficult period.\nSo thank you guys.\nLet's give him a round of applause.\nSo, I'm vertical.\nI'm back at Apple, loving every day of it.\nAnd uh I'm getting to work with our incredibly talented teams to come up with some great new products for you all in the future.\nSo it's it's wonderful.\nThank you.\n",
+  "cognitive_patterns": {
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "in the future"
+      ]
+    }
+  },
+  "source_url": "https://www.youtube.com/watch?v=sJm0P8xpDzA",
+  "source_type": "existing",
+  "word_count": 202,
+  "steve_jobs_percentage": 93.07,
+  "processed_at": "2025-12-31T14:49:09.078156"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00137",
+  "title": "Quote: But I believe life is an intelligent thing--that things aren...",
+  "speaker": "Steve Jobs",
+  "year": 1997,
+  "event": "Steve's Job: Restart Apple",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Lifestyle"
+  ],
+  "content": "But I believe life is an intelligent thing--that things aren't random.",
+  "full_transcript": "But I believe life is an intelligent thing--that things aren't random.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I believe"
+      ]
+    }
+  },
+  "source_url": "http://content.time.com/time/magazine/article/0,9171,986849,00.html",
+  "source_type": "verbatim_quote",
+  "word_count": 11,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

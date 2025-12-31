@@ -1,0 +1,55 @@
+{
+  "id": "anecdote_sja_story_00063",
+  "title": "Story: In the early 1980s, Steve used to eat lunch at \"The Good Ear...",
+  "speaker": "Steve Jobs",
+  "year": 2010,
+  "event": "Steve Jobs Poses For 1st Cover of Macworld, Then Changes Mind",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand",
+    "meetings_decision"
+  ],
+  "content": "In the early 1980s, Steve used to eat lunch at \"The Good Earth\", the now-defunct Cupertino restaurant where I waitressed when I was sixteen. I remember this nerdy young guy who always ordered the Good Earth tostada, served in a whole-wheat tortilla and topped with sprouts. He smiled shyly at me when he asked for more Good Earth tea and drank gallons of the stuff. Steve always sat alone, devouring books and manuals way beyond my limited teenage understanding along with his food. [...]\nI called my mom the moment I heard Steve Jobs had died. She was sitting in front of her iMac, from which she has a view of the Cupertino Valley, The Apple headquarters nestled in the middle like a brilliant white palace. She was crying.\n\"There was a rainbow one day,\" she sobbed, \"that ended right on top of Apple.\" My mom snapped a photograph. \"I wanted to send it to him!\" she added. \"I meant to send it to him. And now,\" she stopped suddenly, struggling for control. \"Now, he's dead.\"\n_(note:[Here's a link to that picture.](http://walkingpapers.files.wordpress.com/2011/10/applerainbow.jpg))_\n[_Lunch with Steve Jobs_ , Suzanne Rico, 7 Oct 2011](http://suzannerico.com/lunch-with-steve-jobs/)\nSteve walked in dressed in a beautiful pinstriped, double-breasted suit with a white shirt and red tie. Right away, there was a problem - Steve didn't like the images we had chosen for the Mac screens. Aware that he might bolt any moment, Andrew and I worked feverishly to fix them - putting up exactly what Steve said he wanted. Meanwhile he stared at Mosgrove, and said, \"Are you one of those type of photographers who takes dozens of photos hoping one of them will turn out okay?\" Will just looked at him and shrugged.\n\"Take a picture of this,\" Steve said, holding up his middle finger. We stared in disbelief. Someone must have keyed his Mercedes again, I remember thinking.\nCrazy as it was, the \"computer gods\" were with us that day. Somehow we got our Steve Jobs photo and it is a classic, but if I wasn't a nimble thinker it would never have appeared. A couple weeks after the photo shoot, Steve called to say, \"Gee, David, I've changed my mind, I don't want to be on the cover of Macworld.\"\n\"Too late,\" I lied, \"the cover is already at the printer and we can't change it.\"\nIn reality, a few pages were at the printer, but not the cover, and we could have changed it if we really wanted to, which, of course, we didn't.\n\nSteve Jobs said: Are you one of those type of photographers who takes dozens of photos hoping one of them will turn out okay? | computer gods | Take a picture of this,",
+  "full_transcript": "In the early 1980s, Steve used to eat lunch at \"The Good Earth\", the now-defunct Cupertino restaurant where I waitressed when I was sixteen. I remember this nerdy young guy who always ordered the Good Earth tostada, served in a whole-wheat tortilla and topped with sprouts. He smiled shyly at me when he asked for more Good Earth tea and drank gallons of the stuff. Steve always sat alone, devouring books and manuals way beyond my limited teenage understanding along with his food. [...]\nI called my mom the moment I heard Steve Jobs had died. She was sitting in front of her iMac, from which she has a view of the Cupertino Valley, The Apple headquarters nestled in the middle like a brilliant white palace. She was crying.\n\"There was a rainbow one day,\" she sobbed, \"that ended right on top of Apple.\" My mom snapped a photograph. \"I wanted to send it to him!\" she added. \"I meant to send it to him. And now,\" she stopped suddenly, struggling for control. \"Now, he's dead.\"\n_(note:[Here's a link to that picture.](http://walkingpapers.files.wordpress.com/2011/10/applerainbow.jpg))_\n[_Lunch with Steve Jobs_ , Suzanne Rico, 7 Oct 2011](http://suzannerico.com/lunch-with-steve-jobs/)\nSteve walked in dressed in a beautiful pinstriped, double-breasted suit with a white shirt and red tie. Right away, there was a problem - Steve didn't like the images we had chosen for the Mac screens. Aware that he might bolt any moment, Andrew and I worked feverishly to fix them - putting up exactly what Steve said he wanted. Meanwhile he stared at Mosgrove, and said, \"Are you one of those type of photographers who takes dozens of photos hoping one of them will turn out okay?\" Will just looked at him and shrugged.\n\"Take a picture of this,\" Steve said, holding up his middle finger. We stared in disbelief. Someone must have keyed his Mercedes again, I remember thinking.\nCrazy as it was, the \"computer gods\" were with us that day. Somehow we got our Steve Jobs photo and it is a classic, but if I wasn't a nimble thinker it would never have appeared. A couple weeks after the photo shoot, Steve called to say, \"Gee, David, I've changed my mind, I don't want to be on the cover of Macworld.\"\n\"Too late,\" I lied, \"the cover is already at the printer and we can't change it.\"\nIn reality, a few pages were at the printer, but not the cover, and we could have changed it if we really wanted to, which, of course, we didn't.\n\nSteve Jobs said: Are you one of those type of photographers who takes dozens of photos hoping one of them will turn out okay? | computer gods | Take a picture of this,",
+  "cognitive_patterns": {
+    "agency": {
+      "count": 1,
+      "examples": [
+        "I wanted to"
+      ]
+    },
+    "values": {
+      "count": 1,
+      "examples": [
+        "beautiful"
+      ]
+    },
+    "criticism": {
+      "count": 1,
+      "examples": [
+        "don't want"
+      ]
+    },
+    "analogy": {
+      "count": 1,
+      "examples": [
+        "like a"
+      ]
+    },
+    "story": {
+      "count": 4,
+      "examples": [
+        "when I was",
+        "I remember",
+        "one day"
+      ]
+    }
+  },
+  "source_url": "http://www.cultofmac.com/39080/steve-jobs-poses-for-1st-cover-of-macworld-then-changes-mind-recollections/",
+  "source_type": "anecdote",
+  "word_count": 454,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

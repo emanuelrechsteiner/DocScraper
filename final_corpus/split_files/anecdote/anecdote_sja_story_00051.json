@@ -1,0 +1,34 @@
+{
+  "id": "anecdote_sja_story_00051",
+  "title": "Story: We had worked together on a Nike-Apple collaboration called ...",
+  "speaker": "Steve Jobs",
+  "year": 2012,
+  "event": "What's The Best Advice You've Ever Received?",
+  "event_type": "anecdote",
+  "era": null,
+  "topics": [
+    "product_taste",
+    "marketing_brand"
+  ],
+  "content": "We had worked together on a Nike-Apple collaboration called Nike+. So we took what Apple knows and Nike knows, and brought new technology to the market. Anyway, long story short, he said, \"Congratulations. It's great [that you've been named CEO]. You're going to do a great job.\" I said, \"Well, do you have any advice?\"\nHe said, \"No, no, you're great.\" Then there was a pause. \"Well, I do have some advice,\" he said. \"Nike makes some of the best products in the world--products that you lust after, absolutely beautiful stunning products. But you also make a lot of crap.\"\nHe said, \"Just get rid of the crappy stuff, and focus on the good stuff.\" And then I expected a little pause and a laugh. But there was a pause, and no laugh at the end.",
+  "full_transcript": "We had worked together on a Nike-Apple collaboration called Nike+. So we took what Apple knows and Nike knows, and brought new technology to the market. Anyway, long story short, he said, \"Congratulations. It's great [that you've been named CEO]. You're going to do a great job.\" I said, \"Well, do you have any advice?\"\nHe said, \"No, no, you're great.\" Then there was a pause. \"Well, I do have some advice,\" he said. \"Nike makes some of the best products in the world--products that you lust after, absolutely beautiful stunning products. But you also make a lot of crap.\"\nHe said, \"Just get rid of the crappy stuff, and focus on the good stuff.\" And then I expected a little pause and a laugh. But there was a pause, and no laugh at the end.",
+  "cognitive_patterns": {
+    "values": {
+      "count": 1,
+      "examples": [
+        "beautiful"
+      ]
+    },
+    "prediction": {
+      "count": 1,
+      "examples": [
+        "I expect"
+      ]
+    }
+  },
+  "source_url": "http://www.fastcompany.com/3011800/30-second-mba/mark-parker-whats-the-best-advice-youve-ever-received",
+  "source_type": "anecdote",
+  "word_count": 136,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:29.336262"
+}

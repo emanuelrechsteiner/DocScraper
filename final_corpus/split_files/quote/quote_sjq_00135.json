@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00135",
+  "title": "Quote: I used to be way over on the nurture side, but I've swung wa...",
+  "speaker": "Steve Jobs",
+  "year": 1997,
+  "event": "Creating Jobs: Apple's Founder Goes Home Again",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Competitors"
+  ],
+  "content": "I used to be way over on the nurture side, but I've swung way over to the nature side. And it's because of Mona and having kids. My daughter is 14 months old, and it's already pretty clear what her personality is.",
+  "full_transcript": "I used to be way over on the nurture side, but I've swung way over to the nature side. And it's because of Mona and having kids. My daughter is 14 months old, and it's already pretty clear what her personality is.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    }
+  },
+  "source_url": "http://www.nytimes.com/library/cyber/week/011897jobs.html?pagewanted=all",
+  "source_type": "verbatim_quote",
+  "word_count": 42,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

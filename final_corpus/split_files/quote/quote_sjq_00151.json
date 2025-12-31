@@ -1,0 +1,33 @@
+{
+  "id": "quote_sjq_00151",
+  "title": "Quote: I was worth about over a million dollars when I was 23 and o...",
+  "speaker": "Steve Jobs",
+  "year": 1996,
+  "event": "Triumph of the Nerds, Part 3",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Competitors"
+  ],
+  "content": "I was worth about over a million dollars when I was 23 and over ten million dollars when I was 24, and over a hundred million dollars when I was 25 and... it wasn't that important -- because I never did it for the money.",
+  "full_transcript": "I was worth about over a million dollars when I was 23 and over ten million dollars when I was 24, and over a hundred million dollars when I was 25 and... it wasn't that important -- because I never did it for the money.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "because"
+      ]
+    },
+    "story": {
+      "count": 3,
+      "examples": [
+        "when I was"
+      ]
+    }
+  },
+  "source_url": "http://www.pbs.org/nerds/part3.html",
+  "source_type": "verbatim_quote",
+  "word_count": 45,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "quote_sjq_00139",
+  "title": "Quote: Sure enough, when we took [the original iMac prototype] to t...",
+  "speaker": "Steve Jobs",
+  "year": 2005,
+  "event": "How Apple Does It",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Apple",
+    "Competitors"
+  ],
+  "content": "Sure enough, when we took [the original iMac prototype] to the engineers, they said, 'Oh.' And they came up with 38 reasons. And I said, 'No, no, we're doing this.' And they said, 'Well, why?' And I said, 'Because I'm the CEO, and I think it can be done.' And so they kind of begrudgingly did it. But then it was a big hit.",
+  "full_transcript": "Sure enough, when we took [the original iMac prototype] to the engineers, they said, 'Oh.' And they came up with 38 reasons. And I said, 'No, no, we're doing this.' And they said, 'Well, why?' And I said, 'Because I'm the CEO, and I think it can be done.' And so they kind of begrudgingly did it. But then it was a big hit.",
+  "cognitive_patterns": {
+    "epistemology": {
+      "count": 1,
+      "examples": [
+        "I think"
+      ]
+    },
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "Because"
+      ]
+    }
+  },
+  "source_url": "http://content.time.com/time/magazine/article/0,9171,1118384,00.html",
+  "source_type": "verbatim_quote",
+  "word_count": 64,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}

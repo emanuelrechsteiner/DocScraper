@@ -1,0 +1,27 @@
+{
+  "id": "quote_sjq_00157",
+  "title": "Quote: Right now, if you buy a computer system and you want to solv...",
+  "speaker": "Steve Jobs",
+  "year": 1980,
+  "event": "Steve Jobs Speech",
+  "event_type": "quote",
+  "era": null,
+  "topics": [
+    "Technology"
+  ],
+  "content": "Right now, if you buy a computer system and you want to solve one of your problems, we immediately throw a big problem right in the middle of you and your problem which is learning how to use the computer. A substantial problem to overcome. Once you overcome that, it's a phenomenal tool. But there is a barrier of having to overcome that problem.\nWhat we're trying to do ... is to remove that barrier so that someone can buy a computer system who knows nothing about it and directly attack their problem without learning how to program their computer.\nOur whole company, our whole philosophical base, is founded on one principle. That principle is that there is something very special and very historically different that takes place when you have one computer and one person. Very different than if you have ten people and one computer.",
+  "full_transcript": "Right now, if you buy a computer system and you want to solve one of your problems, we immediately throw a big problem right in the middle of you and your problem which is learning how to use the computer. A substantial problem to overcome. Once you overcome that, it's a phenomenal tool. But there is a barrier of having to overcome that problem.\nWhat we're trying to do ... is to remove that barrier so that someone can buy a computer system who knows nothing about it and directly attack their problem without learning how to program their computer.\nOur whole company, our whole philosophical base, is founded on one principle. That principle is that there is something very special and very historically different that takes place when you have one computer and one person. Very different than if you have ten people and one computer.",
+  "cognitive_patterns": {
+    "reasoning": {
+      "count": 1,
+      "examples": [
+        "so that"
+      ]
+    }
+  },
+  "source_url": "http://www.computerhistory.org/atchm/steve-jobs/",
+  "source_type": "verbatim_quote",
+  "word_count": 147,
+  "steve_jobs_percentage": 100.0,
+  "processed_at": "2025-12-31T08:49:12.050111"
+}
