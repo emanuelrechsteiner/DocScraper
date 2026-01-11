@@ -89,7 +89,7 @@ class TestGUIProcessingWorkflow:
     def test_result_tracking(self):
         """Test result tracking and statistics"""
         # Verify result structure
-        from PostScraperCleaner import CleaningResult
+        from docscraper.cleaning.cleaner import CleaningResult
         from pathlib import Path
 
         result = CleaningResult(
@@ -112,7 +112,7 @@ class TestGUIResultsDisplay:
 
     def test_summary_calculation(self):
         """Test summary statistics calculation"""
-        from PostScraperCleaner import CleaningResult
+        from docscraper.cleaning.cleaner import CleaningResult
         from pathlib import Path
 
         results = []
@@ -144,7 +144,7 @@ class TestGUIResultsDisplay:
     def test_result_export_json(self):
         """Test exporting results to JSON"""
         import json
-        from PostScraperCleaner import CleaningResult
+        from docscraper.cleaning.cleaner import CleaningResult
         from pathlib import Path
 
         result = CleaningResult(
@@ -165,7 +165,7 @@ class TestGUIResultsDisplay:
 
     def test_result_export_csv(self):
         """Test exporting results to CSV format"""
-        from PostScraperCleaner import CleaningResult
+        from docscraper.cleaning.cleaner import CleaningResult
         from pathlib import Path
 
         results = []
@@ -199,7 +199,7 @@ class TestGUIErrorHandling:
 
     def test_invalid_configuration(self):
         """Test handling of invalid configuration"""
-        from PostScraperCleaner import CleaningConfig
+        from docscraper.cleaning.cleaner import CleaningConfig
 
         try:
             # Invalid threshold
@@ -217,7 +217,7 @@ class TestGUIErrorHandling:
     def test_processing_interruption(self):
         """Test handling of processing interruption"""
         # Test that batch processing can handle file errors gracefully
-        from PostScraperCleaner import PostScraperCleaner, CleaningConfig
+        from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
         from pathlib import Path
         import tempfile
 
@@ -251,7 +251,7 @@ class TestGUIIntegration:
 
     def test_config_to_backend(self):
         """Test configuration passes to backend correctly"""
-        from PostScraperCleaner import PostScraperCleaner, CleaningConfig
+        from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
 
         config = CleaningConfig(
             remove_navigation=True,
@@ -266,7 +266,7 @@ class TestGUIIntegration:
 
     def test_progress_callback(self):
         """Test progress callback integration"""
-        from PostScraperCleaner import PostScraperCleaner, CleaningConfig
+        from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
         from pathlib import Path
         import tempfile
 
@@ -303,7 +303,7 @@ class TestGUIIntegration:
 
     def test_statistics_update(self):
         """Test statistics tracking integration"""
-        from PostScraperCleaner import PostScraperCleaner, CleaningConfig
+        from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
         from pathlib import Path
         import tempfile
 

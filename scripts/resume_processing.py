@@ -11,7 +11,7 @@ from pathlib import Path
 # Add the current directory to Python path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from DocPostProcessor import DocumentPostProcessor
+from docscraper.core.processor import DocumentPostProcessor
 
 async def resume_from_checkpoint():
     """Resume processing from the pre-classification checkpoint."""

@@ -9,7 +9,7 @@ import pytest
 import tempfile
 import json
 from pathlib import Path
-from PostScraperCleaner import PostScraperCleaner, CleaningConfig, CleaningResult
+from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig, CleaningResult
 
 
 class TestDocScraperWorkflow:

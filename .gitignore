@@ -44,3 +44,21 @@ logs/
 # Corpus data - local only
 final_corpus/
 *.jsonl
+
+# Scraped and processed output
+scraped_docs/
+processed_docs/
+krasserstoff/
+test_output/
+test_results/
+openai_output/
+steve_jobs_docs/
+PreProcessed/
+Documentation/
+
+# Application logs
+logs/
+*.log
+gui_log.txt
+startup_err.log
+startup_out.log

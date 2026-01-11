@@ -18,7 +18,7 @@ from typing import Optional, Callable, List, Dict, Tuple
 from queue import Queue
 from threading import Thread
 
-from cleaning_rules import (
+from .rules import (
     CleaningPattern,
     PatternRegistry,
     DEFAULT_REGISTRY,
@@ -27,20 +27,20 @@ from cleaning_rules import (
 
 # Phase 2: LLM and Chunk Optimization (optional imports)
 try:
-    from llm_cleaner import LLMValidator, LLMConfig, ValidationResult
+    from .llm import LLMValidator, LLMConfig, ValidationResult
 except ImportError:
     LLMValidator = None
     LLMConfig = None
     ValidationResult = None
 
 try:
-    from intelligent_cleaner import IntelligentContentAnalyzer, ContentAnalysis
+    from .intelligent import IntelligentContentAnalyzer, ContentAnalysis
 except ImportError:
     IntelligentContentAnalyzer = None
     ContentAnalysis = None
 
 try:
-    from chunk_optimizer import ChunkOptimizer, ChunkMetadata
+    from ..optimization.chunker import ChunkOptimizer, ChunkMetadata
 except ImportError:
     ChunkOptimizer = None
     ChunkMetadata = None

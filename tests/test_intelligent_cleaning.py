@@ -16,7 +16,7 @@ any documentation structure without hardcoded patterns.
 import os
 import sys
 from pathlib import Path
-from PostScraperCleaner import PostScraperCleaner, CleaningConfig
+from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
 
 
 def load_env():

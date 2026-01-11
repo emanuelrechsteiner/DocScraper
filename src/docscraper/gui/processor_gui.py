@@ -15,7 +15,7 @@ import queue
 import time
 import os
 
-from DocPostProcessor import DocumentPostProcessor
+from docscraper.core.processor import DocumentPostProcessor
 
 
 class DocPostProcessorGUI:

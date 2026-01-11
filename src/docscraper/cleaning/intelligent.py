@@ -14,7 +14,7 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Tuple
 from pathlib import Path
 
-from llm_cleaner import LLMValidator, LLMConfig
+from .llm import LLMValidator, LLMConfig
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

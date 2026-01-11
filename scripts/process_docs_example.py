@@ -8,7 +8,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-from DocPostProcessor import DocumentPostProcessor
+from docscraper.core.processor import DocumentPostProcessor
 
 
 async def process_anthropic_docs():
@@ -48,7 +48,7 @@ async def process_anthropic_docs():
 
 async def process_custom_docs():
     """Example: Process custom documentation with specific settings."""
-    from DocPostProcessor import DocumentStructurer, DocumentCleaner
+    from docscraper.core.processor import DocumentStructurer, DocumentCleaner
     
     print("\n🔧 Custom Processing Example")
     print("=" * 50)

@@ -4,7 +4,7 @@ Test script to verify the stop functionality works correctly.
 """
 
 import asyncio
-from DocScraper import DocumentationScraper
+from docscraper.core.scraper import DocumentationScraper
 
 async def test_stop():
     """Test that the scraper can be stopped properly."""

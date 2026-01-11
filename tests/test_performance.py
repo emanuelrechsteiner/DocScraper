@@ -9,9 +9,9 @@ import time
 import tempfile
 import pytest
 from pathlib import Path
-from PostScraperCleaner import PostScraperCleaner, CleaningConfig
-from chunk_optimizer import ChunkOptimizer
-from cleaning_rules import PatternRegistry
+from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
+from docscraper.optimization.chunker import ChunkOptimizer
+from docscraper.cleaning.rules import PatternRegistry
 
 
 class TestPerformanceBenchmarks:

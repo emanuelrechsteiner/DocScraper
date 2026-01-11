@@ -12,7 +12,7 @@ Example:
 
 import os
 from pathlib import Path
-from PostScraperCleaner import PostScraperCleaner, CleaningConfig
+from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
 
 def load_env():
     """Load environment variables from .env file"""

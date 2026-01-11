@@ -17,8 +17,8 @@ import queue
 import logging
 from typing import Optional, Callable, Dict, Any
 
-from PostScraperCleaner import PostScraperCleaner, CleaningConfig, CleaningResult
-from cleaning_rules import PatternRegistry, DEFAULT_REGISTRY
+from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig, CleaningResult
+from docscraper.cleaning.rules import PatternRegistry, DEFAULT_REGISTRY
 
 # Load .env file for API keys
 def load_env():

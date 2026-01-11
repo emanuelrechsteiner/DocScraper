@@ -9,7 +9,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-from DocPostProcessor import DocumentPostProcessor
+from docscraper.core.processor import DocumentPostProcessor
 
 
 async def process_multi_folder_docs():

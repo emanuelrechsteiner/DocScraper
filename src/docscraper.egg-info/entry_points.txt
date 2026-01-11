@@ -1,0 +1,4 @@
+[console_scripts]
+docprocessor-gui = docscraper.gui.processor_gui:main
+docscraper = docscraper.cli.main:main
+docscraper-gui = docscraper.gui.scraper_gui:main

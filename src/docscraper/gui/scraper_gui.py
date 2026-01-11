@@ -13,7 +13,7 @@ import queue
 from pathlib import Path
 from datetime import datetime
 
-from DocScraper import DocumentationScraper
+from docscraper.core.scraper import DocumentationScraper
 
 
 class DocScraperGUI:
