@@ -1,23 +1,19 @@
 """Scrape router — POST /api/v1/scrape endpoint."""
 
 import uuid
-from datetime import datetime
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 
 from ..models.schemas import (
     APIResponse,
-    ErrorResponse,
     JobStatus,
     MetaResponse,
     ScrapeRequest,
     ScrapeResponse,
 )
+from ..services.job_store import job_store
 
 router = APIRouter(tags=["scrape"])
-
-# In-memory job store (will be replaced by PostgreSQL in Phase 3)
-_jobs: dict[str, dict] = {}
 
 
 @router.post("/scrape", response_model=APIResponse, status_code=202)
@@ -31,45 +27,21 @@ async def create_scrape_job(request: ScrapeRequest) -> APIResponse:
 
     Returns:
         APIResponse wrapping a ScrapeResponse with the new job_id.
-
-    Raises:
-        HTTPException: 500 if job creation fails unexpectedly.
     """
-    job_id = f"job_{uuid.uuid4().hex[:12]}"
-    request_id = f"req_{uuid.uuid4().hex[:12]}"
-    now = datetime.utcnow()
-
-    try:
-        _jobs[job_id] = {
-            "job_id": job_id,
-            "status": JobStatus.PENDING,
-            "url": str(request.url),
-            "max_pages": request.max_pages,
-            "output_format": request.output_format,
-            "webhook_url": str(request.webhook_url) if request.webhook_url else None,
-            "created_at": now,
-            "started_at": None,
-            "completed_at": None,
-            "pages_scraped": 0,
-            "pages_failed": 0,
-            "error_message": None,
-        }
-    except Exception as exc:
-        raise HTTPException(
-            status_code=500,
-            detail=ErrorResponse(
-                code="JOB_CREATION_FAILED",
-                message="Failed to create scrape job.",
-                details={"reason": str(exc)},
-            ).model_dump(),
-        ) from exc
+    job = job_store.create_job(
+        url=str(request.url),
+        job_type="scrape",
+        max_pages=request.max_pages,
+        output_format=request.output_format,
+        webhook_url=str(request.webhook_url) if request.webhook_url else None,
+    )
 
     return APIResponse(
         data=ScrapeResponse(
-            job_id=job_id,
+            job_id=job.job_id,
             status=JobStatus.PENDING,
             message="Scrape job submitted successfully",
-            created_at=now,
-        ).model_dump(),
-        meta=MetaResponse(request_id=request_id),
+            created_at=job.created_at,
+        ).model_dump(mode="json"),
+        meta=MetaResponse(request_id=f"req_{uuid.uuid4().hex[:12]}"),
     )
