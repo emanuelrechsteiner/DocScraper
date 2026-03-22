@@ -123,6 +123,7 @@ async def db_session() -> AsyncSession:
     maker = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
     async with maker() as session:
         yield session
+        await session.close()
 
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
