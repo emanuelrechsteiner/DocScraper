@@ -2,22 +2,27 @@
 
 import uuid
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from ..db.repositories import JobRepository
+from ..db.session import get_db_session
 from ..models.schemas import (
     APIResponse,
+    JobStatus,
     MetaResponse,
     ProcessRequest,
     ProcessResponse,
-    JobStatus,
 )
-from ..services.job_store import job_store
 
 router = APIRouter(tags=["process"])
 
 
 @router.post("/process", response_model=APIResponse, status_code=202)
-async def create_process_job(request: ProcessRequest) -> APIResponse:
+async def create_process_job(
+    request: ProcessRequest,
+    db: AsyncSession = Depends(get_db_session),
+) -> APIResponse:
     """Submit a new document processing job (#18).
 
     Processes previously scraped markdown files through the cleaning
@@ -27,11 +32,13 @@ async def create_process_job(request: ProcessRequest) -> APIResponse:
 
     Args:
         request: Validated process request with input directory and options.
+        db: Injected async database session.
 
     Returns:
         APIResponse wrapping a ProcessResponse with the new job_id.
     """
-    job = job_store.create_job(
+    repo = JobRepository(db)
+    job = await repo.create(
         url=request.input_dir,
         job_type="process",
         output_format=request.output_format,

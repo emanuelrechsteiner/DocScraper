@@ -2,8 +2,11 @@
 
 import uuid
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from ..db.repositories import UserRepository
+from ..db.session import get_db_session
 from ..models.schemas import (
     APIResponse,
     CheckoutRequest,
@@ -41,13 +44,16 @@ async def list_plans() -> APIResponse:
 
 @router.post("/checkout", response_model=APIResponse)
 async def create_checkout(
-    request: CheckoutRequest, user_id: str = "user_default"
+    request: CheckoutRequest,
+    user_id: str = "user_default",
+    db: AsyncSession = Depends(get_db_session),
 ) -> APIResponse:
     """Create a Stripe checkout session for plan upgrade (#27).
 
     Args:
         request: Target tier and redirect URLs.
-        user_id: Authenticated user ID.
+        user_id: Authenticated user ID (query parameter).
+        db: Injected async database session.
 
     Returns:
         APIResponse with checkout URL and session ID.
@@ -55,12 +61,14 @@ async def create_checkout(
     Raises:
         HTTPException: 400 if configuration or validation error.
     """
+    user_repo = UserRepository(db)
     try:
-        result = await billing_service.create_checkout_session(
+        result = await billing_service.create_checkout_session_with_repo(
             user_id=user_id,
             tier=request.tier,
             success_url=str(request.success_url),
             cancel_url=str(request.cancel_url),
+            user_repo=user_repo,
         )
     except ValueError as exc:
         raise HTTPException(
@@ -75,13 +83,17 @@ async def create_checkout(
 
 
 @router.post("/webhooks")
-async def stripe_webhook(request: Request) -> dict[str, str]:
+async def stripe_webhook(
+    request: Request,
+    db: AsyncSession = Depends(get_db_session),
+) -> dict[str, str]:
     """Handle incoming Stripe webhook events (#28).
 
     Verifies the webhook signature and processes the event.
 
     Args:
         request: Raw HTTP request containing the Stripe event payload.
+        db: Injected async database session.
 
     Returns:
         Acknowledgement dict.
@@ -92,8 +104,11 @@ async def stripe_webhook(request: Request) -> dict[str, str]:
     payload = await request.body()
     signature = request.headers.get("stripe-signature", "")
 
+    user_repo = UserRepository(db)
     try:
-        result = await billing_service.handle_webhook_event(payload, signature)
+        result = await billing_service.handle_webhook_event_with_repo(
+            payload, signature, user_repo=user_repo
+        )
     except ValueError as exc:
         raise HTTPException(
             status_code=400,
@@ -109,11 +124,15 @@ async def stripe_webhook(request: Request) -> dict[str, str]:
 
 
 @router.get("/subscription", response_model=APIResponse)
-async def get_subscription(user_id: str = "user_default") -> APIResponse:
+async def get_subscription(
+    user_id: str = "user_default",
+    db: AsyncSession = Depends(get_db_session),
+) -> APIResponse:
     """Get current subscription status (#27).
 
     Args:
-        user_id: Authenticated user ID.
+        user_id: Authenticated user ID (query parameter).
+        db: Injected async database session.
 
     Returns:
         APIResponse with subscription details.
@@ -121,8 +140,11 @@ async def get_subscription(user_id: str = "user_default") -> APIResponse:
     Raises:
         HTTPException: 404 if user not found.
     """
+    user_repo = UserRepository(db)
     try:
-        status = billing_service.get_subscription_status(user_id)
+        status = await billing_service.get_subscription_status_async(
+            user_id, user_repo=user_repo
+        )
     except ValueError as exc:
         raise HTTPException(
             status_code=404,

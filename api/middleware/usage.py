@@ -2,6 +2,13 @@
 
 Records API usage per request for billing and analytics.
 Runs as Starlette middleware — captures every request/response cycle.
+
+Note: This middleware intentionally uses the in-memory ``usage_service``
+for performance. Writing every request to PostgreSQL synchronously would
+add unacceptable latency to every API call. The ``UsageRepository`` is
+used in route handlers where per-key DB writes are explicitly required.
+A future improvement could batch-flush these records to the DB
+asynchronously (e.g. via ARQ background task).
 """
 
 import logging

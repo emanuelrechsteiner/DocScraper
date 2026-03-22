@@ -2,46 +2,59 @@
 
 Tests for all Parsify REST API endpoints using httpx AsyncClient.
 Covers: scrape, jobs, process, auth, billing plans, usage.
+
+All tests use an in-memory SQLite database via the ``app_with_db`` fixture,
+which overrides the ``get_db_session`` dependency.
 """
+
+from __future__ import annotations
+
+from datetime import datetime, timezone
 
 import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.app import create_app
-from api.services.auth_service import auth_service
-from api.services.job_store import job_store
+from api.db.repositories import JobRepository, UserRepository, APIKeyRepository
+from api.db.session import get_db_session
 from api.models.schemas import JobStatus
-
-
-@pytest.fixture
-def app():
-    """Create a fresh FastAPI app for each test."""
-    return create_app()
+from api.services.usage import usage_service
 
 
 @pytest_asyncio.fixture
-async def client(app):
-    """Async HTTP client for testing."""
-    transport = ASGITransport(app=app)
+async def app_with_db(db_session: AsyncSession):
+    """FastAPI application with get_db_session overridden to use in-memory SQLite.
+
+    Args:
+        db_session: In-memory SQLite session from the ``db_session`` fixture.
+
+    Yields:
+        Configured FastAPI application instance.
+    """
+    application = create_app()
+
+    async def override_get_db():
+        yield db_session
+
+    application.dependency_overrides[get_db_session] = override_get_db
+    yield application
+
+
+@pytest_asyncio.fixture
+async def client(app_with_db):
+    """Async HTTP client backed by the test application.
+
+    Args:
+        app_with_db: Application with DB session override.
+
+    Yields:
+        Configured ``AsyncClient`` instance.
+    """
+    transport = ASGITransport(app=app_with_db)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
         yield ac
-
-
-@pytest.fixture(autouse=True)
-def _reset_stores():
-    """Reset all in-memory stores between tests."""
-    job_store._jobs.clear()
-    auth_service._users.clear()
-    auth_service._users_by_email.clear()
-    auth_service._api_keys.clear()
-    auth_service._key_hash_index.clear()
-    yield
-    job_store._jobs.clear()
-    auth_service._users.clear()
-    auth_service._users_by_email.clear()
-    auth_service._api_keys.clear()
-    auth_service._key_hash_index.clear()
 
 
 # ---------------------------------------------------------------------------
@@ -117,14 +130,12 @@ class TestJobEndpoints:
     @pytest.mark.asyncio
     async def test_get_job_status(self, client: AsyncClient) -> None:
         """Created job is retrievable by ID."""
-        # Create a job first
         create_resp = await client.post(
             "/api/v1/scrape",
             json={"url": "https://docs.example.com"},
         )
         job_id = create_resp.json()["data"]["job_id"]
 
-        # Get its status
         response = await client.get(f"/api/v1/jobs/{job_id}")
         assert response.status_code == 200
         data = response.json()["data"]
@@ -150,7 +161,9 @@ class TestJobEndpoints:
         assert response.status_code == 409
 
     @pytest.mark.asyncio
-    async def test_get_job_result_completed(self, client: AsyncClient) -> None:
+    async def test_get_job_result_completed(
+        self, client: AsyncClient, db_session: AsyncSession
+    ) -> None:
         """Completed job result is retrievable."""
         create_resp = await client.post(
             "/api/v1/scrape",
@@ -158,17 +171,17 @@ class TestJobEndpoints:
         )
         job_id = create_resp.json()["data"]["job_id"]
 
-        # Manually complete the job
-        from datetime import datetime, timezone
-
-        job_store.update_job(
+        # Manually complete the job via repository
+        repo = JobRepository(db_session)
+        await repo.update(
             job_id,
-            status=JobStatus.COMPLETED,
+            status=JobStatus.COMPLETED.value,
             completed_at=datetime.now(timezone.utc),
             pages_scraped=5,
             output_files=["page1.md", "page2.md"],
             summary={"total": 5},
         )
+        await db_session.commit()
 
         response = await client.get(f"/api/v1/jobs/{job_id}/result")
         assert response.status_code == 200
@@ -179,7 +192,6 @@ class TestJobEndpoints:
     @pytest.mark.asyncio
     async def test_list_jobs(self, client: AsyncClient) -> None:
         """List endpoint returns all created jobs."""
-        # Create two jobs
         await client.post(
             "/api/v1/scrape",
             json={"url": "https://docs.example.com"},
@@ -254,14 +266,12 @@ class TestAuthEndpoints:
     @pytest.mark.asyncio
     async def test_create_and_list_api_keys(self, client: AsyncClient) -> None:
         """Create a key and verify it appears in the list."""
-        # Register user first
         reg_resp = await client.post(
             "/api/v1/auth/register",
             json={"email": "keys@example.com"},
         )
         user_id = reg_resp.json()["data"]["user_id"]
 
-        # Create a key
         create_resp = await client.post(
             "/api/v1/auth/keys",
             json={"name": "Test Key"},
@@ -272,7 +282,6 @@ class TestAuthEndpoints:
         assert key_data["key"].startswith("pk_")
         assert key_data["name"] == "Test Key"
 
-        # List keys (full key should NOT be returned)
         list_resp = await client.get(
             "/api/v1/auth/keys",
             params={"user_id": user_id},
@@ -298,7 +307,6 @@ class TestAuthEndpoints:
         )
         key_id = create_resp.json()["data"]["key_id"]
 
-        # Revoke
         del_resp = await client.delete(
             f"/api/v1/auth/keys/{key_id}",
             params={"user_id": user_id},
@@ -366,37 +374,56 @@ class TestUsageEndpoints:
 
 
 # ---------------------------------------------------------------------------
-# API key verification (middleware integration, #20)
+# API key verification (repository integration, #20)
 # ---------------------------------------------------------------------------
 
 
 class TestAPIKeyAuth:
-    """Tests for API key authentication middleware."""
+    """Tests for API key authentication via repository."""
 
     @pytest.mark.asyncio
-    async def test_valid_api_key_verification(self) -> None:
-        """AuthService correctly verifies a valid key."""
-        user = auth_service.create_user("auth@example.com")
-        key_data, raw_key = auth_service.create_api_key(user.user_id, "test")
+    async def test_valid_api_key_verification(
+        self, db_session: AsyncSession
+    ) -> None:
+        """APIKeyRepository correctly verifies a valid key."""
+        user_repo = UserRepository(db_session)
+        user = await user_repo.create("auth@example.com")
+        await db_session.commit()
 
-        verified = auth_service.verify_api_key(raw_key)
+        key_repo = APIKeyRepository(db_session)
+        key_data, raw_key = await key_repo.create(user.user_id, "test")
+        await db_session.commit()
+
+        verified = await key_repo.verify(raw_key)
         assert verified is not None
         assert verified.key_id == key_data.key_id
 
     @pytest.mark.asyncio
-    async def test_invalid_api_key_rejected(self) -> None:
+    async def test_invalid_api_key_rejected(
+        self, db_session: AsyncSession
+    ) -> None:
         """Invalid key returns None."""
-        verified = auth_service.verify_api_key("pk_invalid_key_12345")
+        key_repo = APIKeyRepository(db_session)
+        verified = await key_repo.verify("pk_invalid_key_12345")
         assert verified is None
 
     @pytest.mark.asyncio
-    async def test_revoked_key_rejected(self) -> None:
+    async def test_revoked_key_rejected(
+        self, db_session: AsyncSession
+    ) -> None:
         """Revoked key returns None on verification."""
-        user = auth_service.create_user("revoked@example.com")
-        key_data, raw_key = auth_service.create_api_key(user.user_id, "revoke-test")
-        auth_service.revoke_api_key(key_data.key_id, user.user_id)
+        user_repo = UserRepository(db_session)
+        user = await user_repo.create("revoked@example.com")
+        await db_session.commit()
 
-        verified = auth_service.verify_api_key(raw_key)
+        key_repo = APIKeyRepository(db_session)
+        key_data, raw_key = await key_repo.create(user.user_id, "revoke-test")
+        await db_session.commit()
+
+        await key_repo.revoke(key_data.key_id, user.user_id)
+        await db_session.commit()
+
+        verified = await key_repo.verify(raw_key)
         assert verified is None
 
 
@@ -406,17 +433,17 @@ class TestAPIKeyAuth:
 
 
 class TestUsageService:
-    """Tests for usage tracking and overage detection."""
+    """Tests for usage tracking and overage detection (in-memory service)."""
 
     @pytest.mark.asyncio
     async def test_record_and_check_usage(self) -> None:
         """Usage is tracked and rate limits are enforced."""
         from api.models.schemas import BillingTier
-        from api.services.usage import usage_service
+        from api.services.usage import UsageService
 
-        # Record some usage
+        svc = UsageService()
         for _ in range(5):
-            usage_service.record(
+            svc.record(
                 endpoint="/api/v1/scrape",
                 method="POST",
                 status_code=202,
@@ -424,9 +451,7 @@ class TestUsageService:
                 key_id="test_key",
             )
 
-        allowed, remaining = usage_service.check_rate_limit(
-            "test_key", BillingTier.FREE
-        )
+        allowed, remaining = svc.check_rate_limit("test_key", BillingTier.FREE)
         assert allowed is True
         assert remaining == 95  # 100 - 5
 
@@ -437,7 +462,6 @@ class TestUsageService:
         from api.services.usage import UsageService
 
         svc = UsageService()
-        # Simulate heavy usage (125 requests with 100/hr limit)
         for _ in range(125):
             svc.record(
                 endpoint="/api/v1/scrape",
