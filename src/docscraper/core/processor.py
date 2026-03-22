@@ -3,12 +3,13 @@
 Documentation Post-Processor
 Cleans, structures, and sorts scraped markdown files for optimal vector database ingestion.
 """
+from __future__ import annotations
 
 import re
 import json
 import asyncio
 from pathlib import Path
-from typing import List, Dict, Tuple, Optional, Any
+from typing import Any
 from datetime import datetime
 import logging
 from dataclasses import dataclass, field
@@ -31,14 +32,14 @@ logger = logging.getLogger(__name__)
 class DocumentChunk:
     """Represents a chunk of document content."""
     content: str
-    metadata: Dict[str, Any]
+    metadata: dict[str, Any]
     chunk_id: str
     parent_doc: str
     position: int
     tokens: int = 0
-    embedding: Optional[List[float]] = None
-    
-    def to_dict(self) -> Dict:
+    embedding: list[float] | None = None
+
+    def to_dict(self) -> dict:
         """Convert to dictionary for storage."""
         return {
             'chunk_id': self.chunk_id,
@@ -56,13 +57,13 @@ class ProcessedDocument:
     file_path: str
     original_url: str
     title: str
-    chunks: List[DocumentChunk] = field(default_factory=list)
-    category: Optional[str] = None
-    topics: List[str] = field(default_factory=list)
-    dependencies: List[str] = field(default_factory=list)
+    chunks: list[DocumentChunk] = field(default_factory=list)
+    category: str | None = None
+    topics: list[str] = field(default_factory=list)
+    dependencies: list[str] = field(default_factory=list)
     complexity_score: float = 0.0
-    
-    def to_dict(self) -> Dict:
+
+    def to_dict(self) -> dict:
         """Convert to dictionary for storage."""
         return {
             'file_path': self.file_path,
@@ -162,7 +163,7 @@ class DocumentCleaner:
         
         return content
     
-    def extract_metadata(self, content: str) -> Tuple[Dict[str, Any], str]:
+    def extract_metadata(self, content: str) -> tuple[dict[str, Any], str]:
         """Extract YAML frontmatter and return metadata and content."""
         if content.startswith('---'):
             try:
@@ -198,7 +199,7 @@ class DocumentStructurer:
             'numbered_list': r'^\d+\. .+$',
         }
     
-    def structure_document(self, content: str, metadata: Dict[str, Any]) -> List[DocumentChunk]:
+    def structure_document(self, content: str, metadata: dict[str, Any]) -> list[DocumentChunk]:
         """Structure document into semantic chunks."""
         chunks = []
         
@@ -223,7 +224,7 @@ class DocumentStructurer:
         
         return chunks
     
-    def _parse_sections(self, content: str) -> List[Dict[str, Any]]:
+    def _parse_sections(self, content: str) -> list[dict[str, Any]]:
         """Parse document into hierarchical sections."""
         lines = content.split('\n')
         sections = []
@@ -273,7 +274,7 @@ class DocumentStructurer:
         
         return sections
     
-    def _create_semantic_chunks(self, content: str, section_metadata: Dict) -> List[DocumentChunk]:
+    def _create_semantic_chunks(self, content: str, section_metadata: dict) -> list[DocumentChunk]:
         """Create semantic chunks from section content."""
         chunks = []
         
@@ -355,7 +356,7 @@ class DocumentStructurer:
 class DocumentSorter:
     """Sorts documents using LLM-based classification and clustering."""
     
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: str | None = None):
         self.api_key = api_key
         self.client = None
         if api_key:
@@ -430,7 +431,7 @@ class DocumentSorter:
         
         return 'guides'  # Default category
     
-    def create_dependency_graph(self, documents: List[ProcessedDocument]) -> nx.DiGraph:
+    def create_dependency_graph(self, documents: list[ProcessedDocument]) -> nx.DiGraph:
         """Create a dependency graph based on document references with progress tracking."""
         import time
         
@@ -478,7 +479,7 @@ class DocumentSorter:
         logger.info(f"🔗 Dependency graph created with {graph.number_of_nodes()} nodes and {graph.number_of_edges()} edges")
         return graph
     
-    def calculate_complexity_scores(self, documents: List[ProcessedDocument]) -> None:
+    def calculate_complexity_scores(self, documents: list[ProcessedDocument]) -> None:
         """Calculate complexity scores for documents with progress tracking."""
         total_docs = len(documents)
         logger.info(f"📊 Calculating complexity scores for {total_docs} documents...")
@@ -502,7 +503,7 @@ class DocumentSorter:
             
             doc.complexity_score = complexity
     
-    async def sort_documents(self, documents: List[ProcessedDocument]) -> List[ProcessedDocument]:
+    async def sort_documents(self, documents: list[ProcessedDocument]) -> list[ProcessedDocument]:
         """Sort documents for optimal learning/embedding order."""
         
         # 🚀 PARALLEL OpenAI classification instead of sequential
@@ -575,8 +576,8 @@ class DocumentSorter:
         
         return sorted_docs
     
-    def _topological_sort_with_categories(self, documents: List[ProcessedDocument], 
-                                        graph: nx.DiGraph) -> List[ProcessedDocument]:
+    def _topological_sort_with_categories(self, documents: list[ProcessedDocument],
+                                          graph: nx.DiGraph) -> list[ProcessedDocument]:
         """Perform topological sort while respecting category ordering."""
         # Create subgraphs for each category
         category_docs = defaultdict(list)
@@ -608,7 +609,7 @@ class DocumentSorter:
 class DocumentPostProcessor:
     """Main post-processor that orchestrates cleaning, structuring, and sorting."""
     
-    def __init__(self, input_dir: str, output_dir: str, api_key: Optional[str] = None):
+    def __init__(self, input_dir: str, output_dir: str, api_key: str | None = None):
         self.input_dir = Path(input_dir)
 
         # Create dated output subdirectory to prevent overwrites
@@ -632,14 +633,14 @@ class DocumentPostProcessor:
         self.structurer = DocumentStructurer()
         self.sorter = DocumentSorter(api_key)
         
-        self.processed_docs: List[ProcessedDocument] = []
+        self.processed_docs: list[ProcessedDocument] = []
         
         # 🛡️ CHECKPOINT SYSTEM: Track progress to prevent token loss
         self.checkpoint_interval = 100  # Save every 100 processed documents
         self.last_checkpoint = 0
         self.processing_start_time = None
     
-    def save_checkpoint(self, phase: str, additional_data: Optional[Dict] = None) -> Path:
+    def save_checkpoint(self, phase: str, additional_data: dict | None = None) -> Path:
         """🛡️ Save processing checkpoint to prevent token loss."""
         import time
         
@@ -666,7 +667,7 @@ class DocumentPostProcessor:
         """Check if it's time to save a checkpoint."""
         return len(self.processed_docs) - self.last_checkpoint >= self.checkpoint_interval
     
-    def load_checkpoint(self, checkpoint_file: str) -> Dict[str, Any]:
+    def load_checkpoint(self, checkpoint_file: str) -> dict[str, Any]:
         """🔄 Load processing state from checkpoint."""
         with open(checkpoint_file, 'r', encoding='utf-8') as f:
             checkpoint_data = json.load(f)
@@ -704,7 +705,7 @@ class DocumentPostProcessor:
         
         return checkpoint_data
     
-    async def process_all_documents(self, recursive: bool = True, flatten_output: bool = True) -> Dict[str, Any]:
+    async def process_all_documents(self, recursive: bool = True, flatten_output: bool = True) -> dict[str, Any]:
         """Process all documents in the input directory.
         
         Args:
@@ -851,7 +852,7 @@ class DocumentPostProcessor:
         
         return summary
     
-    async def process_document(self, file_path: Path) -> Optional[ProcessedDocument]:
+    async def process_document(self, file_path: Path) -> ProcessedDocument | None:
         """🚀 TURBO: Process a single document with optimized I/O and CPU usage."""
         
         try:
@@ -893,7 +894,7 @@ class DocumentPostProcessor:
         
         return doc
     
-    def save_processed_documents(self, flatten_output: bool = True, source_folders: Dict[str, List] = None) -> Dict[str, Any]:
+    def save_processed_documents(self, flatten_output: bool = True, source_folders: dict[str, list] | None = None) -> dict[str, Any]:
         """Save processed documents to output directory.
         
         Args:

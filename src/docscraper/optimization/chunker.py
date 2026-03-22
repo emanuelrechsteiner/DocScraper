@@ -7,10 +7,11 @@ Handles semantic boundaries, code block preservation, and token estimation.
 Phase 2: Optimize cleaned content for vector databases
 """
 
+from __future__ import annotations
+
 import re
 import logging
 from dataclasses import dataclass, field
-from typing import List, Tuple, Dict, Optional
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -20,15 +21,15 @@ logger = logging.getLogger(__name__)
 class ChunkMetadata:
     """Metadata about content chunks"""
     total_chunks: int = 0
-    heading_levels: Dict[int, int] = field(default_factory=dict)
+    heading_levels: dict[int, int] = field(default_factory=dict)
     code_blocks: int = 0
     tables: int = 0
     lists: int = 0
-    semantic_boundaries: List[int] = field(default_factory=list)
+    semantic_boundaries: list[int] = field(default_factory=list)
     avg_chunk_size: int = 0
-    optimization_notes: List[str] = field(default_factory=list)
+    optimization_notes: list[str] = field(default_factory=list)
 
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> dict:
         """Convert to dictionary"""
         return {
             "total_chunks": self.total_chunks,
@@ -62,7 +63,7 @@ class ChunkOptimizer:
         chunk_size: int = DEFAULT_CHUNK_SIZE,
         overlap: int = DEFAULT_OVERLAP,
         preserve_structure: bool = True,
-    ):
+    ) -> None:
         """Initialize chunk optimizer"""
         self.chunk_size = max(100, min(chunk_size, 2048))  # Clamp 100-2048
         self.overlap = min(overlap, self.chunk_size // 2)
@@ -75,7 +76,7 @@ class ChunkOptimizer:
 
     def optimize(
         self, content: str, preserve_structure: bool = True
-    ) -> Tuple[str, ChunkMetadata]:
+    ) -> tuple[str, ChunkMetadata]:
         """
         Optimize content for chunking.
         Returns (optimized_content, metadata)
@@ -117,7 +118,7 @@ class ChunkOptimizer:
 
         return optimized, metadata
 
-    def _normalize_headings(self, content: str) -> Tuple[str, Dict[int, int]]:
+    def _normalize_headings(self, content: str) -> tuple[str, dict[int, int]]:
         """
         Normalize heading hierarchy and count by level.
         Ensures proper H1->H2->H3 nesting.
@@ -147,7 +148,7 @@ class ChunkOptimizer:
 
     def _mark_semantic_boundaries(
         self, content: str, preserve_structure: bool
-    ) -> Tuple[str, List[int]]:
+    ) -> tuple[str, list[int]]:
         """
         Mark semantic boundaries for optimal chunking.
         Boundaries: headings, code blocks, tables, major gaps.
@@ -181,7 +182,7 @@ class ChunkOptimizer:
 
         return content, sorted(list(set(boundaries)))
 
-    def split_into_chunks(self, content: str) -> List[str]:
+    def split_into_chunks(self, content: str) -> list[str]:
         """
         Split content into chunks respecting token limits and boundaries.
         Returns list of chunk strings.
@@ -226,7 +227,7 @@ class ChunkOptimizer:
 
         return chunks
 
-    def _get_overlap_lines(self, content: str, max_tokens: int = None) -> str:
+    def _get_overlap_lines(self, content: str, max_tokens: int | None = None) -> str:
         """Extract last N lines for overlap"""
         if max_tokens is None:
             max_tokens = self.overlap
@@ -253,7 +254,7 @@ class ChunkOptimizer:
         """Estimate total tokens in content"""
         return self._estimate_tokens(content)
 
-    def get_chunk_info(self, chunks: List[str]) -> Dict:
+    def get_chunk_info(self, chunks: list[str]) -> dict:
         """Get information about chunks"""
         if not chunks:
             return {"total_chunks": 0, "avg_size": 0, "min_size": 0, "max_size": 0}

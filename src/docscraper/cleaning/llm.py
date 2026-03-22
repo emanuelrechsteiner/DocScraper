@@ -7,6 +7,8 @@ Integrates with PostScraperCleaner to validate and improve rule-based cleaning r
 Phase 2: LLM validation with cost optimization and rate limiting
 """
 
+from __future__ import annotations
+
 import json
 import os
 import hashlib
@@ -14,7 +16,6 @@ import time
 import logging
 from pathlib import Path
 from dataclasses import dataclass, field
-from typing import Optional, Dict, List, Tuple
 from datetime import datetime
 from urllib.request import urlopen, Request
 from urllib.error import URLError
@@ -25,7 +26,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class LLMConfig:
     """Configuration for LLM-based validation"""
-    api_key: Optional[str] = None
+    api_key: str | None = None
     model: str = "gpt-4o"
     temperature: float = 0.1
     max_tokens: int = 1000
@@ -33,7 +34,7 @@ class LLMConfig:
     retry_attempts: int = 3
     retry_delay: float = 1.0
     cache_enabled: bool = True
-    cache_dir: Optional[Path] = None
+    cache_dir: Path | None = None
     input_cost_per_1m: float = 2.50
     output_cost_per_1m: float = 10.00
 
@@ -55,16 +56,16 @@ class ValidationResult:
     """Result of LLM content validation"""
     is_valid: bool = False
     confidence: float = 0.0
-    issues: List[str] = field(default_factory=list)
-    suggestions: List[str] = field(default_factory=list)
-    improved_content: Optional[str] = None
+    issues: list[str] = field(default_factory=list)
+    suggestions: list[str] = field(default_factory=list)
+    improved_content: str | None = None
     input_tokens: int = 0
     output_tokens: int = 0
     cost: float = 0.0
     cached: bool = False
     validation_type: str = "structure"
 
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> dict:
         """Convert to dictionary"""
         return {
             "is_valid": self.is_valid,
@@ -90,7 +91,7 @@ class RateLimiter:
         self.requests = 0
         self.lock_until = 0.0
 
-    def acquire(self) -> Tuple[bool, float]:
+    def acquire(self) -> tuple[bool, float]:
         """
         Try to acquire a token. Returns (success, wait_time_seconds).
         Uses token bucket algorithm with exponential backoff.
@@ -119,7 +120,7 @@ class RateLimiter:
         wait_time = (tokens_needed / self.rpm) * 60.0
         return False, wait_time
 
-    def get_statistics(self) -> Dict:
+    def get_statistics(self) -> dict:
         """Get rate limiter statistics"""
         return {
             "requests_made": self.requests,
@@ -151,7 +152,7 @@ class LLMValidator:
             logger.warning("No OpenAI API key found. LLM validation disabled.")
 
     def validate_content(
-        self, content: str, metadata: Optional[Dict] = None
+        self, content: str, metadata: dict | None = None
     ) -> ValidationResult:
         """
         Validate cleaned content structure and quality.
@@ -212,7 +213,7 @@ class LLMValidator:
 
         return self._fallback_validation(content)
 
-    def _call_openai_api(self, content: str, metadata: Dict) -> ValidationResult:
+    def _call_openai_api(self, content: str, metadata: dict) -> ValidationResult:
         """Call OpenAI API for content validation"""
         import json
 
@@ -260,7 +261,7 @@ class LLMValidator:
         except URLError as e:
             raise ValueError(f"API request failed: {e}")
 
-    def _build_validation_prompt(self, content: str, metadata: Dict) -> str:
+    def _build_validation_prompt(self, content: str, metadata: dict) -> str:
         """Build prompt for content validation"""
         # Summarize content for analysis
         lines = content.split("\n")
@@ -339,7 +340,7 @@ Only output valid JSON, no other text."""
             suggestions=["Enable OpenAI API for enhanced validation"],
         )
 
-    def _get_cached_result(self, content: str) -> Optional[ValidationResult]:
+    def _get_cached_result(self, content: str) -> ValidationResult | None:
         """Retrieve cached validation result"""
         if not self.config.cache_dir:
             return None
@@ -375,7 +376,7 @@ Only output valid JSON, no other text."""
         """Generate cache key from content hash"""
         return hashlib.md5(content.encode()).hexdigest()
 
-    def get_statistics(self) -> Dict:
+    def get_statistics(self) -> dict:
         """Get validation statistics"""
         stats = self.stats.copy()
         success_rate = (

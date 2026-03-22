@@ -9,12 +9,14 @@ Phase 1: Rule-based cleaning with pattern matching
 Phase 2: LLM validation and intelligent content analysis (future)
 """
 
+from __future__ import annotations
+
 import re
 import time
 import logging
 from pathlib import Path
 from dataclasses import dataclass, field
-from typing import Optional, Callable, List, Dict, Tuple
+from typing import Callable
 from queue import Queue
 from threading import Thread
 
@@ -60,7 +62,7 @@ class CleaningConfig:
     overlap_size: int = 50
     max_cost_per_document: float = 0.05
     rate_limit_rpm: int = 500
-    openai_api_key: Optional[str] = None
+    openai_api_key: str | None = None
     enable_chunk_optimization: bool = True
 
     def __post_init__(self):
@@ -81,34 +83,34 @@ class CleaningConfig:
 class CleaningResult:
     """Result of cleaning operation on a single document"""
     input_file: Path
-    output_file: Optional[Path] = None
+    output_file: Path | None = None
     success: bool = False
     original_size: int = 0
     cleaned_size: int = 0
     reduction_percentage: float = 0.0
-    removed_sections: List[str] = field(default_factory=list)
-    preserved_sections: List[str] = field(default_factory=list)
+    removed_sections: list[str] = field(default_factory=list)
+    preserved_sections: list[str] = field(default_factory=list)
     structure_score: float = 0.0
     rule_based_cleaning: bool = False
     llm_validation_used: bool = False
-    llm_validation: Optional[Dict] = None
+    llm_validation: dict | None = None
     llm_cost: float = 0.0
     chunk_optimization_used: bool = False
-    chunk_metadata: Optional[Dict] = None
+    chunk_metadata: dict | None = None
     processing_time: float = 0.0
     content_quality_score: float = 0.0
     chunk_optimization_score: float = 0.0
-    error_message: Optional[str] = None
-    warnings: List[str] = field(default_factory=list)
+    error_message: str | None = None
+    warnings: list[str] = field(default_factory=list)
 
-    def calculate_reduction(self):
+    def calculate_reduction(self) -> None:
         """Calculate reduction percentage from sizes"""
         if self.original_size > 0:
             self.reduction_percentage = (
                 (self.original_size - self.cleaned_size) / self.original_size * 100
             )
 
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> dict:
         """Convert result to dictionary for serialization"""
         return {
             "input_file": str(self.input_file),
@@ -133,7 +135,7 @@ class RuleBasedCleaner:
         self.registry = pattern_registry or DEFAULT_REGISTRY
         self._filter_patterns_by_config()
 
-    def _filter_patterns_by_config(self):
+    def _filter_patterns_by_config(self) -> None:
         """Disable patterns based on config settings"""
         if not self.config.remove_navigation:
             for pattern in self.registry.get_patterns_by_category(PatternCategory.NAVIGATION):
@@ -149,7 +151,7 @@ class RuleBasedCleaner:
             for pattern in self.registry.get_patterns_by_category(PatternCategory.BOILERPLATE):
                 pattern.enabled = False
 
-    def clean(self, content: str) -> Tuple[str, Dict]:
+    def clean(self, content: str) -> tuple[str, dict]:
         """Clean content using rule-based patterns"""
         if not content or not content.strip():
             return "", {"patterns_applied": 0, "total_replacements": 0, "removed_sections": [], "confidence_score": 0.0}
@@ -245,7 +247,7 @@ class PostScraperCleaner:
     def __init__(
         self,
         config: CleaningConfig,
-        progress_callback: Optional[Callable] = None
+        progress_callback: Callable | None = None
     ):
         """Initialize PostScraperCleaner"""
         self.config = config
@@ -362,7 +364,9 @@ class PostScraperCleaner:
             result.chunk_optimization_score = self._calculate_chunk_score(cleaned_content)
 
             # Phase 2: LLM Validation (optional)
-            if self.llm_validator:
+            # Skip if intelligent analyzer already ran — running both is
+            # redundant and double-counts LLM costs (see issue #11).
+            if self.llm_validator and not self.intelligent_cleaner:
                 try:
                     llm_result = self.llm_validator.validate_content(
                         cleaned_content,
@@ -418,7 +422,7 @@ class PostScraperCleaner:
         input_folder: Path,
         output_folder: Path,
         pattern: str = "*.md"
-    ) -> List[CleaningResult]:
+    ) -> list[CleaningResult]:
         """Clean multiple documents in batch"""
         if not input_folder.exists():
             raise FileNotFoundError(f"Input folder not found: {input_folder}")
@@ -483,7 +487,7 @@ class PostScraperCleaner:
             chunks_needed = content_size / target
             return max(0.3, 1.0 / chunks_needed)
 
-    def _update_statistics(self, result: CleaningResult):
+    def _update_statistics(self, result: CleaningResult) -> None:
         """Update running statistics"""
         self.stats["total_processed"] += 1
         if result.success:
@@ -499,7 +503,7 @@ class PostScraperCleaner:
         input_root: Path,
         output_root: Path,
         pattern: str = "**/*.md"
-    ) -> List[CleaningResult]:
+    ) -> list[CleaningResult]:
         """
         Process directory tree with mirrored structure and '_cleaned' suffix.
 
@@ -596,7 +600,7 @@ class PostScraperCleaner:
 
         return results
 
-    def get_statistics(self) -> Dict:
+    def get_statistics(self) -> dict:
         """Get processing statistics"""
         stats = self.stats.copy()
 

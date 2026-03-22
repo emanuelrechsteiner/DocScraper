@@ -3,6 +3,7 @@
 Documentation Website Scraper
 Crawls entire documentation websites and converts pages to markdown files.
 """
+from __future__ import annotations
 
 import asyncio
 import os
@@ -10,7 +11,6 @@ import re
 import json
 from datetime import datetime
 from urllib.parse import urljoin, urlparse, unquote
-from typing import Set, List, Dict, Optional
 import logging
 from pathlib import Path
 
@@ -28,9 +28,9 @@ class DocumentationScraper:
     def __init__(self, output_dir: str = "scraped_docs"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
-        self.visited_urls: Set[str] = set()
-        self.failed_urls: Set[str] = set()
-        self.domain = None
+        self.visited_urls: set[str] = set()
+        self.failed_urls: set[str] = set()
+        self.domain: str | None = None
         self.should_stop = False
         
     def _is_valid_doc_url(self, url: str) -> bool:
@@ -75,7 +75,7 @@ class DocumentationScraper:
             
         return filename
     
-    def _extract_internal_links(self, html: str, base_url: str) -> List[str]:
+    def _extract_internal_links(self, html: str, base_url: str) -> list[str]:
         """Extract all internal documentation links from HTML."""
         soup = BeautifulSoup(html, 'html.parser')
         links = set()
@@ -94,7 +94,7 @@ class DocumentationScraper:
                     
         return list(links)
     
-    def _save_content(self, url: str, content: str, metadata: Dict) -> str:
+    def _save_content(self, url: str, content: str, metadata: dict) -> str:
         """Save content to markdown file."""
         filename = self._clean_filename(url)
         filepath = self.output_dir / filename
@@ -117,7 +117,7 @@ title: {metadata.get('title', 'Untitled')}
             
         return str(filepath)
     
-    async def scrape_page(self, crawler, url: str) -> Optional[Dict]:
+    async def scrape_page(self, crawler, url: str) -> dict | None:
         """Scrape a single page and extract links."""
         try:
             config = CrawlerRunConfig(
