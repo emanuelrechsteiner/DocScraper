@@ -1,0 +1,53 @@
+{
+  "project_name": "Parsify",
+  "description": "Documentation scraping & post-processing toolkit, evolving into a REST API service",
+  "repo": "emanuelrechsteiner/DocScraper",
+  "default_branch": "development",
+  "created_date": "2026-03-22",
+  "phases": [
+    {
+      "number": 0,
+      "name": "Codebase Cleanup",
+      "description": "Fix audit findings: hardcoded paths, stale tests, type hints, bare excepts, logging, docs accuracy"
+    },
+    {
+      "number": 1,
+      "name": "FastAPI REST Wrapper",
+      "description": "REST API layer wrapping existing scraping/processing engines with authentication"
+    },
+    {
+      "number": 2,
+      "name": "Billing & Usage",
+      "description": "Rate limiting, usage tracking, and Stripe billing integration"
+    },
+    {
+      "number": 3,
+      "name": "CI/CD & Deployment",
+      "description": "Database, CI/CD pipeline, and production deployment"
+    },
+    {
+      "number": 4,
+      "name": "Docs & Landing Page",
+      "description": "Documentation site, landing page, and integration guides"
+    },
+    {
+      "number": 5,
+      "name": "SDK & Launch",
+      "description": "Python/JS SDK wrappers and public launch"
+    }
+  ],
+  "current_phase": 0,
+  "tech_stack": {
+    "language": "Python 3.13+",
+    "framework": "FastAPI (planned)",
+    "scraping": "crawl4ai, Playwright, BeautifulSoup4",
+    "ai": "OpenAI API (GPT-4o)",
+    "testing": "pytest",
+    "gui": "Tkinter"
+  },
+  "metadata": {
+    "created_by": "torvaldsen-bootstrap",
+    "last_updated": "2026-03-22",
+    "last_updated_by": "agent"
+  }
+}
