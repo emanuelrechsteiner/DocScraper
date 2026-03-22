@@ -2,8 +2,11 @@
 
 import uuid
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from ..db.repositories import JobRepository
+from ..db.session import get_db_session
 from ..models.schemas import (
     APIResponse,
     JobResultResponse,
@@ -11,17 +14,20 @@ from ..models.schemas import (
     JobStatusResponse,
     MetaResponse,
 )
-from ..services.job_store import job_store
 
 router = APIRouter(tags=["jobs"])
 
 
 @router.get("/jobs/{job_id}", response_model=APIResponse)
-async def get_job_status(job_id: str) -> APIResponse:
+async def get_job_status(
+    job_id: str,
+    db: AsyncSession = Depends(get_db_session),
+) -> APIResponse:
     """Get the current status of a job (#16).
 
     Args:
         job_id: Unique job identifier returned by POST /scrape or /process.
+        db: Injected async database session.
 
     Returns:
         APIResponse wrapping a JobStatusResponse.
@@ -29,7 +35,8 @@ async def get_job_status(job_id: str) -> APIResponse:
     Raises:
         HTTPException: 404 if job not found.
     """
-    job = job_store.get_job(job_id)
+    repo = JobRepository(db)
+    job = await repo.get(job_id)
     if job is None:
         raise HTTPException(
             status_code=404,
@@ -54,11 +61,15 @@ async def get_job_status(job_id: str) -> APIResponse:
 
 
 @router.get("/jobs/{job_id}/result", response_model=APIResponse)
-async def get_job_result(job_id: str) -> APIResponse:
+async def get_job_result(
+    job_id: str,
+    db: AsyncSession = Depends(get_db_session),
+) -> APIResponse:
     """Get the result of a completed job (#17).
 
     Args:
         job_id: Unique job identifier.
+        db: Injected async database session.
 
     Returns:
         APIResponse wrapping a JobResultResponse.
@@ -66,19 +77,24 @@ async def get_job_result(job_id: str) -> APIResponse:
     Raises:
         HTTPException: 404 if job not found, 409 if job not yet completed.
     """
-    job = job_store.get_job(job_id)
+    repo = JobRepository(db)
+    job = await repo.get(job_id)
     if job is None:
         raise HTTPException(
             status_code=404,
             detail={"code": "JOB_NOT_FOUND", "message": f"Job {job_id} not found"},
         )
 
-    if job.status not in (JobStatus.COMPLETED, JobStatus.FAILED):
+    terminal_statuses = {JobStatus.COMPLETED.value, JobStatus.FAILED.value}
+    if job.status not in terminal_statuses:
         raise HTTPException(
             status_code=409,
             detail={
                 "code": "JOB_NOT_COMPLETE",
-                "message": f"Job {job_id} is still {job.status.value}. Poll GET /jobs/{job_id} for status.",
+                "message": (
+                    f"Job {job_id} is still {job.status}. "
+                    f"Poll GET /jobs/{job_id} for status."
+                ),
             },
         )
 
@@ -88,7 +104,7 @@ async def get_job_result(job_id: str) -> APIResponse:
             status=job.status,
             total_pages=job.pages_scraped,
             failed_pages=job.pages_failed,
-            output_files=job.output_files,
+            output_files=job.output_files or [],
             summary=job.summary,
             completed_at=job.completed_at,
         ).model_dump(mode="json"),
@@ -101,6 +117,7 @@ async def list_jobs(
     status: JobStatus | None = Query(default=None, description="Filter by status"),
     limit: int = Query(default=50, ge=1, le=100),
     offset: int = Query(default=0, ge=0),
+    db: AsyncSession = Depends(get_db_session),
 ) -> APIResponse:
     """List jobs with optional filtering.
 
@@ -108,11 +125,14 @@ async def list_jobs(
         status: Optional status filter.
         limit: Maximum results to return.
         offset: Pagination offset.
+        db: Injected async database session.
 
     Returns:
         APIResponse with paginated job list.
     """
-    jobs, total = job_store.list_jobs(status=status, limit=limit, offset=offset)
+    repo = JobRepository(db)
+    status_str = status.value if status is not None else None
+    jobs, total = await repo.list_jobs(status=status_str, limit=limit, offset=offset)
 
     return APIResponse(
         data=[

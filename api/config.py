@@ -31,6 +31,14 @@ class Settings(BaseSettings):
     stripe_price_pro: str = ""
     stripe_price_enterprise: str = ""
 
+    # Database
+    database_url: str = "postgresql+asyncpg://parsify:parsify@localhost:5432/parsify"
+    database_echo: bool = False
+
+    # Logging
+    log_level: str = "INFO"
+    log_format: str = "json"  # "json" or "text"
+
     # Webhooks
     webhook_timeout: int = 30
     webhook_max_retries: int = 3

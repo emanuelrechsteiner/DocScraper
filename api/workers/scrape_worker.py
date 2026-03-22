@@ -3,6 +3,9 @@
 Defines async task functions that process scrape and process jobs
 in the background. Workers are managed by ARQ (Redis-backed).
 
+Workers run outside of the FastAPI request context, so they create
+their own database sessions via ``async_session_factory()``.
+
 See ADR-003 for design rationale.
 
 Usage:
@@ -13,8 +16,9 @@ import logging
 from datetime import datetime, timezone
 from typing import Any
 
+from ..db.engine import async_session_factory
+from ..db.repositories import JobRepository
 from ..models.schemas import JobStatus
-from ..services.job_store import job_store
 from ..services.webhook import webhook_service
 
 logger = logging.getLogger(__name__)
@@ -30,64 +34,76 @@ async def run_scrape_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
     Returns:
         Dict with scrape results.
     """
-    job = job_store.get_job(job_id)
-    if job is None:
-        logger.error("Scrape job %s not found in store", job_id)
-        return {"error": "Job not found"}
+    factory = async_session_factory()
+    async with factory() as session:
+        repo = JobRepository(session)
+        job = await repo.get(job_id)
+        if job is None:
+            logger.error("Scrape job %s not found in store", job_id)
+            return {"error": "Job not found"}
 
-    now = datetime.now(timezone.utc)
-    job_store.update_job(job_id, status=JobStatus.RUNNING, started_at=now)
-    logger.info("Starting scrape job %s for %s", job_id, job.url)
+        now = datetime.now(timezone.utc)
+        await repo.update(job_id, status=JobStatus.RUNNING.value, started_at=now)
+        logger.info("Starting scrape job %s for %s", job_id, job.url)
 
-    try:
-        from ..services.scraper_service import ScraperService
+        try:
+            from ..services.scraper_service import ScraperService
 
-        service = ScraperService()
-        result = await service.start_scrape(
-            url=job.url, max_pages=job.max_pages, job_id=job_id
-        )
-
-        job_store.update_job(
-            job_id,
-            status=JobStatus.COMPLETED,
-            completed_at=datetime.now(timezone.utc),
-            pages_scraped=result.get("pages_scraped", 0),
-            pages_failed=result.get("pages_failed", 0),
-            output_files=list(result.get("visited_urls", [])),
-            summary=result,
-            progress=100.0,
-        )
-        logger.info("Scrape job %s completed: %d pages", job_id, result.get("pages_scraped", 0))
-
-        # Send webhook callback if URL was provided (#22)
-        if job.webhook_url:
-            await webhook_service.send_job_completed(
-                webhook_url=job.webhook_url,
-                job_id=job_id,
-                status=JobStatus.COMPLETED,
-                result=result,
+            service = ScraperService()
+            result = await service.start_scrape(
+                url=job.url, max_pages=job.max_pages, job_id=job_id
             )
 
-        return result
+            await repo.update(
+                job_id,
+                status=JobStatus.COMPLETED.value,
+                completed_at=datetime.now(timezone.utc),
+                pages_scraped=result.get("pages_scraped", 0),
+                pages_failed=result.get("pages_failed", 0),
+                output_files=list(result.get("visited_urls", [])),
+                summary=result,
+                progress=100.0,
+            )
+            await session.commit()
+            logger.info(
+                "Scrape job %s completed: %d pages",
+                job_id,
+                result.get("pages_scraped", 0),
+            )
 
-    except Exception as exc:
-        error_msg = str(exc)
-        job_store.update_job(
-            job_id,
-            status=JobStatus.FAILED,
-            completed_at=datetime.now(timezone.utc),
-            error_message=error_msg,
-        )
-        logger.error("Scrape job %s failed: %s", job_id, error_msg, exc_info=True)
+            webhook_url = job.webhook_url
+            if webhook_url:
+                await webhook_service.send_job_completed(
+                    webhook_url=webhook_url,
+                    job_id=job_id,
+                    status=JobStatus.COMPLETED,
+                    result=result,
+                )
 
-        if job.webhook_url:
-            await webhook_service.send_job_failed(
-                webhook_url=job.webhook_url,
-                job_id=job_id,
+            return result
+
+        except Exception as exc:
+            error_msg = str(exc)
+            await repo.update(
+                job_id,
+                status=JobStatus.FAILED.value,
+                completed_at=datetime.now(timezone.utc),
                 error_message=error_msg,
             )
+            await session.commit()
+            logger.error(
+                "Scrape job %s failed: %s", job_id, error_msg, exc_info=True
+            )
 
-        return {"error": error_msg}
+            webhook_url = job.webhook_url
+            if webhook_url:
+                await webhook_service.send_job_failed(
+                    webhook_url=webhook_url,
+                    job_id=job_id,
+                    error_message=error_msg,
+                )
+
+            return {"error": error_msg}
 
 
 async def run_process_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
@@ -100,73 +116,82 @@ async def run_process_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
     Returns:
         Dict with processing results.
     """
-    job = job_store.get_job(job_id)
-    if job is None:
-        logger.error("Process job %s not found in store", job_id)
-        return {"error": "Job not found"}
+    factory = async_session_factory()
+    async with factory() as session:
+        repo = JobRepository(session)
+        job = await repo.get(job_id)
+        if job is None:
+            logger.error("Process job %s not found in store", job_id)
+            return {"error": "Job not found"}
 
-    now = datetime.now(timezone.utc)
-    job_store.update_job(job_id, status=JobStatus.RUNNING, started_at=now)
-    logger.info("Starting process job %s for %s", job_id, job.url)
+        now = datetime.now(timezone.utc)
+        await repo.update(job_id, status=JobStatus.RUNNING.value, started_at=now)
+        logger.info("Starting process job %s for %s", job_id, job.url)
 
-    try:
-        from pathlib import Path
+        try:
+            from pathlib import Path
 
-        from docscraper.core.processor import DocPostProcessor
+            from docscraper.core.processor import DocPostProcessor
 
-        input_dir = Path(job.url)
-        output_dir = Path("process_output") / job_id
-        output_dir.mkdir(parents=True, exist_ok=True)
+            input_dir = Path(job.url)
+            output_dir = Path("process_output") / job_id
+            output_dir.mkdir(parents=True, exist_ok=True)
 
-        processor = DocPostProcessor(
-            input_dir=str(input_dir),
-            output_dir=str(output_dir),
-        )
-        await processor.process_all()
-
-        result = {
-            "input_dir": str(input_dir),
-            "output_dir": str(output_dir),
-            "status": "completed",
-        }
-
-        job_store.update_job(
-            job_id,
-            status=JobStatus.COMPLETED,
-            completed_at=datetime.now(timezone.utc),
-            summary=result,
-            progress=100.0,
-        )
-        logger.info("Process job %s completed", job_id)
-
-        if job.webhook_url:
-            await webhook_service.send_job_completed(
-                webhook_url=job.webhook_url,
-                job_id=job_id,
-                status=JobStatus.COMPLETED,
-                result=result,
+            processor = DocPostProcessor(
+                input_dir=str(input_dir),
+                output_dir=str(output_dir),
             )
+            await processor.process_all()
 
-        return result
+            result = {
+                "input_dir": str(input_dir),
+                "output_dir": str(output_dir),
+                "status": "completed",
+            }
 
-    except Exception as exc:
-        error_msg = str(exc)
-        job_store.update_job(
-            job_id,
-            status=JobStatus.FAILED,
-            completed_at=datetime.now(timezone.utc),
-            error_message=error_msg,
-        )
-        logger.error("Process job %s failed: %s", job_id, error_msg, exc_info=True)
+            await repo.update(
+                job_id,
+                status=JobStatus.COMPLETED.value,
+                completed_at=datetime.now(timezone.utc),
+                summary=result,
+                progress=100.0,
+            )
+            await session.commit()
+            logger.info("Process job %s completed", job_id)
 
-        if job.webhook_url:
-            await webhook_service.send_job_failed(
-                webhook_url=job.webhook_url,
-                job_id=job_id,
+            webhook_url = job.webhook_url
+            if webhook_url:
+                await webhook_service.send_job_completed(
+                    webhook_url=webhook_url,
+                    job_id=job_id,
+                    status=JobStatus.COMPLETED,
+                    result=result,
+                )
+
+            return result
+
+        except Exception as exc:
+            error_msg = str(exc)
+            await repo.update(
+                job_id,
+                status=JobStatus.FAILED.value,
+                completed_at=datetime.now(timezone.utc),
                 error_message=error_msg,
             )
+            await session.commit()
+            logger.error(
+                "Process job %s failed: %s", job_id, error_msg, exc_info=True
+            )
 
-        return {"error": error_msg}
+            webhook_url = job.webhook_url
+            if webhook_url:
+                await webhook_service.send_job_failed(
+                    webhook_url=webhook_url,
+                    job_id=job_id,
+                    error_message=error_msg,
+                )
+
+            return {"error": error_msg}
 
 
 class WorkerSettings:

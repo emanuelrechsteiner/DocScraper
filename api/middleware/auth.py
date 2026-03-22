@@ -1,7 +1,7 @@
 """API key authentication middleware (#20).
 
 Provides FastAPI dependencies for extracting and verifying API keys
-from the Authorization header. Keys use Bearer scheme: `Authorization: Bearer pk_xxx...`
+from the Authorization header. Keys use Bearer scheme: ``Authorization: Bearer pk_xxx...``
 
 See ADR-004 for design rationale.
 """
@@ -11,8 +11,11 @@ from typing import Optional
 
 from fastapi import Depends, HTTPException, Security
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from ..services.auth_service import APIKeyData, auth_service
+from ..db.models import APIKey
+from ..db.repositories import APIKeyRepository
+from ..db.session import get_db_session
 
 logger = logging.getLogger(__name__)
 
@@ -22,54 +25,69 @@ _bearer_scheme = HTTPBearer(auto_error=False)
 
 async def get_api_key(
     credentials: Optional[HTTPAuthorizationCredentials] = Security(_bearer_scheme),
-) -> Optional[APIKeyData]:
+    db: AsyncSession = Depends(get_db_session),
+) -> Optional[APIKey]:
     """Extract and verify API key from the Authorization header.
 
-    This dependency does NOT raise on missing keys — use `require_auth`
+    This dependency does NOT raise on missing keys — use ``require_auth``
     for endpoints that require authentication.
 
+    Args:
+        credentials: Parsed Bearer credentials (may be ``None``).
+        db: Injected async database session.
+
     Returns:
-        APIKeyData if a valid key is provided, None otherwise.
+        ``APIKey`` ORM object if a valid active key is provided, ``None`` otherwise.
     """
     if credentials is None:
         return None
 
-    key_data = auth_service.verify_api_key(credentials.credentials)
-    if key_data is None:
-        return None
-
-    return key_data
+    repo = APIKeyRepository(db)
+    api_key = await repo.verify(credentials.credentials)
+    return api_key
 
 
 async def require_auth(
-    key_data: Optional[APIKeyData] = Depends(get_api_key),
-) -> APIKeyData:
+    api_key: Optional[APIKey] = Depends(get_api_key),
+) -> APIKey:
     """Require a valid API key — raises 401 if missing or invalid.
 
-    Use this as a dependency on protected endpoints:
+    Use this as a dependency on protected endpoints::
 
         @router.post("/scrape")
-        async def scrape(key: APIKeyData = Depends(require_auth)):
+        async def scrape(key: APIKey = Depends(require_auth)):
             ...
 
+    Args:
+        api_key: Result of the ``get_api_key`` dependency.
+
     Returns:
-        Verified APIKeyData.
+        Verified ``APIKey`` ORM object.
 
     Raises:
         HTTPException: 401 if no valid key provided.
     """
-    if key_data is None:
+    if api_key is None:
         raise HTTPException(
             status_code=401,
             detail={
                 "code": "UNAUTHORIZED",
-                "message": "Missing or invalid API key. Include: Authorization: Bearer pk_...",
+                "message": (
+                    "Missing or invalid API key. Include: Authorization: Bearer pk_..."
+                ),
             },
             headers={"WWW-Authenticate": "Bearer"},
         )
-    return key_data
+    return api_key
 
 
-def get_user_id_from_key(key_data: APIKeyData) -> str:
-    """Extract the user_id from a verified API key."""
-    return key_data.user_id
+def get_user_id_from_key(api_key: APIKey) -> str:
+    """Extract the user_id from a verified API key ORM object.
+
+    Args:
+        api_key: Verified ``APIKey`` ORM object.
+
+    Returns:
+        The owner's ``user_id`` string.
+    """
+    return api_key.user_id

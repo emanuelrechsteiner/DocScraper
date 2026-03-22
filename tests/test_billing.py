@@ -2,6 +2,9 @@
 
 Tests for billing tier enforcement, usage tracking, rate limiting,
 overage detection, and Stripe service integration.
+
+All tests that require user lookup use the DB-backed UserRepository
+via the ``app_with_db`` fixture and ``db_session``.
 """
 
 from __future__ import annotations
@@ -9,43 +12,41 @@ from __future__ import annotations
 import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.app import create_app
+from api.db.repositories import UserRepository
+from api.db.session import get_db_session
 from api.models.schemas import BillingTier
-from api.services.auth_service import auth_service
 from api.services.billing import billing_service, PLANS
-from api.services.job_store import job_store
 from api.services.usage import UsageService, TIER_LIMITS
 
 
-@pytest.fixture
-def app():
-    """Create a fresh FastAPI app for each test."""
-    return create_app()
+@pytest_asyncio.fixture
+async def app_with_db(db_session: AsyncSession):
+    """FastAPI application with get_db_session overridden to use in-memory SQLite.
+
+    Args:
+        db_session: In-memory SQLite session from the ``db_session`` fixture.
+
+    Yields:
+        Configured FastAPI application instance.
+    """
+    application = create_app()
+
+    async def override_get_db():
+        yield db_session
+
+    application.dependency_overrides[get_db_session] = override_get_db
+    yield application
 
 
 @pytest_asyncio.fixture
-async def client(app):
-    """Async HTTP client for testing."""
-    transport = ASGITransport(app=app)
+async def client(app_with_db):
+    """Async HTTP client backed by the test application."""
+    transport = ASGITransport(app=app_with_db)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
         yield ac
-
-
-@pytest.fixture(autouse=True)
-def _reset_stores():
-    """Reset all in-memory stores between tests."""
-    job_store._jobs.clear()
-    auth_service._users.clear()
-    auth_service._users_by_email.clear()
-    auth_service._api_keys.clear()
-    auth_service._key_hash_index.clear()
-    yield
-    job_store._jobs.clear()
-    auth_service._users.clear()
-    auth_service._users_by_email.clear()
-    auth_service._api_keys.clear()
-    auth_service._key_hash_index.clear()
 
 
 # ---------------------------------------------------------------------------
@@ -95,7 +96,9 @@ class TestBillingTiers:
             assert set(TIER_LIMITS[tier].keys()) == keys
 
     @pytest.mark.asyncio
-    async def test_plans_endpoint_returns_all_tiers(self, client: AsyncClient) -> None:
+    async def test_plans_endpoint_returns_all_tiers(
+        self, client: AsyncClient
+    ) -> None:
         """GET /billing/plans returns all three tiers."""
         response = await client.get("/api/v1/billing/plans")
         assert response.status_code == 200
@@ -162,7 +165,6 @@ class TestUsageTracking:
         svc = UsageService()
         svc.record("/api/v1/scrape", "POST", 400, 50.0, key_id="key_err")
         svc.record("/api/v1/scrape", "POST", 500, 50.0, key_id="key_err")
-        # Both should be counted as requests
         assert svc.get_hourly_count("key_err") == 2
 
 
@@ -278,7 +280,9 @@ class TestUsageSummary:
             assert "pages_scraped" in entry
 
     @pytest.mark.asyncio
-    async def test_usage_endpoint_includes_overage(self, client: AsyncClient) -> None:
+    async def test_usage_endpoint_includes_overage(
+        self, client: AsyncClient
+    ) -> None:
         """GET /usage returns overage information."""
         response = await client.get("/api/v1/usage")
         assert response.status_code == 200
@@ -324,7 +328,9 @@ class TestStripeCheckout:
         assert response.status_code == 422
 
     @pytest.mark.asyncio
-    async def test_checkout_pro_requires_stripe_config(self, client: AsyncClient) -> None:
+    async def test_checkout_pro_requires_stripe_config(
+        self, client: AsyncClient
+    ) -> None:
         """Pro checkout fails gracefully when Stripe is not configured."""
         response = await client.post(
             "/api/v1/billing/checkout",
@@ -334,7 +340,6 @@ class TestStripeCheckout:
                 "cancel_url": "https://example.com/cancel",
             },
         )
-        # Should fail with config error (Stripe not configured in test)
         assert response.status_code == 400
 
 
@@ -347,14 +352,15 @@ class TestStripeWebhooks:
     """Tests for Stripe webhook handler."""
 
     @pytest.mark.asyncio
-    async def test_webhook_rejects_missing_signature(self, client: AsyncClient) -> None:
+    async def test_webhook_rejects_missing_signature(
+        self, client: AsyncClient
+    ) -> None:
         """Webhook endpoint rejects requests without Stripe signature."""
         response = await client.post(
             "/api/v1/billing/webhooks",
             content=b'{"type": "checkout.session.completed"}',
             headers={"content-type": "application/json"},
         )
-        # Should fail because no stripe-signature header and no webhook secret
         assert response.status_code == 400
 
 
@@ -367,10 +373,13 @@ class TestSubscriptionStatus:
     """Tests for subscription status endpoint."""
 
     @pytest.mark.asyncio
-    async def test_subscription_returns_user_tier(self, client: AsyncClient) -> None:
+    async def test_subscription_returns_user_tier(
+        self, client: AsyncClient, db_session: AsyncSession
+    ) -> None:
         """Subscription endpoint returns current tier."""
-        # Register a user first
-        user = auth_service.create_user("sub@example.com")
+        user_repo = UserRepository(db_session)
+        user = await user_repo.create("sub@example.com")
+        await db_session.commit()
 
         response = await client.get(
             "/api/v1/billing/subscription",
@@ -382,7 +391,9 @@ class TestSubscriptionStatus:
         assert data["user_id"] == user.user_id
 
     @pytest.mark.asyncio
-    async def test_subscription_nonexistent_user(self, client: AsyncClient) -> None:
+    async def test_subscription_nonexistent_user(
+        self, client: AsyncClient
+    ) -> None:
         """Subscription endpoint returns 404 for unknown user."""
         response = await client.get(
             "/api/v1/billing/subscription",
@@ -413,43 +424,68 @@ class TestBillingService:
 
     def test_get_plan_nonexistent(self) -> None:
         """get_plan returns None for invalid tier string."""
-        # This tests the fallback path
         plan = billing_service.get_plan(BillingTier.FREE)
         assert plan is not None
         assert plan["price_monthly_cents"] == 0
 
-    def test_get_subscription_status_new_user(self) -> None:
+    @pytest.mark.asyncio
+    async def test_get_subscription_status_new_user(
+        self, db_session: AsyncSession
+    ) -> None:
         """New user has free tier subscription."""
-        user = auth_service.create_user("billing@example.com")
-        status = billing_service.get_subscription_status(user.user_id)
+        user_repo = UserRepository(db_session)
+        user = await user_repo.create("billing@example.com")
+        await db_session.commit()
+
+        status = await billing_service.get_subscription_status_async(
+            user.user_id, user_repo=user_repo
+        )
         assert status["tier"] == "free"
         assert status["stripe_subscription_id"] is None
 
-    def test_get_subscription_status_unknown_user(self) -> None:
+    @pytest.mark.asyncio
+    async def test_get_subscription_status_unknown_user(
+        self, db_session: AsyncSession
+    ) -> None:
         """Unknown user raises ValueError."""
+        user_repo = UserRepository(db_session)
         with pytest.raises(ValueError, match="User not found"):
-            billing_service.get_subscription_status("user_fake")
+            await billing_service.get_subscription_status_async(
+                "user_fake", user_repo=user_repo
+            )
 
     @pytest.mark.asyncio
-    async def test_checkout_free_tier_raises(self) -> None:
+    async def test_checkout_free_tier_raises(
+        self, db_session: AsyncSession
+    ) -> None:
         """Cannot create checkout for free tier."""
-        user = auth_service.create_user("free@example.com")
+        user_repo = UserRepository(db_session)
+        user = await user_repo.create("free@example.com")
+        await db_session.commit()
+
         with pytest.raises(ValueError, match="free tier"):
-            await billing_service.create_checkout_session(
+            await billing_service.create_checkout_session_with_repo(
                 user_id=user.user_id,
                 tier=BillingTier.FREE,
                 success_url="https://example.com/ok",
                 cancel_url="https://example.com/cancel",
+                user_repo=user_repo,
             )
 
     @pytest.mark.asyncio
-    async def test_checkout_unconfigured_stripe_raises(self) -> None:
+    async def test_checkout_unconfigured_stripe_raises(
+        self, db_session: AsyncSession
+    ) -> None:
         """Checkout raises when Stripe key is not set."""
-        user = auth_service.create_user("nostripe@example.com")
+        user_repo = UserRepository(db_session)
+        user = await user_repo.create("nostripe@example.com")
+        await db_session.commit()
+
         with pytest.raises(ValueError, match="Stripe is not configured"):
-            await billing_service.create_checkout_session(
+            await billing_service.create_checkout_session_with_repo(
                 user_id=user.user_id,
                 tier=BillingTier.PRO,
                 success_url="https://example.com/ok",
                 cancel_url="https://example.com/cancel",
+                user_repo=user_repo,
             )

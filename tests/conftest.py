@@ -1,7 +1,11 @@
 """Shared test fixtures for the Parsify test suite."""
 
 import pytest
+import pytest_asyncio
 from pathlib import Path
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+
+from api.db.models import Base
 
 
 @pytest.fixture
@@ -78,3 +82,49 @@ def tmp_input_dir(tmp_path: Path) -> Path:
         "# Test Document\n\nThis is test content.\n\n## Section\n\nMore content.\n"
     )
     return input_dir
+
+
+@pytest_asyncio.fixture
+async def db_session() -> AsyncSession:
+    """Provide an in-memory SQLite session for unit tests.
+
+    Creates all tables before yielding the session, then drops them on
+    teardown. Using SQLite avoids requiring a live PostgreSQL instance.
+
+    PostgreSQL-specific JSONB columns are handled by registering a custom
+    SQLite compiler visit method for JSONB that renders it as TEXT, which
+    SQLite can store and retrieve as JSON strings.
+
+    Yields:
+        An ``AsyncSession`` connected to an in-memory SQLite database.
+    """
+    import json as _json
+
+    from sqlalchemy.dialects import sqlite as _sqlite_dialect
+    from sqlalchemy.dialects.postgresql import JSONB
+
+    # Teach SQLite's type compiler to emit "TEXT" when it encounters a JSONB
+    # column — this avoids the "CompileError: Unknown type" at DDL time.
+    if not hasattr(_sqlite_dialect.base.SQLiteTypeCompiler, "visit_JSONB"):
+        _sqlite_dialect.base.SQLiteTypeCompiler.visit_JSONB = (  # type: ignore[attr-defined]
+            lambda self, type_, **kw: "TEXT"
+        )
+
+    engine = create_async_engine(
+        "sqlite+aiosqlite:///:memory:",
+        echo=False,
+        json_serializer=_json.dumps,
+        json_deserializer=_json.loads,
+    )
+
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+    maker = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+    async with maker() as session:
+        yield session
+        await session.close()
+
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
+    await engine.dispose()
