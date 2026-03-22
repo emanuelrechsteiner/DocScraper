@@ -45,9 +45,12 @@
     "testing": "pytest",
     "gui": "Tkinter"
   },
+  "total_phases": 6,
+  "total_issues": 57,
+  "status": "brainstormed",
   "metadata": {
     "created_by": "torvaldsen-bootstrap",
     "last_updated": "2026-03-22",
-    "last_updated_by": "agent"
+    "last_updated_by": "brainstorm-pipeline"
   }
 }

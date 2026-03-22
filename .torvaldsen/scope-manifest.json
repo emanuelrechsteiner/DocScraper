@@ -5,12 +5,67 @@
   "locked": false,
   "locked_date": null,
   "total_issues": 0,
-  "total_features": 0,
-  "features": [],
+  "total_features": 6,
+  "features": [
+    {
+      "id": "F000",
+      "name": "Codebase Cleanup",
+      "description": "Fix all audit findings: hardcoded paths, bare excepts, stale tests, type hints, logging, class collision, cost bug, docs errors",
+      "phase": 0,
+      "issues": [],
+      "status": "planned",
+      "scope_boundary": "Fix existing bugs and quality issues ONLY. Does NOT include new features, refactoring for API readiness, or new test coverage beyond fixing stale assertions."
+    },
+    {
+      "id": "F001",
+      "name": "REST API Layer",
+      "description": "FastAPI REST API wrapping existing scraping/processing engines with API key authentication and async job queue",
+      "phase": 1,
+      "issues": [],
+      "status": "planned",
+      "scope_boundary": "API endpoints, authentication, job queue ONLY. Does NOT include billing, rate limiting (beyond basic), database migrations, or deployment."
+    },
+    {
+      "id": "F002",
+      "name": "Billing & Usage Management",
+      "description": "Per-key rate limiting, usage tracking, and Stripe subscription billing with tiered plans",
+      "phase": 2,
+      "issues": [],
+      "status": "planned",
+      "scope_boundary": "Rate limiting, usage metering, Stripe integration ONLY. Does NOT include admin dashboard, custom enterprise contracts, or billing analytics."
+    },
+    {
+      "id": "F003",
+      "name": "Production Infrastructure",
+      "description": "PostgreSQL database, CI/CD pipeline, Docker containerization, and production deployment",
+      "phase": 3,
+      "issues": [],
+      "status": "planned",
+      "scope_boundary": "Database, CI/CD, Docker, deployment ONLY. Does NOT include horizontal scaling, multi-region, or Kubernetes."
+    },
+    {
+      "id": "F004",
+      "name": "Documentation & Landing Page",
+      "description": "API documentation site, landing page with pricing, and integration guides",
+      "phase": 4,
+      "issues": [],
+      "status": "planned",
+      "scope_boundary": "Documentation site and landing page ONLY. Does NOT include blog, community forum, or marketing automation."
+    },
+    {
+      "id": "F005",
+      "name": "SDK & Launch",
+      "description": "Python and JavaScript SDK wrappers auto-generated from OpenAPI spec, published to PyPI and npm",
+      "phase": 5,
+      "issues": [],
+      "status": "planned",
+      "scope_boundary": "Python and JS SDKs ONLY. Does NOT include Go, Ruby, or other language SDKs."
+    }
+  ],
   "scope_changes": [],
   "metadata": {
-    "created_by": "torvaldsen-bootstrap",
+    "created_by": "brainstorm-pipeline",
     "last_updated": "2026-03-22",
-    "last_updated_by": "agent"
+    "last_updated_by": "brainstorm-pipeline"
   }
 }
