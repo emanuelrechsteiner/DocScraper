@@ -24,11 +24,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 import networkx as nx
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger(__name__)
 
 
@@ -181,7 +176,7 @@ class DocumentCleaner:
                             metadata[key] = value.isoformat()
                 
                 return metadata, rest
-            except:
+            except (ValueError, yaml.YAMLError):
                 return {}, content
         return {}, content
 
@@ -615,16 +610,15 @@ class DocumentPostProcessor:
     
     def __init__(self, input_dir: str, output_dir: str, api_key: Optional[str] = None):
         self.input_dir = Path(input_dir)
-        
-        # 🛡️ SECURITY: Create dated output directory to prevent overwrites
-        from datetime import datetime
+
+        # Create dated output subdirectory to prevent overwrites
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        base_output = Path("/Volumes/NvME-Satechi/VectorDatabase")
-        
+        base_output = Path(output_dir)
+
         # Create descriptive directory name with timestamp
         input_name = Path(input_dir).name.replace(" ", "_")
         dated_output_name = f"{timestamp}_{input_name}_VectorDB"
-        
+
         self.output_dir = base_output / dated_output_name
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
@@ -645,7 +639,7 @@ class DocumentPostProcessor:
         self.last_checkpoint = 0
         self.processing_start_time = None
     
-    def save_checkpoint(self, phase: str, additional_data: Dict = None):
+    def save_checkpoint(self, phase: str, additional_data: Optional[Dict] = None) -> Path:
         """🛡️ Save processing checkpoint to prevent token loss."""
         import time
         
@@ -672,7 +666,7 @@ class DocumentPostProcessor:
         """Check if it's time to save a checkpoint."""
         return len(self.processed_docs) - self.last_checkpoint >= self.checkpoint_interval
     
-    def load_checkpoint(self, checkpoint_file: str):
+    def load_checkpoint(self, checkpoint_file: str) -> Dict[str, Any]:
         """🔄 Load processing state from checkpoint."""
         with open(checkpoint_file, 'r', encoding='utf-8') as f:
             checkpoint_data = json.load(f)
