@@ -1,0 +1,878 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "generated": "2026-03-22",
+    "document_type": "Developer Handoff",
+    "author": "Emanuel Rechsteiner (original developer)",
+    "purpose": "Complete onboarding and handoff reference for DocScraper. This document was prepared by the original developer to enable a senior developer to continue development without errors. It captures the full architecture, design decisions, known gotchas, and development history that would otherwise only exist in the original developer's head.",
+    "handoff_note": "I (Emanuel Rechsteiner) built this project from scratch starting May 2025. This JSON contains everything I know about the codebase — the architecture decisions, the bugs I fixed, the gotchas that cost me hours, and the patterns I established. If something seems weird, check the 'known_issues_and_gotchas' section first. The ADRs in docs/decisions/ explain the WHY behind the big choices. Good luck, and feel free to reach out via the GitHub repo if you have questions.",
+    "last_active_branch": "development",
+    "main_branch": "main",
+    "total_python_loc": 8353,
+    "total_source_files": 14,
+    "total_test_files": 10,
+    "repo_url": "https://github.com/emanuelrechsteiner/DocScraper"
+  },
+
+  "project": {
+    "name": "DocScraper",
+    "description": "Python toolkit for scraping documentation websites and post-processing them for optimal use in vector databases and LLM applications.",
+    "owner": "Emanuel Rechsteiner (original developer, handing off)",
+    "language": "Python",
+    "python_version": "3.13+",
+    "platform": "macOS (Darwin), cross-platform compatible",
+    "license": null,
+    "phase": "PHASE_I (active development)"
+  },
+
+  "architecture": {
+    "pattern": "Pipeline-based processing with distinct stages",
+    "pipeline_stages": [
+      {
+        "stage": 1,
+        "name": "Scraping",
+        "description": "Crawl documentation websites, convert HTML to clean markdown with YAML frontmatter metadata",
+        "modules": ["src/docscraper/core/scraper.py", "src/docscraper/core/simple.py", "src/docscraper/gui/scraper_gui.py"],
+        "async": true,
+        "output": "Raw markdown files with YAML frontmatter (url, scraped_at, title) + _scrape_summary.json"
+      },
+      {
+        "stage": 2,
+        "name": "Cleaning (Rule-based)",
+        "description": "Remove navigation, boilerplate, headers/footers using regex pattern matching",
+        "modules": ["src/docscraper/cleaning/cleaner.py", "src/docscraper/cleaning/rules.py", "src/docscraper/gui/cleaner_gui.py"],
+        "async": false,
+        "output": "Cleaned markdown files with reduced noise"
+      },
+      {
+        "stage": 3,
+        "name": "Cleaning (LLM-enhanced)",
+        "description": "Semantic content analysis using GPT-4o to identify main content vs navigation/boilerplate. Runs BEFORE rule-based cleaning on original content.",
+        "modules": ["src/docscraper/cleaning/intelligent.py", "src/docscraper/cleaning/llm.py"],
+        "async": false,
+        "output": "Semantically cleaned content with accurate boundary detection",
+        "requires_api_key": true,
+        "model": "gpt-4o",
+        "cost_per_doc": "$0.002"
+      },
+      {
+        "stage": 4,
+        "name": "Chunk Optimization",
+        "description": "Split content into semantic chunks optimized for embedding models, respecting heading boundaries and code blocks",
+        "modules": ["src/docscraper/optimization/chunker.py"],
+        "async": false,
+        "output": "Chunked content with metadata (boundaries, token estimates)"
+      },
+      {
+        "stage": 5,
+        "name": "Post-Processing (Full Pipeline)",
+        "description": "Orchestrates cleaning + structuring + LLM classification + dependency graph + complexity scoring + topological sorting",
+        "modules": ["src/docscraper/core/processor.py", "src/docscraper/gui/processor_gui.py"],
+        "async": true,
+        "output": "vector_db_index.json, categorized chunks, processing summaries",
+        "requires_api_key": true
+      }
+    ],
+    "design_principles": [
+      "Graceful degradation: LLM features are optional, system falls back to rule-based",
+      "Checkpoint/resume: Long-running processes save checkpoints to prevent data loss",
+      "Dual interfaces: Every core feature has both CLI and GUI (Tkinter) interfaces",
+      "Dual scrapers: Advanced async (DocScraper) for production, simple sequential (SimpleDocScraper) for debugging",
+      "File-based storage: Markdown files + JSON metadata (no database required)",
+      "Optional imports: Try/except blocks for LLM dependencies"
+    ],
+    "data_flow": "Web Documentation → Scraper → Raw .md files → PostScraperCleaner (intelligent + rule-based) → Cleaned .md → DocPostProcessor (structure + classify + sort) → Vector DB Ready (chunks + index)"
+  },
+
+  "tech_stack": {
+    "core": {
+      "python": "3.13+",
+      "asyncio": "Async I/O for scraping and post-processing",
+      "dataclasses": "Configuration and result structs (@dataclass with field())",
+      "pathlib": "All file operations (not os.path)",
+      "typing": "Full PEP 484 type hints on all functions"
+    },
+    "scraping": {
+      "crawl4ai": {
+        "version": ">=0.4.0",
+        "purpose": "High-level web crawling with JavaScript rendering",
+        "key_classes": ["AsyncWebCrawler", "CrawlerRunConfig", "CacheMode", "MemoryAdaptiveDispatcher", "RateLimiter"],
+        "notes": "Used with CacheMode.BYPASS and wait_for CSS selectors"
+      },
+      "playwright": {
+        "version": ">=1.30.0",
+        "purpose": "Browser automation backend for crawl4ai",
+        "setup": "playwright install chromium"
+      },
+      "beautifulsoup4": {
+        "version": ">=4.9.3",
+        "purpose": "HTML parsing for link extraction and title extraction"
+      }
+    },
+    "ai_integration": {
+      "openai": {
+        "version": ">=1.0.0",
+        "purpose": "LLM-powered document classification, content validation, intelligent content analysis",
+        "model_used": "gpt-4o (upgraded from gpt-4o-mini, see ADR-0002)",
+        "api_style": "Direct urllib.request for llm_cleaner.py and intelligent_cleaner.py; AsyncOpenAI client for DocPostProcessor.py",
+        "cost_tracking": "Built-in per-document cost calculation (input: $2.50/1M, output: $10.00/1M)"
+      }
+    },
+    "data_processing": {
+      "networkx": {
+        "version": ">=2.6.0",
+        "purpose": "Document dependency graph analysis and topological sorting"
+      },
+      "scikit-learn": {
+        "version": ">=1.0.0",
+        "purpose": "TF-IDF vectorization for text clustering"
+      },
+      "numpy": {
+        "version": ">=1.21.0",
+        "purpose": "Numerical operations for ML features"
+      }
+    },
+    "utilities": {
+      "tenacity": ">=8.2.0 — Retry logic with exponential backoff for API calls",
+      "pyyaml": ">=6.0 — YAML frontmatter parsing",
+      "aiofiles": ">=23.0.0 — Async file I/O",
+      "aiohttp": ">=3.8.1 — Async HTTP client",
+      "python-dotenv": ">=0.19.0 — Environment variable loading",
+      "requests": ">=2.25.1 — HTTP requests"
+    },
+    "gui": {
+      "tkinter": "Built-in Python GUI framework, cross-platform"
+    }
+  },
+
+  "modules": {
+    "src/docscraper/core/scraper.py": {
+      "lines": 318,
+      "purpose": "Advanced async documentation scraper with parallel batch processing",
+      "classes": {
+        "DocumentationScraper": {
+          "description": "Scrapes documentation websites and saves content as markdown files",
+          "constructor_args": {
+            "output_dir": "str = 'scraped_docs'"
+          },
+          "key_attributes": {
+            "output_dir": "Path — Output directory for scraped files",
+            "visited_urls": "Set[str] — URLs already processed",
+            "failed_urls": "Set[str] — URLs that failed to scrape",
+            "domain": "str — Domain being scraped (set from start_url)",
+            "should_stop": "bool — Flag for graceful stop"
+          },
+          "public_methods": {
+            "scrape_page(crawler, url)": "async — Scrape single page, extract links, save markdown",
+            "scrape_documentation(start_url, max_pages=1000)": "async — Crawl entire documentation site with BFS"
+          },
+          "private_methods": [
+            "_is_valid_doc_url(url) — Domain filtering, skip patterns (pdf, zip, login, auth)",
+            "_clean_filename(url) — URL to safe filename conversion",
+            "_extract_internal_links(html, base_url) — BeautifulSoup link extraction",
+            "_save_content(url, content, metadata) — Write markdown with YAML frontmatter"
+          ]
+        }
+      },
+      "entrypoint": "asyncio.run(main()) — CLI: python DocScraper.py <url> [output_dir] [max_pages]",
+      "features": [
+        "Parallel batch scraping (10 URLs per batch)",
+        "MemoryAdaptiveDispatcher with rate limiting",
+        "Graceful stop with should_stop flag",
+        "Crawl summary JSON output"
+      ]
+    },
+
+    "src/docscraper/core/simple.py": {
+      "lines": 259,
+      "purpose": "Basic sequential scraper for testing and debugging",
+      "classes": {
+        "SimpleDocumentationScraper": {
+          "description": "Same interface as DocumentationScraper but processes one URL at a time",
+          "differences_from_advanced": [
+            "No MemoryAdaptiveDispatcher or CrawlerMonitor",
+            "Sequential (one page at a time)",
+            "Built-in 2-second delay between pages",
+            "No should_stop flag"
+          ]
+        }
+      },
+      "entrypoint": "asyncio.run(main()) — CLI: python SimpleDocScraper.py <url> [output_dir] [max_pages]"
+    },
+
+    "src/docscraper/cleaning/cleaner.py": {
+      "lines": 625,
+      "purpose": "Main cleaning orchestrator — rule-based + LLM-enhanced document cleaning",
+      "classes": {
+        "CleaningConfig": {
+          "description": "@dataclass configuration for the cleaner",
+          "fields": {
+            "remove_navigation": "bool = True",
+            "remove_headers_footers": "bool = True",
+            "remove_boilerplate": "bool = True",
+            "enable_llm_validation": "bool = False — Enables LLM validator + intelligent analyzer",
+            "llm_confidence_threshold": "float = 0.85",
+            "target_chunk_size": "int = 512 — Tokens per chunk",
+            "overlap_size": "int = 50 — Overlap tokens between chunks",
+            "max_cost_per_document": "float = 0.05",
+            "rate_limit_rpm": "int = 500",
+            "openai_api_key": "Optional[str] = None",
+            "enable_chunk_optimization": "bool = True"
+          },
+          "validation": "__post_init__ validates all ranges"
+        },
+        "CleaningResult": {
+          "description": "@dataclass result of cleaning a single document",
+          "key_fields": [
+            "input_file, output_file, success, original_size, cleaned_size",
+            "reduction_percentage, removed_sections, structure_score",
+            "llm_validation_used, llm_cost, chunk_optimization_used",
+            "content_quality_score, processing_time, error_message, warnings"
+          ],
+          "methods": ["calculate_reduction()", "to_dict()"]
+        },
+        "RuleBasedCleaner": {
+          "description": "Applies regex patterns from PatternRegistry to remove unwanted content",
+          "constructor_args": {
+            "config": "CleaningConfig",
+            "pattern_registry": "PatternRegistry = None (defaults to DEFAULT_REGISTRY)"
+          },
+          "public_methods": {
+            "clean(content)": "Returns (cleaned_content, metadata_dict) with pattern stats"
+          },
+          "pipeline": [
+            "1. Apply all enabled patterns from registry",
+            "2. Normalize whitespace (max 2 consecutive blank lines)",
+            "3. Extract main content (trim leading/trailing separators)",
+            "4. Calculate structure score (headers, code blocks, lists, paragraphs)"
+          ]
+        },
+        "PostScraperCleaner": {
+          "description": "Main orchestrator — coordinates intelligent analysis, rule-based cleaning, LLM validation, and chunk optimization",
+          "constructor_args": {
+            "config": "CleaningConfig",
+            "progress_callback": "Optional[Callable] = None"
+          },
+          "initialization": [
+            "RuleBasedCleaner (always)",
+            "LLMValidator (if enable_llm_validation and module available)",
+            "IntelligentContentAnalyzer (if enable_llm_validation, uses GPT-4o)",
+            "ChunkOptimizer (if enable_chunk_optimization and module available)"
+          ],
+          "public_methods": {
+            "clean_document(input_path, output_path)": "Clean single .md file — returns CleaningResult",
+            "clean_batch(input_folder, output_folder, pattern='*.md')": "Clean all matching files in folder",
+            "clean_directory_tree(input_root, output_root, pattern='**/*.md')": "Recursive with '_cleaned' suffix on directories",
+            "get_statistics()": "Returns cumulative processing stats"
+          },
+          "cleaning_pipeline_order": [
+            "PASS 1: Intelligent content analysis (LLM, on ORIGINAL content for accurate line numbers)",
+            "PASS 2: Rule-based cleaning (regex patterns on LLM-cleaned content)",
+            "PASS 3: LLM validation (optional quality check)",
+            "PASS 4: Chunk optimization (optional, for vector DB)"
+          ],
+          "critical_design_decision": "Intelligent analysis runs FIRST on original content to get accurate line numbers. Rule-based runs SECOND on the result."
+        }
+      }
+    },
+
+    "src/docscraper/cleaning/rules.py": {
+      "lines": 371,
+      "purpose": "Pattern registry with categorized cleaning patterns",
+      "classes": {
+        "PatternCategory": {
+          "type": "Enum",
+          "values": ["NAVIGATION", "UI", "BOILERPLATE", "REDUNDANT"]
+        },
+        "CleaningPattern": {
+          "description": "@dataclass representing a single regex cleaning pattern",
+          "fields": {
+            "name": "str — Unique identifier",
+            "pattern": "str — Regex pattern (compiled in __post_init__)",
+            "replacement": "str — Replacement string",
+            "confidence": "float — Pattern confidence score (0.0-1.0)",
+            "category": "PatternCategory",
+            "description": "str — Human-readable description",
+            "enabled": "bool = True"
+          },
+          "methods": ["matches(content) → int", "apply(content) → (result, count)"]
+        },
+        "PatternRegistry": {
+          "description": "Manages collection of CleaningPattern instances",
+          "methods": [
+            "get_pattern(name) — Get by name",
+            "get_enabled_patterns() — All enabled",
+            "get_patterns_by_category(category) — Filter by category",
+            "get_patterns_by_confidence(min) — Filter by threshold",
+            "enable_pattern(name) / disable_pattern(name)",
+            "get_statistics() — Registry stats"
+          ]
+        }
+      },
+      "constants": {
+        "CLEANING_PATTERNS": "List of ~25 universal CleaningPattern instances",
+        "DEFAULT_REGISTRY": "Pre-built PatternRegistry instance"
+      },
+      "pattern_categories": {
+        "NAVIGATION": ["skip_navigation", "breadcrumbs", "toc_nav", "prev_next_navigation", "broken_link_fragments"],
+        "UI": ["header_section", "footer_section", "mobile_menu", "search_widget", "language_selector", "logo_images", "flag_language_indicator", "search_placeholder", "helpful_feedback_widget", "social_media_links", "footer_help_section", "footer_learn_section"],
+        "BOILERPLATE": ["yaml_frontmatter", "boilerplate_cta", "newsletter_signup", "cookie_banner", "ai_disclaimer"],
+        "REDUNDANT": ["related_links", "social_share", "code_comments_in_examples"]
+      },
+      "design_note": "Patterns are UNIVERSAL (not documentation-specific). Anthropic-specific patterns were removed — intelligent cleaner handles structure semantically."
+    },
+
+    "src/docscraper/cleaning/intelligent.py": {
+      "lines": 407,
+      "purpose": "LLM-powered semantic content analysis — identifies main content vs navigation/boilerplate on ANY documentation source",
+      "classes": {
+        "ContentSection": {
+          "description": "@dataclass for a section with type and line boundaries",
+          "fields": ["section_type", "start_line", "end_line", "reason", "confidence"]
+        },
+        "ContentAnalysis": {
+          "description": "@dataclass result of semantic analysis",
+          "fields": ["main_content_start", "main_content_end", "sections_to_remove", "sections_to_keep", "confidence", "analysis_cost"]
+        },
+        "IntelligentContentAnalyzer": {
+          "description": "Uses GPT-4o to semantically identify content boundaries",
+          "constructor_args": {
+            "llm_config": "Optional[LLMConfig] = None (defaults to gpt-4o, temp=0.1, max_tokens=1500)"
+          },
+          "public_methods": {
+            "analyze_structure(content, filename)": "Returns ContentAnalysis with line-number boundaries",
+            "extract_main_content(content, analysis)": "Removes identified non-content sections",
+            "get_statistics()": "Returns analysis stats"
+          },
+          "prompt_strategy": [
+            "Sends document with LINE NUMBERS (first 100 lines, middle 50 lines, last 50 lines)",
+            "LLM returns JSON with main_content_start/end and sections_to_remove/keep",
+            "Critical: LLM returns 1-indexed line numbers, code converts to 0-indexed"
+          ],
+          "fallback": "If LLM fails, assumes main content is lines 20%-90% of document"
+        }
+      }
+    },
+
+    "src/docscraper/cleaning/llm.py": {
+      "lines": 390,
+      "purpose": "LLM-based content validation with cost optimization and rate limiting",
+      "classes": {
+        "LLMConfig": {
+          "description": "@dataclass configuration for LLM operations",
+          "fields": {
+            "api_key": "Optional[str] = None",
+            "model": "str = 'gpt-4o'",
+            "temperature": "float = 0.1",
+            "max_tokens": "int = 1000",
+            "rate_limit_rpm": "int = 500",
+            "retry_attempts": "int = 3",
+            "retry_delay": "float = 1.0",
+            "cache_enabled": "bool = True",
+            "cache_dir": "Optional[Path] = None",
+            "input_cost_per_1m": "float = 2.50",
+            "output_cost_per_1m": "float = 10.00"
+          }
+        },
+        "ValidationResult": {
+          "fields": ["is_valid", "confidence", "issues", "suggestions", "improved_content", "input_tokens", "output_tokens", "cost", "cached", "validation_type"]
+        },
+        "RateLimiter": {
+          "description": "Token bucket rate limiter for API requests",
+          "algorithm": "Token bucket with exponential backoff"
+        },
+        "LLMValidator": {
+          "description": "Validates cleaned content using OpenAI API",
+          "features": [
+            "MD5-based content caching",
+            "Rate limiting with token bucket",
+            "Retry with exponential backoff",
+            "Cost tracking per validation",
+            "Fallback validation without API"
+          ],
+          "api_method": "Direct urllib.request (not openai SDK) for maximum control"
+        }
+      }
+    },
+
+    "src/docscraper/optimization/chunker.py": {
+      "lines": 269,
+      "purpose": "Semantic chunking for vector database ingestion",
+      "classes": {
+        "ChunkMetadata": {
+          "fields": ["total_chunks", "heading_levels", "code_blocks", "tables", "lists", "semantic_boundaries", "avg_chunk_size", "optimization_notes"]
+        },
+        "ChunkOptimizer": {
+          "description": "Optimizes content for vector database chunking",
+          "constants": {
+            "DEFAULT_CHUNK_SIZE": 512,
+            "DEFAULT_OVERLAP": 50,
+            "APPROX_CHARS_PER_TOKEN": 4
+          },
+          "pipeline": [
+            "1. Normalize heading hierarchy (H1→H2→H3 nesting)",
+            "2. Mark semantic boundaries (headings, code blocks, tables, blank lines)",
+            "3. Count special elements",
+            "4. Split into chunks respecting token limits and boundaries"
+          ]
+        }
+      }
+    },
+
+    "src/docscraper/core/processor.py": {
+      "lines": 1048,
+      "purpose": "Full post-processing pipeline — cleaning + structuring + LLM classification + dependency graph + topological sorting",
+      "classes": {
+        "DocumentChunk": {
+          "description": "@dataclass for a chunk of document content with metadata and embedding placeholder",
+          "fields": ["content", "metadata", "chunk_id", "parent_doc", "position", "tokens", "embedding"]
+        },
+        "ProcessedDocument": {
+          "description": "@dataclass for a fully processed document",
+          "fields": ["file_path", "original_url", "title", "chunks", "category", "topics", "dependencies", "complexity_score"]
+        },
+        "DocumentCleaner": {
+          "description": "Cleans markdown by removing headers, footers, navigation with regex patterns",
+          "methods": ["clean_document(content)", "extract_metadata(content) — Parses YAML frontmatter"]
+        },
+        "DocumentStructurer": {
+          "description": "Splits documents into hierarchical semantic chunks",
+          "constructor_args": {"chunk_size": 1000, "chunk_overlap": 200},
+          "methods": ["structure_document(content, metadata) → List[DocumentChunk]"]
+        },
+        "DocumentSorter": {
+          "description": "LLM-based document classification and dependency ordering",
+          "categories": ["getting_started", "concepts", "guides", "api_reference", "examples", "advanced", "troubleshooting"],
+          "methods": {
+            "classify_document(doc)": "async — Uses gpt-4o-mini with rule-based fallback",
+            "create_dependency_graph(documents)": "NetworkX DiGraph based on URL/title cross-references",
+            "calculate_complexity_scores(documents)": "Based on tokens, code density, chunk complexity, dependencies",
+            "sort_documents(documents)": "async — Parallel classification + dependency graph + topological sort"
+          },
+          "classification_model": "gpt-4o-mini (cheaper model sufficient for category classification)",
+          "parallelism": "Batch size 8 for parallel OpenAI classification"
+        },
+        "DocumentPostProcessor": {
+          "description": "Main orchestrator for the full pipeline",
+          "constructor_args": {
+            "input_dir": "str",
+            "output_dir": "str — Auto-creates timestamped directory under /Volumes/NvME-Satechi/VectorDatabase/",
+            "api_key": "Optional[str]"
+          },
+          "features": [
+            "Timestamped output directories to prevent overwrites",
+            "Checkpoint system (saves every 100 docs)",
+            "Resume from checkpoint",
+            "Parallel batch processing (25 workers, 50 files/batch)",
+            "Semaphore-controlled concurrency"
+          ],
+          "methods": {
+            "process_all_documents(recursive, flatten_output)": "async — Main entry point",
+            "process_document(file_path)": "async — Single document pipeline",
+            "save_checkpoint(phase)": "Save JSON checkpoint",
+            "load_checkpoint(file)": "Restore state from checkpoint",
+            "save_processed_documents()": "Write final output"
+          }
+        }
+      }
+    },
+
+    "src/docscraper/gui/scraper_gui.py": {
+      "lines": 392,
+      "purpose": "Tkinter GUI for the scraping stage",
+      "classes": ["DocScraperGUI (main window)", "GUIScraper (scraper with GUI hooks)"],
+      "features": ["URL input", "Output directory selection", "Start/Stop controls", "Real-time log display", "Progress tracking"]
+    },
+
+    "src/docscraper/gui/cleaner_gui.py": {
+      "lines": 687,
+      "purpose": "Tkinter GUI for rule-based + LLM cleaning",
+      "classes": ["PostScraperCleanerGUI (main window)", "GUIPostScraperCleaner (cleaner with GUI hooks)"],
+      "features": ["Input/Output directory selection", "Advanced options panel", "Processing timer", "Summary and details display", "Config save/load", "Results export"]
+    },
+
+    "src/docscraper/gui/processor_gui.py": {
+      "lines": 710,
+      "purpose": "Tkinter GUI for the full post-processing pipeline",
+      "classes": ["DocPostProcessorGUI (main window)", "GUIDocumentSorter", "GUIProcessor"],
+      "features": ["API key toggle", "Progress bar", "Stats display", "Real-time logging"]
+    },
+
+    "resume_processing.py": {
+      "lines": 85,
+      "purpose": "Resume interrupted processing from a checkpoint file",
+      "entry": "asyncio.run(resume_from_checkpoint())"
+    },
+
+    "example_directory_mirroring.py": {
+      "lines": 66,
+      "purpose": "Example showing clean_directory_tree() with '_cleaned' suffix mirroring"
+    },
+
+    "process_docs_example.py": {
+      "lines": 139,
+      "purpose": "Usage examples for the processing pipeline"
+    },
+
+    "process_multi_folder_example.py": {
+      "lines": 204,
+      "purpose": "Multi-folder batch processing example"
+    }
+  },
+
+  "tests": {
+    "framework": "unittest (standard library), compatible with pytest",
+    "files": {
+      "test_core_components.py": {"lines": 411, "covers": "CleaningConfig, RuleBasedCleaner, PostScraperCleaner, PatternRegistry"},
+      "test_intelligent_cleaning.py": {"lines": 249, "covers": "IntelligentContentAnalyzer, ContentAnalysis, ContentSection"},
+      "test_directory_mirroring.py": {"lines": 111, "covers": "clean_directory_tree() with '_cleaned' suffix"},
+      "test_docscraper_integration.py": {"lines": 407, "covers": "DocumentationScraper end-to-end"},
+      "test_gui_functional.py": {"lines": 340, "covers": "GUI components functional tests"},
+      "test_integration.py": {"lines": 249, "covers": "Integration tests across modules"},
+      "test_phase2.py": {"lines": 261, "covers": "LLM validation and chunk optimization"},
+      "test_performance.py": {"lines": 324, "covers": "Performance benchmarks"},
+      "test_core_components.py": {"lines": 411, "covers": "Core dataclass and cleaner tests"},
+      "test_stop.py": {"lines": 33, "covers": "Graceful stop mechanism"}
+    },
+    "run_commands": {
+      "all_tests_pytest": "python -m pytest test_*.py -v",
+      "all_tests_unittest": "python -m unittest discover -p 'test_*.py' -v",
+      "single_test": "python -m pytest test_core_components.py -v",
+      "specific_test": "python -m pytest test_core_components.py::TestCleaningConfig::test_valid_config -v"
+    }
+  },
+
+  "configuration": {
+    "environment_variables": {
+      "OPENAI_API_KEY": {
+        "required_for": "LLM features (intelligent cleaning, validation, classification)",
+        "setup": "Copy .env.example to .env, add your key",
+        "fallback": "System works without it using rule-based cleaning only"
+      }
+    },
+    "cleaning_config_defaults": {
+      "remove_navigation": true,
+      "remove_headers_footers": true,
+      "remove_boilerplate": true,
+      "enable_llm_validation": false,
+      "llm_confidence_threshold": 0.85,
+      "target_chunk_size": 512,
+      "overlap_size": 50,
+      "max_cost_per_document": 0.05,
+      "rate_limit_rpm": 500,
+      "enable_chunk_optimization": true
+    },
+    "scraper_defaults": {
+      "max_pages": 1000,
+      "batch_size": 10,
+      "delay_between_pages": "1-2 seconds (rate limited)",
+      "max_concurrent_sessions": 5,
+      "memory_threshold_percent": 80.0,
+      "cache_mode": "BYPASS"
+    },
+    "post_processor_defaults": {
+      "chunk_size": 1000,
+      "chunk_overlap": 200,
+      "checkpoint_interval": 100,
+      "max_parallel_workers": 25,
+      "batch_size": 50,
+      "classification_batch_size": 8
+    }
+  },
+
+  "development_history": {
+    "timeline": [
+      {
+        "date": "2025-05-25",
+        "commits": ["a2328cc", "72b63ba", "6c9cb91"],
+        "milestone": "Initial project creation",
+        "description": "Initial scraper implementation with crawl4ai + Playwright"
+      },
+      {
+        "date": "2025-07-04",
+        "commits": ["50d1e0c", "7d227ae", "75d349b", "acb6c0e", "c8c3778", "897ad8e", "313c12f"],
+        "milestone": "Core scraper stabilization",
+        "description": "Fixed datetime serialization in YAML, OpenAI API compatibility, JSON serialization issues"
+      },
+      {
+        "date": "2025-08-24",
+        "commits": ["0ccd318"],
+        "milestone": "Performance optimizations",
+        "description": "Complete DocScraper with performance optimizations, parallel processing"
+      },
+      {
+        "date": "2025-08-25",
+        "commits": ["900466d"],
+        "milestone": "Security hardening",
+        "description": "Enhanced .gitignore, updated experience ledger for security practices"
+      },
+      {
+        "date": "2025-10-28",
+        "commits": ["cb9e228"],
+        "milestone": "Model selection feature (Claude branch)",
+        "description": "Added model selection feature for LLM operations (experimental branch)"
+      },
+      {
+        "date": "2025-11-07",
+        "commits": ["4a1d0b4", "7f1ba51", "35a2a2d", "2350a19", "9f468e8"],
+        "milestone": "Phase 2: LLM integration + PostScraperCleaner",
+        "description": "Research on document cleaning optimization → PostScraperCleaner backend + GUI → LLM integration (llm_cleaner, intelligent_cleaner, chunk_optimizer) → Comprehensive test suite → Documentation suite (4,110+ lines)"
+      },
+      {
+        "date": "2025-11-09",
+        "commits": ["f4bf25d", "37d4bd9", "a78c77c", "561ad33", "9036352"],
+        "milestone": "GPT-4o upgrade + pattern refinement",
+        "description": "Fixed logo_images pattern, added 19 new cleaning patterns, refined patterns based on manually cleaned reference, consolidated documentation, documented GPT-4o upgrade (ADR-0002). Also: file size limit protection, verbose logging options."
+      },
+      {
+        "date": "2025-11-10",
+        "commits": ["2ff2fa4"],
+        "milestone": "Directory mirroring feature",
+        "description": "Added clean_directory_tree() with '_cleaned' suffix for directory structure mirroring"
+      },
+      {
+        "date": "2025-12-30",
+        "commits": ["3a90923"],
+        "milestone": "Serena MCP integration",
+        "description": "Added Serena MCP integration for AI-assisted development"
+      },
+      {
+        "date": "2026-01-10",
+        "commits": ["727e3dc", "82f903f"],
+        "milestone": "Project reorganization (remote only)",
+        "description": "Moved Steve Jobs corpus to local-only, reorganized project structure into src layout (on origin/development, not yet merged to local)"
+      }
+    ],
+    "branches": {
+      "main": "Production-ready code (behind development)",
+      "development": "Active development branch (current HEAD: 2ff2fa4)",
+      "origin/development": "Ahead of local — has src/ layout reorganization (82f903f)",
+      "origin/claude/add-model-selection-feature-*": "Experimental: model selection for LLM operations",
+      "origin/claude/check-last-conversation-*": "Experimental: verbose logging and file size limits"
+    },
+    "important_divergence": "origin/development (82f903f) is ahead of local development (2ff2fa4) with a src/ layout reorganization commit. Pull before developing."
+  },
+
+  "architecture_decisions": {
+    "ADR-0001": {
+      "title": "Architecture Baseline",
+      "status": "Accepted",
+      "key_decisions": [
+        "Pipeline-based processing with 5 distinct stages",
+        "Dual scraper implementations (async + simple)",
+        "crawl4ai + Playwright for scraping (JS rendering support)",
+        "Tkinter for GUI (no extra dependencies)",
+        "OpenAI API with optional fallback",
+        "File-based storage with JSON metadata",
+        "Semantic chunking: 1000 tokens, 200 overlap, respect heading boundaries"
+      ],
+      "open_todos": [
+        "Authentication support for login-required docs",
+        "Incremental updates (only fetch changed pages)",
+        "Export to different vector DB formats",
+        "Proxy support",
+        "PDF documentation support",
+        "Web API version"
+      ]
+    },
+    "ADR-0002": {
+      "title": "GPT-4o Upgrade for Intelligent Cleaner",
+      "status": "Accepted (2025-11-09)",
+      "problem": "gpt-4o-mini missed H1 titles, over-cleaned content, inaccurate line boundaries",
+      "solution": "Upgraded to gpt-4o + fixed critical 1-indexed vs 0-indexed line number bug",
+      "impact": {
+        "accuracy": "Title preservation: 60% → 100%, Boundary accuracy: 70% → 95%",
+        "cost": "7x increase ($0.0003 → $0.002 per doc, still only $2/1000 docs)",
+        "speed": "5s → 7s per document (+40%)"
+      }
+    }
+  },
+
+  "known_issues_and_gotchas": [
+    {
+      "id": "GOTCHA-001",
+      "area": "src/docscraper/cleaning/intelligent.py",
+      "description": "LLM returns 1-indexed line numbers, Python uses 0-indexed arrays",
+      "fix": "main_start = analysis.main_content_start - 1 (convert before array access)",
+      "fixed_in": "2ff2fa4"
+    },
+    {
+      "id": "GOTCHA-002",
+      "area": "src/docscraper/cleaning/cleaner.py",
+      "description": "Intelligent analysis MUST run on ORIGINAL content (not pre-cleaned) for accurate line numbers",
+      "impact": "Running on cleaned content shifts line numbers and breaks boundary detection"
+    },
+    {
+      "id": "GOTCHA-003",
+      "area": "src/docscraper/core/processor.py",
+      "description": "Output directory is hardcoded to /Volumes/NvME-Satechi/VectorDatabase/ with timestamped subdirectories",
+      "impact": "Won't work on other machines without changing this path"
+    },
+    {
+      "id": "GOTCHA-004",
+      "area": "src/docscraper/cleaning/rules.py",
+      "description": "Patterns are compiled with re.MULTILINE | re.DOTALL. Invalid regex in a pattern raises ValueError at import time.",
+      "impact": "A bad pattern prevents the entire module from loading"
+    },
+    {
+      "id": "GOTCHA-005",
+      "area": "llm_cleaner.py / intelligent_cleaner.py",
+      "description": "Uses urllib.request directly (not openai SDK) for API calls. DocPostProcessor.py uses AsyncOpenAI.",
+      "impact": "Two different API call mechanisms in the same project — be aware when debugging"
+    },
+    {
+      "id": "GOTCHA-006",
+      "area": "origin/development divergence",
+      "description": "Remote development branch has src/ layout reorganization not present locally",
+      "action": "Run 'git pull origin development' before starting new work"
+    },
+    {
+      "id": "GOTCHA-007",
+      "area": "Optional imports",
+      "description": "PostScraperCleaner uses try/except for llm_cleaner, intelligent_cleaner, chunk_optimizer imports",
+      "impact": "If any of these modules have syntax errors, they silently fail to None and LLM features won't work"
+    }
+  ],
+
+  "dependency_graph": {
+    "description": "Module import relationships (A → B means A imports from B)",
+    "edges": [
+      ["src/docscraper/cleaning/cleaner.py", "src/docscraper/cleaning/rules.py"],
+      ["src/docscraper/cleaning/cleaner.py", "src/docscraper/cleaning/llm.py", "optional"],
+      ["src/docscraper/cleaning/cleaner.py", "src/docscraper/cleaning/intelligent.py", "optional"],
+      ["src/docscraper/cleaning/cleaner.py", "src/docscraper/optimization/chunker.py", "optional"],
+      ["src/docscraper/cleaning/intelligent.py", "src/docscraper/cleaning/llm.py"],
+      ["src/docscraper/core/processor.py", "openai (AsyncOpenAI)"],
+      ["src/docscraper/core/processor.py", "networkx"],
+      ["src/docscraper/core/processor.py", "sklearn"],
+      ["src/docscraper/core/processor.py", "numpy"],
+      ["src/docscraper/core/processor.py", "tenacity"],
+      ["src/docscraper/core/processor.py", "pyyaml"],
+      ["src/docscraper/core/scraper.py", "crawl4ai"],
+      ["src/docscraper/core/scraper.py", "beautifulsoup4"],
+      ["src/docscraper/core/simple.py", "crawl4ai"],
+      ["src/docscraper/core/simple.py", "beautifulsoup4"],
+      ["src/docscraper/gui/cleaner_gui.py", "src/docscraper/cleaning/cleaner.py"],
+      ["src/docscraper/gui/scraper_gui.py", "src/docscraper/core/scraper.py"],
+      ["src/docscraper/gui/processor_gui.py", "src/docscraper/core/processor.py"],
+      ["example_directory_mirroring.py", "src/docscraper/cleaning/cleaner.py"],
+      ["resume_processing.py", "src/docscraper/core/processor.py"]
+    ]
+  },
+
+  "commands": {
+    "setup": {
+      "create_venv": "python3 -m venv venv",
+      "activate_venv": "source venv/bin/activate",
+      "install_deps": "pip install -r requirements.txt",
+      "install_browser": "playwright install chromium",
+      "setup_env": "cp .env.example .env  # then add OPENAI_API_KEY"
+    },
+    "run": {
+      "scraper_gui": "python DocScraperGUI.py",
+      "scraper_cli_advanced": "python DocScraper.py <url> [output_dir] [max_pages]",
+      "scraper_cli_simple": "python SimpleDocScraper.py <url> [output_dir] [max_pages]",
+      "cleaner_gui": "python PostScraperCleanerGUI.py",
+      "postprocessor_gui": "python DocPostProcessorGUI.py",
+      "postprocessor_cli": "python DocPostProcessor.py <input_dir> <output_dir> [--use-llm]"
+    },
+    "test": {
+      "all_tests": "python -m pytest test_*.py -v",
+      "unittest_discovery": "python -m unittest discover -p 'test_*.py' -v",
+      "single_file": "python test_core_components.py"
+    },
+    "git": {
+      "status": "git status",
+      "sync_remote": "git pull origin development",
+      "commit_format": "git commit -m '<type>(<area>): <description>'"
+    }
+  },
+
+  "code_conventions": {
+    "file_naming": {
+      "main_classes": "PascalCase.py (DocScraper.py, PostScraperCleaner.py)",
+      "utilities": "snake_case.py (cleaning_rules.py, intelligent_cleaner.py, chunk_optimizer.py)",
+      "tests": "test_snake_case.py (test_core_components.py)",
+      "gui_modules": "PascalCaseGUI.py (DocScraperGUI.py)"
+    },
+    "class_naming": "PascalCase (DocumentationScraper, CleaningConfig, RuleBasedCleaner)",
+    "method_naming": "snake_case, private methods prefixed with _ (_is_valid_doc_url, _clean_filename)",
+    "constant_naming": "UPPER_SNAKE_CASE (CLEANING_PATTERNS, DEFAULT_REGISTRY, DEFAULT_CHUNK_SIZE)",
+    "type_hints": "Full PEP 484 on all function signatures. Use Optional[] for nullable, List/Dict/Set from typing.",
+    "docstrings": "Module-level docstrings, class docstrings, method docstrings. Descriptive style, not Google/NumPy format.",
+    "imports_order": [
+      "1. Standard library (asyncio, os, re, json, pathlib, dataclasses, typing, logging)",
+      "2. Third-party (crawl4ai, beautifulsoup4, openai, tenacity, networkx, sklearn, numpy)",
+      "3. Local modules (cleaning_rules, llm_cleaner, intelligent_cleaner, chunk_optimizer)"
+    ],
+    "error_handling": "Try/except with logging.error() for API calls; raise ValueError for configuration validation; graceful fallbacks for optional features",
+    "logging": "logging.getLogger(__name__) per module; logging.basicConfig() at module level; INFO level by default",
+    "data_structures": "@dataclass with field(default_factory=list) for mutable defaults; __post_init__ for validation; to_dict() for serialization"
+  },
+
+  "api_contracts": {
+    "scraper_output_format": {
+      "description": "Each scraped page produces one .md file with YAML frontmatter",
+      "example": "---\nurl: https://docs.example.com/guide\nscraped_at: 2025-11-09T10:30:00\ntitle: Getting Started Guide\n---\n\n# Getting Started Guide\n...",
+      "summary_file": "_scrape_summary.json with start_url, domain, total_pages_scraped, visited_urls, failed_urls"
+    },
+    "cleaner_result_format": {
+      "description": "CleaningResult dataclass with to_dict() serialization",
+      "key_fields": {
+        "success": "bool",
+        "original_size": "int (bytes)",
+        "cleaned_size": "int (bytes)",
+        "reduction_percentage": "float (0-100)",
+        "removed_sections": "List[str] (pattern names that matched)",
+        "structure_score": "float (0-1, based on headers/code/lists/paragraphs)",
+        "content_quality_score": "float (0-1)",
+        "llm_cost": "float (USD)",
+        "processing_time": "float (seconds)"
+      }
+    },
+    "postprocessor_output_format": {
+      "description": "Timestamped directory with cleaned docs, chunks, and vector DB index",
+      "structure": {
+        "<timestamp>_<name>_VectorDB/": {
+          "cleaned/": "Cleaned markdown files",
+          "chunks/": "JSON chunk files",
+          "vector_db_index.json": "Ready for vector database ingestion",
+          "checkpoints/": "Processing checkpoints"
+        }
+      }
+    },
+    "progress_callback_format": {
+      "description": "Dict passed to progress_callback on PostScraperCleaner",
+      "fields": {
+        "type": "'progress'",
+        "processed": "int (current count)",
+        "total": "int (total files)",
+        "current_file": "str (filename being processed)"
+      }
+    }
+  },
+
+  "extending_the_project": {
+    "adding_cleaning_patterns": {
+      "file": "src/docscraper/cleaning/rules.py",
+      "steps": [
+        "1. Create new CleaningPattern instance in CLEANING_PATTERNS list",
+        "2. Assign appropriate PatternCategory (NAVIGATION, UI, BOILERPLATE, REDUNDANT)",
+        "3. Set confidence (0.0-1.0) — higher means more aggressive removal",
+        "4. Test regex pattern thoroughly — bad regex crashes at import time",
+        "5. DEFAULT_REGISTRY auto-includes all patterns in CLEANING_PATTERNS"
+      ]
+    },
+    "adding_new_llm_provider": {
+      "files": ["src/docscraper/cleaning/llm.py", "src/docscraper/cleaning/intelligent.py"],
+      "approach": "Replace urllib.request API calls in _call_openai_api() and _call_openai_for_analysis() — the prompt and response parsing are provider-agnostic"
+    },
+    "adding_new_gui": {
+      "pattern": "1. Create XxxGUI class extending Tkinter root. 2. Use Thread + Queue for background processing. 3. Use progress_callback on core classes for updates."
+    },
+    "adding_vector_db_export": {
+      "file": "src/docscraper/core/processor.py",
+      "location": "After save_processed_documents(), add export method that reads vector_db_index.json"
+    }
+  }
+}
