@@ -91,23 +91,23 @@ Parsify transforms DocScraper — a Python documentation scraping and post-proce
 **Estimated Duration:** 3-4 days
 
 #### F000a — Fix Hardcoded Paths
-- [ ] Fix DocPostProcessor hardcoded output path (line 622) — `output_dir` param silently ignored `fix` `core` `parallel-safe`
-- [ ] Parameterize resume_processing.py paths + fix os.path → pathlib `fix` `core` `parallel-safe`
+- [ ] #2 — Fix DocPostProcessor hardcoded output path `fix` `core` `parallel-safe`
+- [ ] #3 — Parameterize resume_processing.py paths + use pathlib `fix` `core` `parallel-safe`
 
 #### F000b — Fix Test Suite
-- [ ] Update 11 stale pattern count assertions in test_core_components.py (14→25 patterns) `fix` `test` `parallel-safe`
-- [ ] Move 3 script-tests to scripts/ (test_intelligent_cleaning, test_directory_mirroring, test_stop) `refactor` `test` `parallel-safe`
-- [ ] Add test infrastructure (conftest.py, pytest.ini, requirements-dev.txt) `infrastructure` `test`
+- [ ] #4 — Update stale pattern count assertions in test_core_components.py `fix` `test` `parallel-safe`
+- [ ] #5 — Move script-tests to scripts directory `refactor` `test` `parallel-safe`
+- [ ] #6 — Add test infrastructure (conftest.py, pytest.ini, requirements-dev.txt) `infrastructure` `test`
 
 #### F000c — Code Quality
-- [ ] Fix bare `except:` clauses (DocPostProcessor.py:184, DocScraper.py:209, GUI files) `fix` `core` `parallel-safe`
-- [ ] Remove `logging.basicConfig()` from 4 library modules `fix` `core` `parallel-safe`
-- [ ] Add type hints to 10 methods across 6 files `refactor` `core` `parallel-safe`
-- [ ] Rename SimpleDocScraper.DocumentationScraper to avoid class name collision `refactor` `core`
-- [ ] Fix LLM cost double-counting in PostScraperCleaner.py `fix` `core` `parallel-safe`
+- [ ] #7 — Fix bare except clauses in all source files `fix` `core` `parallel-safe`
+- [ ] #8 — Remove logging.basicConfig() from library modules `fix` `core` `parallel-safe`
+- [ ] #9 — Add type hints to public methods across 6 files `refactor` `core` `parallel-safe`
+- [ ] #10 — Rename SimpleDocScraper.DocumentationScraper class collision `refactor` `core`
+- [ ] #11 — Fix LLM cost double-counting in PostScraperCleaner.py `fix` `core` `parallel-safe`
 
 #### F000d — Documentation Accuracy
-- [ ] Fix factual errors in ONBOARDING.json (LOC count, file counts, branch name, architecture description) `docs` `docs` `parallel-safe`
+- [ ] #12 — Fix factual errors in ONBOARDING.json `docs` `docs` `parallel-safe`
 
 ### Phase 1 — FastAPI REST Wrapper + Authentication
 
@@ -115,18 +115,17 @@ Parsify transforms DocScraper — a Python documentation scraping and post-proce
 **Milestone Tag:** `v0.1.0-api`
 **Estimated Duration:** 2 weeks
 
-- [ ] Initialize FastAPI project structure (app/, routers/, models/, services/) `infrastructure` `config`
-- [ ] Create Pydantic request/response models for scraping endpoints `feat` `api`
-- [ ] Implement POST /api/v1/scrape endpoint (submit scraping job) `feat` `api` `blocked-by: FastAPI init`
-- [ ] Implement GET /api/v1/jobs/{id} endpoint (check job status) `feat` `api` `parallel-safe`
-- [ ] Implement GET /api/v1/jobs/{id}/result endpoint (download results) `feat` `api` `parallel-safe`
-- [ ] Implement POST /api/v1/process endpoint (post-process documents) `feat` `api`
-- [ ] Set up ARQ job queue with Redis for async scraping jobs `feat` `core`
-- [ ] Implement API key authentication middleware `feat` `auth`
-- [ ] Add API key CRUD endpoints (create, list, revoke) `feat` `auth` `blocked-by: auth middleware`
-- [ ] Implement webhook callbacks for job completion `feat` `api`
-- [ ] Write API integration tests `test` `test`
-- [ ] Write unit tests for auth middleware `test` `test`
+- [ ] #13 — Initialize FastAPI project structure `infrastructure` `config`
+- [ ] #14 — Create Pydantic request/response models `feat` `api`
+- [ ] #15 — Implement POST /api/v1/scrape endpoint `feat` `api` `blocked-by:#13,#14`
+- [ ] #16 — Implement GET /api/v1/jobs/{id} status endpoint `feat` `api` `parallel-safe`
+- [ ] #17 — Implement GET /api/v1/jobs/{id}/result endpoint `feat` `api` `parallel-safe`
+- [ ] #18 — Implement POST /api/v1/process endpoint `feat` `api`
+- [ ] #19 — Set up ARQ job queue with Redis `feat` `core`
+- [ ] #20 — Implement API key authentication middleware `feat` `auth`
+- [ ] #21 — Add API key CRUD endpoints `feat` `auth` `blocked-by:#20`
+- [ ] #22 — Implement webhook callbacks for job completion `feat` `api`
+- [ ] #23 — Write API integration tests `test` `test`
 
 ### Phase 2 — Billing & Usage
 
@@ -134,14 +133,14 @@ Parsify transforms DocScraper — a Python documentation scraping and post-proce
 **Milestone Tag:** `v0.2.0-billing`
 **Estimated Duration:** 2 weeks
 
-- [ ] Implement per-key rate limiting with slowapi + Redis `feat` `api`
-- [ ] Create usage tracking middleware (count requests, pages scraped, tokens used) `feat` `core`
-- [ ] Design billing tier structure (free: 100 pages/mo, pro: 10K, enterprise: unlimited) `feat` `core`
-- [ ] Integrate Stripe subscription checkout `feat` `api`
-- [ ] Implement Stripe webhook handler (subscription events) `feat` `api`
-- [ ] Add usage dashboard API endpoints `feat` `api`
-- [ ] Implement overage handling and soft limits `feat` `core`
-- [ ] Write billing integration tests (Stripe test mode) `test` `test`
+- [ ] #24 — Implement per-key rate limiting with slowapi `feat` `api`
+- [ ] #25 — Create usage tracking middleware `feat` `core`
+- [ ] #26 — Design billing tier structure `feat` `core`
+- [ ] #27 — Integrate Stripe subscription checkout `feat` `api`
+- [ ] #28 — Implement Stripe webhook handler `feat` `api`
+- [ ] #29 — Add usage dashboard API endpoints `feat` `api`
+- [ ] #30 — Implement overage handling and soft limits `feat` `core`
+- [ ] #31 — Write billing integration tests `test` `test`
 
 ### Phase 3 — CI/CD + Database + Deployment
 
@@ -149,16 +148,15 @@ Parsify transforms DocScraper — a Python documentation scraping and post-proce
 **Milestone Tag:** `v0.3.0-infra`
 **Estimated Duration:** 2 weeks
 
-- [ ] Design PostgreSQL schema (users, api_keys, jobs, usage_records, subscriptions) `feat` `db`
-- [ ] Set up SQLAlchemy async models + Alembic migrations `feat` `db`
-- [ ] Migrate from in-memory/file storage to PostgreSQL `refactor` `db`
-- [ ] Create Dockerfile (multi-stage: build + runtime) `infrastructure` `infra`
-- [ ] Create docker-compose.yml (API + PostgreSQL + Redis) `infrastructure` `infra`
-- [ ] Set up GitHub Actions CI (lint, type-check, test, build) `infrastructure` `infra`
-- [ ] Configure production deployment (Railway/Render) `infrastructure` `infra`
-- [ ] Add health check and readiness endpoints `feat` `api`
-- [ ] Set up structured logging (JSON, request tracing) `feat` `core`
-- [ ] Write deployment integration tests `test` `test`
+- [ ] #32 — Design PostgreSQL schema `feat` `db`
+- [ ] #33 — Set up SQLAlchemy models + Alembic migrations `feat` `db`
+- [ ] #34 — Migrate from in-memory storage to PostgreSQL `refactor` `db`
+- [ ] #35 — Create Dockerfile (multi-stage build) `infrastructure` `infra`
+- [ ] #36 — Create docker-compose.yml for local dev `infrastructure` `infra`
+- [ ] #37 — Set up GitHub Actions CI pipeline `infrastructure` `infra`
+- [ ] #38 — Configure production deployment on Railway `infrastructure` `infra`
+- [ ] #39 — Add health check and readiness endpoints `feat` `api`
+- [ ] #40 — Set up structured JSON logging with request tracing `feat` `core`
 
 ### Phase 4 — Docs + Landing Page
 
@@ -166,14 +164,11 @@ Parsify transforms DocScraper — a Python documentation scraping and post-proce
 **Milestone Tag:** `v0.4.0-docs`
 **Estimated Duration:** 1.5 weeks
 
-- [ ] Set up MkDocs documentation site `feat` `docs`
-- [ ] Write API reference documentation (from OpenAPI spec) `docs` `docs`
-- [ ] Write getting started guide `docs` `docs`
-- [ ] Write integration examples (Python, JavaScript, curl) `docs` `docs`
-- [ ] Create landing page (static HTML or simple Next.js) `feat` `docs`
-- [ ] Add pricing page with tier comparison `feat` `docs`
-- [ ] Write authentication guide `docs` `docs`
-- [ ] Write webhook integration guide `docs` `docs`
+- [ ] #41 — Set up MkDocs documentation site `feat` `docs`
+- [ ] #42 — Write API reference documentation `docs` `docs`
+- [ ] #43 — Write getting started guide with examples `docs` `docs`
+- [ ] #44 — Write authentication and webhook guides `docs` `docs`
+- [ ] #45 — Create landing page with pricing `feat` `docs`
 
 ### Phase 5 — SDK + Launch
 
@@ -181,13 +176,13 @@ Parsify transforms DocScraper — a Python documentation scraping and post-proce
 **Milestone Tag:** `v1.0.0`
 **Estimated Duration:** 1.5 weeks
 
-- [ ] Generate Python SDK from OpenAPI spec `feat` `core`
-- [ ] Generate JavaScript/TypeScript SDK from OpenAPI spec `feat` `core`
-- [ ] Publish Python SDK to PyPI `infrastructure` `infra`
-- [ ] Publish JS SDK to npm `infrastructure` `infra`
-- [ ] Write SDK documentation and examples `docs` `docs`
-- [ ] Create changelog and release notes `docs` `docs`
-- [ ] Set up error monitoring (Sentry) `infrastructure` `infra`
+- [ ] #46 — Generate Python SDK from OpenAPI spec `feat` `core`
+- [ ] #47 — Generate JavaScript/TypeScript SDK from OpenAPI spec `feat` `core`
+- [ ] #48 — Publish Python SDK to PyPI `infrastructure` `infra`
+- [ ] #49 — Publish JS SDK to npm `infrastructure` `infra`
+- [ ] #50 — Write SDK documentation and examples `docs` `docs`
+- [ ] #51 — Create changelog and release notes `docs` `docs`
+- [ ] #52 — Set up error monitoring with Sentry `infrastructure` `infra`
 
 ---
 

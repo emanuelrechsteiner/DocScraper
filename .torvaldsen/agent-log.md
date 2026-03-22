@@ -56,3 +56,31 @@
 - Run `/decompose` to create GitHub issues with milestones from BRAINSTORM.md
 - Lock scope manifest
 - Begin Phase 0 (Codebase Cleanup) via `/issue <#>` loop
+
+---
+
+## 2026-03-22 — Decompose Session
+
+**Agent:** Claude Opus 4.6
+**Phase:** Pre-Phase (Decompose)
+**Duration:** ~1 session
+
+### What I Did
+- Created 24 GitHub labels (6 phase, 6 type, 8 area, 4 workflow)
+- Created 6 milestones (Phase 0-5)
+- Created 51 GitHub issues (#2-#52) across 6 phases:
+  - Phase 0: 11 issues (codebase cleanup)
+  - Phase 1: 11 issues (FastAPI REST wrapper)
+  - Phase 2: 8 issues (billing and usage)
+  - Phase 3: 9 issues (CI/CD and deployment)
+  - Phase 4: 5 issues (docs and landing page)
+  - Phase 5: 7 issues (SDK and launch)
+- Locked scope manifest with all issue numbers
+- Updated BRAINSTORM.md with issue numbers
+- Updated PROJECT-STATUS.md with actual counts
+- Created scope-lock git tag
+
+### What's Next
+- Begin Phase 0 via `/issue #2` (first available issue)
+- All Phase 0 issues are parallel-safe — can work on multiple simultaneously
+- Run `/clear` between issues
