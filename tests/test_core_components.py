@@ -116,12 +116,12 @@ class TestPatternRegistry:
         """Test creating pattern registry"""
         registry = PatternRegistry()
         assert registry.patterns is not None
-        assert len(registry.patterns) == 14  # 14 predefined patterns
+        assert len(registry.patterns) == 25  # 25 predefined patterns
 
     def test_default_registry(self):
         """Test default registry instance"""
         assert DEFAULT_REGISTRY is not None
-        assert len(DEFAULT_REGISTRY.patterns) == 14
+        assert len(DEFAULT_REGISTRY.patterns) == 25
 
     def test_get_pattern(self):
         """Test retrieving pattern by name"""
@@ -192,8 +192,8 @@ class TestPatternRegistry:
         assert "by_category" in stats
         assert "average_confidence" in stats
 
-        assert stats["total_patterns"] == 14
-        assert stats["enabled_patterns"] + stats["disabled_patterns"] == 14
+        assert stats["total_patterns"] == 25
+        assert stats["enabled_patterns"] + stats["disabled_patterns"] == 25
         assert 0.7 < stats["average_confidence"] < 0.95
 
 
@@ -353,7 +353,7 @@ class TestCleaningResult:
 
 
 class TestAllPatterns:
-    """Test all 14 predefined patterns"""
+    """Test all 25 predefined patterns"""
 
     def test_all_patterns_have_config(self):
         """Test all patterns have proper configuration"""
@@ -371,21 +371,28 @@ class TestAllPatterns:
     def test_navigation_patterns(self):
         """Test navigation patterns"""
         nav_patterns = [p for p in CLEANING_PATTERNS if p.category == PatternCategory.NAVIGATION]
-        assert len(nav_patterns) == 4
-        expected_names = {"skip_navigation", "breadcrumbs", "sidebar_menu", "toc_nav"}
+        assert len(nav_patterns) == 5
+        expected_names = {"skip_navigation", "breadcrumbs", "toc_nav", "prev_next_navigation", "broken_link_fragments"}
         actual_names = {p.name for p in nav_patterns}
         assert actual_names == expected_names
 
     def test_ui_patterns(self):
         """Test UI element patterns"""
         ui_patterns = [p for p in CLEANING_PATTERNS if p.category == PatternCategory.UI]
-        assert len(ui_patterns) == 5
+        assert len(ui_patterns) == 12
         expected_names = {
             "header_section",
             "footer_section",
             "mobile_menu",
             "search_widget",
             "language_selector",
+            "logo_images",
+            "flag_language_indicator",
+            "search_placeholder",
+            "helpful_feedback_widget",
+            "social_media_links",
+            "footer_help_section",
+            "footer_learn_section",
         }
         actual_names = {p.name for p in ui_patterns}
         assert actual_names == expected_names
@@ -393,16 +400,16 @@ class TestAllPatterns:
     def test_boilerplate_patterns(self):
         """Test boilerplate patterns"""
         bp_patterns = [p for p in CLEANING_PATTERNS if p.category == PatternCategory.BOILERPLATE]
-        assert len(bp_patterns) == 3
-        expected_names = {"boilerplate_cta", "newsletter_signup", "cookie_banner"}
+        assert len(bp_patterns) == 5
+        expected_names = {"yaml_frontmatter", "boilerplate_cta", "newsletter_signup", "cookie_banner", "ai_disclaimer"}
         actual_names = {p.name for p in bp_patterns}
         assert actual_names == expected_names
 
     def test_redundant_patterns(self):
         """Test redundant content patterns"""
         red_patterns = [p for p in CLEANING_PATTERNS if p.category == PatternCategory.REDUNDANT]
-        assert len(red_patterns) == 2
-        expected_names = {"related_links", "social_share"}
+        assert len(red_patterns) == 3
+        expected_names = {"related_links", "social_share", "code_comments_in_examples"}
         actual_names = {p.name for p in red_patterns}
         assert actual_names == expected_names
 
