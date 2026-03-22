@@ -17,11 +17,8 @@ import logging
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import Callable
-from queue import Queue
-from threading import Thread
 
 from .rules import (
-    CleaningPattern,
     PatternRegistry,
     DEFAULT_REGISTRY,
     PatternCategory
