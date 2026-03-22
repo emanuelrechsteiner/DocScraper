@@ -70,8 +70,8 @@ def show_status():
                 print(f"📄 Documents: {summary.get('total_documents', 0):,}")
                 print(f"🧩 Chunks: {summary.get('total_chunks', 0):,}")
                 print(f"📅 Processed: {summary.get('processed_at', 'Unknown')}")
-            except:
-                print("⚠️  Could not read summary file")
+            except (json.JSONDecodeError, OSError) as e:
+                print(f"⚠️  Could not read summary file: {e}")
     else:
         print("❌ Database not found!")
 

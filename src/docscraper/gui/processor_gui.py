@@ -687,9 +687,9 @@ def main():
         # Set window icon if available
         try:
             root.iconname("Documentation Post-Processor")
-        except:
+        except (AttributeError, Exception):
             pass
-        
+
         # Handle window closing
         def on_closing():
             if messagebox.askokcancel("Quit", "Do you want to quit?"):

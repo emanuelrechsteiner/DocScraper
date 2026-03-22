@@ -19,11 +19,6 @@ from crawl4ai import MemoryAdaptiveDispatcher, RateLimiter
 from crawl4ai import CrawlerMonitor, DisplayMode
 from bs4 import BeautifulSoup
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger(__name__)
 
 
@@ -168,7 +163,7 @@ title: {metadata.get('title', 'Untitled')}
             self.failed_urls.add(url)
             return None
     
-    async def scrape_documentation(self, start_url: str, max_pages: int = 1000):
+    async def scrape_documentation(self, start_url: str, max_pages: int = 1000) -> None:
         """Scrape entire documentation website starting from a URL."""
         # Parse domain
         parsed = urlparse(start_url)
@@ -206,7 +201,7 @@ title: {metadata.get('title', 'Untitled')}
                     max_session_permit=5,
                     memory_threshold_percent=80.0
                 )
-            except:
+            except (TypeError, Exception):
                 # No monitor fallback
                 dispatcher = MemoryAdaptiveDispatcher(
                     rate_limiter=rate_limiter,
