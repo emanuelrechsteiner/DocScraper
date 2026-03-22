@@ -13,7 +13,6 @@ from dataclasses import dataclass, field
 from typing import List, Tuple, Dict, Optional
 from pathlib import Path
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 

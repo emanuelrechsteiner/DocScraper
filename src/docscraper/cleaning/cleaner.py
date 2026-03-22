@@ -45,11 +45,6 @@ except ImportError:
     ChunkOptimizer = None
     ChunkMetadata = None
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger(__name__)
 
 
@@ -375,8 +370,9 @@ class PostScraperCleaner:
                     )
                     result.llm_validation_used = True
                     result.llm_validation = llm_result.to_dict() if hasattr(llm_result, 'to_dict') else {"is_valid": True, "confidence": 0.7}
-                    result.llm_cost = llm_result.cost if hasattr(llm_result, 'cost') else 0.0
-                    self.stats["total_llm_cost"] += result.llm_cost
+                    validation_cost = llm_result.cost if hasattr(llm_result, 'cost') else 0.0
+                    result.llm_cost += validation_cost
+                    self.stats["total_llm_cost"] += validation_cost
                 except Exception as e:
                     logger.warning(f"LLM validation failed: {e}")
                     result.warnings.append(f"LLM validation error: {e}")
@@ -497,7 +493,6 @@ class PostScraperCleaner:
             self.stats["total_failed"] += 1
 
         self.stats["total_processing_time"] += result.processing_time
-        self.stats["total_llm_cost"] += result.llm_cost
 
     def clean_directory_tree(
         self,

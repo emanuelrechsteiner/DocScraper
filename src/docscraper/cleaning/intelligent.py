@@ -16,7 +16,6 @@ from pathlib import Path
 
 from .llm import LLMValidator, LLMConfig
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 

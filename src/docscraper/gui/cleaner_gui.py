@@ -34,8 +34,6 @@ def load_env():
 
 load_env()
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 

@@ -17,15 +17,10 @@ from pathlib import Path
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 from bs4 import BeautifulSoup
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger(__name__)
 
 
-class DocumentationScraper:
+class SimpleDocumentationScraper:
     """Scrapes documentation websites and saves content as markdown files."""
     
     def __init__(self, output_dir: str = "scraped_docs"):
@@ -176,7 +171,7 @@ title: {metadata.get('title', 'Untitled')}
             self.failed_urls.add(url)
             return None
     
-    async def scrape_documentation(self, start_url: str, max_pages: int = 1000):
+    async def scrape_documentation(self, start_url: str, max_pages: int = 1000) -> None:
         """Scrape entire documentation website starting from a URL."""
         # Parse domain
         parsed = urlparse(start_url)
@@ -251,7 +246,7 @@ async def main():
     output_dir = sys.argv[2] if len(sys.argv) > 2 else "scraped_docs"
     max_pages = int(sys.argv[3]) if len(sys.argv) > 3 else 1000
     
-    scraper = DocumentationScraper(output_dir)
+    scraper = SimpleDocumentationScraper(output_dir)
     await scraper.scrape_documentation(start_url, max_pages)
 
 

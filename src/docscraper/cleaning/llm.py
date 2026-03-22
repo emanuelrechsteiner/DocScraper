@@ -19,7 +19,6 @@ from datetime import datetime
 from urllib.request import urlopen, Request
 from urllib.error import URLError
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
