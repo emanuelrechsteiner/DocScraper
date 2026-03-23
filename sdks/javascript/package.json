@@ -1,0 +1,17 @@
+{
+  "name": "parsify-sdk",
+  "version": "0.1.0",
+  "description": "JavaScript/TypeScript SDK for the Parsify documentation processing API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist/"],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": ["parsify", "documentation", "scraping", "api", "sdk"],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
