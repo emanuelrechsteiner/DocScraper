@@ -35,6 +35,9 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://parsify:parsify@localhost:5432/parsify"
     database_echo: bool = False
 
+    # Monitoring
+    sentry_dsn: str = ""
+
     # Logging
     log_level: str = "INFO"
     log_format: str = "json"  # "json" or "text"

@@ -43,6 +43,9 @@ def create_app() -> FastAPI:
     Returns:
         A fully configured FastAPI application instance.
     """
+    from .middleware.sentry_config import init_sentry
+
+    init_sentry()
     setup_logging()
 
     app = FastAPI(
