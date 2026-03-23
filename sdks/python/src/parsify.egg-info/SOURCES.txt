@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+src/parsify/__init__.py
+src/parsify/client.py
+src/parsify/models.py
+src/parsify/py.typed
+src/parsify.egg-info/PKG-INFO
+src/parsify.egg-info/SOURCES.txt
+src/parsify.egg-info/dependency_links.txt
+src/parsify.egg-info/requires.txt
+src/parsify.egg-info/top_level.txt
+tests/test_client.py
