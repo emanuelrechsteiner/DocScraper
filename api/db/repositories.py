@@ -172,21 +172,27 @@ class UserRepository:
             email = f"{clerk_user_id}@clerk.local"
             email_is_verified = False
 
-        # Link to an existing account only via a verified, real email.
+        # Link to an existing account only via a verified, real email — and
+        # only when that account is DORMANT (never authenticated: no API keys,
+        # no Stripe customer). This lets a dormant pre-registration be claimed
+        # but prevents silently capturing an active account via a verified email.
         if email_is_verified and not email.endswith("@clerk.local"):
             existing = await self.get_by_email(email)
             if existing is not None:
-                if existing.clerk_user_id is None:
+                if existing.clerk_user_id is None and await self._is_dormant(
+                    existing
+                ):
                     existing.clerk_user_id = clerk_user_id
                     await self._session.flush()
                     logger.info(
-                        "Linked Clerk ID %s to existing user %s via verified email",
+                        "Linked Clerk ID %s to dormant user %s via verified email",
                         clerk_user_id,
                         existing.user_id,
                     )
                     return existing
+                # Active account or already linked → require explicit merge.
                 raise ValueError(
-                    f"Email {email} already linked to a different account"
+                    f"Email {email} already belongs to an existing account"
                 )
 
         user_id = f"user_{uuid.uuid4().hex[:12]}"
@@ -214,6 +220,21 @@ class UserRepository:
             "Auto-created user %s for Clerk ID %s", user_id, clerk_user_id
         )
         return user
+
+    async def _is_dormant(self, user: User) -> bool:
+        """Return ``True`` if the account has never been activated.
+
+        Dormant = no Stripe customer/subscription and no API keys. Only dormant
+        accounts may be auto-claimed via verified-email linking.
+        """
+        if user.stripe_customer_id or user.stripe_subscription_id:
+            return False
+        key_count = await self._session.scalar(
+            select(func.count())
+            .select_from(APIKey)
+            .where(APIKey.user_id == user.user_id)
+        )
+        return not key_count
 
 
 # ---------------------------------------------------------------------------

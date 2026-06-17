@@ -108,23 +108,30 @@ def _decode(token: str, rsa_key) -> dict:
     }
     # Clerk session tokens use `azp`, not `aud`; don't require `aud`.
     decode_kwargs["options"]["verify_aud"] = False
-    if settings.clerk_issuer:
-        decode_kwargs["issuer"] = settings.clerk_issuer
+    # Issuer enforcement is mandatory whenever Clerk is configured (fail-closed).
+    decode_kwargs["issuer"] = settings.clerk_issuer
+    decode_kwargs["options"]["require"].append("iss")
 
     payload = pyjwt.decode(token, rsa_key, **decode_kwargs)
 
-    # Bind the token to an expected frontend origin via `azp`.
+    # Bind the token to an expected frontend origin via `azp`. A missing `azp`
+    # is rejected (not allowed to pass) whenever an allowlist is configured.
     allowed = _authorized_parties()
-    if allowed:
-        azp = payload.get("azp")
-        if azp is not None and azp not in allowed:
-            raise HTTPException(status_code=401, detail="Token party not allowed")
+    if allowed and payload.get("azp") not in allowed:
+        raise HTTPException(status_code=401, detail="Token party not allowed")
 
     return payload
 
 
 async def _verify_token(token: str) -> dict:
     """Verify a Clerk JWT, refreshing the JWKS once on a ``kid`` miss."""
+    # Fail closed on misconfiguration: issuer enforcement is mandatory.
+    if not settings.clerk_issuer:
+        logger.error("Clerk auth invoked but clerk_issuer is not configured")
+        raise HTTPException(
+            status_code=500, detail="Clerk issuer not configured"
+        )
+
     try:
         unverified_header = pyjwt.get_unverified_header(token)
     except pyjwt.InvalidTokenError as exc:

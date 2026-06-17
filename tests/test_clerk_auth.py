@@ -68,6 +68,33 @@ async def test_links_to_existing_account_only_when_verified(db_session):
 
 
 @pytest.mark.asyncio
+async def test_does_not_link_active_account_with_stripe(db_session):
+    """An active (Stripe) account must not be auto-captured via email."""
+    repo = UserRepository(db_session)
+    active = await repo.create(email="active@example.com")
+    active.stripe_customer_id = "cus_123"
+    await db_session.flush()
+    with pytest.raises(ValueError):
+        await repo.get_or_create_by_clerk_id(
+            "user_clerk_active", "active@example.com", email_is_verified=True
+        )
+
+
+@pytest.mark.asyncio
+async def test_does_not_link_account_with_api_keys(db_session):
+    """An account that has issued API keys is active, not claimable."""
+    from api.db.repositories import APIKeyRepository
+
+    repo = UserRepository(db_session)
+    user = await repo.create(email="haskeys@example.com")
+    await APIKeyRepository(db_session).create(user.user_id, name="default")
+    with pytest.raises(ValueError):
+        await repo.get_or_create_by_clerk_id(
+            "user_clerk_keys", "haskeys@example.com", email_is_verified=True
+        )
+
+
+@pytest.mark.asyncio
 async def test_conflict_when_email_belongs_to_other_identity(db_session):
     repo = UserRepository(db_session)
     await repo.get_or_create_by_clerk_id(
