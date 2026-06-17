@@ -62,3 +62,17 @@ logs/
 gui_log.txt
 startup_err.log
 startup_out.log
+
+# Coverage
+.coverage
+htmlcov/
+
+# Build / packaging artifacts
+*.egg-info/
+
+# MkDocs build output
+site/
+
+# Serena local tooling
+.serena/memories/
+.serena/project.local.yml
