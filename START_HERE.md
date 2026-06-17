@@ -30,9 +30,10 @@ Parsify (formerly DocScraper) is a Python toolkit for scraping documentation web
 
 ## Current Status
 
-**Phase 0 of 5** — Codebase Cleanup — **0% complete**
+**Baseline complete** — legacy project, 47/51 issues delivered (92%) + dashboard (SC001) — **ready for future Torvaldsen development**
 
-> For detailed progress, see `PROJECT-STATUS.md`
+> The 6-phase build is done and merged to `main`. Remaining: #42–#45 (landing/docs)
+> as future work, plus baseline quality cleanup. For detailed progress, see `PROJECT-STATUS.md`.
 
 ---
 

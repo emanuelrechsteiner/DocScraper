@@ -84,3 +84,36 @@
 - Begin Phase 0 via `/issue #2` (first available issue)
 - All Phase 0 issues are parallel-safe — can work on multiple simultaneously
 - Run `/clear` between issues
+
+---
+
+## 2026-06-17 — Legacy Baseline Reconciliation
+
+**Agent:** Claude Opus 4.8
+**Phase:** Baseline adoption into Torvaldsen
+**Duration:** ~1 session
+
+### What I Did
+- Discovered a three-way desync: tracking docs said "Phase 0 / 0%", git history
+  had 47/51 issues implemented on `development`, and GitHub showed all 51 issues OPEN.
+- Root cause: legacy project built ad-hoc *before* Torvaldsen; all work committed to
+  `development` (65 commits ahead of `main`, 48 unpushed) but never merged to the
+  default branch, so `closes #N` never fired.
+- Committed previously-uncommitted delivered work in clean commits:
+  - git hygiene (untrack legacy .DS_Store/__pycache__/egg-info, extend .gitignore)
+  - **SC001**: Clerk dashboard auth (backend) + React/TS developer dashboard (frontend)
+  - new unit tests (cleaner, chunker, repositories, schemas)
+- Recorded SC001 as a post-hoc scope addition in scope-manifest.json (no fabricated rationale).
+- Merged `development` → `main`, pushed both, tagged the baseline.
+- Closed the 47 delivered issues (#2–#41, #46–#52); left #42–#45 OPEN as future work.
+- Reconciled PROJECT-STATUS.md / START_HERE.md to the true delivered state.
+
+### Honest Gaps (fail-loud)
+- **#42–#45** (landing page + 3 docs issues): genuinely not built — kept OPEN.
+- **Quality debt**: 89 ruff errors, 10 pytest collection errors — recorded as risks R4/R5, not hidden.
+- **SC001 vs ADR-004**: Clerk third-party auth diverges from the API-key decision; flagged for an ADR update.
+
+### What's Next
+- Optional cleanup cycle (`ruff --fix`, fix test-collection errors) before new features.
+- Future work via `/issue #42`…; review whether the dashboard already satisfies #42.
+- Consider `/phase-gate` discipline going forward now that the baseline is clean.

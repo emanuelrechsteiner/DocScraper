@@ -13,7 +13,7 @@
       "description": "Fix all audit findings: hardcoded paths, bare excepts, stale tests, type hints, logging, class collision, cost bug, docs errors",
       "phase": 0,
       "issues": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "status": "planned",
+      "status": "complete",
       "scope_boundary": "Fix existing bugs and quality issues ONLY. Does NOT include new features, refactoring for API readiness, or new test coverage beyond fixing stale assertions."
     },
     {
@@ -22,7 +22,7 @@
       "description": "FastAPI REST API wrapping existing scraping/processing engines with API key authentication and async job queue",
       "phase": 1,
       "issues": [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-      "status": "planned",
+      "status": "complete",
       "scope_boundary": "API endpoints, authentication, job queue ONLY. Does NOT include billing, rate limiting (beyond basic), database migrations, or deployment."
     },
     {
@@ -31,7 +31,7 @@
       "description": "Per-key rate limiting, usage tracking, and Stripe subscription billing with tiered plans",
       "phase": 2,
       "issues": [24, 25, 26, 27, 28, 29, 30, 31],
-      "status": "planned",
+      "status": "complete",
       "scope_boundary": "Rate limiting, usage metering, Stripe integration ONLY. Does NOT include admin dashboard, custom enterprise contracts, or billing analytics."
     },
     {
@@ -40,7 +40,7 @@
       "description": "PostgreSQL database, CI/CD pipeline, Docker containerization, and production deployment",
       "phase": 3,
       "issues": [32, 33, 34, 35, 36, 37, 38, 39, 40],
-      "status": "planned",
+      "status": "complete",
       "scope_boundary": "Database, CI/CD, Docker, deployment ONLY. Does NOT include horizontal scaling, multi-region, or Kubernetes."
     },
     {
@@ -49,8 +49,8 @@
       "description": "API documentation site, landing page with pricing, and integration guides",
       "phase": 4,
       "issues": [41, 42, 43, 44, 45],
-      "status": "planned",
-      "scope_boundary": "Documentation site and landing page ONLY. Does NOT include blog, community forum, or marketing automation."
+      "status": "partial",
+      "scope_boundary": "Documentation site and landing page ONLY. Does NOT include blog, community forum, or marketing automation. DELIVERED: #41 (MkDocs site). OPEN (future): #42 landing page (may be covered by SC001 dashboard), #43-45 docs."
     },
     {
       "id": "F005",
@@ -58,14 +58,34 @@
       "description": "Python and JavaScript SDK wrappers auto-generated from OpenAPI spec, published to PyPI and npm",
       "phase": 5,
       "issues": [46, 47, 48, 49, 50, 51, 52],
-      "status": "planned",
+      "status": "complete",
       "scope_boundary": "Python and JS SDKs ONLY. Does NOT include Go, Ruby, or other language SDKs."
+    },
+    {
+      "id": "SC001",
+      "name": "Developer Dashboard (Clerk auth + frontend)",
+      "description": "Clerk-authenticated developer console: backend JWT auth + /dashboard endpoints, and a React Router/TypeScript SPA (home, pricing, sign-in/up, api-keys, jobs, usage, settings)",
+      "phase": "post-baseline",
+      "issues": [],
+      "status": "complete",
+      "scope_boundary": "Recorded post-hoc during legacy baseline reconciliation (2026-06-17). Not part of original F000-F005 plan. Introduces Clerk third-party auth alongside the API-key auth of ADR-004 — ADR update recommended."
     }
   ],
-  "scope_changes": [],
+  "scope_changes": [
+    {
+      "id": "SC001",
+      "date": "2026-06-17",
+      "type": "addition",
+      "feature": "SC001-developer-dashboard",
+      "justification": "Built ad-hoc as part of the legacy project before Torvaldsen adoption; recorded retroactively during baseline reconciliation rather than fabricating an original plan entry.",
+      "approved_by": "human",
+      "issues_added": [],
+      "issues_removed": []
+    }
+  ],
   "metadata": {
     "created_by": "decompose-pipeline",
-    "last_updated": "2026-03-22",
-    "last_updated_by": "decompose-pipeline"
+    "last_updated": "2026-06-17",
+    "last_updated_by": "status-sync-baseline-reconciliation"
   }
 }
