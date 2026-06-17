@@ -129,7 +129,11 @@ class RuleBasedCleaner:
     def __init__(self, config: CleaningConfig, pattern_registry: PatternRegistry = None):
         """Initialize rule-based cleaner"""
         self.config = config
-        self.registry = pattern_registry or DEFAULT_REGISTRY
+        # Use a fresh, independently-owned registry (deep-copied patterns) when
+        # none is supplied — never the shared mutable DEFAULT_REGISTRY, since
+        # _filter_patterns_by_config() toggles pattern.enabled and would
+        # otherwise corrupt other cleaner instances / concurrent requests.
+        self.registry = pattern_registry or PatternRegistry()
         self._filter_patterns_by_config()
 
     def _filter_patterns_by_config(self) -> None:
@@ -189,7 +193,9 @@ class RuleBasedCleaner:
         for line in lines:
             if not line.strip():
                 blank_count += 1
-                if blank_count <= 2:
+                # Collapse runs of blank lines to a single blank line (markdown
+                # standard) — never emit 3+ consecutive newlines.
+                if blank_count <= 1:
                     normalized.append(line)
             else:
                 blank_count = 0

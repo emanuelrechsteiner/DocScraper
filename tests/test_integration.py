@@ -5,6 +5,7 @@ End-to-end tests for PostScraperCleaner with Phase 2 features enabled.
 Tests verify chunk optimization works seamlessly with cleaning.
 """
 
+import shutil
 import tempfile
 import pytest
 from pathlib import Path
@@ -70,10 +71,9 @@ def temp_output_dir():
     """Create temporary output directory"""
     temp_dir = Path(tempfile.mkdtemp())
     yield temp_dir
-    # Cleanup
-    for file in temp_dir.glob("*"):
-        file.unlink()
-    temp_dir.rmdir()
+    # Cleanup — rmtree handles nested subdirectories (a plain unlink loop
+    # raises PermissionError on directory entries).
+    shutil.rmtree(temp_dir, ignore_errors=True)
 
 
 class TestPhase2CleaningIntegration:

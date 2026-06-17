@@ -6,6 +6,7 @@ navigation, UI elements, boilerplate, and redundant content from scraped
 documentation markdown files.
 """
 
+import copy
 import re
 from dataclasses import dataclass, field
 from typing import List, Dict, Pattern
@@ -56,7 +57,9 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
     # UNIVERSAL BOILERPLATE PATTERNS (Work on ALL documentation)
     CleaningPattern(
         name="yaml_frontmatter",
-        pattern=r'^---\s*\n(?:.*?\n)*?---\s*\n',
+        # \A anchors to the document start only — must NOT match body-level
+        # '---' horizontal rules (which would devour content between them).
+        pattern=r'\A---\s*\n(?:.*?\n)*?---\s*\n',
         replacement="",
         confidence=0.98,
         category=PatternCategory.BOILERPLATE,
@@ -138,6 +141,15 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
         confidence=0.88,
         category=PatternCategory.UI,
         description="Remove language selection dropdowns"
+    ),
+
+    CleaningPattern(
+        name="navigation_link_row",
+        pattern=r'(?:^|\n)(?:Navigation|Nav|Menu):[ \t]*(?:\[[^\]]*\]\([^)]*\)[ \t]*)+(?=\n|$)',
+        replacement="\n",
+        confidence=0.9,
+        category=PatternCategory.NAVIGATION,
+        description="Remove 'Navigation:'-prefixed rows of inline links"
     ),
 
     # BOILERPLATE PATTERNS
@@ -315,8 +327,14 @@ class PatternRegistry:
     """Registry for managing cleaning patterns"""
 
     def __init__(self, patterns: List[CleaningPattern] = None):
-        """Initialize registry with patterns"""
-        self.patterns = patterns if patterns is not None else CLEANING_PATTERNS.copy()
+        """Initialize registry with patterns.
+
+        Patterns are deep-copied so each registry owns independent instances.
+        Toggling ``pattern.enabled`` on one registry/cleaner must never leak
+        into the shared module-level defaults or another instance.
+        """
+        source = patterns if patterns is not None else CLEANING_PATTERNS
+        self.patterns = [copy.deepcopy(p) for p in source]
         self._pattern_map = {p.name: p for p in self.patterns}
 
     def get_pattern(self, name: str) -> CleaningPattern:

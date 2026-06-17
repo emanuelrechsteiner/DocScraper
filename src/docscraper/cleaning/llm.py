@@ -158,14 +158,17 @@ class LLMValidator:
         Validate cleaned content structure and quality.
         Returns ValidationResult with improvements if available.
         """
-        if not self.api_key:
-            return ValidationResult(
-                is_valid=True,
-                confidence=0.7,
-                suggestions=["Configure OPENAI_API_KEY to enable LLM validation"],
-            )
-
         self.stats["validations_requested"] += 1
+
+        if not self.api_key:
+            # Graceful degradation: run real local structure validation rather
+            # than rubber-stamping everything as valid.
+            result = self._fallback_validation(content)
+            result.suggestions.append(
+                "Configure OPENAI_API_KEY to enable LLM validation"
+            )
+            return result
+
         metadata = metadata or {}
 
         # Check cache
@@ -324,7 +327,10 @@ Only output valid JSON, no other text."""
         # Basic local validation
         lines = content.split("\n")
         has_headers = any(line.startswith("#") for line in lines)
-        has_content = len(content.strip()) > 100
+        # Heuristic minimum for "has meaningful content" — enough to reject
+        # trivial input (e.g. a single character) without requiring a full
+        # document, since this runs as a no-API-key fallback.
+        has_content = len(content.strip()) > 20
         has_structure = has_headers and has_content
 
         issues = []
