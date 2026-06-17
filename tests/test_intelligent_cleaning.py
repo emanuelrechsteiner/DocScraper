@@ -16,6 +16,9 @@ any documentation structure without hardcoded patterns.
 import os
 import sys
 from pathlib import Path
+
+import pytest
+
 from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
 
 
@@ -34,12 +37,30 @@ def load_env():
 # Load .env file
 load_env()
 
-# Base documentation directory
-DOCS_BASE = Path("/Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs")
+# Base documentation directory (overridable via env for local manual runs).
+# This is a manual integration test that requires a local documentation corpus
+# and an OpenAI API key; it is skipped automatically in environments (e.g. CI)
+# where the corpus is not present.
+DOCS_BASE = Path(
+    os.environ.get(
+        "DOCSCRAPER_TEST_DOCS_BASE",
+        "/Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs",
+    )
+)
 
-# Test output directory
-TEST_OUTPUT = Path("/Volumes/NvME-Satechi/Development/Apps/DocScraper/test_results")
-TEST_OUTPUT.mkdir(exist_ok=True)
+# Test output directory (created lazily inside the test, never at import time).
+TEST_OUTPUT = Path(
+    os.environ.get(
+        "DOCSCRAPER_TEST_OUTPUT",
+        str(Path(__file__).parent / "_intelligent_cleaning_output"),
+    )
+)
+
+# Skip the whole module unless the local corpus and an API key are available.
+pytestmark = pytest.mark.skipif(
+    not DOCS_BASE.exists() or not os.environ.get("OPENAI_API_KEY"),
+    reason="Manual integration test: requires local doc corpus + OPENAI_API_KEY",
+)
 
 # Test files from diverse documentation sources
 TEST_FILES = [
@@ -96,6 +117,9 @@ def find_sample_file(directory: Path) -> Path:
 
 def test_intelligent_cleaning():
     """Test intelligent cleaning on diverse documentation sources"""
+
+    # Create output directory lazily (never at import time)
+    TEST_OUTPUT.mkdir(parents=True, exist_ok=True)
 
     # Check for OpenAI API key
     api_key = os.getenv("OPENAI_API_KEY")

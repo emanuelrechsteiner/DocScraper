@@ -76,3 +76,4 @@ site/
 # Serena local tooling
 .serena/memories/
 .serena/project.local.yml
+tests/_intelligent_cleaning_output/
