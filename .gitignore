@@ -10,6 +10,11 @@
 *secret*
 *token*
 
+# The broad secret-name guards above are meant for secret *files*; never let
+# them swallow tracked Python source or DB migrations (e.g. a migration named
+# "...users_api_keys...py"). Secrets are never .py files.
+!**/*.py
+
 # Python cache
 __pycache__/
 *.py[cod]
