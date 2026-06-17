@@ -5,8 +5,10 @@ from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from slowapi.errors import RateLimitExceeded
 
+from .config import settings
 from .middleware.logging_config import setup_logging
 from .middleware.rate_limit import limiter, rate_limit_exceeded_handler
 from .middleware.request_id import RequestIDMiddleware
@@ -60,6 +62,15 @@ def create_app() -> FastAPI:
 
     # --- Middleware (order matters: last added = first executed) ---
 
+    # CORS for dashboard frontend
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=[settings.dashboard_origin],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
     # Request ID propagation — must be outermost to stamp every response
     app.add_middleware(RequestIDMiddleware)
 
@@ -72,7 +83,7 @@ def create_app() -> FastAPI:
 
     # --- Routers ---
 
-    from .routers import auth, billing, health, jobs, process, scrape, usage
+    from .routers import auth, billing, dashboard, health, jobs, process, scrape, usage
 
     app.include_router(health.router)
     app.include_router(scrape.router, prefix="/api/v1")
@@ -81,6 +92,7 @@ def create_app() -> FastAPI:
     app.include_router(auth.router, prefix="/api/v1")
     app.include_router(billing.router, prefix="/api/v1")
     app.include_router(usage.router, prefix="/api/v1")
+    app.include_router(dashboard.router, prefix="/api/v1")
 
     logger.info("Parsify API application created (version 0.3.0)")
     return app

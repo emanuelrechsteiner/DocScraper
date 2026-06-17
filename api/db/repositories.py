@@ -123,6 +123,13 @@ class UserRepository:
         )
         return result.scalar_one_or_none()
 
+    async def get_by_clerk_user_id(self, clerk_user_id: str) -> Optional[User]:
+        """Return the user with the given Clerk user ID, or ``None``."""
+        result = await self._session.execute(
+            select(User).where(User.clerk_user_id == clerk_user_id)
+        )
+        return result.scalar_one_or_none()
+
 
 # ---------------------------------------------------------------------------
 # APIKeyRepository

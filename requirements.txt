@@ -21,6 +21,7 @@ python-multipart>=0.0.9
 arq>=0.26.0
 redis>=5.0.0
 httpx>=0.27.0
+pyjwt[crypto]>=2.8.0
 # Billing & rate limiting (Phase 2)
 slowapi>=0.1.9
 stripe>=8.0.0

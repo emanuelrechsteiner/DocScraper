@@ -36,6 +36,7 @@ class User(Base):
         id: Auto-incrementing surrogate primary key.
         user_id: Public stable identifier (UUID string).
         email: User's email address — unique.
+        clerk_user_id: Clerk authentication user ID — unique when set.
         name: Optional display name.
         tier: Billing tier — "free", "pro", or "enterprise".
         stripe_customer_id: Stripe customer identifier.
@@ -48,6 +49,9 @@ class User(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     user_id: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
     email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
+    clerk_user_id: Mapped[Optional[str]] = mapped_column(
+        String(64), nullable=True, unique=True, index=True
+    )
     name: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     tier: Mapped[str] = mapped_column(String(32), nullable=False, default="free")
     stripe_customer_id: Mapped[Optional[str]] = mapped_column(
@@ -63,6 +67,7 @@ class User(Base):
     __table_args__ = (
         Index("ix_users_user_id", "user_id"),
         Index("ix_users_email", "email"),
+        Index("ix_users_clerk_user_id", "clerk_user_id"),
     )
 
     def __repr__(self) -> str:

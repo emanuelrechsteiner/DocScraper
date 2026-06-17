@@ -35,6 +35,13 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://parsify:parsify@localhost:5432/parsify"
     database_echo: bool = False
 
+    # Clerk (dashboard auth)
+    clerk_jwks_url: str = ""
+    clerk_publishable_key: str = ""
+
+    # Dashboard
+    dashboard_origin: str = "http://localhost:5173"
+
     # Monitoring
     sentry_dsn: str = ""
 
