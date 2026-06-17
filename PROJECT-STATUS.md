@@ -82,8 +82,9 @@ dashboard (backend + React/TypeScript frontend) — **delivered**, no original i
 |---|------|-------|------------|--------|
 | R1 | crawl4ai breaking changes | maint | Pin version, integration tests | Monitoring |
 | R2 | OpenAI API cost spikes | maint | Usage limits, cost tracking | Monitoring |
-| R4 | Baseline quality debt (89 ruff errors, 10 test-collection errors) | maint | Dedicated cleanup cycle before next feature work | Open |
-| R5 | Clerk auth (SC001) diverges from ADR-004 API-key decision | maint | Document dual-auth model or supersede ADR-004 | Open |
+| R4 | Baseline quality debt | maint | Resolved 2026-06-17: ruff clean, mypy clean (api+src), 570 tests pass | ✅ Closed |
+| R5 | Clerk auth (SC001) diverges from ADR-004 | maint | Resolved 2026-06-17: documented in ADR-008 (dual-auth model) | ✅ Closed |
+| R6 | Security debt in dashboard auth path | maint | Resolved 2026-06-17: JWT issuer/azp/RS256 hardened, squat-proof + race-safe, 15 tests | ✅ Closed |
 
 ---
 
@@ -98,13 +99,14 @@ dashboard (backend + React/TypeScript frontend) — **delivered**, no original i
 
 ## Quality Metrics
 
-| Metric | Current | Target |
-|--------|---------|--------|
-| pytest | 307 collected, 10 collection errors | 0 errors |
-| ruff Warnings | 89 errors (66 auto-fixable) | 0 |
-| Test Coverage | Not measured (collection errors block run) | 80% |
-| mypy Errors | Not measured | 0 |
+| Metric | Current (2026-06-17) | Target |
+|--------|----------------------|--------|
+| pytest | 570 passed, 3 skipped, 0 errors | 0 errors |
+| ruff | All checks passed | 0 |
+| mypy (api/) | Clean (36 files) | 0 |
+| mypy (src/) | Clean (19 files, gradual config) | 0 |
 
-> Quality debt is **expected** for a legacy baseline. Recommended first future
-> cycle: a cleanup phase (`ruff --fix`, resolve test-collection errors) before new
-> features. These are tracked as risks R4/R5 above, not as silent passes.
+> Production-hardening pass (2026-06-17) closed R4/R5/R6: security-hardened the
+> dashboard auth path, brought the test suite from 307→570 passing (fixing a real
+> shared-registry concurrency bug and several cleaning-engine bugs), and made
+> lint + types clean. Tooling config (ruff/mypy/pytest) added to pyproject.
