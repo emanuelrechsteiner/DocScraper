@@ -2,6 +2,17 @@
 
 Verifies RS256 JWTs issued by Clerk and resolves the Clerk user ID
 to a Parsify User record, auto-creating on first login.
+
+Security properties:
+- Signature verified against Clerk's JWKS (RS256 only; algorithm and key-use
+  are asserted to prevent key-confusion / ``alg`` downgrade attacks).
+- Issuer (``iss``) verified when ``clerk_issuer`` is configured.
+- Authorized party (``azp``) checked against an allowlist when configured,
+  binding tokens to the expected frontend origin (Clerk session tokens carry
+  ``azp`` rather than ``aud``).
+- Account identity is the verified ``sub`` claim — never a client-supplied
+  email — preventing account-squatting. Emails are trusted only when the token
+  asserts ``email_verified``.
 """
 
 import logging
@@ -29,12 +40,23 @@ _jwks_cache_ttl: float = 0
 _JWKS_CACHE_DURATION = 3600  # 1 hour
 
 
-async def _get_jwks() -> dict:
-    """Fetch and cache Clerk's JWKS (JSON Web Key Set)."""
+def _authorized_parties() -> list[str]:
+    """Return the allowlist of acceptable ``azp`` values (may be empty)."""
+    raw = settings.clerk_authorized_parties or settings.dashboard_origin
+    return [p.strip() for p in raw.split(",") if p.strip()]
+
+
+async def _get_jwks(force_refresh: bool = False) -> dict:
+    """Fetch and cache Clerk's JWKS (JSON Web Key Set).
+
+    Args:
+        force_refresh: Bypass the TTL cache (used after a ``kid`` miss so that
+            key rotation does not require a cache-duration outage).
+    """
     global _jwks_cache, _jwks_cache_ttl
 
     now = time.time()
-    if _jwks_cache and now < _jwks_cache_ttl:
+    if not force_refresh and _jwks_cache and now < _jwks_cache_ttl:
         return _jwks_cache
 
     if not settings.clerk_jwks_url:
@@ -52,67 +74,109 @@ async def _get_jwks() -> dict:
     return _jwks_cache
 
 
-def _decode_jwt(token: str, jwks: dict) -> dict:
-    """Decode and verify a Clerk JWT using RS256.
+def _find_signing_key(jwks: dict, kid: Optional[str]):
+    """Locate the RS256 signing key for ``kid`` in the JWKS.
 
-    Args:
-        token: The raw JWT string.
-        jwks: The JWKS dict from Clerk.
+    Asserts the key's algorithm and intended use before trusting it, so a
+    spoofed JWKS entry with a different ``alg``/``use`` cannot be used.
 
     Returns:
-        Decoded token payload.
-
-    Raises:
-        HTTPException: If token is invalid or expired.
+        The RSA public key, or ``None`` if no suitable key matches.
     """
+    if not kid:
+        return None
+    for key in jwks.get("keys", []):
+        if key.get("kid") != kid:
+            continue
+        if key.get("alg", "RS256") != "RS256":
+            continue
+        if key.get("use") not in (None, "sig"):
+            continue
+        return pyjwt.algorithms.RSAAlgorithm.from_jwk(key)
+    return None
+
+
+def _decode(token: str, rsa_key) -> dict:
+    """Decode and verify a Clerk JWT with full claim validation."""
+    decode_kwargs: dict = {
+        "algorithms": ["RS256"],
+        "options": {
+            "require": ["exp", "iat", "sub"],
+            "verify_exp": True,
+            "verify_signature": True,
+        },
+    }
+    # Clerk session tokens use `azp`, not `aud`; don't require `aud`.
+    decode_kwargs["options"]["verify_aud"] = False
+    if settings.clerk_issuer:
+        decode_kwargs["issuer"] = settings.clerk_issuer
+
+    payload = pyjwt.decode(token, rsa_key, **decode_kwargs)
+
+    # Bind the token to an expected frontend origin via `azp`.
+    allowed = _authorized_parties()
+    if allowed:
+        azp = payload.get("azp")
+        if azp is not None and azp not in allowed:
+            raise HTTPException(status_code=401, detail="Token party not allowed")
+
+    return payload
+
+
+async def _verify_token(token: str) -> dict:
+    """Verify a Clerk JWT, refreshing the JWKS once on a ``kid`` miss."""
     try:
-        # Get the signing key from JWKS
         unverified_header = pyjwt.get_unverified_header(token)
-        kid = unverified_header.get("kid")
+    except pyjwt.InvalidTokenError as exc:
+        raise HTTPException(status_code=401, detail=f"Malformed token: {exc}")
 
-        rsa_key = None
-        for key in jwks.get("keys", []):
-            if key.get("kid") == kid:
-                rsa_key = pyjwt.algorithms.RSAAlgorithm.from_jwk(key)
-                break
+    kid = unverified_header.get("kid")
 
-        if rsa_key is None:
-            raise HTTPException(
-                status_code=401,
-                detail="Unable to find signing key",
-            )
+    jwks = await _get_jwks()
+    rsa_key = _find_signing_key(jwks, kid)
+    if rsa_key is None:
+        # Key may have rotated — force a single refresh before failing.
+        jwks = await _get_jwks(force_refresh=True)
+        rsa_key = _find_signing_key(jwks, kid)
+    if rsa_key is None:
+        raise HTTPException(status_code=401, detail="Unable to find signing key")
 
-        payload = pyjwt.decode(
-            token,
-            rsa_key,
-            algorithms=["RS256"],
-            options={"verify_aud": False},
-        )
-        return payload
-
+    try:
+        return _decode(token, rsa_key)
     except pyjwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token has expired")
+    except pyjwt.InvalidIssuerError:
+        raise HTTPException(status_code=401, detail="Invalid token issuer")
     except pyjwt.InvalidTokenError as exc:
         raise HTTPException(status_code=401, detail=f"Invalid token: {exc}")
+
+
+def _resolve_email(payload: dict, clerk_user_id: str) -> tuple[str, bool]:
+    """Return ``(email, is_verified)`` from the token.
+
+    Only a claim explicitly marked ``email_verified`` is trusted as a real
+    email. Otherwise a safe, identity-derived placeholder is used so a forged
+    email claim can never squat a real address.
+    """
+    email_claim = payload.get("email")
+    email_verified = bool(payload.get("email_verified"))
+    if email_claim and email_verified:
+        return email_claim, True
+    return f"{clerk_user_id}@clerk.local", False
 
 
 async def get_dashboard_user(
     credentials: Optional[HTTPAuthorizationCredentials] = Security(_bearer_scheme),
     db: AsyncSession = Depends(get_db_session),
 ) -> User:
-    """Verify Clerk JWT and resolve to a Parsify User.
+    """Verify a Clerk JWT and resolve it to a Parsify ``User``.
 
-    Auto-creates the User record on first dashboard login.
-
-    Args:
-        credentials: Bearer token from Authorization header.
-        db: Async database session.
-
-    Returns:
-        The authenticated User ORM object.
+    Auto-creates (or links) the ``User`` record on first dashboard login,
+    keyed on the verified Clerk subject.
 
     Raises:
-        HTTPException: 401 if token is missing/invalid.
+        HTTPException: 401 if the token is missing/invalid; 409 if a verified
+            email already belongs to a different account.
     """
     if credentials is None:
         raise HTTPException(
@@ -121,30 +185,22 @@ async def get_dashboard_user(
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    jwks = await _get_jwks()
-    payload = _decode_jwt(credentials.credentials, jwks)
+    payload = await _verify_token(credentials.credentials)
 
     clerk_user_id = payload.get("sub")
     if not clerk_user_id:
         raise HTTPException(status_code=401, detail="Token missing subject claim")
 
+    email, email_verified = _resolve_email(payload, clerk_user_id)
+    name = payload.get("name") or payload.get("first_name") or None
+
     repo = UserRepository(db)
-    user = await repo.get_by_clerk_user_id(clerk_user_id)
-
-    if user is None:
-        # Auto-create user on first dashboard login
-        email = payload.get(
-            "email",
-            payload.get("email_addresses", [{}])[0].get(
-                "email_address", f"{clerk_user_id}@clerk.user"
-            ),
+    try:
+        return await repo.get_or_create_by_clerk_id(
+            clerk_user_id=clerk_user_id,
+            email=email,
+            name=name,
+            email_is_verified=email_verified,
         )
-        name = payload.get("name", payload.get("first_name", ""))
-        user = await repo.create(email=email, name=name or None)
-        user.clerk_user_id = clerk_user_id
-        await db.flush()
-        logger.info(
-            "Auto-created user %s for Clerk ID %s", user.user_id, clerk_user_id
-        )
-
-    return user
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc))
