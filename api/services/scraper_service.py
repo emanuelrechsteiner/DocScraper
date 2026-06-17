@@ -2,7 +2,7 @@
 
 import logging
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +23,7 @@ class ScraperService:
         url: str,
         max_pages: int = 100,
         job_id: Optional[str] = None,
-    ) -> dict[str, object]:
+    ) -> dict[str, Any]:
         """Start a scrape job using the existing DocumentationScraper engine.
 
         Args:

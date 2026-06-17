@@ -47,7 +47,7 @@ class BillingService:
     """Manages Stripe subscriptions and billing tier transitions."""
 
     def __init__(self) -> None:
-        self._stripe = None
+        self._stripe: Any = None
 
     def _get_stripe(self) -> Any:
         """Lazy-load Stripe SDK to avoid import errors when key is empty."""

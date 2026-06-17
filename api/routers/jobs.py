@@ -46,7 +46,7 @@ async def get_job_status(
     return APIResponse(
         data=JobStatusResponse(
             job_id=job.job_id,
-            status=job.status,
+            status=JobStatus(job.status),
             job_type=job.job_type,
             progress=job.progress,
             pages_scraped=job.pages_scraped,
@@ -101,7 +101,7 @@ async def get_job_result(
     return APIResponse(
         data=JobResultResponse(
             job_id=job.job_id,
-            status=job.status,
+            status=JobStatus(job.status),
             total_pages=job.pages_scraped,
             failed_pages=job.pages_failed,
             output_files=job.output_files or [],
@@ -138,7 +138,7 @@ async def list_jobs(
         data=[
             JobStatusResponse(
                 job_id=j.job_id,
-                status=j.status,
+                status=JobStatus(j.status),
                 job_type=j.job_type,
                 progress=j.progress,
                 pages_scraped=j.pages_scraped,
