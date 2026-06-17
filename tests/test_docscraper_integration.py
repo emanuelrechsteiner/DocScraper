@@ -157,7 +157,7 @@ code block
             cleaner = PostScraperCleaner(config)
             output_path = Path(tempfile.mktemp(suffix='.md'))
 
-            result = cleaner.clean_document(input_path, output_path)
+            _result = cleaner.clean_document(input_path, output_path)
             cleaned = output_path.read_text()
 
             # Verify markdown structure preserved

@@ -50,7 +50,7 @@ class User(Base):
     user_id: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
     email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
     clerk_user_id: Mapped[Optional[str]] = mapped_column(
-        String(64), nullable=True, unique=True, index=True
+        String(64), nullable=True, unique=True
     )
     name: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     tier: Mapped[str] = mapped_column(String(32), nullable=False, default="free")

@@ -38,6 +38,12 @@ class Settings(BaseSettings):
     # Clerk (dashboard auth)
     clerk_jwks_url: str = ""
     clerk_publishable_key: str = ""
+    # Expected token issuer (Clerk Frontend API URL, e.g.
+    # "https://clerk.your-domain.com"). When set, the `iss` claim is verified.
+    clerk_issuer: str = ""
+    # Comma-separated allowlist of authorized parties (`azp` claim). Defaults to
+    # ``dashboard_origin`` when empty. Tokens whose `azp` is not allowed are rejected.
+    clerk_authorized_parties: str = ""
 
     # Dashboard
     dashboard_origin: str = "http://localhost:5173"

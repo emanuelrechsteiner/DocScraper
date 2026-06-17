@@ -10,7 +10,6 @@ import threading
 import asyncio
 from pathlib import Path
 from datetime import datetime, timedelta
-import json
 import queue
 import time
 import os
@@ -40,7 +39,6 @@ class DocPostProcessorGUI:
         
         # Load environment variables
         from dotenv import load_dotenv
-        import os
         load_dotenv()
         self.openai_api_key = os.getenv('OPENAI_API_KEY')
         
@@ -385,7 +383,7 @@ class DocPostProcessorGUI:
         if stats:
             self.stats_text.insert(tk.END, f"Total Documents: {stats.get('total_documents', 0)}\n")
             self.stats_text.insert(tk.END, f"Total Chunks: {stats.get('total_chunks', 0)}\n")
-            self.stats_text.insert(tk.END, f"Categories: ")
+            self.stats_text.insert(tk.END, "Categories: ")
             
             categories = stats.get('categories', {})
             cat_text = ", ".join([f"{cat}: {count}" for cat, count in categories.items()])
@@ -506,7 +504,7 @@ class DocPostProcessorGUI:
     def run_processor(self, input_dir, output_dir, api_key, process_subfolders, flatten_output):
         """Run the processor in a separate thread."""
         try:
-            self.log(f"Starting document post-processing", "INFO")
+            self.log("Starting document post-processing", "INFO")
             self.log(f"Input directory: {input_dir}", "INFO")
             self.log(f"Output directory: {output_dir}", "INFO")
             self.log(f"Process subfolders: {'Yes' if process_subfolders else 'No'}", "INFO")
@@ -697,7 +695,7 @@ def main():
         
         root.protocol("WM_DELETE_WINDOW", on_closing)
         
-        app = DocPostProcessorGUI(root)
+        _app = DocPostProcessorGUI(root)
         root.mainloop()
         
     except Exception as e:

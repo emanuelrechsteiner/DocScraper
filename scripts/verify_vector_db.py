@@ -4,7 +4,6 @@ Test script to verify the vector database connection and content
 """
 
 import json
-import os
 from pathlib import Path
 
 def test_vector_database():
@@ -114,7 +113,7 @@ def search_for_crawl4ai():
             if 'quickstart' in content:
                 quickstart_chunks.append(chunk)
         
-        print(f"📊 Content Analysis (first 1000 chunks):")
+        print("📊 Content Analysis (first 1000 chunks):")
         print(f"   Crawl4ai chunks: {len(crawl4ai_chunks)}")
         print(f"   Session-management chunks: {len(session_chunks)}")
         print(f"   Quickstart chunks: {len(quickstart_chunks)}")

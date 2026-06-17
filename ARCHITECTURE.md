@@ -74,7 +74,7 @@
 | API Framework | FastAPI | >=0.115.0 | ADR-001 |
 | Database | PostgreSQL + SQLAlchemy | 16 + 2.0 | ADR-002 |
 | Job Queue | ARQ | >=0.26.0 | ADR-003 |
-| Authentication | API Key (SHA-256 hashed) | — | ADR-004 |
+| Authentication | API Key (SHA-256) + Clerk JWT (dashboard) | — | ADR-004, ADR-008 |
 | Rate Limiting | slowapi + Redis | — | ADR-005 |
 | Billing | Stripe | — | ADR-006 |
 | Deployment | Railway | — | ADR-007 |
@@ -277,6 +277,51 @@
 **Revisit When:**
 - If costs exceed $100/mo → evaluate fly.io or AWS
 - If we need multi-region → Railway doesn't support it well
+
+---
+
+### ADR-008 — Dual Authentication: API Keys (programmatic) + Clerk (dashboard)
+
+| Field | Value |
+|-------|-------|
+| **Date** | 2026-06-17 |
+| **Status** | Accepted (supersedes the single-auth assumption of ADR-004) |
+
+**Context:** ADR-004 chose hashed API keys as the sole auth mechanism, optimised
+for programmatic/SDK access. A developer dashboard (SC001) was subsequently built
+and needs interactive, browser-based human login (sessions, sign-up, social login)
+— a poor fit for raw API keys. This was discovered during the 2026-06-17 baseline
+reconciliation as an undocumented divergence from ADR-004.
+
+**Decision:** Run **two complementary auth mechanisms**, segmented by surface:
+
+| Surface | Mechanism | Identity | Verified by |
+|---------|-----------|----------|-------------|
+| Programmatic API (`/api/v1/*`) | API key (`pk_…`, SHA-256 hashed) | `User` via `APIKey` | `APIKeyRepository.verify` |
+| Developer dashboard (`/api/v1/dashboard/*`) | Clerk RS256 JWT | `User.clerk_user_id` (verified `sub`) | `clerk_auth.get_dashboard_user` |
+
+Both resolve to the **same `User`** record, so billing/tiers/usage are shared.
+A dashboard user provisions/links to a `User` on first login; the account's stable
+identity is the verified Clerk `sub`, never a client-supplied email.
+
+**Alternatives Considered:**
+
+| Alternative | Why Rejected |
+|-------------|-------------|
+| API keys only (original ADR-004) | No session/sign-up/social-login UX for a browser dashboard |
+| Clerk only | Breaks existing SDK/programmatic flows that depend on API keys |
+| Roll our own JWT/session auth | Re-implements password reset, MFA, social login — high cost & risk |
+
+**Consequences:**
+- Two code paths to secure. The Clerk path is hardened (issuer + `azp` verified,
+  RS256/`kid` asserted, verified-email-only, dormant-only account linking).
+- Shared `User` model keeps billing/usage coherent across both surfaces.
+- New config required in production: `clerk_jwks_url`, `clerk_issuer`,
+  `clerk_authorized_parties`. Auth fails closed if the issuer is unset.
+
+**Revisit When:**
+- If Clerk becomes the primary identity, consider issuing API keys *from* the
+  dashboard and deprecating standalone API-key signup.
 
 ---
 

@@ -1,7 +1,6 @@
 """Tests for Sentry integration (#52)."""
 
 from unittest.mock import patch
-import pytest
 from api.middleware.sentry_config import init_sentry
 
 

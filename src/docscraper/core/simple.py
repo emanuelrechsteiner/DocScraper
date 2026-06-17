@@ -6,7 +6,6 @@ Crawls documentation websites and converts pages to markdown files.
 from __future__ import annotations
 
 import asyncio
-import os
 import re
 import json
 from datetime import datetime
@@ -225,7 +224,7 @@ title: {metadata.get('title', 'Untitled')}
         with open(summary_path, 'w') as f:
             json.dump(summary, f, indent=2)
             
-        logger.info(f"\nScraping completed!")
+        logger.info("\nScraping completed!")
         logger.info(f"Total pages scraped: {len(self.visited_urls)}")
         logger.info(f"Failed URLs: {len(self.failed_urls)}")
         logger.info(f"Summary saved to: {summary_path}")

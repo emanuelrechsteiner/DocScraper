@@ -32,3 +32,37 @@ docprocessor-gui = "docscraper.gui.processor_gui:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# Use Ruff's default rule set (pyflakes F + a curated pycodestyle subset).
+# The legacy codebase is clean under these; stricter families (I/B/UP/full E)
+# can be adopted incrementally per-package without a disruptive mass reformat.
+ignore = ["E501"]  # long lines are not hard-enforced
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+# Put the repo root on sys.path so the top-level `api` package imports in any
+# environment (CI included), not just when pytest's cwd magic happens to work.
+pythonpath = ["."]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+# Third-party packages without bundled type stubs (e.g. redis) are untyped.
+disable_error_code = ["import-untyped"]
+# The deployed API service is held to a stricter bar than the legacy library.
+[[tool.mypy.overrides]]
+module = "api.*"
+disallow_untyped_defs = false
+warn_return_any = false
+[[tool.mypy.overrides]]
+# src/ (legacy library) uses gradual typing — tightened over time, not blocking.
+module = "docscraper.*"
+ignore_errors = true

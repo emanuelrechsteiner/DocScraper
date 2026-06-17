@@ -42,6 +42,13 @@ async def run_scrape_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
             logger.error("Scrape job %s not found in store", job_id)
             return {"error": "Job not found"}
 
+        if not job.url:
+            logger.error("Scrape job %s has no target URL", job_id)
+            await repo.update(
+                job_id, status=JobStatus.FAILED.value, error="Missing target URL"
+            )
+            return {"error": "Job has no URL"}
+
         now = datetime.now(timezone.utc)
         await repo.update(job_id, status=JobStatus.RUNNING.value, started_at=now)
         logger.info("Starting scrape job %s for %s", job_id, job.url)
@@ -51,7 +58,9 @@ async def run_scrape_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
 
             service = ScraperService()
             result = await service.start_scrape(
-                url=job.url, max_pages=job.max_pages, job_id=job_id
+                url=job.url,
+                max_pages=job.max_pages if job.max_pages is not None else 100,
+                job_id=job_id,
             )
 
             await repo.update(
@@ -123,6 +132,13 @@ async def run_process_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
         if job is None:
             logger.error("Process job %s not found in store", job_id)
             return {"error": "Job not found"}
+
+        if not job.url:
+            logger.error("Process job %s has no input directory", job_id)
+            await repo.update(
+                job_id, status=JobStatus.FAILED.value, error="Missing input path"
+            )
+            return {"error": "Job has no input path"}
 
         now = datetime.now(timezone.utc)
         await repo.update(job_id, status=JobStatus.RUNNING.value, started_at=now)

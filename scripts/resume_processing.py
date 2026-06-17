@@ -74,9 +74,9 @@ async def resume_from_checkpoint(
         for doc in processor.processed_docs:
             categories[doc.category] = categories.get(doc.category, 0) + 1
 
-        print(f"\nFinal Summary:")
+        print("\nFinal Summary:")
         print(f"   Total documents: {len(processor.processed_docs)}")
-        print(f"   Categories:")
+        print("   Categories:")
         for category, count in sorted(categories.items()):
             print(f"     - {category}: {count}")
 

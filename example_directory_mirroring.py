@@ -58,7 +58,7 @@ failed = len(results) - successful
 total_cost = sum(r.llm_cost for r in results)
 avg_reduction = sum(r.reduction_percentage for r in results if r.success) / successful if successful > 0 else 0
 
-print(f"\nProcessing complete:")
+print("\nProcessing complete:")
 print(f"✅ Successful: {successful}/{len(results)}")
 print(f"❌ Failed: {failed}/{len(results)}")
 print(f"💰 Total LLM cost: ${total_cost:.6f}")

@@ -12,13 +12,12 @@ import threading
 import json
 import os
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime
 import queue
 import logging
 from typing import Optional, Callable, Dict, Any
 
-from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig, CleaningResult
-from docscraper.cleaning.rules import PatternRegistry, DEFAULT_REGISTRY
+from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
 
 # Load .env file for API keys
 def load_env():
@@ -677,7 +676,7 @@ Removes navigation, boilerplate, and redundant content from scraped documentatio
 def main():
     """Main entry point"""
     root = tk.Tk()
-    app = PostScraperCleanerGUI(root)
+    _app = PostScraperCleanerGUI(root)
     root.mainloop()
 
 

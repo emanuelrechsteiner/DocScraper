@@ -43,8 +43,8 @@ async def process_multi_folder_docs():
     
     print(f"📁 Input directory: {input_dir}")
     print(f"📂 Output directory: {output_dir}")
-    print(f"🔍 Processing all subfolders recursively")
-    print(f"📦 Flattening output to single directory")
+    print("🔍 Processing all subfolders recursively")
+    print("📦 Flattening output to single directory")
     
     # Create processor
     processor = DocumentPostProcessor(input_dir, output_dir, api_key)
@@ -56,19 +56,19 @@ async def process_multi_folder_docs():
     )
     
     # Display results
-    print(f"\n✅ Processing Complete!")
+    print("\n✅ Processing Complete!")
     print(f"📁 Total documents: {summary['total_documents']}")
     print(f"📄 Total chunks: {summary['total_chunks']}")
     
-    print(f"\n📊 Source Folders Processed:")
+    print("\n📊 Source Folders Processed:")
     for folder in summary.get('source_folders', []):
         print(f"  - {folder}")
     
-    print(f"\n📊 Categories:")
+    print("\n📊 Categories:")
     for category, count in summary['categories'].items():
         print(f"  - {category}: {count} documents")
     
-    print(f"\n📂 Output Structure:")
+    print("\n📂 Output Structure:")
     print(f"  - All cleaned documents: {output_dir}/cleaned/")
     print(f"  - All chunks: {output_dir}/chunks/")
     print(f"  - Vector DB index: {output_dir}/vector_db_index.json")
@@ -108,7 +108,7 @@ async def process_preserve_structure():
     input_dir = "Documentation"
     output_dir = "processed_docs/structured"
     
-    print(f"📁 Processing with preserved folder structure")
+    print("📁 Processing with preserved folder structure")
     print(f"📂 Input: {input_dir}")
     print(f"📂 Output: {output_dir}")
     
@@ -124,7 +124,7 @@ async def process_preserve_structure():
     print(f"📄 Total chunks: {summary['total_chunks']}")
     
     # Show how files are organized
-    print(f"\n📊 Document Organization:")
+    print("\n📊 Document Organization:")
     for doc in summary['documents'][:5]:  # Show first 5
         print(f"  - {doc['source_folder']} → {Path(doc['file']).name}")
 
@@ -145,7 +145,7 @@ def analyze_processed_output():
         print(f"📁 Chunk directories: {len(chunk_dirs)}")
         
         # Analyze file naming
-        print(f"\n📝 Sample cleaned filenames (showing folder preservation):")
+        print("\n📝 Sample cleaned filenames (showing folder preservation):")
         for file in cleaned_files[:5]:
             print(f"  - {file.name}")
             
@@ -156,7 +156,7 @@ def analyze_processed_output():
             with open(vector_index_file, 'r') as f:
                 vector_index = json.load(f)
             
-            print(f"\n🔢 Vector database index:")
+            print("\n🔢 Vector database index:")
             print(f"  - Total chunks: {len(vector_index)}")
             
             # Analyze chunk sources

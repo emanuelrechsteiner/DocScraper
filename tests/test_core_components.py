@@ -8,7 +8,6 @@ All tests verify Phase 1 components work correctly.
 import pytest
 from pathlib import Path
 from docscraper.cleaning.cleaner import (
-    PostScraperCleaner,
     CleaningConfig,
     RuleBasedCleaner,
     CleaningResult,
@@ -116,12 +115,12 @@ class TestPatternRegistry:
         """Test creating pattern registry"""
         registry = PatternRegistry()
         assert registry.patterns is not None
-        assert len(registry.patterns) == 25  # 25 predefined patterns
+        assert len(registry.patterns) == 26  # 26 predefined patterns
 
     def test_default_registry(self):
         """Test default registry instance"""
         assert DEFAULT_REGISTRY is not None
-        assert len(DEFAULT_REGISTRY.patterns) == 25
+        assert len(DEFAULT_REGISTRY.patterns) == 26
 
     def test_get_pattern(self):
         """Test retrieving pattern by name"""
@@ -192,8 +191,8 @@ class TestPatternRegistry:
         assert "by_category" in stats
         assert "average_confidence" in stats
 
-        assert stats["total_patterns"] == 25
-        assert stats["enabled_patterns"] + stats["disabled_patterns"] == 25
+        assert stats["total_patterns"] == 26
+        assert stats["enabled_patterns"] + stats["disabled_patterns"] == 26
         assert 0.7 < stats["average_confidence"] < 0.95
 
 
@@ -371,8 +370,8 @@ class TestAllPatterns:
     def test_navigation_patterns(self):
         """Test navigation patterns"""
         nav_patterns = [p for p in CLEANING_PATTERNS if p.category == PatternCategory.NAVIGATION]
-        assert len(nav_patterns) == 5
-        expected_names = {"skip_navigation", "breadcrumbs", "toc_nav", "prev_next_navigation", "broken_link_fragments"}
+        assert len(nav_patterns) == 6
+        expected_names = {"skip_navigation", "breadcrumbs", "toc_nav", "prev_next_navigation", "broken_link_fragments", "navigation_link_row"}
         actual_names = {p.name for p in nav_patterns}
         assert actual_names == expected_names
 

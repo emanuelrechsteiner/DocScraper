@@ -6,11 +6,10 @@ Crawls entire documentation websites and converts pages to markdown files.
 from __future__ import annotations
 
 import asyncio
-import os
 import re
 import json
 from datetime import datetime
-from urllib.parse import urljoin, urlparse, unquote
+from urllib.parse import urljoin, urlparse
 import logging
 from pathlib import Path
 
@@ -185,7 +184,7 @@ title: {metadata.get('title', 'Untitled')}
                 display_mode=DisplayMode.DETAILED
             )
             
-            dispatcher = MemoryAdaptiveDispatcher(
+            _dispatcher = MemoryAdaptiveDispatcher(
                 rate_limiter=rate_limiter,
                 monitor=monitor,
                 max_session_permit=5,  # Concurrent crawls
@@ -195,7 +194,7 @@ title: {metadata.get('title', 'Untitled')}
             # Fallback: Create monitor without parameters or no monitor
             try:
                 monitor = CrawlerMonitor()
-                dispatcher = MemoryAdaptiveDispatcher(
+                _dispatcher = MemoryAdaptiveDispatcher(
                     rate_limiter=rate_limiter,
                     monitor=monitor,
                     max_session_permit=5,
@@ -203,7 +202,7 @@ title: {metadata.get('title', 'Untitled')}
                 )
             except (TypeError, Exception):
                 # No monitor fallback
-                dispatcher = MemoryAdaptiveDispatcher(
+                _dispatcher = MemoryAdaptiveDispatcher(
                     rate_limiter=rate_limiter,
                     max_session_permit=5,
                     memory_threshold_percent=80.0
@@ -284,7 +283,7 @@ title: {metadata.get('title', 'Untitled')}
         with open(summary_path, 'w') as f:
             json.dump(summary, f, indent=2)
             
-        logger.info(f"\nScraping completed!")
+        logger.info("\nScraping completed!")
         logger.info(f"Total pages scraped: {len(self.visited_urls)}")
         logger.info(f"Failed URLs: {len(self.failed_urls)}")
         logger.info(f"Summary saved to: {summary_path}")

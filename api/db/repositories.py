@@ -130,6 +130,112 @@ class UserRepository:
         )
         return result.scalar_one_or_none()
 
+    async def get_or_create_by_clerk_id(
+        self,
+        clerk_user_id: str,
+        email: str,
+        name: Optional[str] = None,
+        email_is_verified: bool = False,
+    ) -> User:
+        """Resolve a Clerk identity to a ``User``, creating it on first login.
+
+        The account's stable identity is the (server-issued, signature-verified)
+        ``clerk_user_id``, never the client-supplied email — this prevents
+        account-squatting via a forged or unverified email claim.
+
+        Account linking to a pre-existing email-based account happens *only* when
+        the email is verified, preventing a hijack of an existing account.
+
+        Args:
+            clerk_user_id: Verified Clerk subject (``sub``) claim.
+            email: Email to associate (a safe ``@clerk.local`` placeholder when
+                the token carries no verified email).
+            name: Optional display name.
+            email_is_verified: Whether ``email`` came from a verified claim.
+
+        Returns:
+            The resolved ``User``.
+
+        Raises:
+            ValueError: If the verified email already belongs to a *different*
+                Clerk identity (caller should surface this as HTTP 409).
+        """
+        user = await self.get_by_clerk_user_id(clerk_user_id)
+        if user is not None:
+            return user
+
+        # Security invariant (enforced here, the data layer, not just the
+        # caller): an unverified or missing email is NEVER stored or linked.
+        # Fall back to a placeholder derived from the verified Clerk subject so
+        # a forged email claim can never squat a real address.
+        if not email_is_verified or not email or email.endswith("@clerk.local"):
+            email = f"{clerk_user_id}@clerk.local"
+            email_is_verified = False
+
+        # Link to an existing account only via a verified, real email — and
+        # only when that account is DORMANT (never authenticated: no API keys,
+        # no Stripe customer). This lets a dormant pre-registration be claimed
+        # but prevents silently capturing an active account via a verified email.
+        if email_is_verified and not email.endswith("@clerk.local"):
+            existing = await self.get_by_email(email)
+            if existing is not None:
+                if existing.clerk_user_id is None and await self._is_dormant(
+                    existing
+                ):
+                    existing.clerk_user_id = clerk_user_id
+                    await self._session.flush()
+                    logger.info(
+                        "Linked Clerk ID %s to dormant user %s via verified email",
+                        clerk_user_id,
+                        existing.user_id,
+                    )
+                    return existing
+                # Active account or already linked → require explicit merge.
+                raise ValueError(
+                    f"Email {email} already belongs to an existing account"
+                )
+
+        user_id = f"user_{uuid.uuid4().hex[:12]}"
+        user = User(
+            user_id=user_id,
+            email=email,
+            name=name,
+            tier="free",
+            clerk_user_id=clerk_user_id,
+            created_at=datetime.now(timezone.utc),
+        )
+        self._session.add(user)
+        try:
+            await self._session.flush()
+        except IntegrityError:
+            # Concurrent first-login for the same Clerk ID — return the winner
+            # rather than leaving a half-initialised row behind.
+            await self._session.rollback()
+            winner = await self.get_by_clerk_user_id(clerk_user_id)
+            if winner is not None:
+                return winner
+            raise
+
+        logger.info(
+            "Auto-created user %s for Clerk ID %s", user_id, clerk_user_id
+        )
+        return user
+
+    async def _is_dormant(self, user: User) -> bool:
+        """Return ``True`` if the account has never been activated.
+
+        Dormant = no Stripe customer/subscription and no API keys. Only dormant
+        accounts may be auto-claimed via verified-email linking.
+        """
+        if user.stripe_customer_id or user.stripe_subscription_id:
+            return False
+        key_count = await self._session.scalar(
+            select(func.count())
+            .select_from(APIKey)
+            .where(APIKey.user_id == user.user_id)
+        )
+        return not key_count
+
 
 # ---------------------------------------------------------------------------
 # APIKeyRepository

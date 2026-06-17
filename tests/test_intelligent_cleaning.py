@@ -16,6 +16,9 @@ any documentation structure without hardcoded patterns.
 import os
 import sys
 from pathlib import Path
+
+import pytest
+
 from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
 
 
@@ -34,12 +37,30 @@ def load_env():
 # Load .env file
 load_env()
 
-# Base documentation directory
-DOCS_BASE = Path("/Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs")
+# Base documentation directory (overridable via env for local manual runs).
+# This is a manual integration test that requires a local documentation corpus
+# and an OpenAI API key; it is skipped automatically in environments (e.g. CI)
+# where the corpus is not present.
+DOCS_BASE = Path(
+    os.environ.get(
+        "DOCSCRAPER_TEST_DOCS_BASE",
+        "/Volumes/NvME-Satechi/Documentation/2025_Emanuels_Tech_Stack_Docs",
+    )
+)
 
-# Test output directory
-TEST_OUTPUT = Path("/Volumes/NvME-Satechi/Development/Apps/DocScraper/test_results")
-TEST_OUTPUT.mkdir(exist_ok=True)
+# Test output directory (created lazily inside the test, never at import time).
+TEST_OUTPUT = Path(
+    os.environ.get(
+        "DOCSCRAPER_TEST_OUTPUT",
+        str(Path(__file__).parent / "_intelligent_cleaning_output"),
+    )
+)
+
+# Skip the whole module unless the local corpus and an API key are available.
+pytestmark = pytest.mark.skipif(
+    not DOCS_BASE.exists() or not os.environ.get("OPENAI_API_KEY"),
+    reason="Manual integration test: requires local doc corpus + OPENAI_API_KEY",
+)
 
 # Test files from diverse documentation sources
 TEST_FILES = [
@@ -97,6 +118,9 @@ def find_sample_file(directory: Path) -> Path:
 def test_intelligent_cleaning():
     """Test intelligent cleaning on diverse documentation sources"""
 
+    # Create output directory lazily (never at import time)
+    TEST_OUTPUT.mkdir(parents=True, exist_ok=True)
+
     # Check for OpenAI API key
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
@@ -144,12 +168,12 @@ def test_intelligent_cleaning():
             output_file = TEST_OUTPUT / f"CLEANED_{test_case['name']}_{input_file.name}"
 
             # Clean the document
-            print(f"\n🔄 Processing with intelligent content analysis...")
+            print("\n🔄 Processing with intelligent content analysis...")
             result = cleaner.clean_document(input_file, output_file)
 
             # Display results
             if result.success:
-                print(f"\n✅ SUCCESS")
+                print("\n✅ SUCCESS")
                 print(f"   Original: {result.original_size:,} bytes")
                 print(f"   Cleaned:  {result.cleaned_size:,} bytes")
                 print(f"   Reduction: {result.reduction_percentage:.1f}%")
@@ -164,7 +188,7 @@ def test_intelligent_cleaning():
                         print(f"     ... and {len(result.removed_sections) - 10} more")
 
                 if result.warnings:
-                    print(f"\n   ⚠️  Warnings:")
+                    print("\n   ⚠️  Warnings:")
                     for warning in result.warnings:
                         print(f"     - {warning}")
 
@@ -182,7 +206,7 @@ def test_intelligent_cleaning():
                 })
 
             else:
-                print(f"\n❌ FAILED")
+                print("\n❌ FAILED")
                 print(f"   Error: {result.error_message}")
 
                 results.append({
@@ -192,7 +216,7 @@ def test_intelligent_cleaning():
                 })
 
         except Exception as e:
-            print(f"\n❌ EXCEPTION")
+            print("\n❌ EXCEPTION")
             print(f"   Error: {e}")
 
             results.append({
@@ -220,12 +244,12 @@ def test_intelligent_cleaning():
         print(f"📉 Average reduction: {avg_reduction:.1f}%")
         print(f"⏱️  Average processing time: {avg_time:.2f}s")
 
-        print(f"\n✅ Successful cleanings:")
+        print("\n✅ Successful cleanings:")
         for r in successful:
             print(f"   {r['name']:12} - {r['reduction']:5.1f}% reduction, ${r['cost']:.6f}")
 
     if failed:
-        print(f"\n❌ Failed cleanings:")
+        print("\n❌ Failed cleanings:")
         for r in failed:
             print(f"   {r['name']:12} - {r.get('error', 'Unknown error')}")
 
@@ -233,9 +257,9 @@ def test_intelligent_cleaning():
     print("NEXT STEPS")
     print(f"{'='*80}")
     print(f"\n1. Manually verify cleaned files in: {TEST_OUTPUT}")
-    print(f"2. Check that only main documentation content remains")
-    print(f"3. Verify no important content was removed")
-    print(f"4. Compare with original files to see what was removed")
+    print("2. Check that only main documentation content remains")
+    print("3. Verify no important content was removed")
+    print("4. Compare with original files to see what was removed")
     print()
     print("Manual verification commands:")
     for r in successful:
