@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Test Coverage Monitor",
+  "description": "Ensures test coverage is maintained when source files are modified, following React Testing Library best practices",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["src/**/*.{ts,tsx,js,jsx}"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Monitor test coverage for the modified source file:\n\n🧪 **Test Coverage Analysis**\n1. Identify new or modified functions, components, and methods\n2. Check if corresponding tests exist and cover the changes\n3. Verify test files follow naming convention (*.test.tsx)\n4. Ensure tests are in correct location (adjacent to source or tests/ directory)\n\n📝 **Test Quality Review**\n- Use React Testing Library best practices\n- Test user interactions, not implementation details\n- Mock Firebase services consistently using established patterns\n- Cover both success and error scenarios\n- Follow existing testing patterns from the project\n\n🔍 **Missing Coverage Detection**\nIf coverage is missing:\n1. Generate test cases for new code following project patterns\n2. Suggest test structure using established conventions\n3. Include both unit and integration test recommendations\n4. Provide mock setup for Firebase services\n5. Ensure security testing for auth-related code\n\n✅ **Test Standards Compliance**\n- Verify tests use semantic queries (getByRole, getByLabelText)\n- Check proper TypeScript typing in tests\n- Ensure test data uses factory patterns\n- Validate proper error boundary testing\n- Confirm accessibility testing where applicable\n\n🎯 **Coverage Requirements**\n- Unit tests: 80% line coverage minimum\n- Integration tests: Cover all critical user paths\n- Security tests: 100% coverage for auth and validation logic\n- Component tests: Focus on user behavior and accessibility\n\n**Context Files to Reference:**\n- #[[file:.kiro/steering/testing-standards.md]]\n- #[[file:.kiro/steering/code-conventions.md]]\n\nProvide specific test code examples and highlight areas with good existing coverage."
+  }
+}

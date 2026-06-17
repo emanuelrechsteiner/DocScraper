@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Chat History Context Analyzer",
+  "description": "Analyzes chat history to extract key decisions, requirements, and context for better project understanding",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "label": "📚 Analyze Chat History for Context"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analyze the complete chat history for this project to extract and document key context:\n\n🔍 **Chat History Analysis**\n\nReview all previous conversations in this project and extract:\n\n**1. Key Decisions Made**\n- Architecture choices and their rationale\n- Technology selections and alternatives considered\n- Design patterns adopted and why\n- Security approaches decided upon\n- Performance optimization strategies\n\n**2. Requirements Evolution**\n- Original project requirements\n- Changes and refinements to scope\n- User stories and acceptance criteria\n- Feature prioritization decisions\n- Business logic clarifications\n\n**3. Problem-Solution Patterns**\n- Technical challenges encountered\n- Solutions implemented and their effectiveness\n- Workarounds and temporary fixes\n- Failed approaches and lessons learned\n- Best practices discovered\n\n**4. Developer Preferences & Constraints**\n- Coding style preferences expressed\n- Tool and library preferences\n- Development workflow preferences\n- Time constraints and deadlines\n- Resource limitations\n\n**5. Context for Future Development**\n- Unresolved questions or decisions\n- Future features planned or discussed\n- Technical debt acknowledged\n- Areas needing improvement\n- Dependencies on external factors\n\n**6. Communication Patterns**\n- Recurring themes in discussions\n- Areas of confusion or clarification needed\n- Successful collaboration patterns\n- Knowledge gaps identified\n\n**Output Format:**\n\nCreate a comprehensive context document that includes:\n- Chronological timeline of major decisions\n- Decision rationale and alternatives considered\n- Current understanding of project goals\n- Key constraints and requirements\n- Lessons learned and best practices\n- Action items and next steps\n\n**Goal**: Create a comprehensive context document that enables any new developer or AI agent to understand the full history and reasoning behind the current project state.\n\n**Context Sources:**\n- **Complete Chat History**: All conversations in this project\n- **Decision Points**: Key moments where choices were made\n- **Problem-Solving Sessions**: Technical discussions and solutions\n- **Requirement Clarifications**: Business logic and feature discussions"
+  }
+}

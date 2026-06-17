@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Apple Design Guidelines Review",
+  "description": "Reviews current design files and components against Apple's design best practices",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "label": "🍎 Review Design vs Apple Guidelines"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Check if the design conforms to Apple's design best practices:\n\nPlease analyze the current design files and components in context, comparing them against Apple's design guidelines. Focus on:\n\n1. **Getting Started**: User onboarding and first-time experience\n2. **Inputs**: Form controls, input validation, and user interaction patterns\n3. **Technologies**: Proper use of platform capabilities and modern web standards\n4. **Components**: UI component design, accessibility, and consistency\n5. **Patterns**: Navigation patterns, information architecture, and user flows\n6. **Design**: Visual hierarchy, typography, spacing, and overall aesthetic\n\n🎯 **Specific Areas to Review:**\n- Component consistency with design system\n- Accessibility compliance (WCAG guidelines)\n- Responsive design implementation\n- User experience patterns\n- Visual hierarchy and information architecture\n- Form design and validation patterns\n- Navigation and interaction design\n\n🔍 **Analysis Framework:**\n- Compare against established design principles\n- Identify areas of excellence\n- Highlight improvement opportunities\n- Suggest specific design refinements\n- Consider multi-tenant branding requirements\n\nProvide specific recommendations for improvements and highlight areas that already follow design best practices well."
+  }
+}

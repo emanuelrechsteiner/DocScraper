@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Auto Commit",
+  "description": "Automatically commits and pushes changes to git when the development ledger is updated",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      ".kiro/ledger/development-log.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The development ledger has been updated. Please commit these changes to git with an appropriate commit message and push to the remote repository.\n\n📝 **Instructions:**\n1. Review the changes made to the development ledger\n2. Create a descriptive commit message that reflects the ledger updates\n3. Add all changes to git staging\n4. Commit with the descriptive message\n5. Push the changes to the remote repository\n\n🎯 **Commit Message Format:**\nUse format: `docs: update development ledger - [brief description of changes]`\n\nExample: `docs: update development ledger - mark task 2.1 complete, add toast system implementation details`\n\n⚠️ **Safety Checks:**\n- Ensure no sensitive information is being committed\n- Verify the ledger updates are accurate and complete\n- Check that all related files are properly staged\n\nExecute the git commands to commit and push the changes."
+  }
+}

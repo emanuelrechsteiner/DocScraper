@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Documentation Generator",
+  "description": "Automatically generates and updates documentation for components and services when manually triggered",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "label": "📚 Generate Documentation"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Generate comprehensive documentation for the full app:\n\n📚 **Component Documentation**\nFor React components:\n1. Extract component name, props interface, and purpose\n2. Document all props with types and descriptions\n3. Provide usage examples with realistic data\n4. Document accessibility features and keyboard interactions\n5. List any dependencies or required context providers\n6. Include styling and responsive behavior notes\n\n🔧 **Service Documentation**\nFor service files:\n1. Document all exported functions with parameters and return types\n2. Provide usage examples with error handling\n3. Document Firebase integration patterns\n4. List security considerations and access controls\n5. Include multi-tenant isolation requirements\n\n📖 **API Documentation**\n- Function signatures with TypeScript types\n- Parameter descriptions and validation rules\n- Return value documentation\n- Error handling patterns\n- Usage examples with realistic scenarios\n- Security and permission requirements\n\n🎯 **Usage Examples**\n```tsx\n// Component usage\n<ComponentName\n  prop1=\"value\"\n  prop2={data}\n  onAction={handleAction}\n/>\n\n// Service usage\ntry {\n  const result = await serviceFunction(params);\n  // Handle success\n} catch (error) {\n  // Handle error with user-friendly message\n}\n```\n\n📋 **Documentation Standards**\n- Follow established project documentation patterns\n- Include component showcase examples where applicable\n- Document any breaking changes or migration notes\n- Ensure accessibility compliance documentation\n- Include performance considerations\n- Document security implications\n\n🔍 **Quality Checklist**\n- [ ] All public APIs are documented\n- [ ] Examples are tested and functional\n- [ ] TypeScript types are accurate\n- [ ] Security considerations are noted\n- [ ] Accessibility features are documented\n- [ ] Performance implications are covered\n- [ ] Multi-tenant considerations are included\n\n**Context Files to Reference:**\n- #[[file:.kiro/steering/code-conventions.md]]\n- #[[file:.kiro/steering/structure.md]]\n\nGenerate clear, maintainable documentation that helps team members understand and use the code effectively."
+  }
+}

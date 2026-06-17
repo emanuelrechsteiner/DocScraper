@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Component Quality Review",
+  "description": "Reviews React components for best practices, accessibility, and consistency with project standards",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["src/components/**/*.tsx"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review this React component for:\n\n🔍 **Code Quality**\n- TypeScript usage and type safety\n- Component structure and organization (max 150 lines)\n- Props interface design\n- Error handling and edge cases\n- Semantic naming conventions\n\n♿ **Accessibility**\n- ARIA labels and roles\n- Keyboard navigation support\n- Screen reader compatibility\n- Color contrast and visual indicators\n\n🎨 **Design System Compliance**\n- Consistent with shadcn/ui patterns\n- Proper Tailwind CSS usage with utility-first approach\n- Responsive design implementation\n- Component reusability and composition\n\n🔒 **Security & Performance**\n- Input sanitization\n- XSS prevention\n- Performance optimizations (React.memo, useMemo, useCallback)\n- Memory leak prevention\n\n🏗️ **Architecture Compliance**\n- Follows established project structure\n- Proper import organization\n- Service layer usage for Firebase operations\n- State management patterns (local vs Zustand)\n\nProvide specific recommendations for improvements and highlight what's working well.\n\n**Context Sources:**\n- **Chat History**: Review previous component discussions and design decisions\n- **Component Evolution**: Track how component patterns have evolved through conversations\n- **Design Decisions**: Reference past discussions about UI/UX choices and patterns"
+  }
+}

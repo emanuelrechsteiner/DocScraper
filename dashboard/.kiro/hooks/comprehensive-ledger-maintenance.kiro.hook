@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "name": "Comprehensive Ledger Maintenance",
+  "description": "Maintains comprehensive development ledger tracking all progress, decisions, and implementation details for seamless developer handoffs",
+  "version": "2",
+  "when": {
+    "type": "userTriggered",
+    "patterns": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.js",
+      "src/**/*.jsx",
+      ".kiro/specs/**/*.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Update the development ledger with current progress:\n\n📋 **Development Ledger Update**\n\nAnalyze the code changes, chat history, and current project state to update `.kiro/ledger/development-log.md` with:\n\n**1. Progress Tracking**\n- Which tasks from tasks.md are now complete/in-progress\n- What specific functionality was implemented\n- Files created/modified and their purpose\n- Cross-reference with task requirements\n- Review chat history for context on decisions made\n\n**2. Technical Decisions**\n- Architecture choices made and rationale (include chat discussions)\n- Library/tool selections and why\n- Design patterns implemented\n- Security considerations addressed\n- Past conversations that influenced current implementation\n\n**3. Implementation Details**\n- Key code structures and their purpose\n- Integration points between components\n- Data flow and state management approach\n- Error handling strategies\n- Firebase integration patterns used\n- Solutions to problems discussed in previous chats\n\n**4. Developer Handoff Information**\n- Current development environment setup\n- Dependencies and their versions\n- Testing approach and coverage\n- Known issues or technical debt\n- Next steps and priorities\n- Context from previous developer interactions\n\n**5. Knowledge Transfer**\n- Complex business logic explanations\n- Non-obvious implementation decisions\n- Performance considerations\n- Security implementation details\n- Multi-tenant architecture specifics\n- Historical context from chat conversations\n\n**6. Chat History Context**\n- Key decisions made in previous conversations\n- Problems solved and approaches tried\n- User preferences and requirements clarified\n- Evolution of project scope and features\n- Lessons learned from past development sessions\n\n**Context Sources to Reference:**\n- #[[file:.kiro/specs/client-dashboard-portal/tasks.md]]\n- #[[file:.kiro/steering/structure.md]]\n- #[[file:.kiro/steering/tech.md]]\n- #[[file:.kiro/steering/product.md]]\n- **Chat History**: Review all previous conversations in this project for context\n- **Previous Sessions**: Include insights from past development discussions\n\n**Format**: Use structured markdown with dates, clear sections, and actionable information. A new senior developer should be able to continue development immediately after reading this ledger.\n\n**Goal**: Ensure zero knowledge loss during developer transitions by including full conversational context."
+  }
+}

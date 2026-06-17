@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Firebase Security Validator",
+  "description": "Reviews Firebase-related code for security best practices and multi-tenant isolation compliance",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["**/*.{rules,ts,tsx}", "firebase/**/*", "src/services/**/*"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review Firebase implementation for security compliance:\n\n🔐 **Authentication Security**\n- Verify proper authentication state checking\n- Ensure role-based access control (RBAC) implementation\n- Check custom claims usage for agency_admin, agency_user, client_admin, client_user\n- Validate session management and token refresh patterns\n\n🏢 **Multi-Tenant Isolation**\n- Ensure organization-based data segregation\n- Verify user can only access their organization's data\n- Check dashboard permissions are properly scoped\n- Validate invitation system maintains isolation\n- Confirm no cross-organization data leakage\n\n📋 **Firestore Security Rules**\n- Review security rules for proper access controls\n- Ensure read/write permissions match user roles\n- Verify data validation rules are in place\n- Check for potential data leakage between organizations\n- Validate proper use of custom claims in rules\n\n🔧 **Firebase Functions Security**\n- Validate authentication token verification\n- Check proper error handling without information disclosure\n- Ensure CORS configuration is secure\n- Verify rate limiting implementation\n- Check input validation and sanitization\n\n📁 **Storage Security**\n- Review file upload validation\n- Check HTML dashboard sanitization\n- Verify storage access controls\n- Ensure proper file ownership validation\n- Validate signed URL usage for secure access\n\n⚠️ **Common Vulnerabilities**\n- Check for direct Firebase client usage in components\n- Ensure service layer abstraction is maintained\n- Verify input sanitization for all user data\n- Check for proper error boundaries\n- Validate environment variable security\n\n🛡️ **Security Best Practices**\n- Environment variable usage validation\n- Secrets management compliance\n- Audit logging implementation\n- Security header configuration\n- Content Security Policy enforcement\n\n**Context Files to Reference:**\n- #[[file:.kiro/steering/security-standards.md]]\n- #[[file:.kiro/steering/tech.md]]\n\nProvide specific security recommendations and highlight compliant implementations."
+  }
+}

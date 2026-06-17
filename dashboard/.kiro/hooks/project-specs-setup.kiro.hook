@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Project Specs Setup",
+  "description": "Monitors the entire root directory for file changes and automatically sets up comprehensive project specifications following Kiro documentation best practices. Analyzes project structure, technology stack, and creates appropriate specs for the codebase.",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "filePatterns": [
+      "**/*"
+    ],
+    "debounceTime": "SHORT"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analyze the entire project structure and files that have been modified. Based on the Kiro documentation best practices from the vector database, create comprehensive project specifications that cover:\n\n1. **Project Architecture Analysis**: Review the codebase structure, identify the technology stack (Next.js, Firebase, TypeScript, etc.), and document the architectural patterns being used.\n\n2. **Specs Creation**: Following Kiro specs best practices, create appropriate specification files in the .kiro/specs/ directory that define:\n   - Component specifications for UI elements\n   - API and service specifications for backend integrations\n   - Data model specifications for Firebase/database schemas\n   - Authentication and security specifications\n   - Testing specifications and requirements\n\n3. **Best Practices Implementation**: Ensure all specs follow Kiro documentation guidelines for:\n   - Clear, actionable specifications\n   - Proper scope definition\n   - Integration with existing project patterns\n   - Maintainable and scalable architecture\n\n4. **Documentation Standards**: Create specs that align with the project's existing documentation in the Docs/ folder and follow the established naming conventions and structure guidelines.\n\nUse the Kiro documentation vector database knowledge to ensure all specifications follow established best practices and patterns. Focus on creating specs that will help maintain code quality, enable effective AI assistance, and support the project's multi-tenant architecture requirements.\n\nBased on the existing project documentation, I can see this is a Client Dashboard Portal with:\n- Next.js 14 + TypeScript + Tailwind CSS v4\n- Firebase (Auth, Firestore, Storage, Functions)\n- shadcn/ui components\n- Multi-tenant architecture with role-based access control\n- Component-first development approach\n\nCreate specs for the major feature areas identified in the existing documentation:\n- Authentication system (login, invitations, MFA)\n- Dashboard management (viewing, uploading, permissions)\n- User and organization management\n- Component library and showcase\n- Security and audit logging\n- Future LLM integration\n\nEach spec should include:\n- requirements.md with user stories and EARS notation acceptance criteria\n- design.md with technical architecture and implementation details\n- tasks.md with discrete, actionable implementation tasks\n\nFollow the established project patterns and ensure specs align with the existing requirements, design, and task documentation in the Docs/ folder.\n\n**Context Files to Reference:**\n- #[[file:Docs/requirements.md]]\n- #[[file:Docs/design.md]]\n- #[[file:Docs/tasks.md]]\n- #[[file:Docs/product.md]]\n- #[[file:Docs/tech.md]]\n- #[[file:Docs/structure.md]]"
+  }
+}

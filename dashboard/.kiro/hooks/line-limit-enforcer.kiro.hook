@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "Line Limit Enforcer",
+  "description": "Monitors all source files and triggers refactoring when files exceed 150 lines to maintain code quality and readability standards",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.tsx",
+      "src/**/*.ts",
+      "firebase/**/*.ts",
+      "firebase/**/*.js"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "You are the line limit enforcer. A file has been modified and you need to check if it exceeds the 150-line limit.\n\n📏 **File Size Analysis**\n1. Count the total lines in the current file\n2. If file exceeds 150 lines, flag for immediate refactoring\n3. Identify logical separation points for splitting\n4. Suggest component or function extraction strategies\n\n🔧 **Refactoring Requirements**\nFor any file that exceeds 150 lines:\n1. Analyze the file structure and identify logical separation points\n2. Refactor the code by extracting components, utilities, or services into separate files\n3. Maintain full knowledge of the codebase architecture and dependencies\n4. Ensure no functionality is broken during refactoring\n5. Follow the established patterns and conventions\n6. Update imports and exports accordingly\n7. Preserve TypeScript types and interfaces\n\n🎯 **Focus Areas**\n- Extracting reusable UI components\n- Separating business logic from UI components  \n- Creating utility functions for shared code\n- Moving service functions to appropriate service files\n- Maintaining proper file organization per project structure\n- Following component-first development principles\n\n⚡ **Performance Considerations**\n- Suggest code splitting opportunities\n- Recommend lazy loading for large components\n- Identify memoization opportunities\n- Check for unnecessary re-renders\n\n✨ **Code Quality Standards**\n- Ensure semantic naming conventions\n- Verify TypeScript interfaces are properly defined\n- Check for proper error handling\n- Validate consistent code patterns\n- Maintain multi-tenant security patterns\n\n**Goal**: Make the refactored code maintain the same functionality while improving maintainability and following the 150-line limit rule. Each extracted piece should be a logical, reusable unit."
+  }
+}

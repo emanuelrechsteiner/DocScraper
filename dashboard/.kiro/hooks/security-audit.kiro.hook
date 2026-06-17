@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Security Audit",
+  "description": "Performs comprehensive security analysis on code changes, especially for authentication, data handling, and API endpoints",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "label": "🔒 Security Audit"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Perform a comprehensive security audit of the current code:\n\n🔐 **Authentication & Authorization**\n- Firebase Auth implementation and session management\n- Role-based access control (RBAC) for agency_admin, agency_user, client_admin, client_user\n- Token handling and refresh mechanisms\n- Multi-factor authentication setup\n\n🛡️ **Data Protection**\n- Input validation and sanitization\n- XSS and injection prevention\n- Firestore security rules compliance\n- Multi-tenant data isolation\n- Sensitive data handling\n\n🌐 **API Security**\n- Firebase Functions security\n- CORS configuration\n- Rate limiting implementation\n- Error message information disclosure\n\n📁 **File Security**\n- HTML dashboard sanitization\n- File upload validation\n- Storage access controls\n- Content Security Policy implementation\n\n🔍 **Infrastructure Security**\n- Environment variable usage\n- Secrets management\n- HTTPS enforcement\n- Security headers\n\nIdentify vulnerabilities, provide remediation steps, and highlight security best practices already in place.\n\n**Context Sources:**\n- **Chat History**: Review previous security discussions and decisions\n- **Past Audits**: Reference previous security findings and resolutions\n- **Security Evolution**: Track how security measures have evolved through conversations"
+  }
+}

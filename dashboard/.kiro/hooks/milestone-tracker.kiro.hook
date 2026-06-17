@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Milestone Completion Tracker",
+  "description": "Triggers when major development milestones are completed to update project ledger with comprehensive progress summary",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "label": "📋 Complete Development Milestone"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A major development milestone has been completed. Update the development ledger with comprehensive progress:\n\n🎯 **Milestone Completion Update**\n\nAnalyze the current state and update `.kiro/ledger/development-log.md` with:\n\n**1. Milestone Summary**\n- Which phase/tasks were just completed\n- Key deliverables and functionality implemented\n- Time taken and any blockers encountered\n- Quality metrics (tests, coverage, performance)\n\n**2. Architecture Evolution**\n- New patterns or structures introduced\n- Changes to existing architecture\n- Integration points established\n- Security measures implemented\n\n**3. Code Quality Assessment**\n- Code review findings\n- Technical debt introduced or resolved\n- Performance considerations\n- Accessibility compliance status\n\n**4. Testing & Validation**\n- Test coverage achieved\n- Integration test results\n- User acceptance criteria met\n- Security validation completed\n\n**5. Developer Handoff Update**\n- New setup requirements\n- Updated development workflows\n- New dependencies or tools\n- Environment configuration changes\n\n**6. Next Phase Preparation**\n- Dependencies for next phase\n- Potential risks or challenges identified\n- Resource requirements\n- Timeline adjustments needed\n\n**Context Sources to Reference:**\n- #[[file:.kiro/specs/client-dashboard-portal/tasks.md]]\n- #[[file:.kiro/specs/client-dashboard-portal/requirements.md]]\n- #[[file:.kiro/specs/client-dashboard-portal/design.md]]\n- #[[file:.kiro/steering/structure.md]]\n- #[[file:.kiro/steering/tech.md]]\n- #[[file:.kiro/steering/product.md]]\n- #[[file:.kiro/ledger/development-log.md]]\n- **Chat History**: Review conversations leading to this milestone\n- **Development Journey**: Include context from previous development sessions\n- **Decision Trail**: Reference discussions that shaped the milestone approach\n\n**Goal**: Provide a comprehensive milestone summary that enables any senior developer to understand exactly what was accomplished and what comes next, including the full conversational context."
+  }
+}
