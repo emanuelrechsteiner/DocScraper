@@ -17,12 +17,8 @@ from collections import defaultdict
 import yaml
 import hashlib
 
-from bs4 import BeautifulSoup
 from openai import AsyncOpenAI
 from tenacity import retry, stop_after_attempt, wait_exponential
-import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.cluster import KMeans
 import networkx as nx
 
 logger = logging.getLogger(__name__)
@@ -785,7 +781,7 @@ class DocumentPostProcessor:
                     self.save_checkpoint("file_processing", {
                         "batch_number": batch_num + 1,
                         "total_batches": total_batches,
-                        "files_processed": processed_count,
+                        "files_processed": len(self.processed_docs),
                         "total_files": len(md_files)
                     })
                     self.last_checkpoint = len(self.processed_docs)
@@ -1032,10 +1028,10 @@ async def main():
     summary = await processor.process_all_documents()
         
     # Print summary
-    print(f"\n✅ Processing Complete!")
+    print("\n✅ Processing Complete!")
     print(f"📁 Total documents: {summary['total_documents']}")
     print(f"📄 Total chunks: {summary['total_chunks']}")
-    print(f"\n📊 Categories:")
+    print("\n📊 Categories:")
     for category, count in summary['categories'].items():
         print(f"  - {category}: {count} documents")
 

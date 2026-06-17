@@ -1,26 +1,29 @@
+"""Verify that required runtime dependencies are importable."""
+
+import importlib.util
 import sys
-try:
-    import beautifulsoup4
-    print("beautifulsoup4 OK")
-except ImportError:
-    print("beautifulsoup4 MISSING")
 
-try:
-    import requests
-    print("requests OK")
-except ImportError:
-    print("requests MISSING")
+# Map: human-facing name -> importable module name.
+DEPENDENCIES = {
+    "beautifulsoup4": "bs4",
+    "requests": "requests",
+    "openai": "openai",
+    "pytest": "pytest",
+}
 
-try:
-    import openai
-    print("openai OK")
-except ImportError:
-    print("openai MISSING")
 
-try:
-    import pytest
-    print("pytest OK")
-except ImportError:
-    print("pytest MISSING")
+def main() -> int:
+    missing = []
+    for display_name, module_name in DEPENDENCIES.items():
+        if importlib.util.find_spec(module_name) is not None:
+            print(f"{display_name} OK")
+        else:
+            print(f"{display_name} MISSING")
+            missing.append(display_name)
 
-print(f"Python version: {sys.version}")
+    print(f"Python version: {sys.version}")
+    return 1 if missing else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

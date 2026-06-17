@@ -10,7 +10,6 @@ import threading
 import asyncio
 import sys
 import queue
-from pathlib import Path
 from datetime import datetime
 
 from docscraper.core.scraper import DocumentationScraper
@@ -380,7 +379,7 @@ def main():
         
         root.protocol("WM_DELETE_WINDOW", on_closing)
         
-        app = DocScraperGUI(root)
+        _app = DocScraperGUI(root)
         root.mainloop()
         
     except Exception as e:

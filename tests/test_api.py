@@ -20,7 +20,6 @@ from api.app import create_app
 from api.db.repositories import JobRepository, UserRepository, APIKeyRepository
 from api.db.session import get_db_session
 from api.models.schemas import JobStatus
-from api.services.usage import usage_service
 
 
 @pytest_asyncio.fixture

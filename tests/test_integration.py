@@ -182,7 +182,7 @@ class TestPhase2CleaningIntegration:
         cleaner = PostScraperCleaner(config)
 
         output_path = temp_output_dir / "output.md"
-        result = cleaner.clean_document(temp_markdown_file, output_path)
+        _result = cleaner.clean_document(temp_markdown_file, output_path)
 
         stats = cleaner.get_statistics()
 

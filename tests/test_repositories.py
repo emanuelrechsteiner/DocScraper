@@ -764,7 +764,7 @@ class TestJobRepositoryListJobs:
         """Results are ordered newest-first (descending created_at)."""
         repo = JobRepository(db_session)
         j1 = await repo.create(url="https://first.example.com")
-        j2 = await repo.create(url="https://second.example.com")
+        _j2 = await repo.create(url="https://second.example.com")
         j3 = await repo.create(url="https://third.example.com")
         jobs, _ = await repo.list_jobs()
         job_ids = [j.job_id for j in jobs]
@@ -948,7 +948,6 @@ class TestUsageRepositoryGetHourlyCount:
         self, db_session: AsyncSession
     ) -> None:
         """Records timestamped in the previous hour are not counted."""
-        from sqlalchemy import text
 
         repo = UsageRepository(db_session)
         key_id = "key_oldhour"

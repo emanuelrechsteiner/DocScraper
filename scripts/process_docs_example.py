@@ -33,10 +33,10 @@ async def process_anthropic_docs():
     summary = await processor.process_all_documents()
     
     # Display results
-    print(f"\n✅ Processing Complete!")
+    print("\n✅ Processing Complete!")
     print(f"📁 Total documents: {summary['total_documents']}")
     print(f"📄 Total chunks: {summary['total_chunks']}")
-    print(f"\n📊 Categories:")
+    print("\n📊 Categories:")
     for category, count in summary['categories'].items():
         print(f"  - {category}: {count} documents")
     

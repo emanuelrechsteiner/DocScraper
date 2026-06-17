@@ -175,7 +175,7 @@ Footer content here.
             cleaner = PostScraperCleaner(config)
 
             start = time.time()
-            results = cleaner.clean_batch(input_dir, output_dir)
+            _results = cleaner.clean_batch(input_dir, output_dir)
             elapsed = time.time() - start
 
             throughput = num_files / elapsed
@@ -288,7 +288,7 @@ class TestResourceUsage:
         """Test configuration initialization time"""
         start = time.time()
         for _ in range(100):
-            config = CleaningConfig()
+            _config = CleaningConfig()
         elapsed = time.time() - start
 
         per_init = (elapsed / 100) * 1000  # milliseconds
@@ -301,7 +301,7 @@ class TestResourceUsage:
 
         start = time.time()
         for _ in range(10):
-            cleaner = PostScraperCleaner(config)
+            _cleaner = PostScraperCleaner(config)
         elapsed = time.time() - start
 
         per_init = (elapsed / 10) * 1000  # milliseconds
@@ -312,7 +312,7 @@ class TestResourceUsage:
         """Test pattern registry initialization"""
         start = time.time()
         for _ in range(10):
-            registry = PatternRegistry()
+            _registry = PatternRegistry()
         elapsed = time.time() - start
 
         per_init = (elapsed / 10) * 1000  # milliseconds

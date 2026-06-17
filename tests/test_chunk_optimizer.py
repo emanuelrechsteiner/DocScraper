@@ -421,7 +421,9 @@ class TestSplitIntoChunks:
         # Total lines across all chunks should equal input lines (no duplication)
         all_lines_in_chunks = []
         for chunk in chunks:
-            all_lines_in_chunks.extend([l for l in chunk.split("\n") if l.strip()])
+            all_lines_in_chunks.extend(
+                [line for line in chunk.split("\n") if line.strip()]
+            )
         unique_lines = set(all_lines_in_chunks)
         # With no overlap, every line appears exactly once
         assert len(all_lines_in_chunks) == len(unique_lines)

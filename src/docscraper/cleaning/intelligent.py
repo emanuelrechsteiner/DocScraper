@@ -11,8 +11,7 @@ different documentation structures (Anthropic, Python, React, Stripe, etc.)
 import json
 import logging
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional, Tuple
-from pathlib import Path
+from typing import List, Dict, Optional
 
 from .llm import LLMValidator, LLMConfig
 

@@ -62,7 +62,7 @@ def check_system_requirements():
                     print_warning(f"Memory: {memory_gb:.1f} GB (8GB+ recommended)")
         else:
             print_info("Memory check skipped for this platform")
-    except:
+    except Exception:
         print_info("Could not check memory")
     
     return True

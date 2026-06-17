@@ -20,7 +20,6 @@ from typing import Callable
 
 from .rules import (
     PatternRegistry,
-    DEFAULT_REGISTRY,
     PatternCategory
 )
 
@@ -594,7 +593,7 @@ class PostScraperCleaner:
         total_cost = sum(r.llm_cost for r in results)
 
         logger.info(f"\n{'='*80}")
-        logger.info(f"Directory tree processing complete:")
+        logger.info("Directory tree processing complete:")
         logger.info(f"✅ Successful: {successful}/{len(results)}")
         logger.info(f"❌ Failed: {failed}/{len(results)}")
         logger.info(f"💰 Total LLM cost: ${total_cost:.6f}")

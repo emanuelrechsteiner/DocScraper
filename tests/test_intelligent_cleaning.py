@@ -168,12 +168,12 @@ def test_intelligent_cleaning():
             output_file = TEST_OUTPUT / f"CLEANED_{test_case['name']}_{input_file.name}"
 
             # Clean the document
-            print(f"\n🔄 Processing with intelligent content analysis...")
+            print("\n🔄 Processing with intelligent content analysis...")
             result = cleaner.clean_document(input_file, output_file)
 
             # Display results
             if result.success:
-                print(f"\n✅ SUCCESS")
+                print("\n✅ SUCCESS")
                 print(f"   Original: {result.original_size:,} bytes")
                 print(f"   Cleaned:  {result.cleaned_size:,} bytes")
                 print(f"   Reduction: {result.reduction_percentage:.1f}%")
@@ -188,7 +188,7 @@ def test_intelligent_cleaning():
                         print(f"     ... and {len(result.removed_sections) - 10} more")
 
                 if result.warnings:
-                    print(f"\n   ⚠️  Warnings:")
+                    print("\n   ⚠️  Warnings:")
                     for warning in result.warnings:
                         print(f"     - {warning}")
 
@@ -206,7 +206,7 @@ def test_intelligent_cleaning():
                 })
 
             else:
-                print(f"\n❌ FAILED")
+                print("\n❌ FAILED")
                 print(f"   Error: {result.error_message}")
 
                 results.append({
@@ -216,7 +216,7 @@ def test_intelligent_cleaning():
                 })
 
         except Exception as e:
-            print(f"\n❌ EXCEPTION")
+            print("\n❌ EXCEPTION")
             print(f"   Error: {e}")
 
             results.append({
@@ -244,12 +244,12 @@ def test_intelligent_cleaning():
         print(f"📉 Average reduction: {avg_reduction:.1f}%")
         print(f"⏱️  Average processing time: {avg_time:.2f}s")
 
-        print(f"\n✅ Successful cleanings:")
+        print("\n✅ Successful cleanings:")
         for r in successful:
             print(f"   {r['name']:12} - {r['reduction']:5.1f}% reduction, ${r['cost']:.6f}")
 
     if failed:
-        print(f"\n❌ Failed cleanings:")
+        print("\n❌ Failed cleanings:")
         for r in failed:
             print(f"   {r['name']:12} - {r.get('error', 'Unknown error')}")
 
@@ -257,9 +257,9 @@ def test_intelligent_cleaning():
     print("NEXT STEPS")
     print(f"{'='*80}")
     print(f"\n1. Manually verify cleaned files in: {TEST_OUTPUT}")
-    print(f"2. Check that only main documentation content remains")
-    print(f"3. Verify no important content was removed")
-    print(f"4. Compare with original files to see what was removed")
+    print("2. Check that only main documentation content remains")
+    print("3. Verify no important content was removed")
+    print("4. Compare with original files to see what was removed")
     print()
     print("Manual verification commands:")
     for r in successful:

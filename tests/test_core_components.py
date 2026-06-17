@@ -8,7 +8,6 @@ All tests verify Phase 1 components work correctly.
 import pytest
 from pathlib import Path
 from docscraper.cleaning.cleaner import (
-    PostScraperCleaner,
     CleaningConfig,
     RuleBasedCleaner,
     CleaningResult,

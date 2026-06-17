@@ -33,7 +33,7 @@ class TestGUIConfigurationPanel:
     def test_config_persistence(self):
         """Test configuration save and load"""
         try:
-            gui = PostScraperCleanerGUI()
+            _gui = PostScraperCleanerGUI()
 
             # Test saving config
             config = {
@@ -180,7 +180,7 @@ class TestGUIResultsDisplay:
             results.append(r)
 
         # Create CSV header
-        headers = ["File", "Original", "Cleaned", "Reduction%", "Success"]
+        _headers = ["File", "Original", "Cleaned", "Reduction%", "Success"]
 
         # Verify data structure
         assert len(results) == 3
@@ -203,7 +203,7 @@ class TestGUIErrorHandling:
 
         try:
             # Invalid threshold
-            config = CleaningConfig(llm_confidence_threshold=1.5)
+            _config = CleaningConfig(llm_confidence_threshold=1.5)
             assert False, "Should have raised ValueError"
         except ValueError:
             pass  # Expected
@@ -286,7 +286,7 @@ class TestGUIIntegration:
             config = CleaningConfig()
             cleaner = PostScraperCleaner(config, progress_callback=progress_callback)
 
-            results = cleaner.clean_batch(input_dir, output_dir)
+            _results = cleaner.clean_batch(input_dir, output_dir)
 
             # Should have progress updates
             assert len(progress_updates) >= 1
@@ -317,7 +317,7 @@ class TestGUIIntegration:
 
             config = CleaningConfig()
             cleaner = PostScraperCleaner(config)
-            results = cleaner.clean_batch(input_dir, output_dir)
+            _results = cleaner.clean_batch(input_dir, output_dir)
 
             stats = cleaner.get_statistics()
 

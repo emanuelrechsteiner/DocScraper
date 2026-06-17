@@ -101,7 +101,6 @@ async def db_session() -> AsyncSession:
     import json as _json
 
     from sqlalchemy.dialects import sqlite as _sqlite_dialect
-    from sqlalchemy.dialects.postgresql import JSONB
 
     # Teach SQLite's type compiler to emit "TEXT" when it encounters a JSONB
     # column — this avoids the "CompileError: Unknown type" at DDL time.

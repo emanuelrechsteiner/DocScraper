@@ -16,7 +16,6 @@ import time
 import logging
 from pathlib import Path
 from dataclasses import dataclass, field
-from datetime import datetime
 from urllib.request import urlopen, Request
 from urllib.error import URLError
 
