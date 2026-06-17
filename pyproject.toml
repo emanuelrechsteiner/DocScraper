@@ -47,6 +47,9 @@ ignore = ["E501"]  # long lines are not hard-enforced
 asyncio_mode = "strict"
 asyncio_default_fixture_loop_scope = "function"
 testpaths = ["tests"]
+# Put the repo root on sys.path so the top-level `api` package imports in any
+# environment (CI included), not just when pytest's cwd magic happens to work.
+pythonpath = ["."]
 filterwarnings = ["ignore::DeprecationWarning"]
 
 [tool.mypy]
