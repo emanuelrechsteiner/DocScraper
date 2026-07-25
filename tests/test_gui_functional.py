@@ -5,9 +5,10 @@ Tests for PostScraperCleanerGUI functionality (if available).
 Tests configuration, processing, and result display.
 """
 
-import pytest
 import tempfile
 from pathlib import Path
+
+import pytest
 
 # Try to import GUI, but tests can run without it
 try:
@@ -89,8 +90,9 @@ class TestGUIProcessingWorkflow:
     def test_result_tracking(self):
         """Test result tracking and statistics"""
         # Verify result structure
-        from docscraper.cleaning.cleaner import CleaningResult
         from pathlib import Path
+
+        from docscraper.cleaning.cleaner import CleaningResult
 
         result = CleaningResult(
             input_file=Path("test.md"),
@@ -112,8 +114,9 @@ class TestGUIResultsDisplay:
 
     def test_summary_calculation(self):
         """Test summary statistics calculation"""
-        from docscraper.cleaning.cleaner import CleaningResult
         from pathlib import Path
+
+        from docscraper.cleaning.cleaner import CleaningResult
 
         results = []
         for i in range(3):
@@ -144,8 +147,9 @@ class TestGUIResultsDisplay:
     def test_result_export_json(self):
         """Test exporting results to JSON"""
         import json
-        from docscraper.cleaning.cleaner import CleaningResult
         from pathlib import Path
+
+        from docscraper.cleaning.cleaner import CleaningResult
 
         result = CleaningResult(
             input_file=Path("test.md"),
@@ -165,8 +169,9 @@ class TestGUIResultsDisplay:
 
     def test_result_export_csv(self):
         """Test exporting results to CSV format"""
-        from docscraper.cleaning.cleaner import CleaningResult
         from pathlib import Path
+
+        from docscraper.cleaning.cleaner import CleaningResult
 
         results = []
         for i in range(3):
@@ -212,14 +217,14 @@ class TestGUIErrorHandling:
         """Test handling of file write errors"""
         # This would require OS-level permission testing
         # Placeholder for comprehensive testing
-        pass
 
     def test_processing_interruption(self):
         """Test handling of processing interruption"""
         # Test that batch processing can handle file errors gracefully
-        from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
-        from pathlib import Path
         import tempfile
+        from pathlib import Path
+
+        from docscraper.cleaning.cleaner import CleaningConfig, PostScraperCleaner
 
         input_dir = Path(tempfile.mkdtemp())
         output_dir = Path(tempfile.mkdtemp())
@@ -251,7 +256,7 @@ class TestGUIIntegration:
 
     def test_config_to_backend(self):
         """Test configuration passes to backend correctly"""
-        from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
+        from docscraper.cleaning.cleaner import CleaningConfig, PostScraperCleaner
 
         config = CleaningConfig(
             remove_navigation=True,
@@ -266,9 +271,10 @@ class TestGUIIntegration:
 
     def test_progress_callback(self):
         """Test progress callback integration"""
-        from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
-        from pathlib import Path
         import tempfile
+        from pathlib import Path
+
+        from docscraper.cleaning.cleaner import CleaningConfig, PostScraperCleaner
 
         progress_updates = []
 
@@ -303,9 +309,10 @@ class TestGUIIntegration:
 
     def test_statistics_update(self):
         """Test statistics tracking integration"""
-        from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
-        from pathlib import Path
         import tempfile
+        from pathlib import Path
+
+        from docscraper.cleaning.cleaner import CleaningConfig, PostScraperCleaner
 
         input_dir = Path(tempfile.mkdtemp())
         output_dir = Path(tempfile.mkdtemp())

@@ -6,15 +6,15 @@ Crawls documentation websites and converts pages to markdown files.
 from __future__ import annotations
 
 import asyncio
-import re
 import json
-from datetime import datetime
-from urllib.parse import urljoin, urlparse
 import logging
+import re
+from datetime import datetime
 from pathlib import Path
+from urllib.parse import urljoin, urlparse
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 from bs4 import BeautifulSoup
+from crawl4ai import AsyncWebCrawler, CacheMode, CrawlerRunConfig
 
 logger = logging.getLogger(__name__)
 
@@ -166,7 +166,7 @@ title: {metadata.get('title', 'Untitled')}
             }
             
         except Exception as e:
-            logger.error(f"Error scraping {url}: {str(e)}")
+            logger.error(f"Error scraping {url}: {e!s}")
             self.failed_urls.add(url)
             return None
     

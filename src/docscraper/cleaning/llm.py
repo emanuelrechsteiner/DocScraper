@@ -9,15 +9,15 @@ Phase 2: LLM validation with cost optimization and rate limiting
 
 from __future__ import annotations
 
-import json
-import os
 import hashlib
-import time
+import json
 import logging
-from pathlib import Path
+import os
+import time
 from dataclasses import dataclass, field
-from urllib.request import urlopen, Request
+from pathlib import Path
 from urllib.error import URLError
+from urllib.request import Request, urlopen
 
 logger = logging.getLogger(__name__)
 

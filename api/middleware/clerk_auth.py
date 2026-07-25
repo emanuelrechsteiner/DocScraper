@@ -17,7 +17,6 @@ Security properties:
 
 import logging
 import time
-from typing import Optional
 
 import httpx
 import jwt as pyjwt
@@ -74,7 +73,7 @@ async def _get_jwks(force_refresh: bool = False) -> dict:
     return _jwks_cache
 
 
-def _find_signing_key(jwks: dict, kid: Optional[str]):
+def _find_signing_key(jwks: dict, kid: str | None):
     """Locate the RS256 signing key for ``kid`` in the JWKS.
 
     Asserts the key's algorithm and intended use before trusting it, so a
@@ -173,7 +172,7 @@ def _resolve_email(payload: dict, clerk_user_id: str) -> tuple[str, bool]:
 
 
 async def get_dashboard_user(
-    credentials: Optional[HTTPAuthorizationCredentials] = Security(_bearer_scheme),
+    credentials: HTTPAuthorizationCredentials | None = Security(_bearer_scheme),
     db: AsyncSession = Depends(get_db_session),
 ) -> User:
     """Verify a Clerk JWT and resolve it to a Parsify ``User``.

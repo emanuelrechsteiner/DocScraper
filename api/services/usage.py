@@ -7,8 +7,7 @@ In-memory for Phase 1-2; PostgreSQL in Phase 3.
 import logging
 from collections import defaultdict
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
-from typing import Optional
+from datetime import UTC, date, datetime
 
 from ..models.schemas import BillingTier
 
@@ -46,7 +45,7 @@ class UsageEntry:
     method: str
     status_code: int
     response_time_ms: float
-    key_id: Optional[str] = None
+    key_id: str | None = None
     pages_count: int = 0
 
 
@@ -66,11 +65,11 @@ class UsageService:
         method: str,
         status_code: int,
         response_time_ms: float,
-        key_id: Optional[str] = None,
+        key_id: str | None = None,
         pages_count: int = 0,
     ) -> None:
         """Record a single API usage event."""
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         entry = UsageEntry(
             timestamp=now,
             endpoint=endpoint,
@@ -94,7 +93,7 @@ class UsageService:
 
     def get_hourly_count(self, key_id: str) -> int:
         """Get the request count for the current hour."""
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         hour_key = f"{key_id}:{now.strftime('%Y-%m-%d-%H')}"
         return self._hourly_counts.get(hour_key, 0)
 
@@ -155,7 +154,7 @@ class UsageService:
         self, key_id: str, tier: BillingTier
     ) -> dict[str, object]:
         """Get usage summary for dashboard (#29)."""
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         hour_key = f"{key_id}:{now.strftime('%Y-%m-%d-%H')}"
         limit = TIER_LIMITS[tier]["requests_per_hour"]
         current = self._hourly_counts.get(hour_key, 0)
@@ -186,7 +185,7 @@ class UsageService:
         results: list[dict[str, object]] = []
         for i in range(days):
             day_str = (
-                datetime(today.year, today.month, today.day, tzinfo=timezone.utc)
+                datetime(today.year, today.month, today.day, tzinfo=UTC)
                 - timedelta(days=i)
             ).strftime("%Y-%m-%d")
             day_key = f"{key_id}:{day_str}"

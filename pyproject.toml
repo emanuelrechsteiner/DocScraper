@@ -38,10 +38,14 @@ line-length = 100
 target-version = "py311"
 
 [tool.ruff.lint]
-# Use Ruff's default rule set (pyflakes F + a curated pycodestyle subset).
-# The legacy codebase is clean under these; stricter families (I/B/UP/full E)
-# can be adopted incrementally per-package without a disruptive mass reformat.
+# Minimal rule set for legacy codebase — focus on high-impact issues only.
+# Stricter families (E/W/I/B/UP/DTZ/BLE/PLW/ASYNC) adopted incrementally.
+select = ["F"]  # Only enforce: pyflakes (actual bugs)
 ignore = ["E501"]  # long lines are not hard-enforced
+
+# FastAPI uses Depends/Security in function defaults — this is the correct pattern
+[tool.ruff.lint.per-file-ignores]
+"api/**" = ["B008"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "strict"

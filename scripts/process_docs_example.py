@@ -6,6 +6,7 @@ Example usage of the Document Post-Processor
 import asyncio
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 from docscraper.core.processor import DocumentPostProcessor
@@ -48,7 +49,7 @@ async def process_anthropic_docs():
 
 async def process_custom_docs():
     """Example: Process custom documentation with specific settings."""
-    from docscraper.core.processor import DocumentStructurer, DocumentCleaner
+    from docscraper.core.processor import DocumentCleaner, DocumentStructurer
     
     print("\n🔧 Custom Processing Example")
     print("=" * 50)

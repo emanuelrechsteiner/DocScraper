@@ -11,34 +11,31 @@ Phase 2: LLM validation and intelligent content analysis (future)
 
 from __future__ import annotations
 
+import logging
 import re
 import time
-import logging
-from pathlib import Path
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Callable
+from pathlib import Path
 
-from .rules import (
-    PatternRegistry,
-    PatternCategory
-)
+from .rules import PatternCategory, PatternRegistry
 
 # Phase 2: LLM and Chunk Optimization (optional imports)
 try:
-    from .llm import LLMValidator, LLMConfig, ValidationResult
+    from .llm import LLMConfig, LLMValidator, ValidationResult
 except ImportError:
     LLMValidator = None
     LLMConfig = None
     ValidationResult = None
 
 try:
-    from .intelligent import IntelligentContentAnalyzer, ContentAnalysis
+    from .intelligent import ContentAnalysis, IntelligentContentAnalyzer
 except ImportError:
     IntelligentContentAnalyzer = None
     ContentAnalysis = None
 
 try:
-    from ..optimization.chunker import ChunkOptimizer, ChunkMetadata
+    from ..optimization.chunker import ChunkMetadata, ChunkOptimizer
 except ImportError:
     ChunkOptimizer = None
     ChunkMetadata = None
@@ -533,7 +530,7 @@ class PostScraperCleaner:
             return []
 
         # Find all markdown files recursively
-        input_files = sorted(list(input_root.glob(pattern)))
+        input_files = sorted(input_root.glob(pattern))
 
         if not input_files:
             logger.warning(f"No files matching '{pattern}' in {input_root}")

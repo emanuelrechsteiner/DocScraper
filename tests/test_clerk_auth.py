@@ -10,7 +10,6 @@ from api.config import settings
 from api.db.repositories import UserRepository
 from api.middleware import clerk_auth
 
-
 # ---------------------------------------------------------------------------
 # Repository: identity is the Clerk sub, never a client-supplied email
 # ---------------------------------------------------------------------------

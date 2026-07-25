@@ -7,8 +7,8 @@ PostgreSQL in Phase 3 (see ADR-002).
 import logging
 import uuid
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from typing import Any, Optional
+from datetime import UTC, datetime
+from typing import Any
 
 from ..models.schemas import JobStatus
 
@@ -25,17 +25,17 @@ class JobData:
     job_type: str = "scrape"  # "scrape" or "process"
     max_pages: int = 100
     output_format: str = "markdown"
-    webhook_url: Optional[str] = None
-    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
-    started_at: Optional[datetime] = None
-    completed_at: Optional[datetime] = None
+    webhook_url: str | None = None
+    created_at: datetime = field(default_factory=lambda: datetime.now(UTC))
+    started_at: datetime | None = None
+    completed_at: datetime | None = None
     pages_scraped: int = 0
     pages_failed: int = 0
     progress: float = 0.0
-    error_message: Optional[str] = None
+    error_message: str | None = None
     output_files: list[str] = field(default_factory=list)
-    summary: Optional[dict[str, Any]] = None
-    owner_key_id: Optional[str] = None
+    summary: dict[str, Any] | None = None
+    owner_key_id: str | None = None
 
 
 class JobStore:
@@ -54,8 +54,8 @@ class JobStore:
         job_type: str = "scrape",
         max_pages: int = 100,
         output_format: str = "markdown",
-        webhook_url: Optional[str] = None,
-        owner_key_id: Optional[str] = None,
+        webhook_url: str | None = None,
+        owner_key_id: str | None = None,
     ) -> JobData:
         """Create a new job and return its data."""
         job_id = f"job_{uuid.uuid4().hex[:12]}"
@@ -73,11 +73,11 @@ class JobStore:
         logger.info("Created %s job %s for %s", job_type, job_id, url)
         return job
 
-    def get_job(self, job_id: str) -> Optional[JobData]:
+    def get_job(self, job_id: str) -> JobData | None:
         """Get a job by ID, or None if not found."""
         return self._jobs.get(job_id)
 
-    def update_job(self, job_id: str, **kwargs: Any) -> Optional[JobData]:
+    def update_job(self, job_id: str, **kwargs: Any) -> JobData | None:
         """Update job fields. Returns updated job or None if not found."""
         job = self._jobs.get(job_id)
         if job is None:
@@ -89,8 +89,8 @@ class JobStore:
 
     def list_jobs(
         self,
-        owner_key_id: Optional[str] = None,
-        status: Optional[JobStatus] = None,
+        owner_key_id: str | None = None,
+        status: JobStatus | None = None,
         limit: int = 50,
         offset: int = 0,
     ) -> tuple[list[JobData], int]:

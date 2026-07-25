@@ -4,17 +4,20 @@ Documentation Post-Processor GUI
 A graphical interface for cleaning, structuring, and sorting scraped markdown files.
 """
 
-import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox, filedialog
-import threading
 import asyncio
-from pathlib import Path
-from datetime import datetime, timedelta
-import queue
-import time
+import logging
 import os
+import queue
+import threading
+import time
+import tkinter as tk
+from datetime import datetime, timedelta
+from pathlib import Path
+from tkinter import filedialog, messagebox, scrolledtext, ttk
 
 from docscraper.core.processor import DocumentPostProcessor
+
+logger = logging.getLogger(__name__)
 
 
 class DocPostProcessorGUI:
@@ -66,8 +69,8 @@ class DocPostProcessorGUI:
                           font=('TkDefaultFont', 9, 'bold'))
             style.map("Accent.TButton",
                      background=[('active', '#005a9e')])
-        except Exception:
-            pass
+        except Exception:  # noqa: S110
+            logger.debug("Failed to apply theme customization (non-critical)", exc_info=False)
     
     def center_window(self):
         """Center the window on the screen."""
@@ -301,7 +304,6 @@ class DocPostProcessorGUI:
     
     def toggle_api_key(self):
         """This method is deprecated - API key is now loaded from .env file."""
-        pass
     
     def check_messages(self):
         """Check for messages from processor thread."""
@@ -541,7 +543,7 @@ class DocPostProcessorGUI:
             self.message_queue.put(("complete", summary))
             
         except Exception as e:
-            self.log(f"Error during processing: {str(e)}", "ERROR")
+            self.log(f"Error during processing: {e!s}", "ERROR")
             self.update_status("Error occurred")
             self.message_queue.put(("error", str(e)))
             
@@ -685,8 +687,8 @@ def main():
         # Set window icon if available
         try:
             root.iconname("Documentation Post-Processor")
-        except (AttributeError, Exception):
-            pass
+        except (AttributeError, Exception):  # noqa: S110
+            logger.debug("Failed to set window icon (platform-specific)", exc_info=False)
 
         # Handle window closing
         def on_closing():

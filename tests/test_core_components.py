@@ -5,19 +5,21 @@ Tests for RuleBasedCleaner, PatternRegistry, and related core functionality.
 All tests verify Phase 1 components work correctly.
 """
 
-import pytest
 from pathlib import Path
+
+import pytest
+
 from docscraper.cleaning.cleaner import (
     CleaningConfig,
-    RuleBasedCleaner,
     CleaningResult,
+    RuleBasedCleaner,
 )
 from docscraper.cleaning.rules import (
-    CleaningPattern,
-    PatternRegistry,
-    PatternCategory,
     CLEANING_PATTERNS,
     DEFAULT_REGISTRY,
+    CleaningPattern,
+    PatternCategory,
+    PatternRegistry,
 )
 
 

@@ -9,7 +9,7 @@ with all tables already created.
 from __future__ import annotations
 
 import hashlib
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -20,7 +20,6 @@ from api.db.repositories import (
     UsageRepository,
     UserRepository,
 )
-
 
 # ---------------------------------------------------------------------------
 # UserRepository
@@ -93,12 +92,12 @@ class TestUserRepositoryCreate:
     async def test_create_sets_created_at(self, db_session: AsyncSession) -> None:
         """created_at is populated with a timezone-aware datetime."""
         repo = UserRepository(db_session)
-        before = datetime.now(timezone.utc)
+        before = datetime.now(UTC)
         user = await repo.create(email="grace@example.com")
-        after = datetime.now(timezone.utc)
+        after = datetime.now(UTC)
         assert user.created_at is not None
         # SQLite strips timezone info on round-trip — compare naive for portability.
-        created = user.created_at.replace(tzinfo=None) if user.created_at.tzinfo is None else user.created_at.astimezone(timezone.utc).replace(tzinfo=None)
+        created = user.created_at.replace(tzinfo=None) if user.created_at.tzinfo is None else user.created_at.astimezone(UTC).replace(tzinfo=None)
         assert before.replace(tzinfo=None) <= created <= after.replace(tzinfo=None)
 
     @pytest.mark.asyncio
@@ -624,7 +623,7 @@ class TestJobRepositoryUpdate:
         """Multiple fields can be updated simultaneously."""
         repo = JobRepository(db_session)
         job = await repo.create(url="https://docs.example.com")
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         updated = await repo.update(
             job.job_id,
             status="completed",
@@ -896,16 +895,16 @@ class TestUsageRepositoryRecord:
     async def test_record_timestamp_is_set(self, db_session: AsyncSession) -> None:
         """timestamp is populated automatically on creation."""
         repo = UsageRepository(db_session)
-        before = datetime.now(timezone.utc)
+        before = datetime.now(UTC)
         usage = await repo.record(
             endpoint="/v1/scrape",
             method="POST",
             status_code=201,
             response_time_ms=88.8,
         )
-        after = datetime.now(timezone.utc)
+        after = datetime.now(UTC)
         assert usage.timestamp is not None
-        ts = usage.timestamp.replace(tzinfo=None) if usage.timestamp.tzinfo is None else usage.timestamp.astimezone(timezone.utc).replace(tzinfo=None)
+        ts = usage.timestamp.replace(tzinfo=None) if usage.timestamp.tzinfo is None else usage.timestamp.astimezone(UTC).replace(tzinfo=None)
         assert before.replace(tzinfo=None) <= ts <= after.replace(tzinfo=None)
 
 
@@ -953,7 +952,7 @@ class TestUsageRepositoryGetHourlyCount:
         key_id = "key_oldhour"
 
         # Insert a record directly with a timestamp 2 hours ago.
-        two_hours_ago = datetime.now(timezone.utc) - timedelta(hours=2)
+        two_hours_ago = datetime.now(UTC) - timedelta(hours=2)
         from api.db.models import UsageRecord
 
         old_record = UsageRecord(

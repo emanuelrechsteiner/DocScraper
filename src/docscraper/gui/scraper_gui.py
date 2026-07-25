@@ -4,15 +4,18 @@ Documentation Scraper GUI
 A simple GUI interface for the documentation scraper.
 """
 
-import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox, filedialog
-import threading
 import asyncio
-import sys
+import logging
 import queue
+import sys
+import threading
+import tkinter as tk
 from datetime import datetime
+from tkinter import filedialog, messagebox, scrolledtext, ttk
 
 from docscraper.core.scraper import DocumentationScraper
+
+logger = logging.getLogger(__name__)
 
 
 class DocScraperGUI:
@@ -51,8 +54,8 @@ class DocScraperGUI:
                           font=('TkDefaultFont', 9, 'bold'))
             style.map("Accent.TButton",
                      background=[('active', '#005a9e')])
-        except Exception:
-            pass
+        except Exception:  # noqa: S110
+            logger.debug("Failed to apply theme customization (non-critical)", exc_info=False)
     
     def center_window(self):
         """Center the window on the screen."""
@@ -315,7 +318,7 @@ class DocScraperGUI:
             self.message_queue.put(("complete", output_dir))
             
         except Exception as e:
-            self.log(f"Error during scraping: {str(e)}", "ERROR")
+            self.log(f"Error during scraping: {e!s}", "ERROR")
             self.update_status("Error occurred")
             self.message_queue.put(("error", str(e)))
             
@@ -357,7 +360,7 @@ class GUIScraper(DocumentationScraper):
                 
             return result
         except Exception as e:
-            self.gui.log(f"Error scraping {url}: {str(e)}", "ERROR")
+            self.gui.log(f"Error scraping {url}: {e!s}", "ERROR")
             return None
 
 
@@ -369,8 +372,8 @@ def main():
         # Set window icon if available
         try:
             root.iconname("Documentation Scraper")
-        except (AttributeError, Exception):
-            pass
+        except (AttributeError, Exception):  # noqa: S110
+            logger.debug("Failed to set window icon (platform-specific)", exc_info=False)
 
         # Handle window closing
         def on_closing():

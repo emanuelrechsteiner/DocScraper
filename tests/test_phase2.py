@@ -6,9 +6,10 @@ All tests verify Phase 2 functionality without external API calls.
 """
 
 import pytest
-from docscraper.cleaning.llm import LLMConfig, LLMValidator, ValidationResult, RateLimiter
-from docscraper.optimization.chunker import ChunkOptimizer, ChunkMetadata
-from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
+
+from docscraper.cleaning.cleaner import CleaningConfig, PostScraperCleaner
+from docscraper.cleaning.llm import LLMConfig, LLMValidator, RateLimiter, ValidationResult
+from docscraper.optimization.chunker import ChunkMetadata, ChunkOptimizer
 
 
 class TestLLMConfig:

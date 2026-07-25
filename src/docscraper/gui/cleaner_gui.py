@@ -6,18 +6,20 @@ A graphical interface for cleaning and optimizing scraped markdown files.
 Removes navigation, boilerplate, and redundant content using rule-based patterns.
 """
 
-import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox, filedialog
-import threading
 import json
-import os
-from pathlib import Path
-from datetime import datetime
-import queue
 import logging
-from typing import Optional, Callable, Dict, Any
+import os
+import queue
+import threading
+import tkinter as tk
+from collections.abc import Callable
+from datetime import datetime
+from pathlib import Path
+from tkinter import filedialog, messagebox, scrolledtext, ttk
+from typing import Any
 
-from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
+from docscraper.cleaning.cleaner import CleaningConfig, PostScraperCleaner
+
 
 # Load .env file for API keys
 def load_env():
@@ -43,7 +45,7 @@ class GUIPostScraperCleaner(PostScraperCleaner):
     Reports progress updates through callbacks for real-time UI updates
     """
 
-    def __init__(self, config: CleaningConfig, progress_callback: Optional[Callable] = None):
+    def __init__(self, config: CleaningConfig, progress_callback: Callable | None = None):
         """Initialize with GUI callback"""
         super().__init__(config, progress_callback)
         self.start_time = None
@@ -107,8 +109,8 @@ class PostScraperCleanerGUI:
                           font=('TkDefaultFont', 9, 'bold'))
             style.map("Danger.TButton",
                      background=[('active', '#a4373a')])
-        except Exception:
-            pass
+        except Exception:  # noqa: S110
+            logger.debug("Failed to apply theme customization (non-critical)", exc_info=False)
 
     def setup_menu(self):
         """Create menu bar"""
@@ -401,7 +403,7 @@ class PostScraperCleanerGUI:
         self.stop_btn.config(state=tk.DISABLED)
         self.status_var.set("Stopped")
 
-    def progress_callback(self, message: Dict[str, Any]):
+    def progress_callback(self, message: dict[str, Any]):
         """Handle progress updates from processor"""
         if message["type"] == "progress":
             self.message_queue.put(message)

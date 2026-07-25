@@ -12,8 +12,7 @@ import logging
 import secrets
 import uuid
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from typing import Optional
+from datetime import UTC, datetime
 
 from ..config import settings
 from ..models.schemas import BillingTier
@@ -27,11 +26,11 @@ class UserData:
 
     user_id: str
     email: str
-    name: Optional[str] = None
+    name: str | None = None
     tier: BillingTier = BillingTier.FREE
-    stripe_customer_id: Optional[str] = None
-    stripe_subscription_id: Optional[str] = None
-    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    stripe_customer_id: str | None = None
+    stripe_subscription_id: str | None = None
+    created_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 
 @dataclass
@@ -44,7 +43,7 @@ class APIKeyData:
     prefix: str
     key_hash: str
     is_active: bool = True
-    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 
 class AuthService:
@@ -66,7 +65,7 @@ class AuthService:
         return hashlib.sha256(raw_key.encode()).hexdigest()
 
     def create_user(
-        self, email: str, name: Optional[str] = None
+        self, email: str, name: str | None = None
     ) -> UserData:
         """Register a new user.
 
@@ -90,16 +89,16 @@ class AuthService:
         logger.info("Created user %s (%s)", user_id, email)
         return user
 
-    def get_user(self, user_id: str) -> Optional[UserData]:
+    def get_user(self, user_id: str) -> UserData | None:
         """Get user by ID."""
         return self._users.get(user_id)
 
-    def get_user_by_email(self, email: str) -> Optional[UserData]:
+    def get_user_by_email(self, email: str) -> UserData | None:
         """Get user by email."""
         uid = self._users_by_email.get(email)
         return self._users.get(uid) if uid else None
 
-    def update_user(self, user_id: str, **kwargs: object) -> Optional[UserData]:
+    def update_user(self, user_id: str, **kwargs: object) -> UserData | None:
         """Update user fields."""
         user = self._users.get(user_id)
         if user is None:
@@ -142,7 +141,7 @@ class AuthService:
         logger.info("Created API key %s (prefix: %s) for user %s", key_id, prefix, user_id)
         return key_data, raw_key
 
-    def verify_api_key(self, raw_key: str) -> Optional[APIKeyData]:
+    def verify_api_key(self, raw_key: str) -> APIKeyData | None:
         """Verify an API key and return its data if valid.
 
         Args:

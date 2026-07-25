@@ -7,7 +7,7 @@ See ADR-006 for design rationale.
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any
 
 from ..config import settings
 from ..models.schemas import BillingTier
@@ -62,7 +62,7 @@ class BillingService:
         """Return all available billing plans."""
         return PLANS
 
-    def get_plan(self, tier: BillingTier) -> Optional[dict[str, Any]]:
+    def get_plan(self, tier: BillingTier) -> dict[str, Any] | None:
         """Return a specific billing plan."""
         for plan in PLANS:
             if plan["tier"] == tier:
@@ -251,7 +251,7 @@ class BillingService:
         tier: BillingTier,
         success_url: str,
         cancel_url: str,
-        user_repo: "UserRepository",
+        user_repo: UserRepository,
     ) -> dict[str, str]:
         """Create a Stripe Checkout session using a DB-backed user repository.
 
@@ -320,7 +320,7 @@ class BillingService:
         self,
         payload: bytes,
         signature: str,
-        user_repo: "UserRepository",
+        user_repo: UserRepository,
     ) -> dict[str, str]:
         """Process a Stripe webhook event using a DB-backed user repository (#28).
 
@@ -367,7 +367,7 @@ class BillingService:
     async def _handle_checkout_completed_db(
         self,
         session: dict[str, Any],
-        user_repo: "UserRepository",
+        user_repo: UserRepository,
     ) -> None:
         """Activate subscription after successful checkout (DB-backed)."""
         user_id = session.get("metadata", {}).get("parsify_user_id")
@@ -386,7 +386,7 @@ class BillingService:
     async def _handle_subscription_deleted_db(
         self,
         subscription: dict[str, Any],
-        user_repo: "UserRepository",
+        user_repo: UserRepository,
     ) -> None:
         """Downgrade user to free tier when subscription is cancelled (DB-backed)."""
         customer_id = subscription.get("customer")
@@ -405,7 +405,7 @@ class BillingService:
     async def get_subscription_status_async(
         self,
         user_id: str,
-        user_repo: "UserRepository",
+        user_repo: UserRepository,
     ) -> dict[str, Any]:
         """Get subscription status using a DB-backed user repository.
 

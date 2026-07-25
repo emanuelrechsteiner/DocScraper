@@ -5,15 +5,15 @@ Implements retry with exponential backoff via tenacity.
 """
 
 import logging
-from datetime import datetime, timezone
-from typing import Any, Optional
+from datetime import UTC, datetime
+from typing import Any
 
 import httpx
 from tenacity import (
     retry,
+    retry_if_exception_type,
     stop_after_attempt,
     wait_exponential,
-    retry_if_exception_type,
 )
 
 from ..config import settings
@@ -33,7 +33,7 @@ class WebhookService:
         webhook_url: str,
         job_id: str,
         status: JobStatus,
-        result: Optional[dict[str, Any]] = None,
+        result: dict[str, Any] | None = None,
     ) -> bool:
         """Send a job completion webhook.
 
@@ -51,7 +51,7 @@ class WebhookService:
             job_id=job_id,
             status=status,
             result=result,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
         )
         return await self._deliver(webhook_url, payload)
 
@@ -76,7 +76,7 @@ class WebhookService:
             job_id=job_id,
             status=JobStatus.FAILED,
             result={"error": error_message},
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
         )
         return await self._deliver(webhook_url, payload)
 

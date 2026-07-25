@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 
 class JobStatus(str, Enum):
@@ -32,7 +32,7 @@ class ScrapeConfig:
     url: str
     max_pages: int = 100
     output_format: str = "markdown"
-    webhook_url: Optional[str] = None
+    webhook_url: str | None = None
 
 
 @dataclass
@@ -60,12 +60,12 @@ class Job:
     progress: float = 0.0
     pages_scraped: int = 0
     pages_failed: int = 0
-    created_at: Optional[datetime] = None
-    started_at: Optional[datetime] = None
-    completed_at: Optional[datetime] = None
-    error_message: Optional[str] = None
+    created_at: datetime | None = None
+    started_at: datetime | None = None
+    completed_at: datetime | None = None
+    error_message: str | None = None
     output_files: list[str] = field(default_factory=list)
-    summary: Optional[dict[str, Any]] = None
+    summary: dict[str, Any] | None = None
 
     @classmethod
     def from_api_response(cls, data: dict[str, Any]) -> Job:

@@ -7,9 +7,11 @@ Tests verify chunk optimization works seamlessly with cleaning.
 
 import shutil
 import tempfile
-import pytest
 from pathlib import Path
-from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
+
+import pytest
+
+from docscraper.cleaning.cleaner import CleaningConfig, PostScraperCleaner
 
 
 @pytest.fixture

@@ -5,21 +5,21 @@ Cleans, structures, and sorts scraped markdown files for optimal vector database
 """
 from __future__ import annotations
 
-import re
-import json
 import asyncio
+import hashlib
+import json
+import logging
+import re
+from collections import defaultdict
+from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 from typing import Any
-from datetime import datetime
-import logging
-from dataclasses import dataclass, field
-from collections import defaultdict
-import yaml
-import hashlib
 
+import networkx as nx
+import yaml
 from openai import AsyncOpenAI
 from tenacity import retry, stop_after_attempt, wait_exponential
-import networkx as nx
 
 logger = logging.getLogger(__name__)
 
@@ -748,9 +748,9 @@ class DocumentPostProcessor:
             
             # 🚀 Create semaphore to limit concurrent operations and prevent memory overflow
             semaphore = asyncio.Semaphore(max_workers)
-            
-            async def process_with_semaphore(file_path):
-                async with semaphore:
+
+            async def process_with_semaphore(file_path, sem=semaphore):  # noqa: B008
+                async with sem:
                     return await self.process_document(file_path)
             
             # Create massive parallel tasks
@@ -906,7 +906,7 @@ class DocumentPostProcessor:
             'processed_at': datetime.now().isoformat(),
             'total_documents': len(self.processed_docs),
             'total_chunks': 0,
-            'categories': dict(),  # Use regular dict instead of defaultdict
+            'categories': {},  # Use regular dict instead of defaultdict
             'source_folders': list(source_folders.keys()) if source_folders else [],
             'documents': []
         }
@@ -999,8 +999,9 @@ class DocumentPostProcessor:
 
 async def main():
     """Main entry point."""
-    import sys
     import os
+    import sys
+
     from dotenv import load_dotenv
         
     # Always load environment variables from .env file

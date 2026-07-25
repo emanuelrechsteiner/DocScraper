@@ -9,8 +9,8 @@ Phase 2: Optimize cleaned content for vector databases
 
 from __future__ import annotations
 
-import re
 import logging
+import re
 from dataclasses import dataclass, field
 
 logger = logging.getLogger(__name__)
@@ -179,7 +179,7 @@ class ChunkOptimizer:
             ):
                 boundaries.append(line_start)
 
-        return content, sorted(list(set(boundaries)))
+        return content, sorted(set(boundaries))
 
     def split_into_chunks(self, content: str) -> list[str]:
         """

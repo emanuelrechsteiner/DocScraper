@@ -11,7 +11,6 @@ import sqlalchemy as sa
 
 from api.db.models import APIKey, Base, Job, UsageRecord, User
 
-
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------

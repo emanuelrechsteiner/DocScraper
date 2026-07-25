@@ -11,8 +11,8 @@ import hashlib
 import logging
 import secrets
 import uuid
-from datetime import datetime, timedelta, timezone
-from typing import Any, Optional
+from datetime import UTC, datetime, timedelta
+from typing import Any
 
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
@@ -41,7 +41,7 @@ class UserRepository:
     async def create(
         self,
         email: str,
-        name: Optional[str] = None,
+        name: str | None = None,
         tier: str = "free",
     ) -> User:
         """Create a new user record.
@@ -69,7 +69,7 @@ class UserRepository:
             email=email,
             name=name,
             tier=tier,
-            created_at=datetime.now(timezone.utc),
+            created_at=datetime.now(UTC),
         )
         self._session.add(user)
         try:
@@ -81,21 +81,21 @@ class UserRepository:
         logger.info("Created user %s (%s)", user_id, email)
         return user
 
-    async def get_by_user_id(self, user_id: str) -> Optional[User]:
+    async def get_by_user_id(self, user_id: str) -> User | None:
         """Return the user with the given public user_id, or ``None``."""
         result = await self._session.execute(
             select(User).where(User.user_id == user_id)
         )
         return result.scalar_one_or_none()
 
-    async def get_by_email(self, email: str) -> Optional[User]:
+    async def get_by_email(self, email: str) -> User | None:
         """Return the user with the given email, or ``None``."""
         result = await self._session.execute(
             select(User).where(User.email == email)
         )
         return result.scalar_one_or_none()
 
-    async def update(self, user_id: str, **kwargs: Any) -> Optional[User]:
+    async def update(self, user_id: str, **kwargs: Any) -> User | None:
         """Update allowed fields on a user record.
 
         Args:
@@ -116,14 +116,14 @@ class UserRepository:
 
     async def get_by_stripe_customer_id(
         self, customer_id: str
-    ) -> Optional[User]:
+    ) -> User | None:
         """Return the user associated with a Stripe customer ID, or ``None``."""
         result = await self._session.execute(
             select(User).where(User.stripe_customer_id == customer_id)
         )
         return result.scalar_one_or_none()
 
-    async def get_by_clerk_user_id(self, clerk_user_id: str) -> Optional[User]:
+    async def get_by_clerk_user_id(self, clerk_user_id: str) -> User | None:
         """Return the user with the given Clerk user ID, or ``None``."""
         result = await self._session.execute(
             select(User).where(User.clerk_user_id == clerk_user_id)
@@ -134,7 +134,7 @@ class UserRepository:
         self,
         clerk_user_id: str,
         email: str,
-        name: Optional[str] = None,
+        name: str | None = None,
         email_is_verified: bool = False,
     ) -> User:
         """Resolve a Clerk identity to a ``User``, creating it on first login.
@@ -202,7 +202,7 @@ class UserRepository:
             name=name,
             tier="free",
             clerk_user_id=clerk_user_id,
-            created_at=datetime.now(timezone.utc),
+            created_at=datetime.now(UTC),
         )
         self._session.add(user)
         try:
@@ -289,7 +289,7 @@ class APIKeyRepository:
             prefix=prefix,
             key_hash=key_hash,
             is_active=True,
-            created_at=datetime.now(timezone.utc),
+            created_at=datetime.now(UTC),
         )
         self._session.add(api_key)
         await self._session.flush()
@@ -299,7 +299,7 @@ class APIKeyRepository:
         )
         return api_key, raw_key
 
-    async def verify(self, raw_key: str) -> Optional[APIKey]:
+    async def verify(self, raw_key: str) -> APIKey | None:
         """Verify a raw API key and return the active key record.
 
         Args:
@@ -377,8 +377,8 @@ class JobRepository:
         job_type: str = "scrape",
         max_pages: int = 100,
         output_format: str = "markdown",
-        webhook_url: Optional[str] = None,
-        owner_key_id: Optional[str] = None,
+        webhook_url: str | None = None,
+        owner_key_id: str | None = None,
     ) -> Job:
         """Persist a new job record.
 
@@ -403,7 +403,7 @@ class JobRepository:
             output_format=output_format,
             webhook_url=webhook_url,
             owner_key_id=owner_key_id,
-            created_at=datetime.now(timezone.utc),
+            created_at=datetime.now(UTC),
         )
         self._session.add(job)
         await self._session.flush()
@@ -411,14 +411,14 @@ class JobRepository:
         logger.info("Created %s job %s for %s", job_type, job_id, url)
         return job
 
-    async def get(self, job_id: str) -> Optional[Job]:
+    async def get(self, job_id: str) -> Job | None:
         """Return the job with the given public job_id, or ``None``."""
         result = await self._session.execute(
             select(Job).where(Job.job_id == job_id)
         )
         return result.scalar_one_or_none()
 
-    async def update(self, job_id: str, **kwargs: Any) -> Optional[Job]:
+    async def update(self, job_id: str, **kwargs: Any) -> Job | None:
         """Update allowed fields on a job record.
 
         Args:
@@ -439,8 +439,8 @@ class JobRepository:
 
     async def list_jobs(
         self,
-        owner_key_id: Optional[str] = None,
-        status: Optional[str] = None,
+        owner_key_id: str | None = None,
+        status: str | None = None,
         limit: int = 50,
         offset: int = 0,
     ) -> tuple[list[Job], int]:
@@ -518,7 +518,7 @@ class UsageRepository:
         method: str,
         status_code: int,
         response_time_ms: float,
-        key_id: Optional[str] = None,
+        key_id: str | None = None,
         pages_count: int = 0,
     ) -> UsageRecord:
         """Persist a single API usage event.
@@ -535,7 +535,7 @@ class UsageRepository:
             The persisted ``UsageRecord`` ORM object.
         """
         record = UsageRecord(
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             endpoint=endpoint,
             method=method,
             status_code=status_code,
@@ -556,7 +556,7 @@ class UsageRepository:
         Returns:
             Integer count of records in the current clock hour.
         """
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         hour_start = now.replace(minute=0, second=0, microsecond=0)
         hour_end = hour_start + timedelta(hours=1)
 
@@ -582,7 +582,7 @@ class UsageRepository:
             List of dicts with keys ``date``, ``request_count``,
             ``pages_scraped``, ``errors``.
         """
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         results: list[dict[str, Any]] = []
 
         for i in range(days):

@@ -19,7 +19,7 @@ from pathlib import Path
 
 import pytest
 
-from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
+from docscraper.cleaning.cleaner import CleaningConfig, PostScraperCleaner
 
 
 def load_env():

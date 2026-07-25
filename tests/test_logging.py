@@ -14,10 +14,9 @@ import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 
+from api.app import create_app
 from api.middleware.logging_config import JSONFormatter
 from api.middleware.request_id import REQUEST_ID_HEADER, RequestIDMiddleware
-from api.app import create_app
-
 
 # ---------------------------------------------------------------------------
 # Helpers
