@@ -109,8 +109,8 @@ class PostScraperCleanerGUI:
                           font=('TkDefaultFont', 9, 'bold'))
             style.map("Danger.TButton",
                      background=[('active', '#a4373a')])
-        except Exception:
-            pass
+        except Exception:  # noqa: S110
+            logger.debug("Failed to apply theme customization (non-critical)", exc_info=False)
 
     def setup_menu(self):
         """Create menu bar"""

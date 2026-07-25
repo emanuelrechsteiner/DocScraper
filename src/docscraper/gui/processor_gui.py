@@ -5,6 +5,7 @@ A graphical interface for cleaning, structuring, and sorting scraped markdown fi
 """
 
 import asyncio
+import logging
 import os
 import queue
 import threading
@@ -15,6 +16,8 @@ from pathlib import Path
 from tkinter import filedialog, messagebox, scrolledtext, ttk
 
 from docscraper.core.processor import DocumentPostProcessor
+
+logger = logging.getLogger(__name__)
 
 
 class DocPostProcessorGUI:
@@ -66,8 +69,8 @@ class DocPostProcessorGUI:
                           font=('TkDefaultFont', 9, 'bold'))
             style.map("Accent.TButton",
                      background=[('active', '#005a9e')])
-        except Exception:
-            pass
+        except Exception:  # noqa: S110
+            logger.debug("Failed to apply theme customization (non-critical)", exc_info=False)
     
     def center_window(self):
         """Center the window on the screen."""
@@ -684,8 +687,8 @@ def main():
         # Set window icon if available
         try:
             root.iconname("Documentation Post-Processor")
-        except (AttributeError, Exception):
-            pass
+        except (AttributeError, Exception):  # noqa: S110
+            logger.debug("Failed to set window icon (platform-specific)", exc_info=False)
 
         # Handle window closing
         def on_closing():

@@ -5,6 +5,7 @@ A simple GUI interface for the documentation scraper.
 """
 
 import asyncio
+import logging
 import queue
 import sys
 import threading
@@ -13,6 +14,8 @@ from datetime import datetime
 from tkinter import filedialog, messagebox, scrolledtext, ttk
 
 from docscraper.core.scraper import DocumentationScraper
+
+logger = logging.getLogger(__name__)
 
 
 class DocScraperGUI:
@@ -51,8 +54,8 @@ class DocScraperGUI:
                           font=('TkDefaultFont', 9, 'bold'))
             style.map("Accent.TButton",
                      background=[('active', '#005a9e')])
-        except Exception:
-            pass
+        except Exception:  # noqa: S110
+            logger.debug("Failed to apply theme customization (non-critical)", exc_info=False)
     
     def center_window(self):
         """Center the window on the screen."""
@@ -369,8 +372,8 @@ def main():
         # Set window icon if available
         try:
             root.iconname("Documentation Scraper")
-        except (AttributeError, Exception):
-            pass
+        except (AttributeError, Exception):  # noqa: S110
+            logger.debug("Failed to set window icon (platform-specific)", exc_info=False)
 
         # Handle window closing
         def on_closing():

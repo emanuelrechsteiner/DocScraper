@@ -530,7 +530,7 @@ class PostScraperCleaner:
             return []
 
         # Find all markdown files recursively
-        input_files = sorted(list(input_root.glob(pattern)))
+        input_files = sorted(input_root.glob(pattern))
 
         if not input_files:
             logger.warning(f"No files matching '{pattern}' in {input_root}")

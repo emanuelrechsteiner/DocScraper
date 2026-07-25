@@ -100,9 +100,7 @@ async def run_scrape_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
                 error_message=error_msg,
             )
             await session.commit()
-            logger.error(
-                "Scrape job %s failed: %s", job_id, error_msg, exc_info=True
-            )
+            logger.exception("Scrape job %s failed: %s", job_id, error_msg)
 
             webhook_url = job.webhook_url
             if webhook_url:
@@ -195,9 +193,7 @@ async def run_process_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
                 error_message=error_msg,
             )
             await session.commit()
-            logger.error(
-                "Process job %s failed: %s", job_id, error_msg, exc_info=True
-            )
+            logger.exception("Process job %s failed: %s", job_id, error_msg)
 
             webhook_url = job.webhook_url
             if webhook_url:

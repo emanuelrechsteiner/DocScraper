@@ -748,9 +748,9 @@ class DocumentPostProcessor:
             
             # 🚀 Create semaphore to limit concurrent operations and prevent memory overflow
             semaphore = asyncio.Semaphore(max_workers)
-            
-            async def process_with_semaphore(file_path):
-                async with semaphore:
+
+            async def process_with_semaphore(file_path, sem=semaphore):  # noqa: B008
+                async with sem:
                     return await self.process_document(file_path)
             
             # Create massive parallel tasks
@@ -906,7 +906,7 @@ class DocumentPostProcessor:
             'processed_at': datetime.now().isoformat(),
             'total_documents': len(self.processed_docs),
             'total_chunks': 0,
-            'categories': dict(),  # Use regular dict instead of defaultdict
+            'categories': {},  # Use regular dict instead of defaultdict
             'source_folders': list(source_folders.keys()) if source_folders else [],
             'documents': []
         }

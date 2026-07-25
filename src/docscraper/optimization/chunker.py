@@ -179,7 +179,7 @@ class ChunkOptimizer:
             ):
                 boundaries.append(line_start)
 
-        return content, sorted(list(set(boundaries)))
+        return content, sorted(set(boundaries))
 
     def split_into_chunks(self, content: str) -> list[str]:
         """
