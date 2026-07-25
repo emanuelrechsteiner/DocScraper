@@ -7,7 +7,6 @@ See ADR-004 for design rationale.
 """
 
 import logging
-from typing import Optional
 
 from fastapi import Depends, HTTPException, Security
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -24,9 +23,9 @@ _bearer_scheme = HTTPBearer(auto_error=False)
 
 
 async def get_api_key(
-    credentials: Optional[HTTPAuthorizationCredentials] = Security(_bearer_scheme),
+    credentials: HTTPAuthorizationCredentials | None = Security(_bearer_scheme),
     db: AsyncSession = Depends(get_db_session),
-) -> Optional[APIKey]:
+) -> APIKey | None:
     """Extract and verify API key from the Authorization header.
 
     This dependency does NOT raise on missing keys — use ``require_auth``
@@ -48,7 +47,7 @@ async def get_api_key(
 
 
 async def require_auth(
-    api_key: Optional[APIKey] = Depends(get_api_key),
+    api_key: APIKey | None = Depends(get_api_key),
 ) -> APIKey:
     """Require a valid API key — raises 401 if missing or invalid.
 

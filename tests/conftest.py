@@ -1,8 +1,9 @@
 """Shared test fixtures for the Parsify test suite."""
 
+from pathlib import Path
+
 import pytest
 import pytest_asyncio
-from pathlib import Path
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from api.db.models import Base

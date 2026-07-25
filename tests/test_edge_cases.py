@@ -13,7 +13,6 @@ from docscraper.cleaning.cleaner import (
 )
 from docscraper.optimization.chunker import ChunkOptimizer
 
-
 # ---------------------------------------------------------------------------
 # Shared fixtures
 # ---------------------------------------------------------------------------

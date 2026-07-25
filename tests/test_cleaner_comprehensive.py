@@ -12,15 +12,15 @@ avoid network calls during unit testing.
 
 from __future__ import annotations
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from docscraper.cleaning.cleaner import (
     CleaningConfig,
     CleaningResult,
     PostScraperCleaner,
 )
-
 
 # ---------------------------------------------------------------------------
 # Helpers / shared fixtures

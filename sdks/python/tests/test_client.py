@@ -6,10 +6,8 @@ import asyncio
 from unittest.mock import AsyncMock, patch
 
 import pytest
-
 from parsify import AsyncParsifyClient, Job, JobStatus, ParsifyClient
 from parsify.client import ParsifyError
-
 
 # ---------------------------------------------------------------------------
 # ParsifyClient (sync)

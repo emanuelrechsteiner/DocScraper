@@ -5,10 +5,10 @@ Quick access to vector database operations
 Usage: /vector [command] [query]
 """
 
-import sys
+import json
 import os
 import subprocess
-import json
+import sys
 from pathlib import Path
 
 # Vector database configuration
@@ -25,7 +25,7 @@ def show_help():
     print("  /vector search <query> # Search the database")
     print("  /vector info           # Show database info")
     print("  /vector help           # Show this help")
-    print("")
+    print()
     print("Examples:")
     print("  /vector search crawl4ai")
     print("  /vector search 'async web scraping'")

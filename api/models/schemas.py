@@ -2,10 +2,9 @@
 
 from datetime import datetime
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field, HttpUrl
-
 
 # ---------------------------------------------------------------------------
 # Enums
@@ -41,7 +40,7 @@ class ScrapeRequest(BaseModel):
         default=100, ge=1, le=10000, description="Maximum pages to scrape"
     )
     output_format: str = Field(default="markdown", description="Output format")
-    webhook_url: Optional[HttpUrl] = Field(
+    webhook_url: HttpUrl | None = Field(
         default=None, description="URL for job completion callback"
     )
 
@@ -69,7 +68,7 @@ class ProcessRequest(BaseModel):
         default=False, description="Whether to use LLM for AI classification"
     )
     output_format: str = Field(default="markdown", description="Output format")
-    webhook_url: Optional[HttpUrl] = Field(
+    webhook_url: HttpUrl | None = Field(
         default=None, description="URL for job completion callback"
     )
 
@@ -99,9 +98,9 @@ class JobStatusResponse(BaseModel):
     pages_scraped: int = Field(default=0)
     pages_failed: int = Field(default=0)
     created_at: datetime
-    started_at: Optional[datetime] = None
-    completed_at: Optional[datetime] = None
-    error_message: Optional[str] = None
+    started_at: datetime | None = None
+    completed_at: datetime | None = None
+    error_message: str | None = None
 
 
 class JobResultResponse(BaseModel):
@@ -112,8 +111,8 @@ class JobResultResponse(BaseModel):
     total_pages: int = Field(default=0)
     failed_pages: int = Field(default=0)
     output_files: list[str] = Field(default_factory=list)
-    summary: Optional[dict[str, Any]] = None
-    completed_at: Optional[datetime] = None
+    summary: dict[str, Any] | None = None
+    completed_at: datetime | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -124,7 +123,7 @@ class UserCreateRequest(BaseModel):
     """Request body for POST /api/v1/auth/register."""
 
     email: str = Field(..., description="User email address")
-    name: Optional[str] = Field(default=None, description="Display name")
+    name: str | None = Field(default=None, description="Display name")
 
 
 class UserResponse(BaseModel):
@@ -132,7 +131,7 @@ class UserResponse(BaseModel):
 
     user_id: str
     email: str
-    name: Optional[str] = None
+    name: str | None = None
     tier: BillingTier = BillingTier.FREE
     created_at: datetime
 
@@ -149,7 +148,7 @@ class APIKeyResponse(BaseModel):
     key_id: str
     name: str
     prefix: str = Field(description="Visible prefix (pk_xxxxxxxx)")
-    key: Optional[str] = Field(
+    key: str | None = Field(
         default=None, description="Full API key — shown only at creation"
     )
     created_at: datetime
@@ -176,7 +175,7 @@ class PlanInfo(BaseModel):
     max_pages_per_request: int
     max_concurrent_jobs: int
     price_monthly_cents: int
-    stripe_price_id: Optional[str] = None
+    stripe_price_id: str | None = None
 
 
 class CheckoutRequest(BaseModel):
@@ -199,8 +198,8 @@ class SubscriptionResponse(BaseModel):
 
     user_id: str
     tier: BillingTier
-    stripe_subscription_id: Optional[str] = None
-    current_period_end: Optional[datetime] = None
+    stripe_subscription_id: str | None = None
+    current_period_end: datetime | None = None
     is_active: bool = True
 
 
@@ -216,7 +215,7 @@ class UsageRecord(BaseModel):
     method: str
     status_code: int
     response_time_ms: float
-    key_id: Optional[str] = None
+    key_id: str | None = None
 
 
 class UsageSummaryResponse(BaseModel):
@@ -252,7 +251,7 @@ class WebhookPayload(BaseModel):
     event: str = Field(description="Event type, e.g. 'job.completed'")
     job_id: str
     status: JobStatus
-    result: Optional[dict[str, Any]] = None
+    result: dict[str, Any] | None = None
     timestamp: datetime
 
 
@@ -265,7 +264,7 @@ class ErrorResponse(BaseModel):
 
     code: str = Field(..., description="Error code")
     message: str = Field(..., description="Human-readable error message")
-    details: Optional[dict[str, Any]] = None
+    details: dict[str, Any] | None = None
 
 
 class MetaResponse(BaseModel):
@@ -275,14 +274,14 @@ class MetaResponse(BaseModel):
     timestamp: datetime = Field(
         default_factory=lambda: datetime.now(__import__("datetime").timezone.utc)
     )
-    page: Optional[int] = None
-    per_page: Optional[int] = None
-    total: Optional[int] = None
+    page: int | None = None
+    per_page: int | None = None
+    total: int | None = None
 
 
 class APIResponse(BaseModel):
     """Standard API response wrapper."""
 
-    data: Optional[Any] = None
-    error: Optional[ErrorResponse] = None
+    data: Any | None = None
+    error: ErrorResponse | None = None
     meta: MetaResponse

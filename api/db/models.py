@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any
 
 from sqlalchemy import (
     Boolean,
@@ -49,15 +49,15 @@ class User(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     user_id: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
     email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
-    clerk_user_id: Mapped[Optional[str]] = mapped_column(
+    clerk_user_id: Mapped[str | None] = mapped_column(
         String(64), nullable=True, unique=True
     )
-    name: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    name: Mapped[str | None] = mapped_column(String(255), nullable=True)
     tier: Mapped[str] = mapped_column(String(32), nullable=False, default="free")
-    stripe_customer_id: Mapped[Optional[str]] = mapped_column(
+    stripe_customer_id: Mapped[str | None] = mapped_column(
         String(64), nullable=True
     )
-    stripe_subscription_id: Mapped[Optional[str]] = mapped_column(
+    stripe_subscription_id: Mapped[str | None] = mapped_column(
         String(64), nullable=True
     )
     created_at: Mapped[datetime] = mapped_column(
@@ -140,27 +140,27 @@ class Job(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     job_id: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
     status: Mapped[str] = mapped_column(String(32), nullable=False, default="pending")
-    url: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    url: Mapped[str | None] = mapped_column(Text, nullable=True)
     job_type: Mapped[str] = mapped_column(String(32), nullable=False)
-    max_pages: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
-    output_format: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
-    webhook_url: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    max_pages: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    output_format: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    webhook_url: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), nullable=False
     )
-    started_at: Mapped[Optional[datetime]] = mapped_column(
+    started_at: Mapped[datetime | None] = mapped_column(
         DateTime(timezone=True), nullable=True
     )
-    completed_at: Mapped[Optional[datetime]] = mapped_column(
+    completed_at: Mapped[datetime | None] = mapped_column(
         DateTime(timezone=True), nullable=True
     )
     pages_scraped: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     pages_failed: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     progress: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
-    error_message: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-    output_files: Mapped[Optional[Any]] = mapped_column(JSONB, nullable=True)
-    summary: Mapped[Optional[Any]] = mapped_column(JSONB, nullable=True)
-    owner_key_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    output_files: Mapped[Any | None] = mapped_column(JSONB, nullable=True)
+    summary: Mapped[Any | None] = mapped_column(JSONB, nullable=True)
+    owner_key_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
 
     __table_args__ = (
         Index("ix_jobs_job_id", "job_id"),
@@ -198,7 +198,7 @@ class UsageRecord(Base):
     method: Mapped[str] = mapped_column(String(10), nullable=False)
     status_code: Mapped[int] = mapped_column(Integer, nullable=False)
     response_time_ms: Mapped[float] = mapped_column(Float, nullable=False)
-    key_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    key_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
     pages_count: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
     __table_args__ = (

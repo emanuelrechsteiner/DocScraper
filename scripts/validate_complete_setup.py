@@ -4,12 +4,13 @@ Complete MCP Vector Database Setup Validation
 Comprehensive test to ensure everything is working correctly
 """
 
-import os
 import json
-import sys
-import subprocess
-from pathlib import Path
+import os
 import platform
+import subprocess
+import sys
+from pathlib import Path
+
 
 def print_header(title):
     """Print a formatted header"""

@@ -6,6 +6,7 @@ Test script to verify the vector database connection and content
 import json
 from pathlib import Path
 
+
 def test_vector_database():
     """Test the vector database to verify it's the new one"""
     

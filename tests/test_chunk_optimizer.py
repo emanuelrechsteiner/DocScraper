@@ -7,8 +7,8 @@ semantic boundary detection, token estimation, and metadata handling.
 """
 
 import pytest
-from docscraper.optimization.chunker import ChunkOptimizer, ChunkMetadata
 
+from docscraper.optimization.chunker import ChunkMetadata, ChunkOptimizer
 
 # ---------------------------------------------------------------------------
 # Fixtures

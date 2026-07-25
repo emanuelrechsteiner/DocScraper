@@ -7,6 +7,7 @@ Demonstrates recursive folder processing and output flattening
 import asyncio
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 from docscraper.core.processor import DocumentPostProcessor

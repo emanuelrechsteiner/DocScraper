@@ -4,13 +4,13 @@ Documentation Scraper GUI
 A simple GUI interface for the documentation scraper.
 """
 
-import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox, filedialog
-import threading
 import asyncio
-import sys
 import queue
+import sys
+import threading
+import tkinter as tk
 from datetime import datetime
+from tkinter import filedialog, messagebox, scrolledtext, ttk
 
 from docscraper.core.scraper import DocumentationScraper
 
@@ -315,7 +315,7 @@ class DocScraperGUI:
             self.message_queue.put(("complete", output_dir))
             
         except Exception as e:
-            self.log(f"Error during scraping: {str(e)}", "ERROR")
+            self.log(f"Error during scraping: {e!s}", "ERROR")
             self.update_status("Error occurred")
             self.message_queue.put(("error", str(e)))
             
@@ -357,7 +357,7 @@ class GUIScraper(DocumentationScraper):
                 
             return result
         except Exception as e:
-            self.gui.log(f"Error scraping {url}: {str(e)}", "ERROR")
+            self.gui.log(f"Error scraping {url}: {e!s}", "ERROR")
             return None
 
 

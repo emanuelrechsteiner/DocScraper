@@ -12,7 +12,9 @@ Transformation Example:
 
 import os
 from pathlib import Path
-from PostScraperCleaner import PostScraperCleaner, CleaningConfig
+
+from PostScraperCleaner import CleaningConfig, PostScraperCleaner
+
 
 # Load environment variables from .env
 def load_env():

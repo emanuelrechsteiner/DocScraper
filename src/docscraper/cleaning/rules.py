@@ -9,8 +9,8 @@ documentation markdown files.
 import copy
 import re
 from dataclasses import dataclass, field
-from typing import List, Dict, Pattern
 from enum import Enum
+from re import Pattern
 
 
 class PatternCategory(Enum):
@@ -53,7 +53,7 @@ class CleaningPattern:
 # Define all cleaning patterns
 # NOTE: Patterns updated to be UNIVERSAL, not documentation-specific
 # Anthropic-specific patterns removed - intelligent cleaner handles structure
-CLEANING_PATTERNS: List[CleaningPattern] = [
+CLEANING_PATTERNS: list[CleaningPattern] = [
     # UNIVERSAL BOILERPLATE PATTERNS (Work on ALL documentation)
     CleaningPattern(
         name="yaml_frontmatter",
@@ -326,7 +326,7 @@ CLEANING_PATTERNS: List[CleaningPattern] = [
 class PatternRegistry:
     """Registry for managing cleaning patterns"""
 
-    def __init__(self, patterns: List[CleaningPattern] = None):
+    def __init__(self, patterns: list[CleaningPattern] = None):
         """Initialize registry with patterns.
 
         Patterns are deep-copied so each registry owns independent instances.
@@ -341,15 +341,15 @@ class PatternRegistry:
         """Get a specific pattern by name"""
         return self._pattern_map.get(name)
 
-    def get_enabled_patterns(self) -> List[CleaningPattern]:
+    def get_enabled_patterns(self) -> list[CleaningPattern]:
         """Get all enabled patterns"""
         return [p for p in self.patterns if p.enabled]
 
-    def get_patterns_by_category(self, category: PatternCategory) -> List[CleaningPattern]:
+    def get_patterns_by_category(self, category: PatternCategory) -> list[CleaningPattern]:
         """Get all patterns in a specific category"""
         return [p for p in self.patterns if p.category == category]
 
-    def get_patterns_by_confidence(self, min_confidence: float) -> List[CleaningPattern]:
+    def get_patterns_by_confidence(self, min_confidence: float) -> list[CleaningPattern]:
         """Get patterns above a confidence threshold"""
         return [p for p in self.patterns if p.confidence >= min_confidence]
 
@@ -369,7 +369,7 @@ class PatternRegistry:
             return True
         return False
 
-    def get_statistics(self) -> Dict:
+    def get_statistics(self) -> dict:
         """Get statistics about patterns in the registry"""
         enabled = len(self.get_enabled_patterns())
         by_category = {}

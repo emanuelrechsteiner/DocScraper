@@ -18,8 +18,8 @@ from api.app import create_app
 from api.db.repositories import UserRepository
 from api.db.session import get_db_session
 from api.models.schemas import BillingTier
-from api.services.billing import billing_service, PLANS
-from api.services.usage import UsageService, TIER_LIMITS
+from api.services.billing import PLANS, billing_service
+from api.services.usage import TIER_LIMITS, UsageService
 
 
 @pytest_asyncio.fixture

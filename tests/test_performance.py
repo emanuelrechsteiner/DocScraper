@@ -5,13 +5,15 @@ Measures performance metrics for all components.
 Tests execution time, memory usage, and throughput.
 """
 
-import time
 import tempfile
-import pytest
+import time
 from pathlib import Path
-from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig
-from docscraper.optimization.chunker import ChunkOptimizer
+
+import pytest
+
+from docscraper.cleaning.cleaner import CleaningConfig, PostScraperCleaner
 from docscraper.cleaning.rules import PatternRegistry
+from docscraper.optimization.chunker import ChunkOptimizer
 
 
 class TestPerformanceBenchmarks:

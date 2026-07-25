@@ -5,11 +5,13 @@ Tests integration of PostScraperCleaner with existing DocScraper application.
 Verifies seamless workflow from scraping to cleaning.
 """
 
-import pytest
-import tempfile
 import json
+import tempfile
 from pathlib import Path
-from docscraper.cleaning.cleaner import PostScraperCleaner, CleaningConfig, CleaningResult
+
+import pytest
+
+from docscraper.cleaning.cleaner import CleaningConfig, CleaningResult, PostScraperCleaner
 
 
 class TestDocScraperWorkflow:
@@ -18,8 +20,8 @@ class TestDocScraperWorkflow:
     def test_import_docscraper_modules(self):
         """Test importing existing DocScraper modules"""
         try:
-            import SimpleDocScraper
             import DocPostProcessor
+            import SimpleDocScraper
             assert SimpleDocScraper is not None
             assert DocPostProcessor is not None
         except ImportError as e:

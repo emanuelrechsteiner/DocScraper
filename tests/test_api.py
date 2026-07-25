@@ -9,7 +9,7 @@ which overrides the ``get_db_session`` dependency.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 import pytest_asyncio
@@ -17,7 +17,7 @@ from httpx import ASGITransport, AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.app import create_app
-from api.db.repositories import JobRepository, UserRepository, APIKeyRepository
+from api.db.repositories import APIKeyRepository, JobRepository, UserRepository
 from api.db.session import get_db_session
 from api.models.schemas import JobStatus
 
@@ -175,7 +175,7 @@ class TestJobEndpoints:
         await repo.update(
             job_id,
             status=JobStatus.COMPLETED.value,
-            completed_at=datetime.now(timezone.utc),
+            completed_at=datetime.now(UTC),
             pages_scraped=5,
             output_files=["page1.md", "page2.md"],
             summary={"total": 5},

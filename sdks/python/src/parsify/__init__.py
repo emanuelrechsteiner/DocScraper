@@ -3,5 +3,5 @@
 from .client import AsyncParsifyClient, ParsifyClient
 from .models import Job, JobStatus, ScrapeConfig
 
-__all__ = ["ParsifyClient", "AsyncParsifyClient", "Job", "JobStatus", "ScrapeConfig"]
+__all__ = ["AsyncParsifyClient", "Job", "JobStatus", "ParsifyClient", "ScrapeConfig"]
 __version__ = "0.1.0"

@@ -11,9 +11,8 @@ different documentation structures (Anthropic, Python, React, Stripe, etc.)
 import json
 import logging
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional
 
-from .llm import LLMValidator, LLMConfig
+from .llm import LLMConfig, LLMValidator
 
 logger = logging.getLogger(__name__)
 
@@ -37,12 +36,12 @@ class ContentAnalysis:
     """Result of LLM semantic content analysis"""
     main_content_start: int
     main_content_end: int
-    sections_to_remove: List[ContentSection] = field(default_factory=list)
-    sections_to_keep: List[ContentSection] = field(default_factory=list)
+    sections_to_remove: list[ContentSection] = field(default_factory=list)
+    sections_to_keep: list[ContentSection] = field(default_factory=list)
     confidence: float = 0.0
     analysis_cost: float = 0.0
 
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> dict:
         """Convert to dictionary for serialization"""
         return {
             "main_content_start": self.main_content_start,
@@ -82,7 +81,7 @@ class IntelligentContentAnalyzer:
     Works on any documentation source without hardcoded patterns.
     """
 
-    def __init__(self, llm_config: Optional[LLMConfig] = None):
+    def __init__(self, llm_config: LLMConfig | None = None):
         """Initialize with LLM configuration"""
         self.llm_config = llm_config or LLMConfig(
             model="gpt-4o",
@@ -271,8 +270,8 @@ Only output valid JSON, no other text."""
 
     def _call_openai_for_analysis(self, prompt: str) -> str:
         """Call OpenAI API and return raw response text"""
-        from urllib.request import Request, urlopen
         import json as json_lib
+        from urllib.request import Request, urlopen
 
         # Prepare request
         url = "https://api.openai.com/v1/chat/completions"
@@ -386,7 +385,7 @@ Only output valid JSON, no other text."""
             ]
         )
 
-    def get_statistics(self) -> Dict:
+    def get_statistics(self) -> dict:
         """Get analyzer statistics"""
         stats = self.stats.copy()
 

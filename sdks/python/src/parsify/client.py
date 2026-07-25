@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
-from typing import Any, Optional
+from typing import Any
 
 import httpx
 
@@ -30,15 +30,15 @@ class ParsifyError(Exception):
     def __init__(
         self,
         message: str,
-        status_code: Optional[int] = None,
-        code: Optional[str] = None,
+        status_code: int | None = None,
+        code: str | None = None,
     ) -> None:
         super().__init__(message)
         self.status_code = status_code
         self.code = code
 
 
-def _parse_error(body: dict[str, Any]) -> tuple[str, Optional[str]]:
+def _parse_error(body: dict[str, Any]) -> tuple[str, str | None]:
     """Extract a human-readable message and error code from an API error body.
 
     Args:
@@ -123,7 +123,7 @@ class ParsifyClient:
         url: str,
         max_pages: int = 100,
         output_format: str = "markdown",
-        webhook_url: Optional[str] = None,
+        webhook_url: str | None = None,
     ) -> Job:
         """Submit a new scrape job.
 
@@ -219,7 +219,7 @@ class ParsifyClient:
 
     def list_jobs(
         self,
-        status: Optional[str] = None,
+        status: str | None = None,
         limit: int = 50,
     ) -> list[Job]:
         """List jobs with optional status filtering.
@@ -313,7 +313,7 @@ class AsyncParsifyClient:
         url: str,
         max_pages: int = 100,
         output_format: str = "markdown",
-        webhook_url: Optional[str] = None,
+        webhook_url: str | None = None,
     ) -> Job:
         """Submit a new scrape job asynchronously.
 
@@ -408,7 +408,7 @@ class AsyncParsifyClient:
 
     async def list_jobs(
         self,
-        status: Optional[str] = None,
+        status: str | None = None,
         limit: int = 50,
     ) -> list[Job]:
         """List jobs asynchronously with optional status filtering.

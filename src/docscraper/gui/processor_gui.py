@@ -4,15 +4,15 @@ Documentation Post-Processor GUI
 A graphical interface for cleaning, structuring, and sorting scraped markdown files.
 """
 
-import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox, filedialog
-import threading
 import asyncio
-from pathlib import Path
-from datetime import datetime, timedelta
-import queue
-import time
 import os
+import queue
+import threading
+import time
+import tkinter as tk
+from datetime import datetime, timedelta
+from pathlib import Path
+from tkinter import filedialog, messagebox, scrolledtext, ttk
 
 from docscraper.core.processor import DocumentPostProcessor
 
@@ -301,7 +301,6 @@ class DocPostProcessorGUI:
     
     def toggle_api_key(self):
         """This method is deprecated - API key is now loaded from .env file."""
-        pass
     
     def check_messages(self):
         """Check for messages from processor thread."""
@@ -541,7 +540,7 @@ class DocPostProcessorGUI:
             self.message_queue.put(("complete", summary))
             
         except Exception as e:
-            self.log(f"Error during processing: {str(e)}", "ERROR")
+            self.log(f"Error during processing: {e!s}", "ERROR")
             self.update_status("Error occurred")
             self.message_queue.put(("error", str(e)))
             

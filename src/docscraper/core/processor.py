@@ -5,21 +5,21 @@ Cleans, structures, and sorts scraped markdown files for optimal vector database
 """
 from __future__ import annotations
 
-import re
-import json
 import asyncio
+import hashlib
+import json
+import logging
+import re
+from collections import defaultdict
+from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 from typing import Any
-from datetime import datetime
-import logging
-from dataclasses import dataclass, field
-from collections import defaultdict
-import yaml
-import hashlib
 
+import networkx as nx
+import yaml
 from openai import AsyncOpenAI
 from tenacity import retry, stop_after_attempt, wait_exponential
-import networkx as nx
 
 logger = logging.getLogger(__name__)
 
@@ -999,8 +999,9 @@ class DocumentPostProcessor:
 
 async def main():
     """Main entry point."""
-    import sys
     import os
+    import sys
+
     from dotenv import load_dotenv
         
     # Always load environment variables from .env file

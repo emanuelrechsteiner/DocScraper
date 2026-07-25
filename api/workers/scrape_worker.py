@@ -13,7 +13,7 @@ Usage:
 """
 
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from ..db.engine import async_session_factory
@@ -49,7 +49,7 @@ async def run_scrape_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
             )
             return {"error": "Job has no URL"}
 
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         await repo.update(job_id, status=JobStatus.RUNNING.value, started_at=now)
         logger.info("Starting scrape job %s for %s", job_id, job.url)
 
@@ -66,7 +66,7 @@ async def run_scrape_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
             await repo.update(
                 job_id,
                 status=JobStatus.COMPLETED.value,
-                completed_at=datetime.now(timezone.utc),
+                completed_at=datetime.now(UTC),
                 pages_scraped=result.get("pages_scraped", 0),
                 pages_failed=result.get("pages_failed", 0),
                 output_files=list(result.get("visited_urls", [])),
@@ -96,7 +96,7 @@ async def run_scrape_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
             await repo.update(
                 job_id,
                 status=JobStatus.FAILED.value,
-                completed_at=datetime.now(timezone.utc),
+                completed_at=datetime.now(UTC),
                 error_message=error_msg,
             )
             await session.commit()
@@ -140,7 +140,7 @@ async def run_process_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
             )
             return {"error": "Job has no input path"}
 
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         await repo.update(job_id, status=JobStatus.RUNNING.value, started_at=now)
         logger.info("Starting process job %s for %s", job_id, job.url)
 
@@ -168,7 +168,7 @@ async def run_process_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
             await repo.update(
                 job_id,
                 status=JobStatus.COMPLETED.value,
-                completed_at=datetime.now(timezone.utc),
+                completed_at=datetime.now(UTC),
                 summary=result,
                 progress=100.0,
             )
@@ -191,7 +191,7 @@ async def run_process_job(ctx: dict[str, Any], job_id: str) -> dict[str, Any]:
             await repo.update(
                 job_id,
                 status=JobStatus.FAILED.value,
-                completed_at=datetime.now(timezone.utc),
+                completed_at=datetime.now(UTC),
                 error_message=error_msg,
             )
             await session.commit()
